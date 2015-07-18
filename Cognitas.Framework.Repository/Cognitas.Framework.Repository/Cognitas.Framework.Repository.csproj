@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BB0E3E7E-6030-4477-B030-320B3060F3A7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cognitas.Framework.Repository</RootNamespace>
+    <AssemblyName>Cognitas.Framework.Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Oracle.DataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\oraclexe\app\oracle\product\11.2.0\server\odp.net\bin\4\Oracle.DataAccess.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConnectionItem.cs" />
+    <Compile Include="ConnectionList.cs" />
+    <Compile Include="ConnectionPool.cs" />
+    <Compile Include="Dataservices.cs" />
+    <Compile Include="DBFactory.cs" />
+    <Compile Include="DBRepository.cs" />
+    <Compile Include="Exceptions\ConnectionNameNotFoundException.cs" />
+    <Compile Include="Exceptions\FactoryTypeNotSupportedException.cs" />
+    <Compile Include="Exceptions\IdNotNullException.cs" />
+    <Compile Include="Exceptions\IntegrityUpdateException.cs" />
+    <Compile Include="Exceptions\ObjectHashException.cs" />
+    <Compile Include="Exceptions\ORMException.cs" />
+    <Compile Include="Exceptions\RepositoryAttributeException.cs" />
+    <Compile Include="Exceptions\RepositoryDonotBeginTransactionException.cs" />
+    <Compile Include="Exceptions\RepositoryDoNotSupportTransacctionException.cs" />
+    <Compile Include="Exceptions\RepositoryException.cs" />
+    <Compile Include="Exceptions\RespositoryNotasTransException.cs" />
+    <Compile Include="Filter.cs" />
+    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\DALBase.cs" />
+    <Compile Include="Helpers\DALDatabase.cs" />
+    <Compile Include="HostConnectionPool.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="MSSqlserver\MSSQLFactory.cs" />
+    <Compile Include="MSSqlserver\MSSQLRepository.cs" />
+    <Compile Include="Oracle\OracleFactory.cs" />
+    <Compile Include="Oracle\OracleRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository.cs" />
+    <Compile Include="RepositoryAttribute.cs" />
+    <Compile Include="RepositoryFieldAttribute.cs" />
+    <Compile Include="RepositoryProperty.cs" />
+    <Compile Include="Helpers\IRepositoryHelper.cs" />
+    <Compile Include="StoredConnection.cs" />
+    <Compile Include="StoredConnectionList.cs" />
+    <Compile Include="WebConnectionPool.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MSAcces\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

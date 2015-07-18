@@ -1,0 +1,12 @@
+C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Test\bin\Release\Cognitas.Framework.Test.dll.config
+C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Test\bin\Release\Cognitas.Framework.Test.dll
+C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Test\bin\Release\Cognitas.Framework.Test.pdb
+C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Test\bin\Release\Cognitas.Framework.Repository.dll
+C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Test\bin\Release\Oracle.DataAccess.dll
+C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Test\bin\Release\Cognitas.Framework.Repository.pdb
+C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Test\obj\Release\ResolveAssemblyReference.cache
+C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Test\obj\Release\Cognitas.Framework.Test.Properties.Resources.resources
+C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Test\obj\Release\GenerateResource.read.1.tlog
+C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Test\obj\Release\GenerateResource.write.1.tlog
+C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Test\obj\Release\Cognitas.Framework.Test.dll
+C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Test\obj\Release\Cognitas.Framework.Test.pdb

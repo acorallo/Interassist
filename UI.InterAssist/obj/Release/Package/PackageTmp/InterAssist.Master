@@ -1,0 +1,113 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="InterAssist.master.cs" Inherits="UI.InterAssist.InterAssist" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="jquery-ui-1.11.1/jquery-ui.min.css" rel="stylesheet">
+    <link href="Estilos/InterAssist.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+   <style type="text/css">
+        .style1
+        {
+            width: 100%;
+        }
+        .style2
+        {
+            width: 860px;
+        }
+       </style>
+</head>
+<body>
+     <table class="style1">
+        <tr>
+            <td align="center">
+                <table class="style2">
+                    <tr>
+                        <td>
+                                <form id="form1" runat="server">
+    <div>
+    <div>
+    <!-- Aqui va el contenido de la pagina Master.-->
+
+        <table class="style1">
+            <tr>
+                <td colspan="2" align="left">
+                    <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/InterAssist.png" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="right">
+                    <asp:Label ID="lblVersion" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <asp:LinkButton ID="lnkUsuario" runat="server" onclick="lnkUsuario_Click" 
+                        CausesValidation="False"></asp:LinkButton>
+                </td>
+                <td align="right">
+                    <asp:LinkButton ID="lnkLogOut" runat="server" CausesValidation="False" 
+                        onclick="lnkLogOut_Click"></asp:LinkButton>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <asp:Label ID="lblSeccion" runat="server" CssClass="SeccionTitulo"></asp:Label>
+                </td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td align="left" colspan="2">
+                    &nbsp;</td>
+            </tr>
+            <tr><div id="divBotones" runat="server">
+                <td align="left" colspan="2" class="Menu">
+                    <table class="style1">
+                        
+                            <tr>
+                                <td>
+                                    <asp:LinkButton ID="lnkOperadores" runat="server" CausesValidation="False" 
+                                        CssClass="BotonMenu" onclick="lnkOperadores_Click"></asp:LinkButton>
+                                </td>
+                                <td>
+                                    <asp:LinkButton ID="lnkAfiliados" runat="server" CausesValidation="False" 
+                                        CssClass="BotonMenu" onclick="lnkAfiliados_Click"></asp:LinkButton>
+                                </td>
+                                <td>
+                                    <asp:LinkButton ID="lnkPrestadores" runat="server" CausesValidation="False" 
+                                        CssClass="BotonMenu" onclick="lnkPrestadores_Click"></asp:LinkButton>
+                                </td>
+                                <td>
+                                    <asp:LinkButton ID="lnkCasos" runat="server" CausesValidation="False" 
+                                        CssClass="BotonMenu" onclick="lnkCasos_Click"></asp:LinkButton>
+                                </td>
+                                <td>
+                                    <asp:LinkButton ID="lnkDatos" runat="server" CausesValidation="False" 
+                                        CssClass="BotonMenu" OnClick="lnkDatos_Click"></asp:LinkButton>
+                                </td>
+                                <td width="100%">
+                                </td>
+                            </tr>
+                        
+                    </table>
+                </td>
+            </div></tr>
+        </table>
+
+    </div>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+     </asp:ContentPlaceHolder>
+    </div>
+    </form></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

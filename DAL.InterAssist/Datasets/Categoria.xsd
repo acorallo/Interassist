@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Categoria" targetNamespace="http://tempuri.org/Categoria.xsd" xmlns:mstns="http://tempuri.org/Categoria.xsd" xmlns="http://tempuri.org/Categoria.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString (Settings)" PropertyReference="ApplicationSettings.DAL.InterAssist.Properties.Settings.GlobalReference.Default.ConnectionString" Provider="System.Data.OleDb" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Categoria" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Categoria" msprop:Generator_UserDSName="Categoria">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CATAGORIAS" msprop:Generator_TableClassName="CATAGORIASDataTable" msprop:Generator_TableVarName="tableCATAGORIAS" msprop:Generator_TablePropName="CATAGORIAS" msprop:Generator_RowDeletingName="CATAGORIASRowDeleting" msprop:Generator_UserTableName="CATAGORIAS" msprop:Generator_RowChangingName="CATAGORIASRowChanging" msprop:Generator_RowEvHandlerName="CATAGORIASRowChangeEventHandler" msprop:Generator_RowDeletedName="CATAGORIASRowDeleted" msprop:Generator_RowEvArgName="CATAGORIASRowChangeEvent" msprop:Generator_RowChangedName="CATAGORIASRowChanged" msprop:Generator_RowClassName="CATAGORIASRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDCATEGORIA" msprop:Generator_ColumnVarNameInTable="columnIDCATEGORIA" msprop:Generator_ColumnPropNameInRow="IDCATEGORIA" msprop:Generator_ColumnPropNameInTable="IDCATEGORIAColumn" msprop:Generator_UserColumnName="IDCATEGORIA" type="xs:double" />
+              <xs:element name="NOMBRE" msprop:Generator_ColumnVarNameInTable="columnNOMBRE" msprop:Generator_ColumnPropNameInRow="NOMBRE" msprop:Generator_ColumnPropNameInTable="NOMBREColumn" msprop:Generator_UserColumnName="NOMBRE">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DESCRIPCION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPCION" msprop:Generator_ColumnPropNameInRow="DESCRIPCION" msprop:Generator_ColumnPropNameInTable="DESCRIPCIONColumn" msprop:Generator_UserColumnName="DESCRIPCION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1024" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ESTADO" msprop:Generator_ColumnVarNameInTable="columnESTADO" msprop:Generator_ColumnPropNameInRow="ESTADO" msprop:Generator_ColumnPropNameInTable="ESTADOColumn" msprop:Generator_UserColumnName="ESTADO" type="xs:double" />
+              <xs:element name="OBJECTHASH" msprop:Generator_ColumnVarNameInTable="columnOBJECTHASH" msprop:Generator_ColumnPropNameInRow="OBJECTHASH" msprop:Generator_ColumnPropNameInTable="OBJECTHASHColumn" msprop:Generator_UserColumnName="OBJECTHASH" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CODIGO" msprop:Generator_ColumnVarNameInTable="columnCODIGO" msprop:Generator_ColumnPropNameInRow="CODIGO" msprop:Generator_ColumnPropNameInTable="CODIGOColumn" msprop:Generator_UserColumnName="CODIGO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CATAGORIAS" />
+      <xs:field xpath="mstns:IDCATEGORIA" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

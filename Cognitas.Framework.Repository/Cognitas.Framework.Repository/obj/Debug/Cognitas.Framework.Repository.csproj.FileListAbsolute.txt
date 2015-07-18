@@ -1,0 +1,11 @@
+C:\Users\andres.corallo\Google Drive\Desarrollo\Desarrollo\Cognitas\Cognitas\dotNet\Framework\Repository\Cognitas.Framework.Repository\Cognitas.Framework.Repository\bin\Debug\Cognitas.Framework.Repository.dll
+C:\Users\andres.corallo\Google Drive\Desarrollo\Desarrollo\Cognitas\Cognitas\dotNet\Framework\Repository\Cognitas.Framework.Repository\Cognitas.Framework.Repository\bin\Debug\Cognitas.Framework.Repository.pdb
+C:\Users\andres.corallo\Google Drive\Desarrollo\Desarrollo\Cognitas\Cognitas\dotNet\Framework\Repository\Cognitas.Framework.Repository\Cognitas.Framework.Repository\bin\Debug\Oracle.DataAccess.dll
+C:\Users\andres.corallo\Google Drive\Desarrollo\Desarrollo\Cognitas\Cognitas\dotNet\Framework\Repository\Cognitas.Framework.Repository\Cognitas.Framework.Repository\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\andres.corallo\Google Drive\Desarrollo\Desarrollo\Cognitas\Cognitas\dotNet\Framework\Repository\Cognitas.Framework.Repository\Cognitas.Framework.Repository\obj\Debug\Cognitas.Framework.Repository.dll
+C:\Users\andres.corallo\Google Drive\Desarrollo\Desarrollo\Cognitas\Cognitas\dotNet\Framework\Repository\Cognitas.Framework.Repository\Cognitas.Framework.Repository\obj\Debug\Cognitas.Framework.Repository.pdb
+C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Repository\bin\Debug\Cognitas.Framework.Repository.dll
+C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Repository\bin\Debug\Cognitas.Framework.Repository.pdb
+C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Repository\obj\Debug\Cognitas.Framework.Repository.dll
+C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Repository\obj\Debug\Cognitas.Framework.Repository.pdb
+C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Repository\obj\Debug\Cognitas.Framework.Repository.csprojResolveAssemblyReference.cache

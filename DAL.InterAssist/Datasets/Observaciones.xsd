@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Observaciones" targetNamespace="http://tempuri.org/Observaciones.xsd" xmlns:mstns="http://tempuri.org/Observaciones.xsd" xmlns="http://tempuri.org/Observaciones.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString (Settings)" PropertyReference="ApplicationSettings.DAL.InterAssist.Properties.Settings.GlobalReference.Default.ConnectionString" Provider="System.Data.OleDb" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Observaciones" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Observaciones" msprop:Generator_UserDSName="Observaciones">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="OBSERVACIONES" msprop:Generator_TableClassName="OBSERVACIONESDataTable" msprop:Generator_TableVarName="tableOBSERVACIONES" msprop:Generator_TablePropName="OBSERVACIONES" msprop:Generator_RowDeletingName="OBSERVACIONESRowDeleting" msprop:Generator_UserTableName="OBSERVACIONES" msprop:Generator_RowChangingName="OBSERVACIONESRowChanging" msprop:Generator_RowEvHandlerName="OBSERVACIONESRowChangeEventHandler" msprop:Generator_RowDeletedName="OBSERVACIONESRowDeleted" msprop:Generator_RowEvArgName="OBSERVACIONESRowChangeEvent" msprop:Generator_RowChangedName="OBSERVACIONESRowChanged" msprop:Generator_RowClassName="OBSERVACIONESRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDOBSERVACION" msprop:Generator_ColumnVarNameInTable="columnIDOBSERVACION" msprop:Generator_ColumnPropNameInRow="IDOBSERVACION" msprop:Generator_ColumnPropNameInTable="IDOBSERVACIONColumn" msprop:Generator_UserColumnName="IDOBSERVACION" type="xs:double" />
+              <xs:element name="IDOPERADOR" msprop:Generator_ColumnVarNameInTable="columnIDOPERADOR" msprop:Generator_ColumnPropNameInRow="IDOPERADOR" msprop:Generator_ColumnPropNameInTable="IDOPERADORColumn" msprop:Generator_UserColumnName="IDOPERADOR" type="xs:double" />
+              <xs:element name="FECHA" msprop:Generator_ColumnVarNameInTable="columnFECHA" msprop:Generator_ColumnPropNameInRow="FECHA" msprop:Generator_ColumnPropNameInTable="FECHAColumn" msprop:Generator_UserColumnName="FECHA" type="xs:dateTime" />
+              <xs:element name="IDTICKET" msprop:Generator_ColumnVarNameInTable="columnIDTICKET" msprop:Generator_ColumnPropNameInRow="IDTICKET" msprop:Generator_ColumnPropNameInTable="IDTICKETColumn" msprop:Generator_UserColumnName="IDTICKET" type="xs:double" />
+              <xs:element name="ESTADO" msprop:Generator_ColumnVarNameInTable="columnESTADO" msprop:Generator_ColumnPropNameInRow="ESTADO" msprop:Generator_ColumnPropNameInTable="ESTADOColumn" msprop:Generator_UserColumnName="ESTADO" type="xs:double" />
+              <xs:element name="OBJECTHASH" msprop:Generator_ColumnVarNameInTable="columnOBJECTHASH" msprop:Generator_ColumnPropNameInRow="OBJECTHASH" msprop:Generator_ColumnPropNameInTable="OBJECTHASHColumn" msprop:Generator_UserColumnName="OBJECTHASH" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DESCRIPCION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPCION" msprop:Generator_ColumnPropNameInRow="DESCRIPCION" msprop:Generator_ColumnPropNameInTable="DESCRIPCIONColumn" msprop:Generator_UserColumnName="DESCRIPCION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3999" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:OBSERVACIONES" />
+      <xs:field xpath="mstns:IDOBSERVACION" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

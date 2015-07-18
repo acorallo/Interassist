@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile>2014-11-29T21:02:45.3101771-03:00</TimeStampOfAssociatedLegacyPublishXmlFile>
+    <_PublishTargetUrl>C:\Desarrollo\InterAssist\Deploy\Release4.0\Site40</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/AjaxControlToolkit.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/AjaxMin.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/ar/AjaxControlToolkit.resources.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/Cognitas.Framework.Repository.dll">
+      <publishTime>06/10/2015 15:22:04</publishTime>
+    </File>
+    <File Include="bin/Cognitas.Framework.UserInterface.dll">
+      <publishTime>06/07/2015 17:05:33</publishTime>
+    </File>
+    <File Include="bin/cs/AjaxControlToolkit.resources.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/DAL.InterAssist.dll">
+      <publishTime>06/10/2015 15:22:05</publishTime>
+    </File>
+    <File Include="bin/de/AjaxControlToolkit.resources.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/de/System.Spatial.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/Entities.InterAsisst.dll">
+      <publishTime>06/10/2015 15:22:05</publishTime>
+    </File>
+    <File Include="bin/es/AjaxControlToolkit.resources.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/es/System.Spatial.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/fr/AjaxControlToolkit.resources.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/fr/System.Spatial.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/he/AjaxControlToolkit.resources.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/hi/AjaxControlToolkit.resources.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/HtmlAgilityPack.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/it/AjaxControlToolkit.resources.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/it/System.Spatial.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/ja/AjaxControlToolkit.resources.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/ja/System.Spatial.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/ko/AjaxControlToolkit.resources.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/ko/System.Spatial.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Data.Edm.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Data.OData.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/Microsoft.WindowsAzure.Configuration.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/Microsoft.WindowsAzure.Storage.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/nl/AjaxControlToolkit.resources.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/Oracle.DataAccess.dll">
+      <publishTime>12/16/2014 06:40:38</publishTime>
+    </File>
+    <File Include="bin/pl/AjaxControlToolkit.resources.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/pt/AjaxControlToolkit.resources.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/ru/AjaxControlToolkit.resources.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/ru/System.Spatial.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/System.Spatial.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/tr-TR/AjaxControlToolkit.resources.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/UI.InterAssist.dll">
+      <publishTime>06/13/2015 00:42:50</publishTime>
+    </File>
+    <File Include="bin/Utils.InterAssist.dll">
+      <publishTime>06/10/2015 15:22:04</publishTime>
+    </File>
+    <File Include="bin/zh-CHS/AjaxControlToolkit.resources.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/zh-CHT/AjaxControlToolkit.resources.dll">
+      <publishTime>09/10/2014 16:57:16</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Spatial.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/System.Spatial.resources.dll">
+      <publishTime>09/10/2014 16:57:15</publishTime>
+    </File>
+    <File Include="Estilos/InterAssist.css">
+      <publishTime>06/01/2015 17:22:00</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>09/30/2014 21:55:04</publishTime>
+    </File>
+    <File Include="Images/InterAssist.png">
+      <publishTime>08/18/2014 22:33:57</publishTime>
+    </File>
+    <File Include="InterAssist.Master">
+      <publishTime>05/30/2015 12:02:54</publishTime>
+    </File>
+    <File Include="jquery-ui-1.11.1/jquery-ui.css">
+      <publishTime>11/11/2014 02:08:56</publishTime>
+    </File>
+    <File Include="jquery-ui-1.11.1/jquery-ui.js">
+      <publishTime>09/08/2014 07:34:04</publishTime>
+    </File>
+    <File Include="jquery-ui-1.11.1/jquery-ui.min.css">
+      <publishTime>11/11/2014 02:19:17</publishTime>
+    </File>
+    <File Include="jquery-ui-1.11.1/jquery-ui.min.js">
+      <publishTime>09/08/2014 07:34:04</publishTime>
+    </File>
+    <File Include="jquery-ui-1.11.1/jquery-ui.structure.css">
+      <publishTime>09/08/2014 07:34:04</publishTime>
+    </File>
+    <File Include="jquery-ui-1.11.1/jquery-ui.structure.min.css">
+      <publishTime>09/08/2014 07:34:04</publishTime>
+    </File>
+    <File Include="jquery-ui-1.11.1/jquery-ui.theme.css">
+      <publishTime>09/25/2014 00:23:17</publishTime>
+    </File>
+    <File Include="jquery-ui-1.11.1/jquery-ui.theme.min.css">
+      <publishTime>09/08/2014 07:34:04</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>09/10/2014 16:57:28</publishTime>
+    </File>
+    <File Include="Scripts/AfiladoCrud.js">
+      <publishTime>09/18/2014 12:36:14</publishTime>
+    </File>
+    <File Include="Scripts/AfiliadoCtrl.js">
+      <publishTime>09/17/2014 18:30:38</publishTime>
+    </File>
+    <File Include="Scripts/CasoCrud.js">
+      <publishTime>11/13/2014 01:49:50</publishTime>
+    </File>
+    <File Include="Scripts/InterAssistUI.js">
+      <publishTime>11/10/2014 19:13:47</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.1.min.js">
+      <publishTime>06/21/2013 15:07:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui.js">
+      <publishTime>09/09/2014 13:10:55</publishTime>
+    </File>
+    <File Include="Scripts/Operador.js">
+      <publishTime>10/14/2014 12:42:45</publishTime>
+    </File>
+    <File Include="Scripts/PrestadorCrud.js">
+      <publishTime>11/24/2014 20:53:38</publishTime>
+    </File>
+    <File Include="Scripts/UbicacionPredictivo.js">
+      <publishTime>11/10/2014 20:58:47</publishTime>
+    </File>
+    <File Include="Scripts/Usuario.js">
+      <publishTime>10/14/2014 11:20:32</publishTime>
+    </File>
+    <File Include="Usercontrols/AfiliadoCtrl.ascx">
+      <publishTime>06/01/2015 19:19:28</publishTime>
+    </File>
+    <File Include="Usercontrols/AfiliadoDetalle.ascx">
+      <publishTime>10/15/2014 10:06:37</publishTime>
+    </File>
+    <File Include="Usercontrols/Clientes.ascx">
+      <publishTime>09/17/2014 18:38:57</publishTime>
+    </File>
+    <File Include="Usercontrols/DecimalControl.ascx">
+      <publishTime>10/09/2014 15:18:55</publishTime>
+    </File>
+    <File Include="Usercontrols/FilterTicket.ascx">
+      <publishTime>08/19/2014 12:05:26</publishTime>
+    </File>
+    <File Include="Usercontrols/Operador.ascx">
+      <publishTime>10/14/2014 12:40:12</publishTime>
+    </File>
+    <File Include="Usercontrols/Prestadorctrl.ascx">
+      <publishTime>11/25/2014 00:14:29</publishTime>
+    </File>
+    <File Include="Usercontrols/PrestadoresEdit.ascx">
+      <publishTime>11/25/2014 00:02:55</publishTime>
+    </File>
+    <File Include="Usercontrols/Ubicacion.ascx">
+      <publishTime>11/11/2014 02:08:56</publishTime>
+    </File>
+    <File Include="Usercontrols/UbicacionPredictivo.ascx">
+      <publishTime>11/24/2014 23:38:24</publishTime>
+    </File>
+    <File Include="Views/AfiliadoCrud.aspx">
+      <publishTime>09/17/2014 23:47:39</publishTime>
+    </File>
+    <File Include="Views/Afiliados.aspx">
+      <publishTime>10/14/2014 16:41:03</publishTime>
+    </File>
+    <File Include="Views/AfiliadosUnsync.aspx">
+      <publishTime>06/10/2015 15:15:58</publishTime>
+    </File>
+    <File Include="Views/CasoCrud.aspx">
+      <publishTime>06/01/2015 17:20:46</publishTime>
+    </File>
+    <File Include="Views/Casos.aspx">
+      <publishTime>11/13/2014 12:53:44</publishTime>
+    </File>
+    <File Include="Views/Exception.aspx">
+      <publishTime>09/30/2014 22:29:52</publishTime>
+    </File>
+    <File Include="Views/Login.aspx">
+      <publishTime>09/26/2014 17:09:17</publishTime>
+    </File>
+    <File Include="Views/OperadorCrud.aspx">
+      <publishTime>10/14/2014 17:10:42</publishTime>
+    </File>
+    <File Include="Views/Operadores.aspx">
+      <publishTime>10/14/2014 16:38:33</publishTime>
+    </File>
+    <File Include="Views/Prestador.aspx">
+      <publishTime>11/29/2014 20:53:01</publishTime>
+    </File>
+    <File Include="Views/PrestadorCrud.aspx">
+      <publishTime>11/24/2014 17:02:53</publishTime>
+    </File>
+    <File Include="Views/test.aspx">
+      <publishTime>11/10/2014 19:31:10</publishTime>
+    </File>
+    <File Include="Views/UpLoadErrors.aspx">
+      <publishTime>06/07/2015 18:17:09</publishTime>
+    </File>
+    <File Include="Views/Uploads.aspx">
+      <publishTime>06/10/2015 11:48:07</publishTime>
+    </File>
+    <File Include="Views/Usuario.aspx">
+      <publishTime>10/14/2014 17:04:25</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>06/13/2015 00:42:51</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

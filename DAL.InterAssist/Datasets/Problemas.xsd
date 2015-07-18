@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Problemas" targetNamespace="http://tempuri.org/Problemas.xsd" xmlns:mstns="http://tempuri.org/Problemas.xsd" xmlns="http://tempuri.org/Problemas.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString (Settings)" PropertyReference="ApplicationSettings.DAL.InterAssist.Properties.Settings.GlobalReference.Default.ConnectionString" Provider="System.Data.OleDb" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Problemas" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Problemas" msprop:Generator_UserDSName="Problemas">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PROBLEMAS" msprop:Generator_TableClassName="PROBLEMASDataTable" msprop:Generator_TableVarName="tablePROBLEMAS" msprop:Generator_TablePropName="PROBLEMAS" msprop:Generator_RowDeletingName="PROBLEMASRowDeleting" msprop:Generator_UserTableName="PROBLEMAS" msprop:Generator_RowChangingName="PROBLEMASRowChanging" msprop:Generator_RowEvHandlerName="PROBLEMASRowChangeEventHandler" msprop:Generator_RowDeletedName="PROBLEMASRowDeleted" msprop:Generator_RowEvArgName="PROBLEMASRowChangeEvent" msprop:Generator_RowChangedName="PROBLEMASRowChanged" msprop:Generator_RowClassName="PROBLEMASRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDPROBLEMA" msprop:Generator_ColumnVarNameInTable="columnIDPROBLEMA" msprop:Generator_ColumnPropNameInRow="IDPROBLEMA" msprop:Generator_ColumnPropNameInTable="IDPROBLEMAColumn" msprop:Generator_UserColumnName="IDPROBLEMA" type="xs:double" />
+              <xs:element name="DESCRIPCION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPCION" msprop:Generator_ColumnPropNameInRow="DESCRIPCION" msprop:Generator_ColumnPropNameInTable="DESCRIPCIONColumn" msprop:Generator_UserColumnName="DESCRIPCION">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1024" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ESTADO" msprop:Generator_ColumnVarNameInTable="columnESTADO" msprop:Generator_ColumnPropNameInRow="ESTADO" msprop:Generator_ColumnPropNameInTable="ESTADOColumn" msprop:Generator_UserColumnName="ESTADO" type="xs:decimal" />
+              <xs:element name="OBJECTHASH" msprop:Generator_ColumnVarNameInTable="columnOBJECTHASH" msprop:Generator_ColumnPropNameInRow="OBJECTHASH" msprop:Generator_ColumnPropNameInTable="OBJECTHASHColumn" msprop:Generator_UserColumnName="OBJECTHASH">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:PROBLEMAS" />
+      <xs:field xpath="mstns:IDPROBLEMA" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

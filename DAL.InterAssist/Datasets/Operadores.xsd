@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Operadores" targetNamespace="http://tempuri.org/Operadores.xsd" xmlns:mstns="http://tempuri.org/Operadores.xsd" xmlns="http://tempuri.org/Operadores.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString (Settings)" PropertyReference="ApplicationSettings.DAL.InterAssist.Properties.Settings.GlobalReference.Default.ConnectionString" Provider="System.Data.OleDb" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Operadores" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Operadores" msprop:Generator_UserDSName="Operadores">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="OPERADORES" msprop:Generator_TableClassName="OPERADORESDataTable" msprop:Generator_TableVarName="tableOPERADORES" msprop:Generator_TablePropName="OPERADORES" msprop:Generator_RowDeletingName="OPERADORESRowDeleting" msprop:Generator_UserTableName="OPERADORES" msprop:Generator_RowChangingName="OPERADORESRowChanging" msprop:Generator_RowEvHandlerName="OPERADORESRowChangeEventHandler" msprop:Generator_RowDeletedName="OPERADORESRowDeleted" msprop:Generator_RowEvArgName="OPERADORESRowChangeEvent" msprop:Generator_RowChangedName="OPERADORESRowChanged" msprop:Generator_RowClassName="OPERADORESRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDOPERADOR" msprop:Generator_ColumnVarNameInTable="columnIDOPERADOR" msprop:Generator_ColumnPropNameInRow="IDOPERADOR" msprop:Generator_ColumnPropNameInTable="IDOPERADORColumn" msprop:Generator_UserColumnName="IDOPERADOR" type="xs:double" />
+              <xs:element name="USUARIO" msprop:Generator_ColumnVarNameInTable="columnUSUARIO" msprop:Generator_ColumnPropNameInRow="USUARIO" msprop:Generator_ColumnPropNameInTable="USUARIOColumn" msprop:Generator_UserColumnName="USUARIO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CLAVE" msprop:Generator_ColumnVarNameInTable="columnCLAVE" msprop:Generator_ColumnPropNameInRow="CLAVE" msprop:Generator_ColumnPropNameInTable="CLAVEColumn" msprop:Generator_UserColumnName="CLAVE">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NOMBRE" msprop:Generator_ColumnVarNameInTable="columnNOMBRE" msprop:Generator_ColumnPropNameInRow="NOMBRE" msprop:Generator_ColumnPropNameInTable="NOMBREColumn" msprop:Generator_UserColumnName="NOMBRE">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="APELLIDO" msprop:Generator_ColumnVarNameInTable="columnAPELLIDO" msprop:Generator_ColumnPropNameInRow="APELLIDO" msprop:Generator_ColumnPropNameInTable="APELLIDOColumn" msprop:Generator_UserColumnName="APELLIDO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ACTIVO" msprop:Generator_ColumnVarNameInTable="columnACTIVO" msprop:Generator_ColumnPropNameInRow="ACTIVO" msprop:Generator_ColumnPropNameInTable="ACTIVOColumn" msprop:Generator_UserColumnName="ACTIVO" type="xs:double" />
+              <xs:element name="ADMIN" msprop:Generator_ColumnVarNameInTable="columnADMIN" msprop:Generator_ColumnPropNameInRow="ADMIN" msprop:Generator_ColumnPropNameInTable="ADMINColumn" msprop:Generator_UserColumnName="ADMIN" type="xs:double" />
+              <xs:element name="OBJECTHASH" msprop:Generator_ColumnVarNameInTable="columnOBJECTHASH" msprop:Generator_ColumnPropNameInRow="OBJECTHASH" msprop:Generator_ColumnPropNameInTable="OBJECTHASHColumn" msprop:Generator_UserColumnName="OBJECTHASH" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMAIL" msprop:Generator_ColumnVarNameInTable="columnEMAIL" msprop:Generator_ColumnPropNameInRow="EMAIL" msprop:Generator_ColumnPropNameInTable="EMAILColumn" msprop:Generator_UserColumnName="EMAIL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:OPERADORES" />
+      <xs:field xpath="mstns:IDOPERADOR" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

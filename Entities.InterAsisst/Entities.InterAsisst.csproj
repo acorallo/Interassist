@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3B9B619F-486E-4251-A90C-DEAE41E23363}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Entities.InterAsisst</RootNamespace>
+    <AssemblyName>Entities.InterAsisst</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Afiliado.cs" />
+    <Compile Include="Categoria.cs" />
+    <Compile Include="Ciudad.cs" />
+    <Compile Include="Cliente.cs" />
+    <Compile Include="Empresa.cs" />
+    <Compile Include="Entity.cs" />
+    <Compile Include="Estado.cs" />
+    <Compile Include="Localidad.cs" />
+    <Compile Include="Observacion.cs" />
+    <Compile Include="Operador.cs" />
+    <Compile Include="Pais.cs" />
+    <Compile Include="PersistEntity.cs" />
+    <Compile Include="Prestador.cs" />
+    <Compile Include="Problema.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provincia.cs" />
+    <Compile Include="Ticket.cs" />
+    <Compile Include="TipoCaso.cs" />
+    <Compile Include="TipoIva.cs" />
+    <Compile Include="TipoServicio.cs" />
+    <Compile Include="Upload.cs" />
+    <Compile Include="UploadError.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cognitas.Framework.Repository\Cognitas.Framework.Repository\Cognitas.Framework.Repository.csproj">
+      <Project>{bb0e3e7e-6030-4477-b030-320b3060f3a7}</Project>
+      <Name>Cognitas.Framework.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL.InterAssist\DAL.InterAssist.csproj">
+      <Project>{75A9AF41-5C90-45E8-88A3-49F5A693C102}</Project>
+      <Name>DAL.InterAssist</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils.InterAssist\Utils.InterAssist.csproj">
+      <Project>{0a03e934-bc2c-4e48-977e-df0a05bd239e}</Project>
+      <Name>Utils.InterAssist</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Afiliados" targetNamespace="http://tempuri.org/Afiliados.xsd" xmlns:mstns="http://tempuri.org/Afiliados.xsd" xmlns="http://tempuri.org/Afiliados.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString (Settings)" PropertyReference="ApplicationSettings.DAL.InterAssist.Properties.Settings.GlobalReference.Default.ConnectionString" Provider="System.Data.OleDb" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Afiliados" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Afiliados" msprop:Generator_UserDSName="Afiliados">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="AFILIADOS" msprop:Generator_TableClassName="AFILIADOSDataTable" msprop:Generator_TableVarName="tableAFILIADOS" msprop:Generator_TablePropName="AFILIADOS" msprop:Generator_RowDeletingName="AFILIADOSRowDeleting" msprop:Generator_UserTableName="AFILIADOS" msprop:Generator_RowChangingName="AFILIADOSRowChanging" msprop:Generator_RowEvHandlerName="AFILIADOSRowChangeEventHandler" msprop:Generator_RowDeletedName="AFILIADOSRowDeleted" msprop:Generator_RowEvArgName="AFILIADOSRowChangeEvent" msprop:Generator_RowChangedName="AFILIADOSRowChanged" msprop:Generator_RowClassName="AFILIADOSRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDAFILIADO" msprop:Generator_ColumnVarNameInTable="columnIDAFILIADO" msprop:Generator_ColumnPropNameInRow="IDAFILIADO" msprop:Generator_ColumnPropNameInTable="IDAFILIADOColumn" msprop:Generator_UserColumnName="IDAFILIADO" type="xs:double" />
+              <xs:element name="APELLIDO" msprop:Generator_ColumnVarNameInTable="columnAPELLIDO" msprop:Generator_ColumnPropNameInRow="APELLIDO" msprop:Generator_ColumnPropNameInTable="APELLIDOColumn" msprop:Generator_UserColumnName="APELLIDO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NOMBRE" msprop:Generator_ColumnVarNameInTable="columnNOMBRE" msprop:Generator_ColumnPropNameInRow="NOMBRE" msprop:Generator_ColumnPropNameInTable="NOMBREColumn" msprop:Generator_UserColumnName="NOMBRE">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="POLIZA" msprop:Generator_ColumnVarNameInTable="columnPOLIZA" msprop:Generator_ColumnPropNameInRow="POLIZA" msprop:Generator_ColumnPropNameInTable="POLIZAColumn" msprop:Generator_UserColumnName="POLIZA" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DIRECCION" msprop:Generator_ColumnVarNameInTable="columnDIRECCION" msprop:Generator_ColumnPropNameInRow="DIRECCION" msprop:Generator_ColumnPropNameInTable="DIRECCIONColumn" msprop:Generator_UserColumnName="DIRECCION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CODPOSTAL" msprop:Generator_ColumnVarNameInTable="columnCODPOSTAL" msprop:Generator_ColumnPropNameInRow="CODPOSTAL" msprop:Generator_ColumnPropNameInTable="CODPOSTALColumn" msprop:Generator_UserColumnName="CODPOSTAL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FECHADESDE" msprop:Generator_ColumnVarNameInTable="columnFECHADESDE" msprop:Generator_ColumnPropNameInRow="FECHADESDE" msprop:Generator_ColumnPropNameInTable="FECHADESDEColumn" msprop:Generator_UserColumnName="FECHADESDE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="FECHAHASTA" msprop:Generator_ColumnVarNameInTable="columnFECHAHASTA" msprop:Generator_ColumnPropNameInRow="FECHAHASTA" msprop:Generator_ColumnPropNameInTable="FECHAHASTAColumn" msprop:Generator_UserColumnName="FECHAHASTA" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IDDOCUMENTO" msprop:Generator_ColumnVarNameInTable="columnIDDOCUMENTO" msprop:Generator_ColumnPropNameInRow="IDDOCUMENTO" msprop:Generator_ColumnPropNameInTable="IDDOCUMENTOColumn" msprop:Generator_UserColumnName="IDDOCUMENTO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MARCA" msprop:Generator_ColumnVarNameInTable="columnMARCA" msprop:Generator_ColumnPropNameInRow="MARCA" msprop:Generator_ColumnPropNameInTable="MARCAColumn" msprop:Generator_UserColumnName="MARCA" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PATENTE" msprop:Generator_ColumnVarNameInTable="columnPATENTE" msprop:Generator_ColumnPropNameInRow="PATENTE" msprop:Generator_ColumnPropNameInTable="PATENTEColumn" msprop:Generator_UserColumnName="PATENTE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COLOR" msprop:Generator_ColumnVarNameInTable="columnCOLOR" msprop:Generator_ColumnPropNameInRow="COLOR" msprop:Generator_ColumnPropNameInTable="COLORColumn" msprop:Generator_UserColumnName="COLOR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ANO" msprop:Generator_ColumnVarNameInTable="columnANO" msprop:Generator_ColumnPropNameInRow="ANO" msprop:Generator_ColumnPropNameInTable="ANOColumn" msprop:Generator_UserColumnName="ANO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OBJECTHASH" msprop:Generator_ColumnVarNameInTable="columnOBJECTHASH" msprop:Generator_ColumnPropNameInRow="OBJECTHASH" msprop:Generator_ColumnPropNameInTable="OBJECTHASHColumn" msprop:Generator_UserColumnName="OBJECTHASH">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDEMPRESA" msprop:Generator_ColumnVarNameInTable="columnIDEMPRESA" msprop:Generator_ColumnPropNameInRow="IDEMPRESA" msprop:Generator_ColumnPropNameInTable="IDEMPRESAColumn" msprop:Generator_UserColumnName="IDEMPRESA" type="xs:double" />
+              <xs:element name="CATEGORIA" msprop:Generator_ColumnVarNameInTable="columnCATEGORIA" msprop:Generator_ColumnPropNameInRow="CATEGORIA" msprop:Generator_ColumnPropNameInTable="CATEGORIAColumn" msprop:Generator_UserColumnName="CATEGORIA">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HOGAR" msprop:Generator_ColumnVarNameInTable="columnHOGAR" msprop:Generator_ColumnPropNameInRow="HOGAR" msprop:Generator_ColumnPropNameInTable="HOGARColumn" msprop:Generator_UserColumnName="HOGAR" type="xs:int" minOccurs="0" />
+              <xs:element name="MODELO" msprop:Generator_ColumnVarNameInTable="columnMODELO" msprop:Generator_ColumnPropNameInRow="MODELO" msprop:Generator_ColumnPropNameInTable="MODELOColumn" msprop:Generator_UserColumnName="MODELO" type="xs:string" minOccurs="0" />
+              <xs:element name="ESTADO" msprop:Generator_ColumnVarNameInTable="columnESTADO" msprop:Generator_ColumnPropNameInRow="ESTADO" msprop:Generator_ColumnPropNameInTable="ESTADOColumn" msprop:Generator_UserColumnName="ESTADO" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:AFILIADOS" />
+      <xs:field xpath="mstns:IDAFILIADO" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

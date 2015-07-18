@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{75A9AF41-5C90-45E8-88A3-49F5A693C102}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DAL.InterAssist</RootNamespace>
+    <AssemblyName>DAL.InterAssist</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.DirectoryServices.Protocols" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AfiliadoDS.cs" />
+    <Compile Include="CategoriaDS.cs" />
+    <Compile Include="ClienteDS.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="CiudadDS.cs" />
+    <Compile Include="DALExceptions.cs" />
+    <Compile Include="Dals.cs" />
+    <Compile Include="Datasets\Afiliados.cs">
+      <DependentUpon>Afiliados.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Datasets\Afiliados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Afiliados.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\Categoria.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Categoria.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\Ciudades.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ciudades.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\Empresas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Empresas.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\Localidades.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Localidades.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\Observaciones.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Observaciones.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\Operadores.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Operadores.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\Prestadores.cs">
+      <DependentUpon>Prestadores.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Datasets\Prestadores.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Prestadores.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\Problemas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Problemas.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\Tickets.cs">
+      <DependentUpon>Tickets.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Datasets\Tickets.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Tickets.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EmpresaDS.cs" />
+    <Compile Include="LocalidadDS.cs" />
+    <Compile Include="ObservacionDS.cs" />
+    <Compile Include="OperadorDS.cs" />
+    <Compile Include="PrestadorDS.cs" />
+    <Compile Include="ProblemaDS.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="TicketDS.cs" />
+    <Compile Include="TipoServicioDS.cs" />
+    <Compile Include="UploadErrorDS.cs" />
+    <Compile Include="UploadsDS.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ATLLib">
+      <Guid>{44EC0535-400F-11D0-9DCD-00A0C90391D3}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cognitas.Framework.Repository\Cognitas.Framework.Repository\Cognitas.Framework.Repository.csproj">
+      <Project>{bb0e3e7e-6030-4477-b030-320b3060f3a7}</Project>
+      <Name>Cognitas.Framework.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils.InterAssist\Utils.InterAssist.csproj">
+      <Project>{0a03e934-bc2c-4e48-977e-df0a05bd239e}</Project>
+      <Name>Utils.InterAssist</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Datasets\Afiliados.xsc">
+      <DependentUpon>Afiliados.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Afiliados.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Afiliados.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Afiliados.xss">
+      <DependentUpon>Afiliados.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Categoria.xsc">
+      <DependentUpon>Categoria.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Categoria.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Categoria.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Categoria.xss">
+      <DependentUpon>Categoria.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Ciudades.xsc">
+      <DependentUpon>Ciudades.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Ciudades.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Ciudades.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Ciudades.xss">
+      <DependentUpon>Ciudades.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Empresas.xsc">
+      <DependentUpon>Empresas.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Empresas.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Empresas.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Empresas.xss">
+      <DependentUpon>Empresas.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Localidades.xsc">
+      <DependentUpon>Localidades.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Localidades.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Localidades.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Localidades.xss">
+      <DependentUpon>Localidades.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Observaciones.xsc">
+      <DependentUpon>Observaciones.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Observaciones.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Observaciones.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Observaciones.xss">
+      <DependentUpon>Observaciones.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Operadores.xsc">
+      <DependentUpon>Operadores.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Operadores.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Operadores.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Operadores.xss">
+      <DependentUpon>Operadores.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Prestadores.xsc">
+      <DependentUpon>Prestadores.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Prestadores.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Prestadores.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Prestadores.xss">
+      <DependentUpon>Prestadores.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Problemas.xsc">
+      <DependentUpon>Problemas.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Problemas.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Problemas.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Problemas.xss">
+      <DependentUpon>Problemas.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Tickets.xsc">
+      <DependentUpon>Tickets.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Tickets.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Tickets.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Tickets.xss">
+      <DependentUpon>Tickets.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

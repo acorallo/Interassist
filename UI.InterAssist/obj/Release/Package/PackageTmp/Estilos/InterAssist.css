@@ -1,0 +1,154 @@
+﻿body {
+}
+
+.errorText
+{
+    color: Red;
+}
+
+.errorSummaryText
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: Red;
+    background-color: #FFF4F4;
+}
+
+
+.HeaderGrid
+{
+    font-family: Arial;
+    font-size: 14px;
+    background-color: #FFFFCC;
+    font-weight: bold;
+    text-align: center;
+}
+
+.RowGrid
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #F0ECFF;
+}
+
+.TicketTab
+{
+        
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    background-color: #F0ECFF;
+}
+
+.Seccion
+{
+    background-color: #CCCCFF;
+    font-weight: bold;
+    font-family: Verdana;
+    font-size: small;
+}
+
+.DatosTicket
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    background-color: #FFFFF2;
+}
+
+.Menu
+{
+    background-color: #E8F4B5;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+}
+
+.BotonMenu
+{
+    font-family: Verdana;
+    font-size: smaller;
+    font-style: normal;
+    color: #000000;
+    text-decoration: none;
+}
+
+.SeccionTitulo
+{
+    font-family: Verdana;
+    font-size: 18px;
+    font-weight: bold;
+    color: #8CBE25;
+}
+
+.LblRegistrosFiltradas
+{
+    font-family: Verdana;
+    font-size: small;
+    font-weight: bold;
+    color: #000080;
+}
+
+.LblCantRegistrosFiltradas
+{
+    font-family: Verdana;
+    font-size: small;
+    color: #000080;
+}
+
+.SinRegistros
+{
+    font-family: Verdana;
+    font-size: small;
+    color: #FF0000;
+    font-weight: bold;
+}
+
+.floatEntero
+{
+    text-align: right;
+}
+
+.floatDecima
+{
+    text-align: right;
+}
+
+.TextoResaltado
+{
+    font-family: Verdana;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.buscadores
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+}
+
+.UpdateFailLink
+{
+    color: red;
+    font-weight: bold;
+}
+
+.UpdateHitLink  
+{
+    color: green;
+    font-weight: bold;
+}
+
+.UpdateFailBg
+{
+    background-color: #ffcdcd;
+}
+
+.UpdateHitBg
+{
+    background-color: #d8ffd1;
+}
+
+.DatosUpdate
+{
+    
+    background-color: #FFFFF2;
+}
