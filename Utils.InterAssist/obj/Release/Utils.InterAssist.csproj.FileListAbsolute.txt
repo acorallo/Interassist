@@ -1,7 +1,0 @@
-C:\Desarrollo\InterAssist\Utils.InterAssist\bin\Release\Utils.InterAssist.dll
-C:\Desarrollo\InterAssist\Utils.InterAssist\bin\Release\Utils.InterAssist.pdb
-C:\Desarrollo\InterAssist\Utils.InterAssist\bin\Release\Cognitas.Framework.Repository.dll
-C:\Desarrollo\InterAssist\Utils.InterAssist\bin\Release\Cognitas.Framework.Repository.pdb
-C:\Desarrollo\InterAssist\Utils.InterAssist\obj\Release\Utils.InterAssist.csprojResolveAssemblyReference.cache
-C:\Desarrollo\InterAssist\Utils.InterAssist\obj\Release\Utils.InterAssist.dll
-C:\Desarrollo\InterAssist\Utils.InterAssist\obj\Release\Utils.InterAssist.pdb

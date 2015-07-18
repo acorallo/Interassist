@@ -1,4 +1,0 @@
-C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Repository\bin\Release\Cognitas.Framework.Repository.dll
-C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Repository\bin\Release\Cognitas.Framework.Repository.pdb
-C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Repository\obj\Release\Cognitas.Framework.Repository.dll
-C:\Desarrollo\Cognitas.Framework.Repository\Cognitas.Framework.Repository\obj\Release\Cognitas.Framework.Repository.pdb

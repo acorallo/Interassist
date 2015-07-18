@@ -1,5 +1,0 @@
-C:\Desarrollo\InterAssist\Cognitas.Framework.UserInterface\bin\Debug\Cognitas.Framework.UserInterface.dll
-C:\Desarrollo\InterAssist\Cognitas.Framework.UserInterface\bin\Debug\Cognitas.Framework.UserInterface.pdb
-C:\Desarrollo\InterAssist\Cognitas.Framework.UserInterface\obj\Debug\Cognitas.Framework.UserInterface.dll
-C:\Desarrollo\InterAssist\Cognitas.Framework.UserInterface\obj\Debug\Cognitas.Framework.UserInterface.pdb
-C:\Desarrollo\InterAssist\Cognitas.Framework.UserInterface\obj\Debug\Cognitas.Framework.UserInterface.csprojResolveAssemblyReference.cache

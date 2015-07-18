@@ -1,6 +1,0 @@
-C:\Desarrollo\InterAssist\UploadProcess\bin\Debug\UploadProcess.exe.config
-C:\Desarrollo\InterAssist\UploadProcess\bin\Debug\UploadProcess.exe
-C:\Desarrollo\InterAssist\UploadProcess\bin\Debug\UploadProcess.pdb
-C:\Desarrollo\InterAssist\UploadProcess\obj\Debug\UploadProcess.exe
-C:\Desarrollo\InterAssist\UploadProcess\obj\Debug\UploadProcess.pdb
-C:\Desarrollo\InterAssist\UploadProcess\obj\Debug\UploadProcess.csprojResolveAssemblyReference.cache
