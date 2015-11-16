@@ -1,8 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/InterAssist.Master" AutoEventWireup="true" CodeBehind="CasoCrud.aspx.cs" Inherits="UI.InterAssist.Views.CasoCrud1" %>
+﻿    <%@ Page Title="" Language="C#" MasterPageFile="~/InterAssist.Master" AutoEventWireup="true" CodeBehind="CasoCrud.aspx.cs" Inherits="UI.InterAssist.Views.CasoCrud" %>
 <%@ Register src="../Usercontrols/Ubicacion.ascx" tagname="Ubicacion" tagprefix="uc1" %>
 <%@ Register src="../Usercontrols/AfiliadoDetalle.ascx" tagname="AfiliadoDetalle" tagprefix="uc2" %>
 <%@ Register src="../Usercontrols/Prestadorctrl.ascx" tagname="Prestadorctrl" tagprefix="uc3" %>
 <%@ Register src="../Usercontrols/Operador.ascx" tagname="Operador" tagprefix="uc4" %>
+<%@ Register src="../Usercontrols/CasoPrestador.ascx" tagname="CasoPrestador" tagprefix="uc5" %>
+<%@ Register src="../Usercontrols/DecimalControl.ascx" tagname="DecimalControl" tagprefix="uc6" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
 
@@ -11,13 +13,27 @@
             width: 100%;
         }
 
+        .auto-style1 {
+            height: 23px;
+        }
+
+        .auto-style2 {
+            height: 23px;
+        }
+
         </style>
+
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <script language="javascript" src="../Scripts/jquery-1.10.1.min.js"></script>   
-    <script language="javascript" src="../Scripts/jquery-ui.js"></script>
-    <script src="../Scripts/CasoCrud.js" type="text/javascript"></script>
-    <link href="../Estilos/InterAssist.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" language="javascript" src="../Scripts/jquery-1.10.1.min.js"></script>   
+    <script type="text/javascript" language="javascript" src="../Scripts/FrontControls.js"></script>
+    <script type="text/javascript" language="javascript" src="../Scripts/CasoCrud.js"></script>
+
+
+
+
     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" AsyncPostBackTimeout="99999999"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
@@ -91,24 +107,28 @@
                                             </tr>
                                             <tr>
                                                 <td align="right" nowrap="nowrap">
-                                                    <asp:Label ID="lblTipoAsistencia" runat="server"></asp:Label>
-                                                </td>
-                                                <td align="left" width="100%">
-                                                    <asp:DropDownList ID="ddlTipoServicio" runat="server">
-                                                    </asp:DropDownList>
-                                                    <asp:CustomValidator ID="cmvTipoAsisitencia" runat="server" 
-                                                        ClientValidationFunction="validateCombo" ControlToValidate="ddlTipoServicio" 
-                                                        CssClass="errorText" onservervalidate="cmvTipoAsisitencia_ServerValidate">*</asp:CustomValidator>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td align="right" nowrap="nowrap">
                                                     <asp:Label ID="lblTelefono" runat="server"></asp:Label>
                                                 </td>
                                                 <td align="left" width="100%">
                                                     <asp:TextBox ID="txtTelefono" runat="server" Width="250px"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="rfvTelefono" runat="server" 
                                                         ControlToValidate="txtTelefono" CssClass="errorText">*</asp:RequiredFieldValidator>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right" nowrap="nowrap">
+                                                    <asp:Label ID="lblKilometros" runat="server"></asp:Label>
+                                                </td>
+                                                <td align="left" width="100%">
+                                                    <uc6:DecimalControl ID="decKilometros" runat="server" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right" nowrap="nowrap">
+                                                    <asp:Label ID="lblCosto" runat="server"></asp:Label>
+                                                </td>
+                                                <td align="left" width="100%">
+                                                    <uc6:DecimalControl ID="decCosto" runat="server" />
                                                 </td>
                                             </tr>
                                         </table>
@@ -124,7 +144,7 @@
                                                
                                                 <li><a href="#tabs-Afiliado">Afiliado</a></li>
                                                 <li><a href="#tabs-Ubicacion">Ubicacion</a></li>
-                                                <li><a href="#tabs-Prestador">Prestador</a></li>
+                                                <li><a href="#tabs-Prestador">Prestadores</a></li>
                                                 <li><a href="#tabs-Detalles">Detalles</a></li>
                                               </ul>
                                               <div id="tabs-Detalles" class="TicketTab">
@@ -245,124 +265,48 @@
 
                                       
                                               <div id="tabs-Prestador" align="left" class="TicketTab">
+                                         
+                                              
                                               <table width="100%">
                                                                 <tr>
                                                                     <td align="right">
-                                                                       <asp:Button ID="btnAsignarPrestador" runat="server" CausesValidation="False" 
-                                                                                          onclick="btnAsignarPrestador_Click" />
+                                                                        <asp:Button ID="UpdatePanel_postBack" runat="server" CausesValidation="False" Text="Button" ClientIDMode="Static" style="display:none"/>
+                                                                       <asp:Button ID="btnAsignarPrestador" runat="server" CausesValidation="False" OnClientClick="showAsignarPrestador()"/>
                                                                         <asp:CustomValidator ID="cmvPrestador" runat="server" CssClass="errorText" 
                                                                             onservervalidate="cmvPrestador_ServerValidate">*</asp:CustomValidator>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                
-                                                                    <td>  
-                                                                                  <div id="DivBusquedaPrestador" runat="server">
-                                                                                    <table>
-                                                                                        <tr>
-                                                                                            <td align="right">
-                                                                                                <asp:Label ID="lblPresadorPais" runat="server"></asp:Label>
-                                                                                            </td>
-                                                                                            <td width="100%" align="left">
-                                                                                                <asp:DropDownList ID="ddlPrestadorPais" runat="server" Width="300px">
-                                                                                                </asp:DropDownList>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td align="right">
-                                                                                                <asp:Label ID="lblPrestadorProvincia" runat="server"></asp:Label>
-                                                                                            </td>
-                                                                                            <td align="left">
-                                                                                                <asp:DropDownList ID="ddlPresadorProvincia" runat="server" Width="300px">
-                                                                                                </asp:DropDownList>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td align="right">
-                                                                                                <asp:Label ID="lblPrestadorCiudad" runat="server"></asp:Label>
-                                                                                            </td>
-                                                                                            <td align="left">
-                                                                                                <asp:TextBox ID="txtPrestadorCiudad" runat="server" Width="300px"></asp:TextBox>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td align="right">
-                                                                                                <asp:Label ID="lblPrestadorNombre" runat="server"></asp:Label>
-                                                                                            </td>
-                                                                                            <td align="left">
-                                                                                                <asp:TextBox ID="txtPrestadorNombre" runat="server" Width="300px"></asp:TextBox>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td align="center" colspan="2">
-
-             
-                                                                                                &nbsp;<asp:Button ID="btnBuscarPrestador" runat="server" 
-                                                                                                    CausesValidation="False" onclick="btnBuscarPrestador_Click" />
-                                                                                                &nbsp;<asp:Button ID="btnLimpiarBusqueda" runat="server" 
-                                                                                                    CausesValidation="False" onclick="btnLimpiarBusqueda_Click" />
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td colspan="2">
-                                                                                                <table class="style3">
-                                                                                                    <tr>
-                                                                                                        <td align="left">
-                                                                                                            <table class="style3">
-                                                                                                                <tr>
-                                                                                                                    <div id="divCantregistros" runat="server">
-                                                                                                                        <td align="right">
-                                                                                                                            <asp:Label ID="lblCantReg" runat="server"></asp:Label>
-                                                                                                                        </td>
-                                                                                                                        <td align="left" width="100%">
-                                                                                                                            <asp:Label ID="lbltxtCantReg" runat="server"></asp:Label>
-                                                                                                                        </td>
-                                                                                                                    </div>
-                                                                                                                </tr>
-                                                                                                            </table>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                    <tr>
-                                                                                                    <div id="divGrid" runat="server">
-                                                                                                        <td><asp:DataGrid ID="dtgPrestador" runat="server" AllowCustomPaging="True" 
-                                                                                                AllowPaging="True" AutoGenerateColumns="False" PageSize="20" 
-                                                                                                Width="100%" onitemcommand="dtgPrestador_ItemCommand" 
-                                                                                                                onitemdatabound="dtgPrestador_ItemDataBound" 
-                                                                                                                onpageindexchanged="dtgPrestador_PageIndexChanged">
-                                                                                                <Columns>
-                                                                                                    <asp:BoundColumn></asp:BoundColumn>
-                                                                                                    <asp:BoundColumn></asp:BoundColumn>
-                                                                                                    <asp:BoundColumn></asp:BoundColumn>
-                                                                                                    <asp:BoundColumn></asp:BoundColumn>
-                                                                                                    <asp:BoundColumn></asp:BoundColumn>
-                                                                                                    <asp:BoundColumn></asp:BoundColumn>
-                                                                                                    <asp:BoundColumn></asp:BoundColumn>
-                                                                                                    <asp:ButtonColumn></asp:ButtonColumn>
-                                                                                                    <asp:ButtonColumn></asp:ButtonColumn>
-                                                                                                </Columns>
-                                                                                                            <HeaderStyle CssClass="HeaderGrid" />
-                                                                                                            <ItemStyle CssClass="RowGrid" />
-                                                                                                <PagerStyle HorizontalAlign="Center" Mode="NumericPages" />
-                                                                                            </asp:DataGrid></td></div>
-                                                                                            
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                        <div id="divNonResult" runat="server">
-                                                                                                            <td align="left">
-                                                                                                                <asp:Label ID="lblNonResult" runat="server"></asp:Label>
-                                                                                                                </td>
-                                                                                                        </div>
-                                                                                                       </tr>
-                        
-                                                                                                    </table>
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td colspan="2">
-                                                                                                    &nbsp;</td>
-                                                                                            </tr>
-                                                                                        </table>
-                                                                    </div>
+                                                                    <td align="right">
+                                                                        <table class="style3">
+                                                                          
+                                                                            <tr>
+                                                                                <td align="left">
+                                                                                    <asp:Label ID="lblSinPrestadores" runat="server"></asp:Label>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <asp:DataGrid ID="dtgPrestadoresAsignados" runat="server" AutoGenerateColumns="False" PageSize="20" Width="100%" ClientIDMode="Static" OnItemDataBound="dtgPrestadoresAsignados_ItemDataBound" EnableTheming="False">
+                                                                                        <Columns>
+                                                                                            <asp:BoundColumn></asp:BoundColumn>
+                                                                                            <asp:BoundColumn></asp:BoundColumn>
+                                                                                            <asp:BoundColumn></asp:BoundColumn>
+                                                                                            <asp:BoundColumn></asp:BoundColumn>
+                                                                                            <asp:TemplateColumn>
+                                                                                                <ItemTemplate>
+                                                                                                    <div class="icon-cross" style="font-size:20px; cursor:pointer; color: red" runat="server"></div>
+                                                                                                </ItemTemplate>
+                                                                                            </asp:TemplateColumn>
+                                                                                        </Columns>
+                                                                                        <HeaderStyle CssClass="HeaderGrid" />
+                                                                                        <ItemStyle CssClass="RowGrid" />
+                                                                                        <PagerStyle HorizontalAlign="Center" Mode="NumericPages" />
+                                                                                    </asp:DataGrid>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                            
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -371,14 +315,14 @@
                                                                           <table class="style3">
                                                                               <tr>
                                                                                   <td>
-                                                                                      <uc3:Prestadorctrl ID="Prestadorctrl" runat="server" />
-                                                                                  </td>
+                                                                                      &nbsp;</td>
                                                                               </tr>
                                                                           </table>
                                                                       </td>
                                                                   </div>
                                                                 </tr>
                                                             </table>
+                                                 
                                               </div>
                                     
                                       
@@ -417,16 +361,30 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="center">
-                            &nbsp;</td>
+                        <td align="center" class="auto-style2">
+                            </td>
                     </tr>
                 </table>
             </td>
         </tr>
     </table>
-    <div style="visibility: hidden">
+
+ 
+    
+    <input type="hidden" id="UpdatePanel_postBack_Arguments" name="UpdatePanel_postBack_Arguments"/>
+    <input type="hidden" name="CasoPrestador_Info_ID" id="CasoPrestador_Info_ID"/>
+    <input type="hidden" name="CasoPrestador_Info_TipoAsistencia" id="CasoPrestador_Info_TipoAsistencia"/>
+    <input type="hidden" name="CasoPrestador_Info_Descripcion" id="CasoPrestador_Info_Descripcion"/>
+    <input type="hidden" id="BuscarPrestador_internalID" name ="BuscarPrestador_internalID" />
+    </ContentTemplate>
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="UpdatePanel_postBack" EventName="Click"/>
+    </Triggers>
+    </asp:UpdatePanel>
+     <link rel="stylesheet" href="/Estilos/jTPS.css" type="text/css" />
+       <div style="visibility: hidden">
         <div id="divPrestadorInfo" title="Información del Prestador">
-            <table class="style3">
+            <table>
                 <tr>
                     <td align="center">
                         <uc3:Prestadorctrl ID="PrestadorInfo" runat="server" />
@@ -435,11 +393,7 @@
             </table>
         </div>
     </div>
-    </ContentTemplate>
-    </asp:UpdatePanel>
 
-  
-  
   <div style="visibility:hidden">
     <div id="dialog-message_error">
           <p>
@@ -449,8 +403,20 @@
     </div>
   </div>
 
+  <div style="visibility:hidden"> 
+    <div id="DivAsignarPrestador" title="Asignar Prestador">
+         <div style="font-size:12px">
+          <p><uc5:CasoPrestador ID="CasoPrestador1" runat="server" />
+        </div>
+          </p>
+    </div>
+  </div>
 
-<div style="visibility:hidden">
+
+
+
+
+<div style="display:none">
     <div id="dialog-message_create">
           <p>
             <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
@@ -460,4 +426,11 @@
     </div>
 </div>
 
+     <script type="text/javascript" language="javascript" src="../Scripts/jTPS.js"></script>
+
+
+
 </asp:Content>
+
+
+  

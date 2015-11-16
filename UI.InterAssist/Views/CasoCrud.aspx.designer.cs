@@ -10,7 +10,7 @@
 namespace UI.InterAssist.Views {
     
     
-    public partial class CasoCrud1 {
+    public partial class CasoCrud {
         
         /// <summary>
         /// ScriptManager1 control.
@@ -157,33 +157,6 @@ namespace UI.InterAssist.Views {
         protected global::System.Web.UI.WebControls.CustomValidator cmvTipoCaso;
         
         /// <summary>
-        /// lblTipoAsistencia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTipoAsistencia;
-        
-        /// <summary>
-        /// ddlTipoServicio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoServicio;
-        
-        /// <summary>
-        /// cmvTipoAsisitencia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cmvTipoAsisitencia;
-        
-        /// <summary>
         /// lblTelefono control.
         /// </summary>
         /// <remarks>
@@ -209,6 +182,42 @@ namespace UI.InterAssist.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTelefono;
+        
+        /// <summary>
+        /// lblKilometros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblKilometros;
+        
+        /// <summary>
+        /// decKilometros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::UI.InterAssist.Usercontrols.DecimalControl decKilometros;
+        
+        /// <summary>
+        /// lblCosto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCosto;
+        
+        /// <summary>
+        /// decCosto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::UI.InterAssist.Usercontrols.DecimalControl decCosto;
         
         /// <summary>
         /// litSelector control.
@@ -355,6 +364,15 @@ namespace UI.InterAssist.Views {
         protected global::UI.InterAssist.Usercontrols.Ubicacion UbicacionDestino;
         
         /// <summary>
+        /// UpdatePanel_postBack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdatePanel_postBack;
+        
+        /// <summary>
         /// btnAsignarPrestador control.
         /// </summary>
         /// <remarks>
@@ -373,166 +391,22 @@ namespace UI.InterAssist.Views {
         protected global::System.Web.UI.WebControls.CustomValidator cmvPrestador;
         
         /// <summary>
-        /// DivBusquedaPrestador control.
+        /// lblSinPrestadores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivBusquedaPrestador;
+        protected global::System.Web.UI.WebControls.Label lblSinPrestadores;
         
         /// <summary>
-        /// lblPresadorPais control.
+        /// dtgPrestadoresAsignados control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPresadorPais;
-        
-        /// <summary>
-        /// ddlPrestadorPais control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPrestadorPais;
-        
-        /// <summary>
-        /// lblPrestadorProvincia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrestadorProvincia;
-        
-        /// <summary>
-        /// ddlPresadorProvincia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPresadorProvincia;
-        
-        /// <summary>
-        /// lblPrestadorCiudad control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrestadorCiudad;
-        
-        /// <summary>
-        /// txtPrestadorCiudad control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPrestadorCiudad;
-        
-        /// <summary>
-        /// lblPrestadorNombre control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrestadorNombre;
-        
-        /// <summary>
-        /// txtPrestadorNombre control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPrestadorNombre;
-        
-        /// <summary>
-        /// btnBuscarPrestador control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarPrestador;
-        
-        /// <summary>
-        /// btnLimpiarBusqueda control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLimpiarBusqueda;
-        
-        /// <summary>
-        /// divCantregistros control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCantregistros;
-        
-        /// <summary>
-        /// lblCantReg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCantReg;
-        
-        /// <summary>
-        /// lbltxtCantReg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltxtCantReg;
-        
-        /// <summary>
-        /// divGrid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divGrid;
-        
-        /// <summary>
-        /// dtgPrestador control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataGrid dtgPrestador;
-        
-        /// <summary>
-        /// divNonResult control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNonResult;
-        
-        /// <summary>
-        /// lblNonResult control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNonResult;
+        protected global::System.Web.UI.WebControls.DataGrid dtgPrestadoresAsignados;
         
         /// <summary>
         /// divDatosPrestador control.
@@ -542,15 +416,6 @@ namespace UI.InterAssist.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDatosPrestador;
-        
-        /// <summary>
-        /// Prestadorctrl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::UI.InterAssist.Usercontrols.Prestadorctrl Prestadorctrl;
         
         /// <summary>
         /// ValidationSummary1 control.
@@ -596,5 +461,14 @@ namespace UI.InterAssist.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::UI.InterAssist.Usercontrols.Prestadorctrl PrestadorInfo;
+        
+        /// <summary>
+        /// CasoPrestador1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::UI.InterAssist.Usercontrols.CasoPrestador CasoPrestador1;
     }
 }

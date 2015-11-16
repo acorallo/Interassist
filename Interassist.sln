@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.InterAssist", "DAL.Inte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities.InterAsisst", "Entities.InterAsisst\Entities.InterAsisst.csproj", "{3B9B619F-486E-4251-A90C-DEAE41E23363}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.InterAssist", "Test.InterAssist\Test.InterAssist\Test.InterAssist.csproj", "{28BED869-1409-4F69-81E0-EB3747FAE2BC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.InterAssist", "UI.InterAssist\UI.InterAssist.csproj", "{B06A090E-7D64-4F94-9EC5-8F9CE50F6BE1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cognitas.Framework.UserInterface", "Cognitas.Framework.UserInterface\Cognitas.Framework.UserInterface.csproj", "{2AF97B94-41AF-4DD6-9D35-C60585719F32}"
@@ -26,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cognitas.Framework.Repository", "Cognitas.Framework.Repository\Cognitas.Framework.Repository\Cognitas.Framework.Repository.csproj", "{BB0E3E7E-6030-4477-B030-320B3060F3A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.InterAssist", "Utils.InterAssist\Utils.InterAssist.csproj", "{0A03E934-BC2C-4E48-977E-DF0A05BD239E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.ConsoleTest", "UI.ConsoleTest\UI.ConsoleTest.csproj", "{4F13F111-3C53-4F4C-9E75-377D2D7CD61D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,6 @@ Global
 		{3B9B619F-486E-4251-A90C-DEAE41E23363}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B9B619F-486E-4251-A90C-DEAE41E23363}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B9B619F-486E-4251-A90C-DEAE41E23363}.Release|Any CPU.Build.0 = Release|Any CPU
-		{28BED869-1409-4F69-81E0-EB3747FAE2BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{28BED869-1409-4F69-81E0-EB3747FAE2BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{28BED869-1409-4F69-81E0-EB3747FAE2BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{28BED869-1409-4F69-81E0-EB3747FAE2BC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B06A090E-7D64-4F94-9EC5-8F9CE50F6BE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B06A090E-7D64-4F94-9EC5-8F9CE50F6BE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B06A090E-7D64-4F94-9EC5-8F9CE50F6BE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -65,6 +61,10 @@ Global
 		{0A03E934-BC2C-4E48-977E-DF0A05BD239E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A03E934-BC2C-4E48-977E-DF0A05BD239E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A03E934-BC2C-4E48-977E-DF0A05BD239E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F13F111-3C53-4F4C-9E75-377D2D7CD61D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F13F111-3C53-4F4C-9E75-377D2D7CD61D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F13F111-3C53-4F4C-9E75-377D2D7CD61D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F13F111-3C53-4F4C-9E75-377D2D7CD61D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

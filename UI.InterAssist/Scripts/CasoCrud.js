@@ -1,6 +1,7 @@
 ﻿
 
 
+
 function pageLoad(sender, args) {
 
     SincronizaSelector();
@@ -12,7 +13,27 @@ function pageLoad(sender, args) {
     });
 
     UbicacionLoadControl();
+    //InicializaControles();
 
+
+}
+
+
+function InicializaControles()
+{
+    InicializaAsignarPrestador();
+}
+
+
+
+function ToString(value)
+{
+    var result = "";
+
+    if (value != null)
+        result = value;
+
+    return result;
 }
 
 
@@ -22,7 +43,10 @@ function SincronizarPopUps() {
 
     if (popup != '') {
         
-        switch(popup) {
+        switch (popup) {
+            case 'DivBusquedaPrestador':
+                showPopBuscarPrestador();
+                break;
             case 'divPrestadorInfo':
                 showPopPrestadorInfo();
                 break;
@@ -79,6 +103,107 @@ function ShowErrorPop() {
     });
 }
 
+
+
+function showAsignarPrestador()
+{
+
+    $('.CasoPrestador_Oblicagatorio').hide();
+    $("#btnAddPrestador").click(function () {
+        if(Validar_AsignarPrestador())
+        {
+            // Guarda los datos en un hidden para enviar en el postback.
+
+            $('#CasoPrestador_Info_ID').val($('#BuscarPrestador_idPrestador').val());
+            $('#CasoPrestador_Info_TipoAsistencia').val($('#ddlCasoPrestador_TipoAsistencia').val());
+            $('#CasoPrestador_Info_Descripcion').val($('#txtCasoPrestador_descripcion').val());
+
+            $("#DivAsignarPrestador").dialog("close");
+            __doPostBack("UpdatePanel_postBack", "AgregarPrestador");
+            Clear_AsignarPrestador();
+
+        }
+
+    }
+    );
+
+    $(function () {
+        $("#DivAsignarPrestador").show();
+        $("#DivAsignarPrestador").dialog({
+            modal: true,
+            close: Close_AsignarPrestador,
+            width: 1000,
+            height: 800
+
+        });
+    });
+
+
+}
+
+function QuitarPrestador(value, prestador)
+{
+    var confirm = window.confirm("¿Desea quitar el prestador " + prestador +'?');
+    if (confirm) {
+        $('#BuscarPrestador_internalID').val(value);
+        __doPostBack("UpdatePanel_postBack", "QuitarPrestador");
+    }
+}
+
+function Close_AsignarPrestador(event, ui)
+{
+    ClosePopUp();
+    Clear_AsignarPrestador();
+}
+
+function Clear_AsignarPrestador()
+{
+    $('#BuscarPrestador_idPrestador').val("");
+    $('#txtNombrePrestadorCaso').val("");
+    $('#txtCasoPrestador_descripcion').val("");
+    $('#ddlCasoPrestador_TipoAsistencia').val("-1");
+    $('.CasoPrestador_Oblicagatorio').hide();
+
+    
+}
+
+function Validar_AsignarPrestador()
+{
+    var valid = true;
+
+    if ($('#BuscarPrestador_idPrestador').val() == "") {
+        $('#CasoPrestador_Prestador').show();
+        valid = false;
+    } else
+    {
+        $('#CasoPrestador_Prestador').hide();
+    }
+
+    // Aqui se debe validar el combo
+    if ($('#ddlCasoPrestador_TipoAsistencia').val() == "-1")
+    {
+        $('#CasoPrestador_validTipoAsistencia').show();
+        valid = false;
+    } else
+    {
+        $('#CasoPrestador_validTipoAsistencia').hide();
+    }
+
+
+    if(valid)
+    {
+        $('.CasoPrestador_Oblicagatorio').hide();
+    }
+    else {
+        $('#CasoPrestador_Sumary').show();
+    }
+   
+
+    return valid;
+
+}
+
+
 function showPopPrestadorInfo() {
 
     $(function () {
@@ -132,11 +257,3 @@ function on_activate(event, ui) {
     document.getElementById("sincSelector").value = $("#tabs").tabs("option", "active");
 }
 
-
-function btnBuscarPrestador_onClick(button) {
-
-    WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$ContentPlaceHolder1$Button1", "", false, "", "", false, false));
-    
-
-
-}

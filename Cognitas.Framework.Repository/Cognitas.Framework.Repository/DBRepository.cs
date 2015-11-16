@@ -153,8 +153,6 @@ namespace Cognitas.Framework.Repository
         {
             DBRepository result = null;
             
-            
-
             ConnectionStringSettings c = ConfigurationManager.ConnectionStrings[connectionName];
             if (c != null)
             {
@@ -377,6 +375,9 @@ namespace Cognitas.Framework.Repository
                 this.DBCommand.CommandType = CommandType.StoredProcedure;
                 this.DBCommand.CommandText = ProcedureName;
                 this.DBCommand.Connection = this.DBConnection;
+
+                this.DBCommand.Parameters.Clear();
+                    
 
                 foreach (IDbDataParameter p in parameters)
                 {

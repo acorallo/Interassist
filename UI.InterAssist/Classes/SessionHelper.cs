@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Entities.InterAsisst;
 
 namespace UI.InterAssist.Classes
 {
@@ -21,6 +22,7 @@ namespace UI.InterAssist.Classes
         private const string SESSION_CURRENT_VIEW = "ss_session_current";
 
         private const string SESSION_ID_UPLOAD = "ss_upload";
+        private const string SESSION_CASO = "ss_caso";
 
         #region Propiedades
 
@@ -54,6 +56,23 @@ namespace UI.InterAssist.Classes
             }
         }
 
+        /*
+        public static Ticket Caso{
+
+            get
+            {
+                if (HttpContext.Current.Session[SESSION_CASO] == null)
+                    HttpContext.Current.Session[SESSION_CASO] = new Ticket();
+                return (Ticket)HttpContext.Current.Session[SESSION_CASO];
+            }
+            set
+            {
+                HttpContext.Current.Session[SESSION_CASO] = value;
+
+            }
+        }
+        */
+        
         public static int ID_CASO_AFILIADO
         {
             get
@@ -68,6 +87,7 @@ namespace UI.InterAssist.Classes
                 HttpContext.Current.Session.Add(SESSION_ID_AFILIADO_CASO, value);
             }
         }
+        
 
         public static int ID_CASO
         {

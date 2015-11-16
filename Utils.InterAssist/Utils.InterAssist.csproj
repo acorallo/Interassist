@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Campos.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="FiltroAfiliado.cs" />
     <Compile Include="FiltroCategorias.cs" />
     <Compile Include="FiltroCiudad.cs" />

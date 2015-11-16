@@ -247,7 +247,7 @@
     <value>Empresa</value>
   </data>
   <data name="LBL_AFILIADO_ANO" xml:space="preserve">
-    <value>|</value>
+    <value>Año</value>
   </data>
   <data name="LBL_AFILIADO_APELLIDO" xml:space="preserve">
     <value>Apellido</value>
@@ -435,11 +435,17 @@
   <data name="LBL_SEPARADOR" xml:space="preserve">
     <value>:</value>
   </data>
+  <data name="LBL_TICKET_COSTO" xml:space="preserve">
+    <value>Costo</value>
+  </data>
   <data name="LBL_TICKET_ESTADO" xml:space="preserve">
     <value>Estado del Caso</value>
   </data>
   <data name="LBL_TICKET_FECHA_HORA" xml:space="preserve">
     <value>Fecha/Hora</value>
+  </data>
+  <data name="LBL_TICKET_KILOMETRO" xml:space="preserve">
+    <value>Kilometros</value>
   </data>
   <data name="LBL_TICKET_LISTADO_EMPRESA" xml:space="preserve">
     <value>Empresa</value>
@@ -644,6 +650,9 @@
   </data>
   <data name="TXT_CASO_ERROR" xml:space="preserve">
     <value>Error: No se puede modificar el objeto. Es posible que otro usuario lo esté modificando en este momento. Intente en otro momento.</value>
+  </data>
+  <data name="TXT_CASO_SIN_PRESTADOR" xml:space="preserve">
+    <value>No hay prestadores asignados</value>
   </data>
   <data name="TXT_CASO_SUCCESS" xml:space="preserve">
     <value>Se ha cargado el caso {0} correctamente en el sistema</value>

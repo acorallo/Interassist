@@ -258,7 +258,15 @@ namespace Entities.InterAsisst
         #endregion Miembros
 
         #region constructores
-
+        
+        
+        public static Prestador Get_Shadow (int id)
+        {
+            Prestador p = new Prestador();
+            p._id = id;
+            return p;
+        }
+        
         public static Prestador GetById(int id)
         {
             Prestador resultPrestador = null;
@@ -276,6 +284,28 @@ namespace Entities.InterAsisst
             }
 
             return resultPrestador;
+        }
+
+        
+        public static Prestador GetById_ReadOnly(int id)
+        {
+
+            Prestador result = null;
+            
+            FiltroPrestador f = new FiltroPrestador();
+            f.ID = id;
+
+            List<Prestador> listado = List(f);
+
+            if(listado.Count>0)
+            {
+                result = listado[0];
+            }
+
+
+            return result;
+
+
         }
 
         public Prestador(int id, string ObjectHash)

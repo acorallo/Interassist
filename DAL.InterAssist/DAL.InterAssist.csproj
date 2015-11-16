@@ -119,6 +119,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Tickets.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Datasets\Ticket_Prestador.cs">
+      <DependentUpon>Ticket_Prestador.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Datasets\Ticket_Prestador.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ticket_Prestador.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EmpresaDS.cs" />
     <Compile Include="LocalidadDS.cs" />
     <Compile Include="ObservacionDS.cs" />
@@ -277,6 +286,17 @@
     </None>
     <None Include="Datasets\Tickets.xss">
       <DependentUpon>Tickets.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Ticket_Prestador.xsc">
+      <DependentUpon>Ticket_Prestador.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Ticket_Prestador.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Ticket_Prestador.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Ticket_Prestador.xss">
+      <DependentUpon>Ticket_Prestador.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

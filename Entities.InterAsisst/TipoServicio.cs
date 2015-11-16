@@ -46,7 +46,6 @@ namespace Entities.InterAsisst
         #region Miembros
 
         #endregion Miembros
-
   
         #region Propiedades
 
@@ -60,6 +59,22 @@ namespace Entities.InterAsisst
             tipoServico._descripcion = r[TipoServicioDS.COLUMN_DESCRIPCION].ToString();
             tipoServico._activo = Int32.Parse(r[TipoServicioDS.COLUMN_ESTADO].ToString()) == ACTIVO;
 
+        }
+
+        public static TipoServicio GetById(int idTipoServicio)
+        {
+            TipoServicio resultTipo = null;
+
+            FiltroTipoServicio filtro = new FiltroTipoServicio();
+            filtro.ID = idTipoServicio;
+
+            var list = TipoServicio.List(filtro);
+
+            if (list.Count > 0)
+                resultTipo = list[0];
+            
+
+            return resultTipo;
         }
 
         public static List<TipoServicio> List(FiltroTipoServicio f)
@@ -90,6 +105,13 @@ namespace Entities.InterAsisst
             }
 
             return resulList;
+        }
+
+        public static TipoServicio get_Shadow(int id)
+        {
+            TipoServicio t = new TipoServicio();
+            t._id = id;
+            return t;
         }
 
 

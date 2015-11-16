@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Ticket_Prestador" targetNamespace="http://tempuri.org/Ticket_Prestador.xsd" xmlns:mstns="http://tempuri.org/Ticket_Prestador.xsd" xmlns="http://tempuri.org/Ticket_Prestador.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString2 (Settings)" PropertyReference="ApplicationSettings.DAL.InterAssist.Properties.Settings.GlobalReference.Default.ConnectionString2" Provider="System.Data.OracleClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Ticket_Prestador" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Ticket_Prestador" msprop:Generator_UserDSName="Ticket_Prestador">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TICKET_PRESTADORES" msprop:Generator_TableClassName="TICKET_PRESTADORESDataTable" msprop:Generator_TableVarName="tableTICKET_PRESTADORES" msprop:Generator_RowChangedName="TICKET_PRESTADORESRowChanged" msprop:Generator_TablePropName="TICKET_PRESTADORES" msprop:Generator_RowDeletingName="TICKET_PRESTADORESRowDeleting" msprop:Generator_RowChangingName="TICKET_PRESTADORESRowChanging" msprop:Generator_RowEvHandlerName="TICKET_PRESTADORESRowChangeEventHandler" msprop:Generator_RowDeletedName="TICKET_PRESTADORESRowDeleted" msprop:Generator_RowClassName="TICKET_PRESTADORESRow" msprop:Generator_UserTableName="TICKET_PRESTADORES" msprop:Generator_RowEvArgName="TICKET_PRESTADORESRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDTICKETPRESTADOR" msprop:Generator_ColumnVarNameInTable="columnIDTICKETPRESTADOR" msprop:Generator_ColumnPropNameInRow="IDTICKETPRESTADOR" msprop:Generator_ColumnPropNameInTable="IDTICKETPRESTADORColumn" msprop:Generator_UserColumnName="IDTICKETPRESTADOR" type="xs:int" minOccurs="0" />
+              <xs:element name="IDTICKET" msprop:Generator_ColumnVarNameInTable="columnIDTICKET" msprop:Generator_ColumnPropNameInRow="IDTICKET" msprop:Generator_ColumnPropNameInTable="IDTICKETColumn" msprop:Generator_UserColumnName="IDTICKET" type="xs:int" minOccurs="0" />
+              <xs:element name="IDPRESTADOR" msprop:Generator_ColumnVarNameInTable="columnIDPRESTADOR" msprop:Generator_ColumnPropNameInRow="IDPRESTADOR" msprop:Generator_ColumnPropNameInTable="IDPRESTADORColumn" msprop:Generator_UserColumnName="IDPRESTADOR" type="xs:int" minOccurs="0" />
+              <xs:element name="IDTIPOSERVICIO" msprop:Generator_ColumnVarNameInTable="columnIDTIPOSERVICIO" msprop:Generator_ColumnPropNameInRow="IDTIPOSERVICIO" msprop:Generator_ColumnPropNameInTable="IDTIPOSERVICIOColumn" msprop:Generator_UserColumnName="IDTIPOSERVICIO" type="xs:int" minOccurs="0" />
+              <xs:element name="OBJECTHASH" msprop:Generator_ColumnVarNameInTable="columnOBJECTHASH" msprop:Generator_ColumnPropNameInRow="OBJECTHASH" msprop:Generator_ColumnPropNameInTable="OBJECTHASHColumn" msprop:Generator_UserColumnName="OBJECTHASH" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COMENTARIOS" msprop:Generator_ColumnVarNameInTable="columnCOMENTARIOS" msprop:Generator_ColumnPropNameInRow="COMENTARIOS" msprop:Generator_ColumnPropNameInTable="COMENTARIOSColumn" msprop:Generator_UserColumnName="COMENTARIOS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1024" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PERSISTOPERATION" msprop:Generator_ColumnVarNameInTable="columnPERSISTOPERATION" msprop:Generator_ColumnPropNameInRow="PERSISTOPERATION" msprop:Generator_ColumnPropNameInTable="PERSISTOPERATIONColumn" msprop:Generator_UserColumnName="PERSISTOPERATION" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

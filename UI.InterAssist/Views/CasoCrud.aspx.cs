@@ -10,10 +10,11 @@ using Entities.InterAsisst;
 using UI.InterAssist.Interfaces;
 using Cognitas.Framework.Repository;
 using Cognitas.Framework.UserInterface;
+using UI.InterAssist.Modelviews;
 
 namespace UI.InterAssist.Views
 {
-    public partial class CasoCrud1 : Classes.Views, ICrmPage
+    public partial class CasoCrud : Classes.Views, ICrmPage
     {
         #region Constantes
 
@@ -36,22 +37,25 @@ namespace UI.InterAssist.Views
 
         private const string OPERADOR_TEXT = "{0} - {1}, {2}";
 
+        private const string UPDATE_PANEL_KEY = "UpdatePanel_postBack";
+        
+        private const string ASYNC_AGREGAR_PRESTADOR_METHOD = "AgregarPrestador";
+        private const string ASYNC_QUITAR_PRESTADOR_METHOD = "QuitarPrestador";
+
+        private const string VW_LISTA_PRESTADORES_ASIGNADOS = "vw_prestadores_asignados";
+        
+
         #endregion Constantes
 
         #region Enumeradores
 
         private enum ColumnasPrestador
         {
-            Id=0,
-            Nombre, 
-            Pais,
-            Provincia,
-            Localidad,
-            Domicilio,
-            Telefono1,
-            MasInfo,
-            Asignar,
-
+            Nombre,
+            Ubicacion,
+            TipoAsistencia,
+            Detalles,
+            Eliminar
         }
         
         #endregion Enumeradores
@@ -65,6 +69,43 @@ namespace UI.InterAssist.Views
 
         #region Propiedades
 
+
+        private List<Modelviews.PrestadorCasoModelView> PrestadoresAsignados
+        {
+            get
+            {
+                if (this.ViewState[VW_LISTA_PRESTADORES_ASIGNADOS] == null)
+                    this.ViewState[VW_LISTA_PRESTADORES_ASIGNADOS] = new List<Modelviews.PrestadorCasoModelView>();
+
+                return (List<Modelviews.PrestadorCasoModelView>)this.ViewState[VW_LISTA_PRESTADORES_ASIGNADOS];
+
+            }
+
+            set
+            {
+                this.ViewState[VW_LISTA_PRESTADORES_ASIGNADOS] = value;
+            }
+        }
+
+        private List<TipoServicio> _tiposServicios = null;
+        /*
+        private List<TipoServicio> TiposServicios
+        {
+            get
+            {
+                if (_tiposServicios == null)
+                {
+                    Classes.Views.AgergarElijaOpcion(this.ddlTipoServicio);
+                    FiltroTipoServicio f = new FiltroTipoServicio();
+                    f.OrderBY = " order by descripcion asc";
+
+                    this._tiposServicios = TipoServicio.List(f);
+                }
+
+                return this._tiposServicios;
+            }
+        }
+        */
         private string PopUp
         {
             get
@@ -146,6 +187,27 @@ namespace UI.InterAssist.Views
 
         #region Metodos
 
+        public static Modelviews.PrestadorModelView getPrestador(int idPrestador)
+        {
+            Modelviews.PrestadorModelView result = null;
+
+            Entities.InterAsisst.Prestador p = Entities.InterAsisst.Prestador.GetById(idPrestador);
+
+            if(p!=null)
+            {   
+                result = new Modelviews.PrestadorModelView();
+                result.Id = p.ID;
+                result.Localidad = p.LocalidadNombre;
+                result.Nombre = p.Nombre;
+                result.Pais = p.NombrePais;
+                result.Provincia = p.ProvinciaNombre;
+                result.Telefono = p.Telefono1;
+            }
+
+            return result;
+
+        }
+        
         protected override void OnPreRender(EventArgs e)
         {
             base.OnPreRender(e);
@@ -154,16 +216,21 @@ namespace UI.InterAssist.Views
 
         private void ShowAsPrestador()
         {
-
+            
+            /*
             this.divDatosPrestador.Visible = true && this.IdPrestador != -1;
             this.DivBusquedaPrestador.Visible = false;
+            */
         }
 
         private void ShowAsBuscador()
         {
+            /*
             this.divDatosPrestador.Visible = false;
             this.DivBusquedaPrestador.Visible = true;
             this.ShowList(false);
+             */
+        
         }
 
         private void SetTicketInCotrols(Entities.InterAsisst.Ticket t)
@@ -192,9 +259,22 @@ namespace UI.InterAssist.Views
             this.UbicacionOrigen.IdPais = t.IdPaisOrigen;
             this.UbicacionDestino.IDLocalidad = t.IdLocalidadDestino;
 
+            
             // Prestador
+            /*
             this.IdPrestador = t.IdPrestador;
             this.Prestadorctrl.CargarPrestador(t.IdPrestador);
+            */
+
+
+            // Prestadores
+
+            /*
+            this.dtgPrestadoresAsignados.DataSource = t.PrestadorCaso;
+            this.dtgPrestadoresAsignados.DataBind();
+            */
+
+            this.CargarPrestadores(t.PrestadorCaso);
 
             // Observaciones
             this.ddlProblema.SelectedValue = t.IdProblema.ToString();
@@ -205,13 +285,57 @@ namespace UI.InterAssist.Views
                 this.rptObservaciones.DataBind();
             }
 
-            this.divDatosPrestador.Visible = t.IdPrestador != -1;
+            
             this.ddlTipoCaso.SelectedValue = t.TipoTicket;
-            this.ddlTipoServicio.SelectedValue = t.IdTipoServicio.ToString();
+            /*this.ddlTipoServicio.SelectedValue = t.IdTipoServicio.ToString();*/
+
+            if (t.Kilomtros != null)
+                this.decKilometros.Value = (float)t.Kilomtros;
+
+            if (t.Costo != null)
+                this.decCosto.Value = (float)t.Costo;
+
+
+        }
+
+        private void CargarPrestadores(List<PrestadorCaso> prestadores)
+        {
+            this.PrestadoresAsignados.Clear();
+            foreach (PrestadorCasoModelView p in PrestadorCasoModelView.getList(prestadores))
+            {
+                this.PrestadoresAsignados.Add(p);
+            }
+
+            this.CargarPrestadoresViewState();
+
+        }
+        public void CargarPrestadoresViewState()
+        {
+
+            List<PrestadorCasoModelView> listado = PrestadoresActivos();
+            this.lblSinPrestadores.Visible = listado.Count == 0;
+            this.dtgPrestadoresAsignados.Visible = listado.Count > 0;
+            this.dtgPrestadoresAsignados.DataSource = listado;
+            this.dtgPrestadoresAsignados.DataBind();
 
             
+            
+        }
 
 
+        private List<PrestadorCasoModelView> PrestadoresActivos()
+        {
+            List<PrestadorCasoModelView> resultList = new List<PrestadorCasoModelView>();
+
+            foreach (PrestadorCasoModelView p in this.PrestadoresAsignados)
+            {
+                if(p.Estado!=Constants.PersistOperationType.Delete)
+                {
+                    resultList.Add(p);
+                }
+            }
+
+            return resultList;
         }
 
         private Entities.InterAsisst.Ticket GetTicketFromControl()
@@ -246,14 +370,41 @@ namespace UI.InterAssist.Views
             
             t.CalleDestino = this.UbicacionDestino.Dirección;
 
-            t.IdPrestador = this.IdPrestador;
+            
             t.IdProblema = Int32.Parse(this.ddlProblema.SelectedValue);
-            t.IdTipoServicio = Int32.Parse(this.ddlTipoServicio.SelectedValue);
+            /*t.IdTipoServicio = Int32.Parse(this.ddlTipoServicio.SelectedValue);*/
             
             // Detalles
             t.Observacion = new Observacion(SessionOperador.ID);
             t.Observacion.Descripcion = string.Format(TIPO_TICKET, t.TipoTicket) +  this.txtDetalles.Text.Trim();
 
+            // Prestadores
+
+            foreach(var p in this.PrestadoresAsignados)
+            {
+                if(p.Estado!=Constants.PersistOperationType.Delete || p.IdCasoPrestador!=-1)
+                {
+                    t.PrestadorCaso.Add(p.getPrestadorCaso());
+                }
+            }
+
+            if(decKilometros.Value!=null && decKilometros.Value!=0)
+            {
+                t.Kilomtros = (decimal)decKilometros.Value;
+            }
+            else
+            {
+                t.Kilomtros = null;
+            }
+
+            if(decCosto.Value!=null && decCosto.Value!=0)
+            {
+                t.Costo = (decimal)decCosto.Value;
+            }
+            else
+            {
+                t.Costo = null;
+            }
             
             return t;
         }
@@ -263,7 +414,8 @@ namespace UI.InterAssist.Views
             base.Page_Load(sender, e);
 
             this.SincronizaSelector();
-
+            this.UpdatePanel_PostBack_Eval();
+           
             if (!this.IsPostBack)
             {
                 this.AssignTextToControls();
@@ -273,6 +425,51 @@ namespace UI.InterAssist.Views
             {
                 this.SincrinizaCloseModal();
             }
+        }
+
+        private void UpdatePanel_PostBack_Eval()
+        {
+            if (this.Request.Form["__EVENTTARGET"] == UPDATE_PANEL_KEY)
+            {
+                // Captura un postback desde el update panel.
+                
+                // Verifica cual es el metodo que debe llamar.
+
+
+                switch (this.Request.Form["__EVENTARGUMENT"])
+	            {
+		            case ASYNC_AGREGAR_PRESTADOR_METHOD:
+                    {
+                        // Agrega un prestador
+                        if(this.CasoPrestador1.IdPrestador!=-1)
+                        {
+                            this.AgregarPrestador(this.CasoPrestador1.IdPrestador, this.CasoPrestador1.IdTipoAsistencia, this.CasoPrestador1.Comentarios);
+                        }
+                        break;
+                    }
+                    case ASYNC_QUITAR_PRESTADOR_METHOD:
+                    {
+                        // Quita un prestador.
+                        QuitarPrestadorViewState(this.CasoPrestador1.InternalID);
+                        break;
+                    }
+	            }
+
+
+            }
+            
+        }
+
+        private void QuitarPrestadorViewState(string pInternalID)
+        {
+            foreach (PrestadorCasoModelView p in this.PrestadoresAsignados)
+            {
+                if (p.InternalID == pInternalID)
+                    p.Estado = Constants.PersistOperationType.Delete;
+
+            }
+
+            CargarPrestadoresViewState();
         }
 
         private void SincrinizaCloseModal()
@@ -293,7 +490,34 @@ namespace UI.InterAssist.Views
                 this.ddlTipoCaso.Items.Add(new ListItem(t.Descripcion, t.Descripcion));
             }
         }
+        
+        private void AgregarPrestador(int Idprestador, int tipoAsistencia, string detalles)
+        {
 
+
+            Entities.InterAsisst.Prestador prestador = Entities.InterAsisst.Prestador.GetById_ReadOnly(Idprestador);
+            Entities.InterAsisst.TipoServicio TServicio = Entities.InterAsisst.TipoServicio.GetById(tipoAsistencia);
+
+            Modelviews.PrestadorCasoModelView prestador_vm = new PrestadorCasoModelView(prestador);
+            prestador_vm.Detalles = detalles;
+            prestador_vm.IdTipoAsistencia = tipoAsistencia;
+            prestador_vm.TipoAsistencia = TServicio.Descripcion;
+            prestador_vm.Estado = Constants.PersistOperationType.Create;
+            
+            this.PrestadoresAsignados.Add(prestador_vm);
+            this.CargarPrestadoresViewState();
+
+        }
+   
+        private void InicializaComboTipoAsistencia(DropDownList combo, List<TipoServicio> TiposServicios)
+        {
+            Classes.Views.AgergarElijaOpcion(combo);
+            foreach (TipoServicio t in TiposServicios)
+            {
+                combo.Items.Add(new ListItem(t.Descripcion, t.ID.ToString()));
+            }
+        }
+        /*
         private void InicializaComboTipoAsistencia()
         {
             Classes.Views.AgergarElijaOpcion(this.ddlTipoServicio);
@@ -307,7 +531,7 @@ namespace UI.InterAssist.Views
                 this.ddlTipoServicio.Items.Add(new ListItem(t.Descripcion, t.ID.ToString()));
             }
         }
-
+        */
         private void InicializaComboEstados()
         {
             // Esto deberia salir de una clase entidad.
@@ -324,20 +548,20 @@ namespace UI.InterAssist.Views
             this.lblIdCaso.Text = Resource.LBL_CASO_ID + Resource.LBL_SEPARADOR;
             this.lblDetalles.Text = Resource.LBL_CASO_DETALLES + Resource.LBL_SEPARADOR;
             this.lblHistorico.Text = Resource.LBL_CASO_HISTORICO + Resource.LBL_SEPARADOR;
-            this.lblPresadorPais.Text = Resource.LBL_PRESTADOR_PAIS + Resource.LBL_SEPARADOR;
-            this.lblPrestadorProvincia.Text = Resource.LBL_PRESTADOR_PROVINCIA + Resource.LBL_SEPARADOR;
-            this.lblPrestadorCiudad.Text = Resource.LBL_PRESTADOR_CIUDAD + Resource.LBL_SEPARADOR;
-            this.lblPrestadorNombre.Text = Resource.LBL_PRESTADOR_NOMBRE + Resource.LBL_SEPARADOR;
             this.lblProblemaMecanico.Text = Resource.LBL_TICKET_PROBLEMA + Resource.LBL_SEPARADOR;
-            this.lblCantReg.Text = Resource.TXT_RECORD_COUNT + Resource.LBL_SEPARADOR;
+            //this.lblCantReg.Text = Resource.TXT_RECORD_COUNT + Resource.LBL_SEPARADOR;
             this.lblEstado.Text = Resource.LBL_TICKET_ESTADO + Resource.LBL_SEPARADOR;
             this.lblTelefono.Text = Resource.LBL_TICKET_TELEFONO + Resource.LBL_SEPARADOR;
             this.lblOperador.Text = Resource.LBL_TICKET_OPERADOR + Resource.LBL_SEPARADOR;
             this.lblFecha.Text = Resource.LBL_TICKET_FECHA_HORA + Resource.LBL_SEPARADOR;
             this.lblNonObs.Text = Resource.LBL_TICKET_NON_OBSERVACIONES;
-            this.lblNonResult.Text = Resource.TXT_NON_RESULTS;
             this.lblTipoCaso.Text = Resource.LBL_TICKET_TIPO + Resource.LBL_SEPARADOR;
-            this.lblTipoAsistencia.Text = Resource.LBL_TICKET_TIPO_ASISTENCIA + Resource.LBL_SEPARADOR;
+            /*this.lblTipoAsistencia.Text = Resource.LBL_TICKET_TIPO_ASISTENCIA + Resource.LBL_SEPARADOR;*/
+            this.lblSinPrestadores.Text = Resource.TXT_CASO_SIN_PRESTADOR;
+
+
+            this.lblCosto.Text = Resource.LBL_TICKET_COSTO + Resource.LBL_SEPARADOR;
+            this.lblKilometros.Text = Resource.LBL_TICKET_KILOMETRO + Resource.LBL_SEPARADOR;
 
             // Secciones
             this.lblOrigen.Text = Resource.LBL_SECCION_CASO_ORIGEN;
@@ -347,8 +571,9 @@ namespace UI.InterAssist.Views
             this.btnAceptarSalir.Text = Resource.BTN_GUARDAR_Y_SALIR;
             this.btnAceptar.Text = Resource.BTN_ACEPTAR;
             this.btnCancelar.Text = Resource.BTN_CANCELAR;
-            this.btnBuscarPrestador.Text = Resource.BTN_BUSCAR;
-            this.btnLimpiarBusqueda.Text = Resource.BTN_FREE_SEARCH;
+            
+            //this.btnBuscarPrestador.Text = Resource.BTN_BUSCAR;
+            //this.btnLimpiarBusqueda.Text = Resource.BTN_FREE_SEARCH;
 
             
             this.btnAsignarPrestador.Text = Resource.BTN_ASIGNAR_PRESTADOR;
@@ -358,23 +583,22 @@ namespace UI.InterAssist.Views
             this.cmvPrestador.ErrorMessage = Resource.ERR_PRESTADOR_OBLIGATORIO;
             this.rfvTelefono.ErrorMessage = string.Format(Resource.ERR_REQUEST_FIELD, Resource.LBL_TICKET_TELEFONO);
             this.cmvTipoCaso.ErrorMessage = string.Format(Resource.ERR_REQUEST_COMBO, Resource.LBL_TICKET_TIPO);
-            this.cmvTipoAsisitencia.ErrorMessage = string.Format(Resource.ERR_REQUEST_COMBO, Resource.LBL_TICKET_TIPO_ASISTENCIA);
+            /*this.cmvTipoAsisitencia.ErrorMessage = string.Format(Resource.ERR_REQUEST_COMBO, Resource.LBL_TICKET_TIPO_ASISTENCIA);*/
 
-            // Columnas del listado del Prestadore
-            this.dtgPrestador.Columns[(int)ColumnasPrestador.Id].HeaderText = Resource.LBL_PRESTADOR_ID;
-            //this.dtgPrestador.Columns[(int)ColumnasPrestador.Nombre].HeaderText = Resource.LBL_PRESTADOR_NOMBRE;
-            this.dtgPrestador.Columns[(int)ColumnasPrestador.Pais].HeaderText = Resource.LBL_PRESTADOR_PAIS;
-            this.dtgPrestador.Columns[(int)ColumnasPrestador.Provincia].HeaderText = Resource.LBL_PRESTADOR_PROVINCIA;
-            this.dtgPrestador.Columns[(int)ColumnasPrestador.Localidad].HeaderText = Resource.LBL_PRESTADOR_LOCALIDAD;
-            this.dtgPrestador.Columns[(int)ColumnasPrestador.Domicilio].HeaderText = Resource.LBL_PRESTADOR_DOMICILIO;
-            this.dtgPrestador.Columns[(int)ColumnasPrestador.Telefono1].HeaderText = Resource.LBL_PRESTADOR_TELEFONO1;
-            ((ButtonColumn)this.dtgPrestador.Columns[(int)ColumnasPrestador.MasInfo]).Text = Resource.BTN_PRESTADOR_INFO;
-            ((ButtonColumn)this.dtgPrestador.Columns[(int)ColumnasPrestador.MasInfo]).CommandName = COMMNAD_INFO_PRESTADOR;
-            ((ButtonColumn)this.dtgPrestador.Columns[(int)ColumnasPrestador.Asignar]).Text = Resource.BTN_PRESTADOR_ASIGNAR;
-            ((ButtonColumn)this.dtgPrestador.Columns[(int)ColumnasPrestador.Asignar]).CommandName = COMMNAD_ASIGNAR_PRESTADOR;
+
+
+            // Columnas Prestadores Asignados.
+            
+            this.dtgPrestadoresAsignados.Columns[(int)ColumnasPrestador.Ubicacion].HeaderText = "Ubicacion";
+            this.dtgPrestadoresAsignados.Columns[(int)ColumnasPrestador.Nombre].HeaderText = Resource.LBL_PRESTADOR_NOMBRE;
+            this.dtgPrestadoresAsignados.Columns[(int)ColumnasPrestador.Detalles].HeaderText = "Detalles";
+            this.dtgPrestadoresAsignados.Columns[(int)ColumnasPrestador.TipoAsistencia].HeaderText = Resource.LBL_TICKET_TIPO_ASISTENCIA;
+
+
+            
 
         }
-
+        
         private void ShowObservaciones(bool value)
         {
             this.divNonObs.Visible = !value;
@@ -389,26 +613,24 @@ namespace UI.InterAssist.Views
             this.ShowAsPrestador();
             this.inicializaControlUbicacionDestino();
             this.InicializaControlUbicacionOrigen();
-            this.InicializaCombosPrestador();
+            //this.InicializaCombosPrestador();
             this.InicializaComboTipos();
             
             this.InicializaComboProblema();
             this.InicializaComboEstados();
-            this.InicializaComboTipoAsistencia();
+            /*this.InicializaComboTipoAsistencia();*/
 
             if (!this.IsNew)
             {
                 Entities.InterAsisst.Ticket t = Entities.InterAsisst.Ticket.GetById(this.EntityID);
+                var a = t.PrestadorCaso;
                 Classes.SessionHelper.ID_CASO_AFILIADO = t.IdAfiliado;
                 this.SetTicketInCotrols(t);
-                
-
             }
             else
             {
                 this.InicializaControlAfilado(Classes.SessionHelper.ID_CASO_AFILIADO);
-                this.ShowObservaciones(false);
-               
+                this.ShowObservaciones(false);  
             }
 
             this.InicializaControlAfilado(Classes.SessionHelper.ID_CASO_AFILIADO);
@@ -427,7 +649,7 @@ namespace UI.InterAssist.Views
         {
             this.IdPrestador = DEFAULT_ID;
             this.btnAsignarPrestador.Text = Resource.BTN_ASIGNAR_PRESTADOR;
-            this.Prestadorctrl.Reiniciar();
+   
             this.divDatosPrestador.Visible = false;
            
         }
@@ -437,6 +659,7 @@ namespace UI.InterAssist.Views
             this.ctrlAfiliado.IdAfiliado = idAfiliado;
         }
 
+        /*
         private void InicializaCombosPrestador()
         {
 
@@ -456,6 +679,7 @@ namespace UI.InterAssist.Views
             }
 
         }
+         */
 
         private void InicializaControlUbicacionOrigen()
         {
@@ -497,32 +721,10 @@ namespace UI.InterAssist.Views
             this.litPopUp.Text = string.Format(@"<input name=""popModal"" id=""popModal"" type=""hidden"" value=""{0}""/>", this.PopUp);
         }
 
-        public void CargarListado(FiltroPrestador filtro, int pageNumber)
-        {
-            int totalRegistros;
-
-            filtro.PageSize = PAGE_SIZE;
-            filtro.IsPaged = true;
-            filtro.StartRow = ((pageNumber - 1) * PAGE_SIZE) + 1;
-            filtro.ESTADO = FiltroPrestador.ESTADO_ACTIVO;
-
-            List<Entities.InterAsisst.Prestador> listaAfiliados = Entities.InterAsisst.Prestador.List(filtro, out totalRegistros);
-
-            this.FiltroPrestador.FiltredRowsQtty = totalRegistros;
-
-            this.ShowList(totalRegistros > 0);
-            this.lbltxtCantReg.Text = totalRegistros.ToString();
-
-            this.dtgPrestador.CurrentPageIndex = pageNumber - 1;
-            this.dtgPrestador.VirtualItemCount = totalRegistros;
-            this.dtgPrestador.DataSource = listaAfiliados;
-            this.dtgPrestador.DataBind();
-        }
-
         private void AsignarPrestador(string idPrestador)
         {
             this.IdPrestador = Int32.Parse(idPrestador);
-            this.Prestadorctrl.CargarPrestador(this.IdPrestador);
+
             this.btnAsignarPrestador.Text = Resource.BTN_QUITAR_PRESTADOR;
             this.ShowAsPrestador();
         }
@@ -532,17 +734,15 @@ namespace UI.InterAssist.Views
 
         }
 
-        private void ShowList(bool value)
-        {
-            this.divNonResult.Visible = !value;
-            this.divGrid.Visible = value;
-            this.divCantregistros.Visible = value;
-        }
-
         private void ShowPrestadorInformation(string idPrestador)
         {
              this.PrestadorInfo.CargarPrestador(Int32.Parse(idPrestador));
              this.PopUp = "divPrestadorInfo";
+        }
+
+        private void ShowBuscarPrestador()
+        {
+            this.PopUp = "DivBusquedaPrestador";
         }
 
         private void SendSuccMsg(string idTicket, bool Salir)
@@ -582,17 +782,10 @@ namespace UI.InterAssist.Views
 
         protected void btnAsignarPrestador_Click(object sender, EventArgs e)
         {
-            if (!TienePrestadorAsignado)
-            {
-                this.ShowAsBuscador();
-            }
-            else
-            {
-                this.QuitarPrestador();
-            }
-            
+            this.ShowBuscarPrestador();            
         }
 
+        /*
         protected void btnBuscarPrestador_Click(object sender, EventArgs e)
         {
             this.FiltroPrestador.Reset();
@@ -610,16 +803,11 @@ namespace UI.InterAssist.Views
             this.CargarListado(this.FiltroPrestador, 1);
 
         }
-
-        protected void btnLimpiarBusqueda_Click(object sender, EventArgs e)
-        {
-            this.FiltroPrestador.Reset();
-            this.CargarListado(this.FiltroPrestador, 1);
-        }
+         */
 
         protected void cmvPrestador_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            args.IsValid = this.IdPrestador != DEFAULT_ID;
+            args.IsValid = this.PrestadoresActivos().Count > 0;
         }
 
         protected void dtgPrestador_ItemCommand(object source, DataGridCommandEventArgs e)
@@ -636,33 +824,7 @@ namespace UI.InterAssist.Views
             }
         }
 
-        protected void dtgPrestador_ItemDataBound(object sender, DataGridItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                Entities.InterAsisst.Prestador p = (Entities.InterAsisst.Prestador)e.Item.DataItem;
-
-                e.Item.Cells[(int)ColumnasPrestador.Id].Text = p.ID.ToString();
-                e.Item.Cells[(int)ColumnasPrestador.Pais].Text = p.NombrePais;
-                e.Item.Cells[(int)ColumnasPrestador.Provincia].Text = p.ProvinciaNombre;
-                e.Item.Cells[(int)ColumnasPrestador.Localidad].Text = p.LocalidadNombre;
-                e.Item.Cells[(int)ColumnasPrestador.Nombre].Text = p.Nombre;
-                e.Item.Cells[(int)ColumnasPrestador.Domicilio].Text = p.Domicilio;
-                e.Item.Cells[(int)ColumnasPrestador.Telefono1].Text = p.Telefono1;
-                ((LinkButton)e.Item.Cells[(int)ColumnasPrestador.MasInfo].Controls[0]).CommandArgument = p.ID.ToString();
-                ((LinkButton)e.Item.Cells[(int)ColumnasPrestador.Asignar].Controls[0]).CommandArgument = p.ID.ToString();
-
-
-
-
-            }
-        }
-
-        protected void dtgPrestador_PageIndexChanged(object source, DataGridPageChangedEventArgs e)
-        {
-            int a = e.NewPageIndex;
-            this.CargarListado(this.FiltroPrestador, a + 1);
-        }
+        
 
         protected void rptObservaciones_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
@@ -715,19 +877,19 @@ namespace UI.InterAssist.Views
 
         #region Eventos
 
+        
         protected void cmvTipoCaso_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            args.IsValid = this.ddlTipoServicio.SelectedValue != Classes.Views.COMBO_ELIJA_OPCION;
+            args.IsValid = this.ddlTipoCaso.SelectedValue != Classes.Views.COMBO_ELIJA_OPCION;
         }
-
+        
         protected void ddlTipoCaso_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.SetValidadores(this.ddlTipoCaso.SelectedValue);
         }
+        
 
         #endregion Eventos
-
- 
 
         #region WebMethods
 
@@ -760,6 +922,7 @@ namespace UI.InterAssist.Views
 
 
         [System.Web.Services.WebMethod]
+        
         public static AjaxResponseCiudaes[] ObtenerUbicacion(string valor)
         {
 
@@ -783,15 +946,19 @@ namespace UI.InterAssist.Views
 
             return listResult.ToArray();
         }
+
+
         
 
         #endregion WebMethods
 
+        #region Eventos
+        /*
         protected void cmvTipoAsisitencia_ServerValidate(object source, ServerValidateEventArgs args)
         {
             args.IsValid = this.ddlTipoServicio.SelectedValue != Classes.Views.COMBO_ELIJA_OPCION;
         }
-
+        */
         protected void btnAceptarSalir_Click(object sender, EventArgs e)
         {
             this.Aceptar(true);
@@ -801,5 +968,35 @@ namespace UI.InterAssist.Views
         {
             this.Aceptar(false);
         }
+
+        protected void dtgPrestadoresAsignados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dtgPrestadoresAsignados_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void dtgPrestadoresAsignados_ItemDataBound(object sender, DataGridItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                PrestadorCasoModelView p = (PrestadorCasoModelView)e.Item.DataItem;
+
+                e.Item.Cells[(int)ColumnasPrestador.Nombre].Text = p.NombrePrestador;
+                string ubicacion = string.Format(p.UbicacionPrestador);
+                e.Item.Cells[(int)ColumnasPrestador.Ubicacion].Text = ubicacion;
+                e.Item.Cells[(int)ColumnasPrestador.TipoAsistencia].Text = p.TipoAsistencia;
+                e.Item.Cells[(int)ColumnasPrestador.Detalles].Text = p.Detalles;
+                e.Item.Cells[(int)ColumnasPrestador.Eliminar].Attributes.Add("onClick", "QuitarPrestador('"+p.InternalID+"','"+p.NombrePrestador+"')");
+                e.Item.Cells[(int)ColumnasPrestador.Eliminar].ToolTip = "Quitar Prestador";
+
+            }
+        }
+
+        #endregion Eventos
+
     }
 }

@@ -56,6 +56,7 @@
     <Compile Include="Pais.cs" />
     <Compile Include="PersistEntity.cs" />
     <Compile Include="Prestador.cs" />
+    <Compile Include="PrestadorCaso.cs" />
     <Compile Include="Problema.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provincia.cs" />

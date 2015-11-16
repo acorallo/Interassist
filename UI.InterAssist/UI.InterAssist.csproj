@@ -34,7 +34,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>true</UseVSHostingProcess>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -90,7 +90,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Estilos\InterAssist.css" />
+    <Content Include="Estilos\jTPS.css" />
+    <Content Include="fonts\style.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\descarga.png" />
     <Content Include="Images\InterAssist.png" />
     <Content Include="jquery-ui-1.11.1\jquery-ui.css" />
     <Content Include="jquery-ui-1.11.1\jquery-ui.js" />
@@ -102,19 +105,25 @@
     <Content Include="jquery-ui-1.11.1\jquery-ui.theme.min.css" />
     <Content Include="Scripts\AfiladoCrud.js" />
     <Content Include="Scripts\AfiliadoCtrl.js" />
+    <Content Include="Scripts\BuscarPrestador.js" />
     <Content Include="Scripts\CasoCrud.js" />
+    <Content Include="Scripts\FrontControls.js" />
     <Content Include="Scripts\InterAssistUI.js" />
     <Content Include="Scripts\jquery-1.10.1.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jTPS.js" />
     <Content Include="Scripts\Operador.js" />
     <Content Include="Scripts\PrestadorCrud.js" />
     <Content Include="Scripts\UbicacionPredictivo.js" />
     <Content Include="Scripts\Usuario.js" />
     <Content Include="Usercontrols\AfiliadoCtrl.ascx" />
     <Content Include="Usercontrols\AfiliadoDetalle.ascx" />
+    <Content Include="Usercontrols\BuscarPrestador.ascx" />
+    <Content Include="Usercontrols\CasoPrestador.ascx" />
     <Content Include="Usercontrols\Clientes.ascx" />
     <Content Include="Usercontrols\DecimalControl.ascx" />
     <Content Include="Usercontrols\FilterTicket.ascx" />
+    <Content Include="Usercontrols\ListControl.ascx" />
     <Content Include="Usercontrols\Operador.ascx" />
     <Content Include="Usercontrols\Prestadorctrl.ascx" />
     <Content Include="Usercontrols\PrestadoresEdit.ascx" />
@@ -131,6 +140,7 @@
     <Content Include="Views\Operadores.aspx" />
     <Content Include="Views\Prestador.aspx" />
     <Content Include="Views\PrestadorCrud.aspx" />
+    <Content Include="Views\services.aspx" />
     <Content Include="Views\test.aspx" />
     <Content Include="Views\UpLoadErrors.aspx" />
     <Content Include="Views\Uploads.aspx" />
@@ -164,6 +174,13 @@
       <DependentUpon>InterAssist.Master</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IListable.cs" />
+    <Compile Include="Modelviews\EstadosMV.cs" />
+    <Compile Include="Modelviews\IListModel.cs" />
+    <Compile Include="Modelviews\Modelview.cs" />
+    <Compile Include="Modelviews\OptionComboModelView.cs" />
+    <Compile Include="Modelviews\PaisModel.cs" />
+    <Compile Include="Modelviews\PrestadorCasoModelView.cs" />
+    <Compile Include="Modelviews\PrestadorModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -183,6 +200,20 @@
     </Compile>
     <Compile Include="Usercontrols\AfiliadoDetalle.ascx.designer.cs">
       <DependentUpon>AfiliadoDetalle.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Usercontrols\BuscarPrestador.ascx.cs">
+      <DependentUpon>BuscarPrestador.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usercontrols\BuscarPrestador.ascx.designer.cs">
+      <DependentUpon>BuscarPrestador.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Usercontrols\CasoPrestador.ascx.cs">
+      <DependentUpon>CasoPrestador.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usercontrols\CasoPrestador.ascx.designer.cs">
+      <DependentUpon>CasoPrestador.ascx</DependentUpon>
     </Compile>
     <Compile Include="Usercontrols\Clientes.ascx.cs">
       <DependentUpon>Clientes.ascx</DependentUpon>
@@ -204,6 +235,13 @@
     </Compile>
     <Compile Include="Usercontrols\FilterTicket.ascx.designer.cs">
       <DependentUpon>FilterTicket.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Usercontrols\ListControl.ascx.cs">
+      <DependentUpon>ListControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usercontrols\ListControl.ascx.designer.cs">
+      <DependentUpon>ListControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="Usercontrols\Operador.ascx.cs">
       <DependentUpon>Operador.ascx</DependentUpon>
@@ -317,6 +355,13 @@
     <Compile Include="Views\PrestadorCrud.aspx.designer.cs">
       <DependentUpon>PrestadorCrud.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\services.aspx.cs">
+      <DependentUpon>services.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\services.aspx.designer.cs">
+      <DependentUpon>services.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -371,6 +416,7 @@
     <EmbeddedResource Include="Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

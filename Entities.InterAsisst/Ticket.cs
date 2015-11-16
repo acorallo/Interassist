@@ -39,6 +39,18 @@ namespace Entities.InterAsisst
 
         #region Miembros de Entidad
 
+
+        public Decimal? Kilomtros { get; set; }
+        public Decimal? Costo { get; set; }
+
+        private bool _isPrestadorLoaded = false;
+
+        public bool IsPrestadorLoaded
+        {
+            get { return _isPrestadorLoaded; }
+            
+        }
+        
         private int _idOperador;
 
         public int IDOperador
@@ -68,13 +80,7 @@ namespace Entities.InterAsisst
             get { return _idAfiliado; }
             set { _idAfiliado = value; }
         }
-        private int _idPrestador;
-
-        public int IdPrestador
-        {
-            get { return _idPrestador; }
-            set { _idPrestador = value; }
-        }
+     
         private string _telefono;
 
         public string Telefono
@@ -259,7 +265,7 @@ namespace Entities.InterAsisst
             get { return _idTipoServicio; }
             set { _idTipoServicio = value; }
         }
-
+      
         private string _nombreLocalidadOrigen;
 
         public string NombreLocalidadOrigen
@@ -303,6 +309,19 @@ namespace Entities.InterAsisst
                 this._observacionesHistorica = value;
             }
         }
+
+        private List<PrestadorCaso> _prestadorCaso = new List<PrestadorCaso>();
+
+        public List<PrestadorCaso> PrestadorCaso
+        {
+            get {
+
+                return _prestadorCaso;
+            }
+            set { _prestadorCaso = value; }
+        }
+
+
         
 
         #endregion Miembros de Entidad
@@ -385,6 +404,7 @@ namespace Entities.InterAsisst
                     ORM(ticketResult, dr);
 
                     ticketResult.ObservacionesHistoricas = Observacion.ListByTicket(ticketResult.ID);
+                    ticketResult.LoadPrestadores();
                     
 
                 }
@@ -427,7 +447,7 @@ namespace Entities.InterAsisst
             resultRow.IDOPERADOR = this.IDOperador;
             resultRow.IDPAIS_ORIGEN = this.IdPaisOrigen;
             resultRow.IDAFILIADO = this.IdAfiliado;
-            resultRow.IDPRESTADOR = this.IdPrestador;
+            //resultRow.IDPRESTADOR = this.IdPrestador;
             resultRow.TELEFONO = this.Telefono;
             resultRow.IDESTADO = this.IdEstado;
             resultRow.IDPAIS_DESTINO = this.IdPaisDestino;
@@ -444,9 +464,30 @@ namespace Entities.InterAsisst
             resultRow.OBJECTHASH = this.UObjectID;
             resultRow.IDPROBLEMA = this.IdProblema;
             resultRow.TIPO_TICKET = this.TipoTicket;
-            resultRow.IDTIPOSERVICIO = this.IdTipoServicio;
+
+            if(this.Kilomtros!=null)
+                resultRow.KILOMETROS = this.Kilomtros.Value;
+            
+
+            if(this.Costo!=null)
+                resultRow.COSTO = this.Costo.Value;
+
+            //resultRow.IDTIPOSERVICIO = this.IdTipoServicio;
 
             return resultRow;
+        }
+
+        public static void ORM_PrestadorCaso(PrestadorCaso prestadorCaso, DataRow dr)
+        {
+            prestadorCaso.ID = Int32.Parse(dr["IDTICKETPRESTADOR"].ToString());
+            prestadorCaso.Prestador = Prestador.GetById(Int32.Parse(dr["IDPRESTADOR"].ToString()));
+            
+            FiltroTipoServicio f = new FiltroTipoServicio();
+            f.ID = Int32.Parse(dr["IDTIPOSERVICIO"].ToString());
+            prestadorCaso.TipoServicio = TipoServicio.GetById(Int32.Parse(dr["IDTIPOSERVICIO"].ToString()));
+            prestadorCaso.Comentarios = dr["COMENTARIOS"].ToString();
+                                
+     
         }
 
         public static void ORM(Ticket ticket, DataRow dr)
@@ -455,7 +496,7 @@ namespace Entities.InterAsisst
             ticket._idOperador = Int32.Parse(dr[TicketDS.COL_IDOPERADOR].ToString());
             ticket._idPaisOrigen = PersistEntity.NuleableInt(dr[TicketDS.COL_IDPAIS_ORIGEN].ToString());
             ticket._idAfiliado = Int32.Parse(dr[TicketDS.COL_IDAFILIADO].ToString());
-            ticket._idPrestador = PersistEntity.NuleableInt(dr[TicketDS.COL_IDPRESTADOR].ToString());
+            //ticket._idPrestador = PersistEntity.NuleableInt(dr[TicketDS.COL_IDPRESTADOR].ToString());
             ticket._telefono = dr[TicketDS.COL_TELEFONO].ToString();
             ticket._idEstado = Int32.Parse(dr[TicketDS.COL_IDESTADO].ToString());
             ticket._idPaisDestino = PersistEntity.NuleableInt(dr[TicketDS.COL_IDPAIS_DESTINO].ToString());
@@ -471,11 +512,11 @@ namespace Entities.InterAsisst
             ticket._altura_destino = dr[TicketDS.COL_ALTURA_DESTINO].ToString();
             ticket._fecha = (DateTime)dr[TicketDS.COL_FECHA];
             ticket._idProblema = Int32.Parse(dr[TicketDS.COL_ID_PROBLEMA].ToString());
-            ticket._idTipoServicio = Int32.Parse(dr[TicketDS.COL_IDTIPOSERVICIO].ToString());
+            //ticket._idTipoServicio = Int32.Parse(dr[TicketDS.COL_IDTIPOSERVICIO].ToString());
             // Columnas para el listado.
             ticket._patente = dr[TicketDS.COL_PATENTE].ToString();
             ticket._poliza = dr[TicketDS.COL_POLIZA].ToString();
-            ticket._nombrePrestador = dr[TicketDS.COL_NOMBRE_PRESTADOR].ToString();
+            //ticket._nombrePrestador = dr[TicketDS.COL_NOMBRE_PRESTADOR].ToString();
             ticket._nombreOperador = dr[TicketDS.COL_NOMBRE_OPERADOR].ToString();
             ticket._problema = dr[TicketDS.COL_PROBLEMA].ToString();
             ticket._nombreEmpresa = dr[TicketDS.COL_NOMBRE_EMPRESA].ToString();
@@ -486,7 +527,14 @@ namespace Entities.InterAsisst
             ticket._marca = dr[TicketDS.COL_MARCA].ToString();
             ticket._modelo = dr[TicketDS.COL_MODELO].ToString();
             
-
+            // Kilometros.
+            if (dr[TicketDS.COL_KILOMETROS].ToString() != string.Empty)
+                ticket.Kilomtros = Decimal.Parse(dr[TicketDS.COL_KILOMETROS].ToString());
+            // Costo.
+            
+            if(dr[TicketDS.COL_COSTO].ToString() != String.Empty)
+                ticket.Costo = Decimal.Parse(dr[TicketDS.COL_COSTO].ToString());
+            
         }
 
         public override bool Persist()
@@ -503,14 +551,12 @@ namespace Entities.InterAsisst
 
                 if (this.IsNew)
                 {
-
-
-                    this._id = dataservice.Create(this.ObjectToRow(), this.Observacion.ObjectToRow());
+                    this._id = dataservice.Create(this.ObjectToRow(), this.Observacion.ObjectToRow(), this.GetPrestadoresTable());
                     result = true;
                 }
                 else
                 {
-                    result = dataservice.Update(this.ObjectToRow(), this.Observacion.ObjectToRow());
+                    result = dataservice.Update(this.ObjectToRow(), this.Observacion.ObjectToRow(), this.GetPrestadoresTable());
                 }
                 
             }
@@ -522,7 +568,48 @@ namespace Entities.InterAsisst
             return result;
         }
 
+        private void LoadPrestadores()
+        {
+
+            if(this.ID!=NULL_ID && !this.IsPrestadorLoaded)
+            {
+                TicketDS ticketDataService = new TicketDS();
+                DataSet ds = ticketDataService.List_PrestadoresByTicket(this.ID);
+                
+                if(ds.Tables.Count>0)
+                {
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        PrestadorCaso p = new PrestadorCaso();
+                        ORM_PrestadorCaso(p, dr);
+                        this._prestadorCaso.Add(p);
+                    }
+                }
+
+                this._isPrestadorLoaded = true;
+               
+            }
+        }
+
+        private Ticket_Prestador.TICKET_PRESTADORESDataTable GetPrestadoresTable()
+        {
+            Ticket_Prestador.TICKET_PRESTADORESDataTable resulTable = new Ticket_Prestador.TICKET_PRESTADORESDataTable();
+
+            foreach (PrestadorCaso c in this.PrestadorCaso)
+            {
+                Ticket_Prestador.TICKET_PRESTADORESRow r = resulTable.NewTICKET_PRESTADORESRow();
+                c.ObjectToRow(r);
+                resulTable.Rows.Add(r);
+            }
+
+            return resulTable;
+
+        }
+
+        
         #endregion Metodos
+
+
 
     }
 }
