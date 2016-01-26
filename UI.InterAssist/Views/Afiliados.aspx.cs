@@ -9,6 +9,7 @@ using Utils.InterAssist;
 using Entities.InterAsisst;
 using UI.InterAssist.Interfaces;
 using Cognitas.Framework.Repository;
+using System.Web.Services;
 
 namespace UI.InterAssist.Views
 {
@@ -252,6 +253,9 @@ namespace UI.InterAssist.Views
                 e.Item.Cells[(int)ColumnasListado.Documento].Text = afiliado.Documento;
                 e.Item.Cells[(int)ColumnasListado.Empresa].Text = afiliado.NombreEmpresa;
                 e.Item.Cells[(int)ColumnasListado.Poliza].Text = afiliado.Poliza;
+                e.Item.Cells[(int)ColumnasListado.Poliza].Attributes.Add("onClick", "javascript:contarCasos(event,'" + afiliado.Poliza + "');");
+                e.Item.Cells[(int)ColumnasListado.Poliza].Attributes.Add("onMouseout", "javascript:OcultarContador();");
+                e.Item.Cells[(int)ColumnasListado.Poliza].Attributes.Add("class", "style_Count");
                 e.Item.Cells[(int)ColumnasListado.Patente].Text = afiliado.Patente;
                 e.Item.Cells[(int)ColumnasListado.Marca].Text = afiliado.Marca;
                 e.Item.Cells[(int)ColumnasListado.Categoria].Text = afiliado.NombreCategoria;
@@ -277,6 +281,19 @@ namespace UI.InterAssist.Views
         {
             int a = e.NewPageIndex;
             this.CargarListado(this.Filtro, a+1);
+        }
+
+        [WebMethod]
+        public static ContadorCasos getCasos(string Poliza)
+        {
+
+            int mesCorriente = System.DateTime.Now.Month;
+            int annoCorriente = System.DateTime.Now.Year;
+
+            ContadorCasos c = ContadorCasos.getContadorCasos(mesCorriente, annoCorriente, Poliza);
+
+
+            return c;
         }
 
         #endregion Eventos
