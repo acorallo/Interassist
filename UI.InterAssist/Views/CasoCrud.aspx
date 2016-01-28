@@ -32,8 +32,6 @@
     <script type="text/javascript" language="javascript" src="../Scripts/CasoCrud.js"></script>
 
 
-
-
     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" AsyncPostBackTimeout="99999999"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>

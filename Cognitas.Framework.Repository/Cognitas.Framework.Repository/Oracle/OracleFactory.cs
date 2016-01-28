@@ -62,8 +62,8 @@ namespace Cognitas.Framework.Repository.Oracle
         
         public override IDbDataAdapter getDataAdapter(IDbCommand command)
         {
-            return new OracleDataAdapter();
-        }
+            return new OracleDataAdapter((OracleCommand)command);
+            }
 
         public override IDbDataParameter getDataParameter()
         {

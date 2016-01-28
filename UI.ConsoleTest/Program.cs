@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 using Cognitas.Framework.Repository;
 using DAL.InterAssist;
 
@@ -16,15 +17,12 @@ namespace UI.ConsoleTest
             Console.WriteLine("Inicio Programa.");
 
 
-            DBRepository respository = DBRepository.GetDbRepository(true);
+            DBRepository respository = DBRepository.GetDbRepository();
             TicketDS ticket = new TicketDS();
-            respository.BeginTransaction();
 
-            ticket.Insert_Preveedor_Ticket(respository, 7612, 301, 7, "", "ObjectHash");
+            DataTable dt = ticket.ObtenercasosMensuales(2015, 6, "715420/1");
 
             
-            respository.CommitTransaction();
-
             Console.WriteLine("Fin Programa.");
             Console.ReadLine();
 

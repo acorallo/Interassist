@@ -591,7 +591,7 @@ namespace UI.InterAssist.Views
             
             this.dtgPrestadoresAsignados.Columns[(int)ColumnasPrestador.Ubicacion].HeaderText = "Ubicacion";
             this.dtgPrestadoresAsignados.Columns[(int)ColumnasPrestador.Nombre].HeaderText = Resource.LBL_PRESTADOR_NOMBRE;
-            this.dtgPrestadoresAsignados.Columns[(int)ColumnasPrestador.Detalles].HeaderText = "Detalles";
+            this.dtgPrestadoresAsignados.Columns[(int)ColumnasPrestador.Detalles].HeaderText = "Comentarios";
             this.dtgPrestadoresAsignados.Columns[(int)ColumnasPrestador.TipoAsistencia].HeaderText = Resource.LBL_TICKET_TIPO_ASISTENCIA;
 
 
@@ -922,7 +922,6 @@ namespace UI.InterAssist.Views
 
 
         [System.Web.Services.WebMethod]
-        
         public static AjaxResponseCiudaes[] ObtenerUbicacion(string valor)
         {
 

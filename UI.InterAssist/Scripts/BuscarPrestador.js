@@ -91,7 +91,7 @@ function InicializaBuscarPrestador() {
 
 
 
-    setComboModal('ddlPrestadorProvincia', 'ddlPrestadorPais', '/Views/services.aspx/GetProvincias');
+    setComboModal('ddlPrestadorProvincia', 'ddlPrestadorPais', 'services.aspx/GetProvincias');
 
 
         
@@ -133,7 +133,7 @@ function getPaises() {
 
     $.ajax({
         type: "POST",
-        url: "/Views/services.aspx/GetPaises",
+        url: "services.aspx/GetPaises",
         data: "",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -148,7 +148,7 @@ function getPrestador(id, callBack, failCallBack)
 {
     $.ajax({
         type: "POST",
-        url: "/Views/services.aspx/getPrestadorWM",
+        url: "services.aspx/getPrestadorWM",
         data: "{idPrestador: '" + id + "'}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -200,13 +200,13 @@ function AgregarPrestador_ServerSide(value)
 function _btnBuscarPrestador_click() {
 
     var pais = $("#ddlPrestadorPais").val();
-    var provincia = $("#ddlPrestadorPais").val();
+    var provincia = $("#ddlPrestadorProvincia").val();
     var ciudad = $("#txtPrestadorCiudad").val();
     var nombre = $("#txtPrestadorNombre").val();
 
     $.ajax({
         type: "POST",
-        url: "/Views/services.aspx/ListPrestadores",
+        url: "services.aspx/ListPrestadores",
         data: "{idPais: '" + pais + "', idProvincia: '" + provincia + "', ciudad: '" + ciudad + "', nombre: '" + nombre + "'}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",

@@ -261,14 +261,51 @@ namespace Cognitas.Framework.Repository
             return resulReader;
         }
 
+
+        public virtual bool ExecuteQueryParam(DataSet ds, string sql, List<IDbDataParameter> parameters)
+        {
+            bool result = false;
+
+            try
+            {
+                this.DBCommand.CommandType = CommandType.Text;
+                this.DBCommand.CommandText = sql;
+                this.DBCommand.Connection = this.DBConnection;
+
+                this.DBCommand.Parameters.Clear();
+
+                foreach (IDataParameter p in parameters)
+                {
+                    this.DBCommand.Parameters.Add(p);
+                }
+
+
+                IDataAdapter dataAdapter = DbFactory.getDataAdapter(this.DBCommand);
+                dataAdapter.Fill(ds);
+                result = true;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
+            return result;
+        }
+        
         public virtual bool ExecuteQuery(DataSet ds, string sql)
         {
             bool result = false;
 
             try
             {
+
+
+                this.DBCommand.CommandType = CommandType.Text;
                 this.DBCommand.CommandText = sql;
+                this.DBCommand.Connection = this.DBConnection;
+                
                 IDataAdapter dataAdapter = DbFactory.getDataAdapter(this.DBCommand);
+                
                 dataAdapter.Fill(ds);
                 result = true;
             }
@@ -404,6 +441,8 @@ namespace Cognitas.Framework.Repository
             {
                 this.DBCommand.CommandType = CommandType.StoredProcedure;
                 this.DBCommand.CommandText = ProcedureName;
+
+                this.DBCommand.Parameters.Clear();
 
                 foreach (IDataParameter p in parameters)
                 {

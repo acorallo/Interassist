@@ -59,10 +59,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Cognitas.Framework.Repository\Cognitas.Framework.Repository\Cognitas.Framework.Repository.csproj">
-      <Project>{bb0e3e7e-6030-4477-b030-320b3060f3a7}</Project>
-      <Name>Cognitas.Framework.Repository</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\DAL.InterAssist\DAL.InterAssist.csproj">
       <Project>{75A9AF41-5C90-45E8-88A3-49F5A693C102}</Project>
       <Name>DAL.InterAssist</Name>

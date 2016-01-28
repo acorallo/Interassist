@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AfiliadoCtrl.ascx.cs" Inherits="UI.InterAssist.Usercontrols.AfiliadoCtrl" %>
 
-<script language="javascript" src="../Scripts/jquery-1.10.1.min.js"></script>   
-<script language="javascript" src="../Scripts/jquery-ui.js"></script>
+<script type="text/javascript" src="../Scripts/jquery-1.10.1.min.js"></script> 
+<script type="text/javascript" src="../Scripts/jquery-ui.js"></script>
 <script src="../Scripts/InterAssistUI.js" type="text/javascript"></script>
 <script src="../Scripts/AfiliadoCtrl.js" type="text/javascript"></script>
 <link href="../Estilos/InterAssist.css" rel="stylesheet" type="text/css" />

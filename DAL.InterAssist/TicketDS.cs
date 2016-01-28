@@ -200,10 +200,6 @@ namespace DAL.InterAssist
             return result;
         }
 
-
-
-
-
         public override bool Update(DataRow r)
         {
             throw new NotImplementedException();
@@ -399,6 +395,43 @@ namespace DAL.InterAssist
             return resultID;
 
         }
+
+        public DataTable ObtenercasosMensuales(int anno, int mes, string poliza)
+        {
+            DataTable resultSet = null;
+
+
+            try
+            {
+                DBRepository repository = DBRepository.GetDbRepository();
+
+                string sqlQuery = "select B.POLIZA, A.TIPO_TICKET, Count(1) Cantidad, sum(Count(1)) over() TOTAL from tickets A, afiliados B where A.IDAFILIADO = B.IDAFILIADO and to_char(FECHA, 'mm') = :mes and to_char(FECHA, 'yyyy') = :anno and B.POLIZA = :poliza group by B.POLIZA, A.TIPO_TICKET order by B.POLIZA, A.TIPO_TICKET";
+                
+                List<IDbDataParameter> paramList = new List<IDbDataParameter>();
+                
+                paramList.Add(repository.DbFactory.getDataParameter("mes", DbType.Int32, mes));
+                paramList.Add(repository.DbFactory.getDataParameter("anno", DbType.Int32, anno));
+                paramList.Add(repository.DbFactory.getDataParameter("poliza", DbType.String, poliza));
+                
+                DataSet ds = new DataSet();
+ 
+                repository.ExecuteQueryParam(ds, sqlQuery, paramList);
+
+                if (ds.Tables.Count > 0)
+                    resultSet = ds.Tables[0];
+                
+
+
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
+
+            return resultSet;
+        }
+
 
         #endregion Dataservices Metodos
     }

@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="BuscarPrestador.ascx.cs" Inherits="UI.InterAssist.Usercontrols.BuscarPrestador" %>
-<script type="text/javascript" src="/Scripts/BuscarPrestador.js"></script>
+<script type="text/javascript" src="../Scripts/BuscarPrestador.js"></script>
 <link rel="stylesheet" href="../fonts/style.css" />
 <style type="text/css">
 
