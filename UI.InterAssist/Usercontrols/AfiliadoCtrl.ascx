@@ -5,6 +5,7 @@
 <script src="../Scripts/InterAssistUI.js" type="text/javascript"></script>
 <script src="../Scripts/AfiliadoCtrl.js" type="text/javascript"></script>
 <link href="../Estilos/InterAssist.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="../jquery-ui-1.11.1/jquery-ui.css">
 <asp:Literal ID="ltrIdFechaDesde" runat="server"></asp:Literal>
 <asp:Literal ID="ltrIdFechaHasta" runat="server"></asp:Literal>
 

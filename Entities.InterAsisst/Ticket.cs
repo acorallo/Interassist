@@ -8,6 +8,7 @@ using DAL.InterAssist.Datasets;
 using DAL.InterAssist;
 using System.Data;
 using Utils.InterAssist;
+using System.Globalization;
 
 namespace Entities.InterAsisst
 {
@@ -39,9 +40,6 @@ namespace Entities.InterAsisst
 
         #region Miembros de Entidad
 
-
-        public Decimal? Kilomtros { get; set; }
-        public Decimal? Costo { get; set; }
 
         private bool _isPrestadorLoaded = false;
 
@@ -465,12 +463,6 @@ namespace Entities.InterAsisst
             resultRow.IDPROBLEMA = this.IdProblema;
             resultRow.TIPO_TICKET = this.TipoTicket;
 
-            if(this.Kilomtros!=null)
-                resultRow.KILOMETROS = this.Kilomtros.Value;
-            
-
-            if(this.Costo!=null)
-                resultRow.COSTO = this.Costo.Value;
 
             //resultRow.IDTIPOSERVICIO = this.IdTipoServicio;
 
@@ -481,11 +473,22 @@ namespace Entities.InterAsisst
         {
             prestadorCaso.ID = Int32.Parse(dr["IDTICKETPRESTADOR"].ToString());
             prestadorCaso.Prestador = Prestador.GetById(Int32.Parse(dr["IDPRESTADOR"].ToString()));
-            
+
+
+            decimal costo = 0;
+            decimal kilometros = 0;
+
             FiltroTipoServicio f = new FiltroTipoServicio();
             f.ID = Int32.Parse(dr["IDTIPOSERVICIO"].ToString());
             prestadorCaso.TipoServicio = TipoServicio.GetById(Int32.Parse(dr["IDTIPOSERVICIO"].ToString()));
             prestadorCaso.Comentarios = dr["COMENTARIOS"].ToString();
+
+            Decimal.TryParse(dr["COSTO"].ToString().Replace(",","."), NumberStyles.Any, new CultureInfo("en-US"), out costo);
+            Decimal.TryParse(dr["KILOMETROS"].ToString().Replace(",", "."), NumberStyles.Any, new CultureInfo("en-US"), out kilometros);
+
+            prestadorCaso.Kilometros = kilometros;
+            prestadorCaso.Costo = costo;
+
                                 
      
         }
@@ -526,15 +529,7 @@ namespace Entities.InterAsisst
             ticket._nombreLocalidadDestino = dr[TicketDS.COL_LOCALIDAD_DESTINO_NOMBRE].ToString();
             ticket._marca = dr[TicketDS.COL_MARCA].ToString();
             ticket._modelo = dr[TicketDS.COL_MODELO].ToString();
-            
-            // Kilometros.
-            if (dr[TicketDS.COL_KILOMETROS].ToString() != string.Empty)
-                ticket.Kilomtros = Decimal.Parse(dr[TicketDS.COL_KILOMETROS].ToString());
-            // Costo.
-            
-            if(dr[TicketDS.COL_COSTO].ToString() != String.Empty)
-                ticket.Costo = Decimal.Parse(dr[TicketDS.COL_COSTO].ToString());
-            
+     
         }
 
         public override bool Persist()

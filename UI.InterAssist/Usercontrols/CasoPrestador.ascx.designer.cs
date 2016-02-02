@@ -49,6 +49,42 @@ namespace UI.InterAssist.Usercontrols {
         protected global::System.Web.UI.WebControls.DropDownList ddlCasoPrestador_TipoAsistencia;
         
         /// <summary>
+        /// lblCasoPrestador_Kilometros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCasoPrestador_Kilometros;
+        
+        /// <summary>
+        /// DecimalControl_Kilometro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::UI.InterAssist.Usercontrols.DecimalControl DecimalControl_Kilometro;
+        
+        /// <summary>
+        /// lblCasoPrestador_Costo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCasoPrestador_Costo;
+        
+        /// <summary>
+        /// DecimalControl_Costo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::UI.InterAssist.Usercontrols.DecimalControl DecimalControl_Costo;
+        
+        /// <summary>
         /// lblCasoPrestador_descripcion control.
         /// </summary>
         /// <remarks>

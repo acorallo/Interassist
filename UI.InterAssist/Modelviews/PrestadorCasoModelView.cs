@@ -17,6 +17,8 @@ namespace UI.InterAssist.Modelviews
         public string TipoAsistencia;
         public int IdTipoAsistencia;
         public string Detalles;
+        public decimal Kilometros;
+        public decimal Costo;
         public Constants.PersistOperationType Estado = Constants.PersistOperationType.Void;
 
         public PrestadorCasoModelView()
@@ -33,8 +35,9 @@ namespace UI.InterAssist.Modelviews
             result.Comentarios = this.Detalles;
             result.ID = this.IdCasoPrestador;
             result.TipoOperacion = this.Estado;
+            result.Costo = this.Costo;
+            result.Kilometros = this.Kilometros;
             
-           
 
             return result;
         }
@@ -48,6 +51,8 @@ namespace UI.InterAssist.Modelviews
             this.TipoAsistencia = p.TipoServicio.Descripcion;
             this.IdTipoAsistencia = p.TipoServicio.ID;
             this.Detalles = p.Comentarios;
+            this.Costo = p.Costo;
+            this.Kilometros = p.Kilometros;
 
         }
 

@@ -58,6 +58,15 @@ namespace UI.InterAssist.Views {
         protected global::System.Web.UI.WebControls.Button btnFreeSeacrh;
         
         /// <summary>
+        /// divListado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divListado;
+        
+        /// <summary>
         /// divCantregistros control.
         /// </summary>
         /// <remarks>

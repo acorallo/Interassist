@@ -37,6 +37,7 @@
                             onclick="btnFreeSeacrh_Click" />
                     </td>
         </tr>
+            <div id="divListado" runat="server">
         <tr>
             <td align="left">
                 <table class="style1">
@@ -92,6 +93,9 @@
                 <asp:Label ID="lblNonResults" runat="server" Class="SinRegistros"></asp:Label>
             </td></div>
         </tr>
+            </div>
+
+
         <tr>
             <td>&nbsp; &nbsp;</td></tr>
         </tr>

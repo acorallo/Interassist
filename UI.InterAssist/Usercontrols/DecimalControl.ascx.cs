@@ -119,6 +119,7 @@ namespace UI.InterAssist.Usercontrols
             {
                 this.AssignTextToControls();
                 this.InicializaComponentes();
+                SetClientScript();
             }
         }
 
@@ -146,6 +147,40 @@ namespace UI.InterAssist.Usercontrols
         }
 
 
+        private void SetClientScript()
+        {
+
+            string strfunction_GetValue;
+            string strfunction_ResetValue;
+
+            ClientScriptManager cs = this.Page.ClientScript;
+
+            strfunction_GetValue = "function " + this.ClientID.ToString() + "_getValue() { \n";
+            strfunction_GetValue += "  var entero = $('#" + this.txtInteger.ClientID.ToString() + "').val(); \n";
+            strfunction_GetValue += "  var decimal = $('#" + this.txtDecimal.ClientID.ToString() + "').val(); \n";
+            strfunction_GetValue += "  var result = '';\n";
+            strfunction_GetValue += "  if(entero != '' || decimal != '')\n";
+            strfunction_GetValue += "  {\n";
+            strfunction_GetValue += "      result = entero + '.' + decimal;\n";
+            strfunction_GetValue += "  }\n";
+            strfunction_GetValue += "  return result;\n";
+            strfunction_GetValue += " }\n";
+
+
+
+            strfunction_ResetValue = "function " + this.ClientID.ToString() + "_resetValue() { \n";
+            strfunction_ResetValue += "  $('#" + this.txtInteger.ClientID.ToString() + "').val(''); \n";
+            strfunction_ResetValue += "  $('#" + this.txtDecimal.ClientID.ToString() + "').val(''); \n";
+
+            strfunction_ResetValue += " }\n";
+
+
+            cs.RegisterClientScriptBlock(this.GetType(), this.ClientID.ToString() + "_getValue", strfunction_GetValue, true);
+            cs.RegisterClientScriptBlock(this.GetType(), this.ClientID.ToString() + "_resetValue", strfunction_ResetValue, true);
+
+            
+                  
+        }
 
         #endregion Metodos
 

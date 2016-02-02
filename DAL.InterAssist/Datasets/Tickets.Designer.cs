@@ -323,10 +323,6 @@ namespace DAL.InterAssist.Datasets {
             
             private global::System.Data.DataColumn columnIDPROBLEMA;
             
-            private global::System.Data.DataColumn columnKILOMETROS;
-            
-            private global::System.Data.DataColumn columnCOSTO;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TICKETSDataTable() {
@@ -538,22 +534,6 @@ namespace DAL.InterAssist.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn KILOMETROSColumn {
-                get {
-                    return this.columnKILOMETROS;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn COSTOColumn {
-                get {
-                    return this.columnCOSTO;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -611,9 +591,7 @@ namespace DAL.InterAssist.Datasets {
                         string ALTURA_DESTINO, 
                         string TIPO_TICKET, 
                         double IDTIPOSERVICIO, 
-                        double IDPROBLEMA, 
-                        decimal KILOMETROS, 
-                        decimal COSTO) {
+                        double IDPROBLEMA) {
                 TICKETSRow rowTICKETSRow = ((TICKETSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IDTICKET,
@@ -637,9 +615,7 @@ namespace DAL.InterAssist.Datasets {
                         ALTURA_DESTINO,
                         TIPO_TICKET,
                         IDTIPOSERVICIO,
-                        IDPROBLEMA,
-                        KILOMETROS,
-                        COSTO};
+                        IDPROBLEMA};
                 rowTICKETSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTICKETSRow);
                 return rowTICKETSRow;
@@ -691,8 +667,6 @@ namespace DAL.InterAssist.Datasets {
                 this.columnTIPO_TICKET = base.Columns["TIPO_TICKET"];
                 this.columnIDTIPOSERVICIO = base.Columns["IDTIPOSERVICIO"];
                 this.columnIDPROBLEMA = base.Columns["IDPROBLEMA"];
-                this.columnKILOMETROS = base.Columns["KILOMETROS"];
-                this.columnCOSTO = base.Columns["COSTO"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -742,10 +716,6 @@ namespace DAL.InterAssist.Datasets {
                 base.Columns.Add(this.columnIDTIPOSERVICIO);
                 this.columnIDPROBLEMA = new global::System.Data.DataColumn("IDPROBLEMA", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIDPROBLEMA);
-                this.columnKILOMETROS = new global::System.Data.DataColumn("KILOMETROS", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnKILOMETROS);
-                this.columnCOSTO = new global::System.Data.DataColumn("COSTO", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCOSTO);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIDTICKET}, true));
                 this.columnIDTICKET.AllowDBNull = false;
@@ -1189,38 +1159,6 @@ namespace DAL.InterAssist.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal KILOMETROS {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableTICKETS.KILOMETROSColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'KILOMETROS\' in table \'TICKETS\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTICKETS.KILOMETROSColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal COSTO {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableTICKETS.COSTOColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'COSTO\' in table \'TICKETS\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTICKETS.COSTOColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTELEFONONull() {
                 return this.IsNull(this.tableTICKETS.TELEFONOColumn);
             }
@@ -1301,30 +1239,6 @@ namespace DAL.InterAssist.Datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetIDPROBLEMANull() {
                 this[this.tableTICKETS.IDPROBLEMAColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsKILOMETROSNull() {
-                return this.IsNull(this.tableTICKETS.KILOMETROSColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetKILOMETROSNull() {
-                this[this.tableTICKETS.KILOMETROSColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCOSTONull() {
-                return this.IsNull(this.tableTICKETS.COSTOColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCOSTONull() {
-                this[this.tableTICKETS.COSTOColumn] = global::System.Convert.DBNull;
             }
         }
         

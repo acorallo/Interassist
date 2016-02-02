@@ -168,8 +168,7 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Int32.Parse(dr[dtable.IDPROBLEMAColumn].ToString())));
                 //paramList.Add(repository.DbFactory.getDataParameter("P_IDTIPOSERVICIO", DbType.Int32, Int32.Parse(dr[dtable.IDTIPOSERVICIOColumn].ToString())));
                 paramList.Add(repository.DbFactory.getDataParameter("P_TIPO_TICKET", DbType.String, dr[dtable.TIPO_TICKETColumn].ToString()));
-                paramList.Add(repository.DbFactory.getDataParameter("P_KILOMETROS", DbType.Decimal, dr[dtable.KILOMETROSColumn]));
-                paramList.Add(repository.DbFactory.getDataParameter("P_COSTO", DbType.Decimal, dr[dtable.COSTOColumn]));
+
 
 
                 result = repository.ExecuteCreateProcedure(CONST_CREATE_PROCEDURE_NAME, paramList, dr[dtable.OBJECTHASHColumn].ToString());
@@ -245,8 +244,7 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Int32.Parse(dr[dtable.IDPROBLEMAColumn].ToString())));
                 //paramList.Add(repository.DbFactory.getDataParameter("P_IDTIPOSERVICIO", DbType.Int32, Int32.Parse(dr[dtable.IDTIPOSERVICIOColumn].ToString())));
                 paramList.Add(repository.DbFactory.getDataParameter("P_TIPO_TICKET", DbType.String, dr[dtable.TIPO_TICKETColumn].ToString()));
-                paramList.Add(repository.DbFactory.getDataParameter("P_KILOMETROS", DbType.Decimal, dr[dtable.KILOMETROSColumn]));
-                paramList.Add(repository.DbFactory.getDataParameter("P_COSTO", DbType.Decimal, dr[dtable.COSTOColumn]));
+
 
                 result = (repository.ExecuteUpdateProcedure(CONST_UPDATE_PROCEDURE_NAME, paramList, dr[dtable.OBJECTHASHColumn].ToString()) == 1);
 
@@ -293,7 +291,7 @@ namespace DAL.InterAssist
                 {
                     if(r.PERSISTOPERATION==(int)Utils.InterAssist.Constants.PersistOperationType.Create)
                     {
-                         Insert_Preveedor_Ticket(repository, idTicketAsociado, r.IDPRESTADOR, r.IDTIPOSERVICIO, r.COMENTARIOS, "ObjectHash");
+                         Insert_Preveedor_Ticket(repository, idTicketAsociado, r.IDPRESTADOR, r.IDTIPOSERVICIO, r.COMENTARIOS, r.KILOMETROS, r.COSTO, "ObjectHash");
                     }
                     else if (r.PERSISTOPERATION == (int)Utils.InterAssist.Constants.PersistOperationType.Delete)
                     {
@@ -372,7 +370,14 @@ namespace DAL.InterAssist
             return result;
         }
 
-        public int Insert_Preveedor_Ticket(DBRepository repository, Int32 idTicket, Int32 idPrestador, Int32 idTipoServicio, string comentarios, string ObjectHash)
+        public int Insert_Preveedor_Ticket(DBRepository repository, 
+                                           Int32 idTicket, 
+                                           Int32 idPrestador, 
+                                           Int32 idTipoServicio, 
+                                           string comentarios,
+                                           decimal kIlometos,
+                                           decimal Costo,
+                                           string ObjectHash)
         {
             int resultID = -1;
 
@@ -384,7 +389,10 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPRESTADOR", DbType.Int32, idPrestador));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDTIPOSERVICIO", DbType.Int32, idTipoServicio));
                 paramList.Add(repository.DbFactory.getDataParameter("P_COMENTARIOS", DbType.String, comentarios));
+                paramList.Add(repository.DbFactory.getDataParameter("P_KILOMETROS", DbType.Decimal, kIlometos));
+                paramList.Add(repository.DbFactory.getDataParameter("P_COSTO", DbType.Decimal, Costo));
                 
+
                 resultID = repository.ExecuteCreateProcedure(CONST_CREATE_TICKET_PRESTADOR_PROCEDURE_NAME, paramList, ObjectHash);
                 
             }catch(Exception ex)

@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CasoPrestador.ascx.cs" Inherits="UI.InterAssist.Usercontrols.CasoPrestador" %>
 <%@ Register src="BuscarPrestador.ascx" tagname="BuscarPrestador" tagprefix="uc1" %>
-<link rel="stylesheet" href="../fonts/style.css" />
+<%@ Register src="DecimalControl.ascx" tagname="DecimalControl" tagprefix="uc2" %>
+
 <style type="text/css">
     .auto-style1 {
         width: 100%;
@@ -53,6 +54,22 @@
             <asp:DropDownList ID="ddlCasoPrestador_TipoAsistencia" runat="server" ClientIDMode="Static" Width="300px">
             </asp:DropDownList>
             &nbsp;</td>
+    </tr>
+    <tr>
+        <td style="text-align: right; white-space: nowrap">
+            <asp:Label ID="lblCasoPrestador_Kilometros" runat="server"></asp:Label>
+        </td>
+        <td>
+            <uc2:DecimalControl ID="DecimalControl_Kilometro" runat="server" ClientIDMode="Static" />
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: right; white-space: nowrap">
+            <asp:Label ID="lblCasoPrestador_Costo" runat="server"></asp:Label>
+        </td>
+        <td>
+            <uc2:DecimalControl ID="DecimalControl_Costo" runat="server" ClientIDMode="Static" />
+        </td>
     </tr>
     <tr>
         <td style="text-align: right; vertical-align: top; white-space: nowrap">

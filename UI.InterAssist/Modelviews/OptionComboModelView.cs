@@ -8,7 +8,7 @@ namespace UI.InterAssist.Modelviews
 
     public delegate void MapDel<T>(OptionComboModelView O, T Item);
 
-    public class OptionComboModelView
+    public class OptionComboModelView : Modelview
     {
 
         public string id { get; set; }

@@ -184,42 +184,6 @@ namespace UI.InterAssist.Views {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTelefono;
         
         /// <summary>
-        /// lblKilometros control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblKilometros;
-        
-        /// <summary>
-        /// decKilometros control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::UI.InterAssist.Usercontrols.DecimalControl decKilometros;
-        
-        /// <summary>
-        /// lblCosto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCosto;
-        
-        /// <summary>
-        /// decCosto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::UI.InterAssist.Usercontrols.DecimalControl decCosto;
-        
-        /// <summary>
         /// litSelector control.
         /// </summary>
         /// <remarks>
@@ -416,6 +380,15 @@ namespace UI.InterAssist.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDatosPrestador;
+        
+        /// <summary>
+        /// PrestadorctrlDetalle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::UI.InterAssist.Usercontrols.Prestadorctrl PrestadorctrlDetalle;
         
         /// <summary>
         /// ValidationSummary1 control.

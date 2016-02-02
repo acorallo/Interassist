@@ -4,7 +4,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <uc1:AfiliadoCtrl ID="AfiliadoCtrl1" runat="server" />
+
 <script src="../Scripts/AfiladoCrud.js" type="text/javascript"></script>
+
+
 <asp:HiddenField id="showpop" runat="server"/>
 <input type="hidden" id="idShowPop" value="<%Response.Write(this.showpop.ClientID.ToString());%>" />
 

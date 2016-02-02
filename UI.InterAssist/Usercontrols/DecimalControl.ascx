@@ -5,9 +5,9 @@
 <table>
     <tr>
         <td>
-            <asp:TextBox ID="txtInteger" runat="server" Width="40px" CssClass="floatEntero"></asp:TextBox>
+            <asp:TextBox ID="txtInteger" runat="server" Width="40px" CssClass="floatEntero" ClientIDMode="Predictable"></asp:TextBox>
             <asp:Label ID="lblDecimaSeparator" runat="server"></asp:Label>
-            <asp:TextBox ID="txtDecimal" runat="server" Width="20px" CssClass="floatDecima"></asp:TextBox>
+            <asp:TextBox ID="txtDecimal" runat="server" Width="20px" CssClass="floatDecima" ClientIDMode="Predictable"></asp:TextBox>
         </td>
     </tr>
 </table>

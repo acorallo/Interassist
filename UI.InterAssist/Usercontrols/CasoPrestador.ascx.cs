@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Globalization;
 using Entities.InterAsisst;
 using Utils.InterAssist;
 
@@ -62,6 +63,34 @@ namespace UI.InterAssist.Usercontrols
             }
         }
 
+        public Decimal Kilomentros
+        {
+            get
+            {
+                Decimal result = 0;
+
+                string pKilometros = this.Request.Form["CasoPrestador_Info_Kilomentros"];
+                bool tryIt = Decimal.TryParse(pKilometros, NumberStyles.Any, new CultureInfo("en-US"), out result);
+
+                return result;
+            }
+        }
+
+        public Decimal Costo
+        {
+            get
+            {
+                Decimal result = 0;
+
+                string pKilometros = this.Request.Form["CasoPrestador_Info_Costo"];
+                bool tryIt = Decimal.TryParse(pKilometros, NumberStyles.Any, new CultureInfo("en-US"), out result);
+
+                return result;
+
+            }
+        }
+
+
 
         #endregion Propiedades
 
@@ -73,6 +102,7 @@ namespace UI.InterAssist.Usercontrols
                {
                    this.InicializaControles();
                    this.AssignTextToControls();
+
                }
         }
 
@@ -81,6 +111,9 @@ namespace UI.InterAssist.Usercontrols
             this.lblCasoPrestador_descripcion.Text = "Comentarios:";
             this.lblCasoPrestador_prestador.Text = "Prestador:";
             this.lblCasoPrestador_TipoAsisitencia.Text = Resource.LBL_TICKET_TIPO_ASISTENCIA + Resource.LBL_SEPARADOR;
+            this.lblCasoPrestador_Costo.Text = Resource.LBL_TICKET_COSTO + Resource.LBL_SEPARADOR;
+            this.lblCasoPrestador_Kilometros.Text = Resource.LBL_TICKET_KILOMETRO + Resource.LBL_SEPARADOR;
+
         }
             
         private void InicializaControles()

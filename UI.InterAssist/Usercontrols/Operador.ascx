@@ -3,6 +3,7 @@
 <script language="javascript" src="../Scripts/jquery-1.10.1.min.js"></script>   
 <script language="javascript" src="../Scripts/jquery-ui.js"></script>
 <link href="/Estilos/InterAssist.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="../jquery-ui-1.11.1/jquery-ui.css">
 <asp:HiddenField id="showpop" runat="server"/>
 <input type="hidden" id="idShowPop" value="<%Response.Write(this.showpop.ClientID.ToString());%>" />
 <script type="text/javascript" src="../Scripts/Operador.js"></script>

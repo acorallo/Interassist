@@ -113,22 +113,6 @@
                                                         ControlToValidate="txtTelefono" CssClass="errorText">*</asp:RequiredFieldValidator>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td align="right" nowrap="nowrap">
-                                                    <asp:Label ID="lblKilometros" runat="server"></asp:Label>
-                                                </td>
-                                                <td align="left" width="100%">
-                                                    <uc6:DecimalControl ID="decKilometros" runat="server" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td align="right" nowrap="nowrap">
-                                                    <asp:Label ID="lblCosto" runat="server"></asp:Label>
-                                                </td>
-                                                <td align="left" width="100%">
-                                                    <uc6:DecimalControl ID="decCosto" runat="server" />
-                                                </td>
-                                            </tr>
                                         </table>
                                     </td>
                                 </tr>
@@ -285,8 +269,10 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>
-                                                                                    <asp:DataGrid ID="dtgPrestadoresAsignados" runat="server" AutoGenerateColumns="False" PageSize="20" Width="100%" ClientIDMode="Static" OnItemDataBound="dtgPrestadoresAsignados_ItemDataBound" EnableTheming="False">
+                                                                                    <asp:DataGrid ID="dtgPrestadoresAsignados" runat="server" AutoGenerateColumns="False" PageSize="20" Width="100%" ClientIDMode="Static" OnItemDataBound="dtgPrestadoresAsignados_ItemDataBound" EnableTheming="False" OnItemCommand="dtgPrestadoresAsignados_ItemCommand">
                                                                                         <Columns>
+                                                                                            <asp:BoundColumn Visible="False"></asp:BoundColumn>
+                                                                                            <asp:ButtonColumn></asp:ButtonColumn>
                                                                                             <asp:BoundColumn></asp:BoundColumn>
                                                                                             <asp:BoundColumn></asp:BoundColumn>
                                                                                             <asp:BoundColumn></asp:BoundColumn>
@@ -313,17 +299,19 @@
                                                                           <table class="style3">
                                                                               <tr>
                                                                                   <td>
-                                                                                      &nbsp;</td>
+                                                                                      <div style="visibility:hidden">
+                                                                                        <div id="divPrestadorDetalle" title="Información del Prestador">
+                                                                                             <uc3:Prestadorctrl ID="PrestadorctrlDetalle" runat="server" />
+                                                                                        </div>
+                                                                                      </div>
+                                                                                  </td>
                                                                               </tr>
                                                                           </table>
                                                                       </td>
                                                                   </div>
                                                                 </tr>
                                                             </table>
-                                                 
                                               </div>
-                                    
-                                      
                                      </div>
 
 
@@ -373,7 +361,11 @@
     <input type="hidden" name="CasoPrestador_Info_ID" id="CasoPrestador_Info_ID"/>
     <input type="hidden" name="CasoPrestador_Info_TipoAsistencia" id="CasoPrestador_Info_TipoAsistencia"/>
     <input type="hidden" name="CasoPrestador_Info_Descripcion" id="CasoPrestador_Info_Descripcion"/>
+    <input type="hidden" name="CasoPrestador_Info_Kilomentros" id="CasoPrestador_Info_Kilomentros" />
+    <input type="hidden" name="CasoPrestador_Info_Costo" id="CasoPrestador_Info_Costo" />
     <input type="hidden" id="BuscarPrestador_internalID" name ="BuscarPrestador_internalID" />
+    
+
     </ContentTemplate>
     <Triggers>
         <asp:AsyncPostBackTrigger ControlID="UpdatePanel_postBack" EventName="Click"/>
@@ -385,7 +377,7 @@
             <table>
                 <tr>
                     <td align="center">
-                        <uc3:Prestadorctrl ID="PrestadorInfo" runat="server" />
+                     <uc3:Prestadorctrl ID="PrestadorInfo" runat="server" />
                     </td>
                 </tr>
             </table>
@@ -409,9 +401,6 @@
           </p>
     </div>
   </div>
-
-
-
 
 
 <div style="display:none">

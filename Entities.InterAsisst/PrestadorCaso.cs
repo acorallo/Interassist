@@ -16,6 +16,9 @@ namespace Entities.InterAsisst
         public Prestador Prestador { get; set; }
         public TipoServicio TipoServicio { get; set; }
         public string Comentarios;
+        public Decimal Kilometros;
+        public Decimal Costo;
+
         public Utils.InterAssist.Constants.PersistOperationType TipoOperacion = Utils.InterAssist.Constants.PersistOperationType.Void;
 
         public void ObjectToRow(Ticket_Prestador.TICKET_PRESTADORESRow resultRow)
@@ -25,6 +28,8 @@ namespace Entities.InterAsisst
             resultRow.IDTIPOSERVICIO = this.TipoServicio.ID;
             resultRow.COMENTARIOS = this.Comentarios;
             resultRow.PERSISTOPERATION = (int)this.TipoOperacion;
+            resultRow.COSTO = this.Costo;
+            resultRow.KILOMETROS = this.Kilometros;
         }
 
         public DAL.InterAssist.Datasets.Ticket_Prestador.TICKET_PRESTADORESRow ObjectToRow()

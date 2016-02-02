@@ -133,6 +133,7 @@ namespace UI.InterAssist.Views
 
         private void AssigntTextToControles()
         {
+            this.divListado.Visible = false;
             // Columnas del listado
             this.dtgAfiliados.Columns[(int)ColumnasListado.ID].HeaderText = Resource.LBL_AFILIADO_ID;
             this.dtgAfiliados.Columns[(int)ColumnasListado.Nombre].HeaderText = Resource.LBL_AFILIADO_NOMBRE;
@@ -184,6 +185,7 @@ namespace UI.InterAssist.Views
            
             this.Filtro.Search = this.txtSearch.Text.Trim();
             this.CargarListado(this.Filtro, 1);
+            this.divListado.Visible = true;
         }
 
         protected void btnFreeSeacrh_Click(object sender, EventArgs e)
@@ -191,6 +193,7 @@ namespace UI.InterAssist.Views
             this.txtSearch.Text = string.Empty;
             this.Filtro.Reset();
             this.CargarListado(this.Filtro, 1);
+            this.divListado.Visible = false;
         }
 
         private void ModificarAfiliado(string id)

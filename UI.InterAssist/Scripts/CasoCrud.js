@@ -59,6 +59,9 @@ function SincronizarPopUps() {
             case 'dialog-message_create_salir':
                 showSuccessPopUp(true);
                 break;
+            case 'divPrestadorDetalle':
+                ShowPrestadorDetalles()
+                break;
                         }
 
     }
@@ -81,6 +84,20 @@ function showSuccessPopUp(salir) {
 
             }
         }
+    });
+}
+
+
+function ShowPrestadorDetalles()
+{
+    $(function () {
+        $("#divPrestadorDetalle").dialog({
+            modal: true,
+            close: function (event, ui) { ClosePopUp(); },
+            width: 800,
+            height: 500
+
+        });
     });
 }
 
@@ -117,6 +134,8 @@ function showAsignarPrestador()
             $('#CasoPrestador_Info_ID').val($('#BuscarPrestador_idPrestador').val());
             $('#CasoPrestador_Info_TipoAsistencia').val($('#ddlCasoPrestador_TipoAsistencia').val());
             $('#CasoPrestador_Info_Descripcion').val($('#txtCasoPrestador_descripcion').val());
+            $('#CasoPrestador_Info_Costo').val(DecimalControl_Costo_getValue());
+            $('#CasoPrestador_Info_Kilomentros').val(DecimalControl_Kilometro_getValue());
 
             $("#DivAsignarPrestador").dialog("close");
             __doPostBack("UpdatePanel_postBack", "AgregarPrestador");
@@ -162,6 +181,9 @@ function Clear_AsignarPrestador()
     $('#txtNombrePrestadorCaso').val("");
     $('#txtCasoPrestador_descripcion').val("");
     $('#ddlCasoPrestador_TipoAsistencia').val("-1");
+    DecimalControl_Costo_resetValue();
+    DecimalControl_Kilometro_resetValue();
+
     $('.CasoPrestador_Oblicagatorio').hide();
 
     
