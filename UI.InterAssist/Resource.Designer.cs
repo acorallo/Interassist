@@ -331,6 +331,15 @@ namespace UI.InterAssist {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El campo {0} no es correcto.
+        /// </summary>
+        internal static string ERR_GENERIC_CMB {
+            get {
+                return ResourceManager.GetString("ERR_GENERIC_CMB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to El campo {0} no puede ser vacío.
         /// </summary>
         internal static string ERR_LOGIN_EMPTY_PASSWORD {
@@ -1560,6 +1569,15 @@ namespace UI.InterAssist {
         internal static string SECCION_NUEVO_OPERADOR {
             get {
                 return ResourceManager.GetString("SECCION_NUEVO_OPERADOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reportes.
+        /// </summary>
+        internal static string SECCION_REPORTES {
+            get {
+                return ResourceManager.GetString("SECCION_REPORTES", resourceCulture);
             }
         }
         

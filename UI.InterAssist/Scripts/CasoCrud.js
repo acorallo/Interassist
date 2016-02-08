@@ -78,6 +78,7 @@ function showSuccessPopUp(salir) {
         modal: true,
         buttons: {
             Aceptar: function () {
+                ClosePopUp();
                 $(this).dialog("close");
                 if($(this).attr("salir")==1)
                     goView('Afiliados.aspx');

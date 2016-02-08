@@ -1,4 +1,4 @@
-﻿    <%@ Page Title="" Language="C#" MasterPageFile="~/InterAssist.Master" AutoEventWireup="true" CodeBehind="CasoCrud.aspx.cs" Inherits="UI.InterAssist.Views.CasoCrud" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/InterAssist.Master" AutoEventWireup="true" CodeBehind="CasoCrud.aspx.cs" Inherits="UI.InterAssist.Views.CasoCrud" %>
 <%@ Register src="../Usercontrols/Ubicacion.ascx" tagname="Ubicacion" tagprefix="uc1" %>
 <%@ Register src="../Usercontrols/AfiliadoDetalle.ascx" tagname="AfiliadoDetalle" tagprefix="uc2" %>
 <%@ Register src="../Usercontrols/Prestadorctrl.ascx" tagname="Prestadorctrl" tagprefix="uc3" %>
@@ -371,7 +371,7 @@
         <asp:AsyncPostBackTrigger ControlID="UpdatePanel_postBack" EventName="Click"/>
     </Triggers>
     </asp:UpdatePanel>
-     <link rel="stylesheet" href="/Estilos/jTPS.css" type="text/css" />
+     <link rel="stylesheet" href="../Estilos/jTPS.css" type="text/css" />
        <div style="visibility: hidden">
         <div id="divPrestadorInfo" title="Información del Prestador">
             <table>

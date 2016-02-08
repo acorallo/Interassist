@@ -24,6 +24,7 @@ namespace UI.InterAssist.Classes
         public const string UPLOAD_VIEW = "Uploads.aspx";
         public const string UPLOAD_ERRORS_VIEW = "UpLoadErrors.aspx";
         public const string AFILIADOS_UNSYNC = "AfiliadosUnsync.aspx";
+        public const string REPORTES_VIEW = "Report.aspx";
 
         private const string SESSION_OPEDADOR = "sessionOperador";
         private const string PREVIOS_VIEW = "SessionPreview";

@@ -517,6 +517,7 @@ namespace UI.InterAssist.Views
         {
             // Esto deberia salir de una clase entidad.
             this.ddlEstado.Items.Add(new ListItem("Abierto","1"));
+            this.ddlEstado.Items.Add(new ListItem("En curso", "3"));
             this.ddlEstado.Items.Add(new ListItem("Cerrado","2"));
 
             this.ddlEstado.SelectedValue = "1";

@@ -207,6 +207,9 @@
   <data name="ERR_FORMATO_AÑO" xml:space="preserve">
     <value>El campo {0}  debe ser numérico de 4 dígitos</value>
   </data>
+  <data name="ERR_GENERIC_CMB" xml:space="preserve">
+    <value>El campo {0} no es correcto</value>
+  </data>
   <data name="ERR_LOGIN_EMPTY_PASSWORD" xml:space="preserve">
     <value>El campo {0} no puede ser vacío</value>
   </data>
@@ -617,6 +620,9 @@
   </data>
   <data name="SECCION_NUEVO_OPERADOR" xml:space="preserve">
     <value>Creando Nuevo Operador</value>
+  </data>
+  <data name="SECCION_REPORTES" xml:space="preserve">
+    <value>Reportes</value>
   </data>
   <data name="SECTION_ADM_UPLOADS" xml:space="preserve">
     <value>Administración de Datos</value>

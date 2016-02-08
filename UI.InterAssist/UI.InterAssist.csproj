@@ -91,10 +91,28 @@
   <ItemGroup>
     <Content Include="Estilos\InterAssist.css" />
     <Content Include="Estilos\jTPS.css" />
+    <Content Include="Estilos\style.css" />
+    <Content Include="fonts\Interassist.svg" />
     <Content Include="fonts\style.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\descarga.png" />
     <Content Include="Images\InterAssist.png" />
+    <Content Include="Images\ui-anim_basic_16x16.gif" />
+    <Content Include="jquery-ui-1.11.1\external\jquery\jquery.js" />
+    <Content Include="jquery-ui-1.11.1\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+    <Content Include="jquery-ui-1.11.1\images\ui-bg_flat_15_cd0a0a_40x100.png" />
+    <Content Include="jquery-ui-1.11.1\images\ui-bg_glass_100_e4f1fb_1x400.png" />
+    <Content Include="jquery-ui-1.11.1\images\ui-bg_glass_50_3baae3_1x400.png" />
+    <Content Include="jquery-ui-1.11.1\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <Content Include="jquery-ui-1.11.1\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <Content Include="jquery-ui-1.11.1\images\ui-bg_highlight-hard_70_000000_1x100.png" />
+    <Content Include="jquery-ui-1.11.1\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <Content Include="jquery-ui-1.11.1\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <Content Include="jquery-ui-1.11.1\images\ui-icons_2694e8_256x240.png" />
+    <Content Include="jquery-ui-1.11.1\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="jquery-ui-1.11.1\images\ui-icons_3d80b3_256x240.png" />
+    <Content Include="jquery-ui-1.11.1\images\ui-icons_72a7cf_256x240.png" />
+    <Content Include="jquery-ui-1.11.1\images\ui-icons_ffffff_256x240.png" />
     <Content Include="jquery-ui-1.11.1\jquery-ui.css" />
     <Content Include="jquery-ui-1.11.1\jquery-ui.js" />
     <Content Include="jquery-ui-1.11.1\jquery-ui.min.css" />
@@ -141,6 +159,7 @@
     <Content Include="Views\Operadores.aspx" />
     <Content Include="Views\Prestador.aspx" />
     <Content Include="Views\PrestadorCrud.aspx" />
+    <Content Include="Views\Report.aspx" />
     <Content Include="Views\services.aspx" />
     <Content Include="Views\test.aspx" />
     <Content Include="Views\UpLoadErrors.aspx" />
@@ -366,6 +385,13 @@
     <Compile Include="Views\PrestadorCrud.aspx.designer.cs">
       <DependentUpon>PrestadorCrud.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Report.aspx.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Report.aspx.designer.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\services.aspx.cs">
       <DependentUpon>services.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -438,6 +464,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fonts\Interassist.eot" />
+    <Content Include="fonts\Interassist.ttf" />
+    <Content Include="fonts\Interassist.woff" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
