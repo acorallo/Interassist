@@ -33,9 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,6 +55,8 @@
     <Compile Include="Empresa.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Estado.cs" />
+    <Compile Include="HtmlStreamAdapter.cs" />
+    <Compile Include="IAReports.cs" />
     <Compile Include="Localidad.cs" />
     <Compile Include="Observacion.cs" />
     <Compile Include="Operador.cs" />
@@ -61,6 +67,7 @@
     <Compile Include="Problema.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provincia.cs" />
+    <Compile Include="ReporteCasos.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="TipoCaso.cs" />
     <Compile Include="TipoIva.cs" />

@@ -214,6 +214,15 @@ namespace UI.InterAssist {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to REPORTES.
+        /// </summary>
+        internal static string BTN_MENU_REPORTES {
+            get {
+                return ResourceManager.GetString("BTN_MENU_REPORTES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DATOS.
         /// </summary>
         internal static string BTN_MENU_UPLODAS {

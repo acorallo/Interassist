@@ -24,6 +24,7 @@ namespace UI.InterAssist
         private void AssignTextToContros()
         {
             this.lblVersion.Text = ConfigurationSettings.AppSettings["ApplicationVersion"];
+            
             this.lnkLogOut.Text = Resource.BTN_LOGOUT;
 
             // Menu.
@@ -33,7 +34,7 @@ namespace UI.InterAssist
             this.lnkAfiliados.Text = Resource.BTN_MENU_AFILIADOS;
             this.lnkCasos.Text = Resource.BTN_MENU_CASOS;
             this.lnkDatos.Text = Resource.BTN_MENU_UPLODAS;
-
+            this.lnkReportes.Text = Resource.BTN_MENU_REPORTES;
 
         }
 
@@ -126,6 +127,11 @@ namespace UI.InterAssist
         protected void lnkDatos_Click(object sender, EventArgs e)
         {
             MyPage.goView(Classes.Views.UPLOAD_VIEW);
+        }
+
+        protected void lnkReportes_Click(object sender, EventArgs e)
+        {
+            MyPage.goView(Classes.Views.REPORTES_VIEW);
         }
     }
 }

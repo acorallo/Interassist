@@ -140,6 +140,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ReportesDS.cs" />
     <Compile Include="TicketDS.cs" />
     <Compile Include="TipoServicioDS.cs" />
     <Compile Include="UploadErrorDS.cs" />

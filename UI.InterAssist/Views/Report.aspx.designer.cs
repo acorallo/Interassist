@@ -13,6 +13,33 @@ namespace UI.InterAssist.Views {
     public partial class Report {
         
         /// <summary>
+        /// lblDelimitador control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDelimitador;
+        
+        /// <summary>
+        /// rdbPuntaComa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbPuntaComa;
+        
+        /// <summary>
+        /// RdbComa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton RdbComa;
+        
+        /// <summary>
         /// lblFechaDesde control.
         /// </summary>
         /// <remarks>
@@ -92,6 +119,15 @@ namespace UI.InterAssist.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+        
+        /// <summary>
+        /// lblOutMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOutMsg;
         
         /// <summary>
         /// btnGenerarReporte control.

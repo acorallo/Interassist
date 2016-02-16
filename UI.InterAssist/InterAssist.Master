@@ -88,6 +88,10 @@
                                     <asp:LinkButton ID="lnkDatos" runat="server" CausesValidation="False" 
                                         CssClass="BotonMenu" OnClick="lnkDatos_Click"></asp:LinkButton>
                                 </td>
+                                 <td>
+                                    <asp:LinkButton ID="lnkReportes" runat="server" CausesValidation="False" 
+                                        CssClass="BotonMenu" OnClick="lnkReportes_Click"></asp:LinkButton>
+                                </td>
                                 <td width="100%">
                                 </td>
                             </tr>

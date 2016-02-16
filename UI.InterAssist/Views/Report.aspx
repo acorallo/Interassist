@@ -34,12 +34,26 @@
 
 </script>
 
+    <style type="text/css">
+        .auto-style1 {
+            height: 30px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table class="style1">
         <tr>
             <td>
                 <table class="style1">
+                    <tr>
+                        <td nowrap="nowrap" align="right">
+                            <asp:Label ID="lblDelimitador" runat="server"></asp:Label>
+                        </td>
+                        <td align="left" width="100%">
+                            <asp:RadioButton ID="rdbPuntaComa" runat="server" Checked="True" GroupName="g" />
+                            <asp:RadioButton ID="RdbComa" runat="server" GroupName="g" />
+                        </td>
+                    </tr>
                     <tr>
                         <td nowrap="nowrap">
                             <asp:Label ID="lblFechaDesde" runat="server"></asp:Label>
@@ -54,7 +68,7 @@
                         <td class="auto-style1" nowrap="nowrap">
                             <asp:Label ID="lblFechaHasta" runat="server"></asp:Label>
                         </td>
-                        <td align="left" class="auto-style1">
+                        <td align="left">
                             <asp:TextBox ID="txtFechaHasta" runat="server" ClientIDMode="Static"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvFechaHasta" runat="server" ControlToValidate="txtFechaHasta" CssClass="errorText">*</asp:RequiredFieldValidator>
                             <asp:CustomValidator ID="cmvFechaHasta" runat="server" ControlToValidate="txtFechaHasta" CssClass="errorText" OnServerValidate="cmvFechaHasta_ServerValidate">*</asp:CustomValidator>
@@ -64,6 +78,12 @@
                         <td nowrap="nowrap">&nbsp;</td>
                         <td align="left">
                             <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="errorText" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td nowrap="nowrap">&nbsp;</td>
+                        <td align="left">
+                            <asp:Label ID="lblOutMsg" runat="server" CssClass="errorText"></asp:Label>
                         </td>
                     </tr>
                     <tr>

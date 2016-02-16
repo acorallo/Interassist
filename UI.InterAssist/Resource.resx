@@ -168,6 +168,9 @@
   <data name="BTN_MENU_PRESTADORES" xml:space="preserve">
     <value>PRESTADORES</value>
   </data>
+  <data name="BTN_MENU_REPORTES" xml:space="preserve">
+    <value>REPORTES</value>
+  </data>
   <data name="BTN_MENU_UPLODAS" xml:space="preserve">
     <value>DATOS</value>
   </data>
