@@ -25,8 +25,8 @@ namespace DAL.InterAssist
         private const string CONST_CREATE_TICKET_PRESTADOR_PROCEDURE_NAME = "TICKET_PKG.CREATE_TICKET_PRESTADOR";
 
         private const string CONST_LIST_PROSTADORES_PROCEDURE_NAME = "TICKET_PKG.LIST_PRESTADORES_BY_TICKET";
-        
 
+        
 
         // Columnas de la tabla.
         public const string COL_IDTICKET = "IDTICKET";
@@ -287,6 +287,7 @@ namespace DAL.InterAssist
         {
             foreach(Datasets.Ticket_Prestador.TICKET_PRESTADORESRow r in Prestadores)
             {
+                /*
                 if(r.PERSISTOPERATION!=(int)Utils.InterAssist.Constants.PersistOperationType.Void && (r.IDTICKETPRESTADOR!=-1 || r.PERSISTOPERATION!=(int)Utils.InterAssist.Constants.PersistOperationType.Void))
                 {
                     if(r.PERSISTOPERATION==(int)Utils.InterAssist.Constants.PersistOperationType.Create)
@@ -301,7 +302,9 @@ namespace DAL.InterAssist
                     {
 
                     }
+                 
                 }
+                 */
             }
         }
 

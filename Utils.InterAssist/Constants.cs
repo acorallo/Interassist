@@ -8,12 +8,13 @@ namespace Utils.InterAssist
     public class Constants
     {
 
+        public const string CONST_NEW_PREFIX = "Prex_";
+
         public enum PersistOperationType
-        {
-            Create=0,
-            Delete,
-            Update,
-            Void 
+        {   
+            Persist,
+            Delete,            
+            Void  
         }
 
     }

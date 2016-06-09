@@ -9,9 +9,6 @@ namespace UI.InterAssist.Classes
 {
     public class Localidades
     {
-
-        
-
         private static DataTable dtLocalidades = null;
         private static DateTime lastUpdate;
 
@@ -49,6 +46,29 @@ namespace UI.InterAssist.Classes
                 
         }
 
+        public static List<Ubicacion> getUbicaciones()
+        {
+            List<Ubicacion> result = new List<Ubicacion>();
+
+            DataTable dt = GetLocalidades();
+            foreach(DataRow rw in dt.Rows)
+            {
+                Ubicacion ubicacion = new Ubicacion();
+
+                ubicacion.IDPais = Int32.Parse(rw["IDPAIS"].ToString());
+                ubicacion.IDProvincia = Int32.Parse(rw["IDPROVINCIA"].ToString());
+                ubicacion.IDCiudad = Int32.Parse(rw["IDCIUDAD"].ToString());
+                ubicacion.IDLocalidad = Int32.Parse(rw["IDLOCALIDAD"].ToString());
+                ubicacion.Pais = rw["PAIS"].ToString();
+                ubicacion.Provincia = rw["PROVINCIA"].ToString();
+                ubicacion.Localidad = rw["LOCALIDAD"].ToString();
+                ubicacion.Ciudad = rw["CIUDAD"].ToString();
+                
+                result.Add(ubicacion);
+            }
+
+            return result;
+        }
         
         private static bool InCache()
         {

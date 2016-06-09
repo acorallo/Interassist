@@ -13,5 +13,11 @@ namespace UI.InterAssist.Classes
         public int IDProvincia = -1;
         public int IDPais = -1;
 
+        public string Pais { get; set; }
+        public string Provincia { get; set; }
+        public string Ciudad { get; set; }
+        public string Localidad { get; set; }
+
+
     }
 }

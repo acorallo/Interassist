@@ -9,6 +9,8 @@ using Entities.InterAsisst;
 using Utils.InterAssist;
 
 
+
+
 namespace UI.InterAssist.Views
 {
     public partial class services : System.Web.UI.Page
@@ -34,6 +36,7 @@ namespace UI.InterAssist.Views
 
         }
 
+
         [System.Web.Services.WebMethod]
         public static List<OptionComboModelView> GetProvincias(int key)
         {
@@ -49,7 +52,17 @@ namespace UI.InterAssist.Views
             return result;
 
         }
-        
+
+        [System.Web.Services.WebMethod]
+        public static string ListLocalidades (int idPais, int idPrivincia, string value)
+        {
+            List<LocalidadesMV> result = new List<LocalidadesMV>();
+
+            var objecto = Classes.Localidades.getUbicaciones();
+
+            return new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(objecto);
+        }
+
         [System.Web.Services.WebMethod]
         public static List<PrestadorModelView> ListPrestadores (int idPais, int idProvincia, string ciudad, string nombre)
         {
@@ -70,7 +83,7 @@ namespace UI.InterAssist.Views
                 pw.Nombre = p.Nombre;
                 pw.Pais = p.NombrePais;
                 pw.Provincia = p.ProvinciaNombre;
-                pw.Telefono = p.Telefono1;
+                pw.Telefono1 = p.Telefono1;
                 resultList.Add(pw);
 
             }
@@ -79,14 +92,18 @@ namespace UI.InterAssist.Views
         }
 
 
+        
+
         [System.Web.Services.WebMethod]
         public static Modelviews.PrestadorModelView getPrestadorWM(int idPrestador)
         {
             Modelviews.PrestadorModelView result = CasoCrud.getPrestador(idPrestador);
+
+
+
             return result;
         }
-        
-        #endregion WebMethods
 
+        #endregion WebMethods
     }
 }

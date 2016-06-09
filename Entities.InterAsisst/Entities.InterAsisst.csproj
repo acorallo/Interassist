@@ -72,6 +72,7 @@
     <Compile Include="TipoCaso.cs" />
     <Compile Include="TipoIva.cs" />
     <Compile Include="TipoServicio.cs" />
+    <Compile Include="Ubicacion.cs" />
     <Compile Include="Upload.cs" />
     <Compile Include="UploadError.cs" />
   </ItemGroup>

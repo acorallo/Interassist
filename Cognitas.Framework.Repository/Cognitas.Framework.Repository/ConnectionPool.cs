@@ -35,9 +35,6 @@ namespace Cognitas.Framework.Repository
             }
 
 
-            
-                
-
             return result;
         }
 

@@ -1645,6 +1645,15 @@ namespace UI.InterAssist {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activo.
+        /// </summary>
+        internal static string TXT_ACTIVO {
+            get {
+                return ResourceManager.GetString("TXT_ACTIVO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string TXT_BOOL_FALSE {
@@ -1744,6 +1753,15 @@ namespace UI.InterAssist {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NO Activo.
+        /// </summary>
+        internal static string TXT_NO_ACTIVO {
+            get {
+                return ResourceManager.GetString("TXT_NO_ACTIVO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No hay registros para mostrar.
         /// </summary>
         internal static string TXT_NON_RESULTS {
@@ -1780,6 +1798,15 @@ namespace UI.InterAssist {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Información del Prestador.
+        /// </summary>
+        internal static string TXT_PRESTADORES_INFORMACION {
+            get {
+                return ResourceManager.GetString("TXT_PRESTADORES_INFORMACION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registros.
         /// </summary>
         internal static string TXT_RECORD_COUNT {
@@ -1812,6 +1839,15 @@ namespace UI.InterAssist {
         internal static string TXT_SESSION_VEHICULO {
             get {
                 return ResourceManager.GetString("TXT_SESSION_VEHICULO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sin Direccion.
+        /// </summary>
+        internal static string TXT_SIN_DIRECCION {
+            get {
+                return ResourceManager.GetString("TXT_SIN_DIRECCION", resourceCulture);
             }
         }
         

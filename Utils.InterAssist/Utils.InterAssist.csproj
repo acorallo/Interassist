@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AjaxResponseCiudaes.cs" />
     <Compile Include="Campos.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="FiltroAfiliado.cs" />

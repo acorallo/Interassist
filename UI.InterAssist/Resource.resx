@@ -645,6 +645,9 @@
   <data name="TOOL_TIP_ID_CASO" xml:space="preserve">
     <value>Click aquí para ver caso {0}</value>
   </data>
+  <data name="TXT_ACTIVO" xml:space="preserve">
+    <value>Activo</value>
+  </data>
   <data name="TXT_BOOL_FALSE" xml:space="preserve">
     <value>No</value>
   </data>
@@ -681,8 +684,14 @@
   <data name="TXT_NON_RESULTS" xml:space="preserve">
     <value>No hay registros para mostrar</value>
   </data>
+  <data name="TXT_NO_ACTIVO" xml:space="preserve">
+    <value>NO Activo</value>
+  </data>
   <data name="TXT_OBSERVACIONES_SIN_OBS" xml:space="preserve">
     <value>Sin Observaciones</value>
+  </data>
+  <data name="TXT_PRESTADORES_INFORMACION" xml:space="preserve">
+    <value>Información del Prestador</value>
   </data>
   <data name="TXT_PRESTADOR_ERROR" xml:space="preserve">
     <value>Error: No se puede modificar el objeto. Es posible que otro usuario lo esté modificando en este momento. Intente en otro momento.</value>
@@ -701,6 +710,9 @@
   </data>
   <data name="TXT_SESSION_VEHICULO" xml:space="preserve">
     <value>Datos del Vehículo</value>
+  </data>
+  <data name="TXT_SIN_DIRECCION" xml:space="preserve">
+    <value>Sin Direccion</value>
   </data>
   <data name="TXT_SUCC_AFILIADO_CREATE" xml:space="preserve">
     <value>El Afiliado se ha creado correctamente en el sistema. ¿Agregar otro usuario?</value>

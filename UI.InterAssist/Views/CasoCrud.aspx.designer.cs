@@ -337,15 +337,6 @@ namespace UI.InterAssist.Views {
         protected global::System.Web.UI.WebControls.Button UpdatePanel_postBack;
         
         /// <summary>
-        /// btnAsignarPrestador control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAsignarPrestador;
-        
-        /// <summary>
         /// cmvPrestador control.
         /// </summary>
         /// <remarks>
@@ -355,22 +346,76 @@ namespace UI.InterAssist.Views {
         protected global::System.Web.UI.WebControls.CustomValidator cmvPrestador;
         
         /// <summary>
-        /// lblSinPrestadores control.
+        /// StorePrestadorAsignado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSinPrestadores;
+        protected global::Ext.Net.Store StorePrestadorAsignado;
         
         /// <summary>
-        /// dtgPrestadoresAsignados control.
+        /// StoreComboTipoAsistencia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataGrid dtgPrestadoresAsignados;
+        protected global::Ext.Net.Store StoreComboTipoAsistencia;
+        
+        /// <summary>
+        /// PanelPrestadores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel PanelPrestadores;
+        
+        /// <summary>
+        /// lblNoPrestadoresAsignados control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label lblNoPrestadoresAsignados;
+        
+        /// <summary>
+        /// GridPanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.GridPanel GridPanel1;
+        
+        /// <summary>
+        /// ComboBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox ComboBox1;
+        
+        /// <summary>
+        /// StorePrestador control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store StorePrestador;
+        
+        /// <summary>
+        /// btnQuitarPrestador control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button btnQuitarPrestador;
         
         /// <summary>
         /// divDatosPrestador control.
@@ -443,5 +488,536 @@ namespace UI.InterAssist.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::UI.InterAssist.Usercontrols.CasoPrestador CasoPrestador1;
+        
+        /// <summary>
+        /// WinBusquedaPrestador control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window WinBusquedaPrestador;
+        
+        /// <summary>
+        /// Pais_PrestadorBusquedaAvanzada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store Pais_PrestadorBusquedaAvanzada;
+        
+        /// <summary>
+        /// Provincia_PrestadorBusquedaAvanzada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store Provincia_PrestadorBusquedaAvanzada;
+        
+        /// <summary>
+        /// FiltroBuscaPrestadores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.FormPanel FiltroBuscaPrestadores;
+        
+        /// <summary>
+        /// cmbPaisFiltroPrestador control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox cmbPaisFiltroPrestador;
+        
+        /// <summary>
+        /// cmbProvinciaFiltroPrestador control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox cmbProvinciaFiltroPrestador;
+        
+        /// <summary>
+        /// cmbUbicacionFiltroPrestador control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.ComboBox cmbUbicacionFiltroPrestador;
+        
+        /// <summary>
+        /// StoreUbicacionesFiltroPrestador control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store StoreUbicacionesFiltroPrestador;
+        
+        /// <summary>
+        /// txtNombreFiltroPrestador control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField txtNombreFiltroPrestador;
+        
+        /// <summary>
+        /// StorePrestadoresBusquedaAvanzada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Store StorePrestadoresBusquedaAvanzada;
+        
+        /// <summary>
+        /// grdPrestadorBusquedaAvanzada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.GridPanel grdPrestadorBusquedaAvanzada;
+        
+        /// <summary>
+        /// GridView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.GridView GridView1;
+        
+        /// <summary>
+        /// RowExpander1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.RowExpander RowExpander1;
+        
+        /// <summary>
+        /// TabPanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TabPanel TabPanel1;
+        
+        /// <summary>
+        /// Tab1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Tab1;
+        
+        /// <summary>
+        /// QPrest_Detalles_Id control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField QPrest_Detalles_Id;
+        
+        /// <summary>
+        /// QPrest_Detalles_Activo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField QPrest_Detalles_Activo;
+        
+        /// <summary>
+        /// QPrest_Detalles_Cuit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField QPrest_Detalles_Cuit;
+        
+        /// <summary>
+        /// QPrest_Detalles_iva control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField QPrest_Detalles_iva;
+        
+        /// <summary>
+        /// Ubicacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Ubicacion;
+        
+        /// <summary>
+        /// QPrest_Detalles_Domicilio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField QPrest_Detalles_Domicilio;
+        
+        /// <summary>
+        /// QPrest_Detalles_Pais control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField QPrest_Detalles_Pais;
+        
+        /// <summary>
+        /// QPrest_Detalles_Provincia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField QPrest_Detalles_Provincia;
+        
+        /// <summary>
+        /// QPrest_Detalles_Ciudad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField QPrest_Detalles_Ciudad;
+        
+        /// <summary>
+        /// QPrest_Detalles_Localidad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField QPrest_Detalles_Localidad;
+        
+        /// <summary>
+        /// Contactos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Contactos;
+        
+        /// <summary>
+        /// QPrest_Detalles_Email control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField QPrest_Detalles_Email;
+        
+        /// <summary>
+        /// QPrest_Detalles_Nextel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField QPrest_Detalles_Nextel;
+        
+        /// <summary>
+        /// QPrest_Detalles_Telefono control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField QPrest_Detalles_Telefono;
+        
+        /// <summary>
+        /// QPrest_Detalles_Telefono2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField QPrest_Detalles_Telefono2;
+        
+        /// <summary>
+        /// QPrest_Detalles_Celular control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField QPrest_Detalles_Celular;
+        
+        /// <summary>
+        /// QPrest_Detalles_Celular2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField QPrest_Detalles_Celular2;
+        
+        /// <summary>
+        /// Panel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel2;
+        
+        /// <summary>
+        /// QPrest_Detalles_Descripcion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextArea QPrest_Detalles_Descripcion;
+        
+        /// <summary>
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Panel Panel1;
+        
+        /// <summary>
+        /// lblLiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLiv;
+        
+        /// <summary>
+        /// lblSp1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSp1;
+        
+        /// <summary>
+        /// lblSp2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSp2;
+        
+        /// <summary>
+        /// lblps1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblps1;
+        
+        /// <summary>
+        /// lblPs2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPs2;
+        
+        /// <summary>
+        /// lblMovida control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMovida;
+        
+        /// <summary>
+        /// decLivMovida control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label decLivMovida;
+        
+        /// <summary>
+        /// decSp1Movida control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label decSp1Movida;
+        
+        /// <summary>
+        /// decSp2Movida control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label decSp2Movida;
+        
+        /// <summary>
+        /// decPs1Movida control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label decPs1Movida;
+        
+        /// <summary>
+        /// decPs2Movida control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label decPs2Movida;
+        
+        /// <summary>
+        /// lblkm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblkm;
+        
+        /// <summary>
+        /// decLivKm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label decLivKm;
+        
+        /// <summary>
+        /// decSp1Km control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label decSp1Km;
+        
+        /// <summary>
+        /// decSp2Km control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label decSp2Km;
+        
+        /// <summary>
+        /// decPs1Km control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label decPs1Km;
+        
+        /// <summary>
+        /// decPs2Km control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Label decPs2Km;
+        
+        /// <summary>
+        /// ctl1499 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Toolbar ctl1499;
+        
+        /// <summary>
+        /// txtBusquedaSimple control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.TextField txtBusquedaSimple;
+        
+        /// <summary>
+        /// ctl1501 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Toolbar ctl1501;
+        
+        /// <summary>
+        /// ctl1502 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button ctl1502;
+        
+        /// <summary>
+        /// btnBusquedaAvanzada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button btnBusquedaAvanzada;
+        
+        /// <summary>
+        /// WdoInformacioPrestador control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window WdoInformacioPrestador;
+        
+        /// <summary>
+        /// PrestadorView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::UI.InterAssist.Usercontrols.PrestadorView PrestadorView;
     }
 }

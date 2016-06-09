@@ -15,6 +15,7 @@ namespace Utils.InterAssist
         public int ESTADO = NULL_ID;
         public int IdProvincia = NULL_ID;
         public int IdPais = NULL_ID;
+        public int IdCiudad = NULL_ID;
         public string Localidad = string.Empty;
         public string Search = string.Empty;
 
@@ -29,6 +30,7 @@ namespace Utils.InterAssist
             this.ESTADO = NULL_ID;    
             this.IdProvincia = NULL_ID;
             this.IdPais = NULL_ID;
+            this.IdCiudad = NULL_ID;
             this.Localidad = string.Empty;
             this.Search = string.Empty;
         }

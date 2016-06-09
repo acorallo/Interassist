@@ -270,6 +270,7 @@ namespace DAL.InterAssist
                 paramlist.Add(repository.DbFactory.getDataParameter("P_ESTADO", DbType.Int32, filtro.ESTADO));
                 paramlist.Add(repository.DbFactory.getDataParameter("P_ID_PAIS", DbType.Int32, filtro.IdPais));
                 paramlist.Add(repository.DbFactory.getDataParameter("P_ID_PROVINCA", DbType.Int32, filtro.IdProvincia));
+                paramlist.Add(repository.DbFactory.getDataParameter("P_ID_CIUDAD", DbType.Int32, filtro.IdCiudad));
                 paramlist.Add(repository.DbFactory.getDataParameter("P_LOCALIDAD_NOMBRE", DbType.String, filtro.Localidad));
                 paramlist.Add(repository.DbFactory.getDataParameter("P_SEARCH", DbType.String, filtro.Search));
 

@@ -9,6 +9,7 @@ using Cognitas.Framework.UserInterface;
 using Cognitas.Framework.Repository;
 using UI.InterAssist.Classes;
 using Utils.InterAssist;
+
 namespace UI.InterAssist.Views
 {
     public partial class ProveedorCrud : Classes.Views, ICrmPage
