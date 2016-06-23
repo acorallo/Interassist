@@ -137,5 +137,41 @@ namespace UI.InterAssist.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCrearNUevo;
+        
+        /// <summary>
+        /// WdoInformacionCasos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Window WdoInformacionCasos;
+        
+        /// <summary>
+        /// VerifcacionCasos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::UI.InterAssist.Usercontrols.VerifcacionCasos VerifcacionCasos;
+        
+        /// <summary>
+        /// chkAceptarInfoCasos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Checkbox chkAceptarInfoCasos;
+        
+        /// <summary>
+        /// btnContinuarCaso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Ext.Net.Button btnContinuarCaso;
     }
 }

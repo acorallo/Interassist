@@ -670,6 +670,7 @@
 																<tr>
 																	<td align="right">
 																		<asp:Button ID="UpdatePanel_postBack" runat="server" CausesValidation="False" Text="Button" ClientIDMode="Static" style="display:none"/>
+																		<asp:CustomValidator ID="cmvPrestador_valid" runat="server" CssClass="errorText" OnServerValidate="cmvPrestador_valid_ServerValidate">*</asp:CustomValidator>
 																		<asp:CustomValidator ID="cmvPrestador" runat="server" CssClass="errorText" 
 																			onservervalidate="cmvPrestador_ServerValidate">*</asp:CustomValidator>
 																	</td>
@@ -889,23 +890,6 @@
 																		</table>
 																			
 																	</td>
-																</tr>
-																<tr>
-																  <div id="divDatosPrestador" runat="server">
-																	  <td>
-																		  <table class="style3">
-																			  <tr>
-																				  <td>
-																					  <div style="visibility:hidden">
-																						<div id="divPrestadorDetalle" title="Información del Prestador">
-																							 <uc3:Prestadorctrl ID="PrestadorctrlDetalle" runat="server" />
-																						</div>
-																					  </div>
-																				  </td>
-																			  </tr>
-																		  </table>
-																	  </td>
-																  </div>
 																</tr>
 															</table>
 											  </div>
@@ -1580,7 +1564,7 @@
         runat="server" 
         Icon="information" 
         Hidden="true" 
-        Width="1200"
+        Width="650"
         Modal="true"
         Height="600"
         BodyStyle="background-color: #fff">

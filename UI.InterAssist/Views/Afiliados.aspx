@@ -1,4 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/InterAssist.Master" AutoEventWireup="true" CodeBehind="Afiliados.aspx.cs" Inherits="UI.InterAssist.Views.Afiliados" %>
+
+<%@ Register Src="~/Usercontrols/VerifcacionCasos.ascx" TagPrefix="uc1" TagName="VerifcacionCasos" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <script type="text/javascript" src="../Scripts/jquery-2.1.4.min.js"></script>
     <style type="text/css">
@@ -20,12 +23,32 @@
             left:50px;
         }
 
+        .check_disc_caso{
+            margin-left : 50px;
+        }
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" AsyncPostBackTimeout="99999999"></asp:ScriptManager>
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
+
+    <ext:ResourceManager runat="server" />
+    <script type="text/javascript">
+
+        function verificarCaso(idPoliza, idAfiliado) {
+            Ext.net.DirectMethods.VerificarCasos(idPoliza, idAfiliado);
+        }
+
+
+        function _chkAceptarInfoCasos_check()
+        {
+            ContentPlaceHolder1_btnContinuarCaso.setDisabled(!ContentPlaceHolder1_chkAceptarInfoCasos.checked);
+        }
+        </script>
+
+
     <table class="style1">
         <tr>
             <td class="style3" align="right">
@@ -234,4 +257,61 @@
        <span id="idSpanSinCasos"><p>No tiene casos registrados</p></span>
     </div>
 
+    
+
+       <ext:Window 
+        ID="WdoInformacionCasos" 
+        runat="server" 
+        Icon="information" 
+        Hidden="true" 
+        Width="650"
+        Modal="true"
+        Height="600"
+        BodyStyle="background-color: #fff">
+        
+        <Content>
+
+            <table width="100%">
+                <tr>
+                    <td><uc1:VerifcacionCasos runat="server" ID="VerifcacionCasos" /></td>
+
+                </tr>
+                <tr>
+                    <td style="padding:10px">
+
+                    <ext:Checkbox ID="chkAceptarInfoCasos" runat="server" Checked="false">
+                        <Listeners>
+                            <Check Handler="_chkAceptarInfoCasos_check();" />
+                        </Listeners>
+                    </ext:Checkbox>
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="padding:10px">
+                        <br />
+                <ext:Button ID="btnContinuarCaso" runat="server" Disabled="true">
+                    <DirectEvents> 
+                        <Click OnEvent="ContinuarCaso" />
+                    </DirectEvents>
+                </ext:Button>  
+                    </td>
+
+                </tr>
+            </table>
+
+
+            
+
+
+            
+            
+        </Content>
+
+
+        </ext:Window>
+
 </asp:Content>
+
+

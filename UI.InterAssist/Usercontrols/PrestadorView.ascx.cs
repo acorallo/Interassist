@@ -77,14 +77,14 @@ namespace UI.InterAssist.Usercontrols
             this.lblPais_Prestador.Text = p.NombrePais;
             this.lblCiudad_Prestador.Text = p.NombreCiudad;
             this.TxtDetallePrestador.Text = p.Descripcion;
-
+            
             this.TxtEmailPrestador.Text = p.Email;
             this.TxtNextelPrestador.Text = p.Nextel;
             this.TxtTelefonoPrestador.Text = p.Telefono1;
             this.TxtTelefono2Prestador.Text = p.Telefono2;
             this.TxtCelularPrestador.Text = p.Celular1;
             this.TxtCelular2Prestador.Text = p.Celular2;
-
+           
             this.txtLivMovida.Text = p.LIV_MOVIDA.ToString();
             this.txtLivKm.Text = p.LIV_KM.ToString();
 
@@ -100,10 +100,16 @@ namespace UI.InterAssist.Usercontrols
             this.txtPs2Movida.Text = p.PS1_MOVIDA.ToString();
             this.txtPs2Km.Text = p.PS2_KM.ToString();
 
+            this.lblMovida.Text = Resource.LBL_PRESTADOR_MOVIDA;
+            this.lblkm.Text = Resource.LBL_PRESTADOR_KM;
+            this.lblLiv.Text = Resource.LBL_PRESTADOR_LIV;
+            this.lblSp1.Text = Resource.LBL_PRESTADOR_SP1;
+            this.lblSp2.Text = Resource.LBL_PRESTADOR_SP2;
+            this.lblps1.Text = Resource.LBL_PRESTADOR_PS1;
+            this.lblPs2.Text = Resource.LBL_PRESTADOR_PS2;
+           
         }
-            
 
-        
         public void ClearPrestador()
         {
 

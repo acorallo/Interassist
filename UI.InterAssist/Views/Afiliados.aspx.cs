@@ -11,6 +11,7 @@ using UI.InterAssist.Interfaces;
 using Cognitas.Framework.Repository;
 using System.Web.Services;
 
+
 namespace UI.InterAssist.Views
 {
     public partial class Afiliados : Classes.Views
@@ -37,7 +38,8 @@ namespace UI.InterAssist.Views
             Patente,
             Marca,
             Modificar,
-            NuevoCaso
+            NuevoCaso,
+            Prueba_Casos
         }
 
 
@@ -150,6 +152,7 @@ namespace UI.InterAssist.Views
             ((ButtonColumn)this.dtgAfiliados.Columns[(int)ColumnasListado.NuevoCaso]).CommandName = COMMAND_NUEVO_CASO;
 
 
+
             // Botones de la página.
             this.btnCrearNUevo.Text = Resource.BTN_CREAR_AFILIADO;
             this.btnBuscar.Text = Resource.BTN_BUSCAR;
@@ -171,6 +174,11 @@ namespace UI.InterAssist.Views
             this.dtgAfiliados.Columns[(int)ColumnasListado.Patente].ItemStyle.HorizontalAlign = HorizontalAlign.Center;
             this.dtgAfiliados.Columns[(int)ColumnasListado.NuevoCaso].ItemStyle.Wrap = false;
             this.dtgAfiliados.Columns[(int)ColumnasListado.Modificar].ItemStyle.Wrap = false;
+
+
+            this.WdoInformacionCasos.Title = Resource.TXT_INFORMACION_CASOS;
+            this.btnContinuarCaso.Text = Resource.LBL_AFILIADO_NUEVO_CASO;
+            this.chkAceptarInfoCasos.BoxLabel = Resource.TXT_INFO_CASOS_DISCLAMER;
         }
 
         private void ShowList(bool value)
@@ -206,7 +214,9 @@ namespace UI.InterAssist.Views
         {
             Classes.SessionHelper.ID_CASO_AFILIADO = Int32.Parse(id);
             Classes.SessionHelper.ID_CASO = Classes.SessionHelper.DEFAULT_ID;
-            this.goView(Classes.Views.CASO_MODIF);
+
+
+            //this.goView(Classes.Views.CASO_MODIF);
         }
 
         protected void gdvAfiliados_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -256,16 +266,19 @@ namespace UI.InterAssist.Views
                 e.Item.Cells[(int)ColumnasListado.Documento].Text = afiliado.Documento;
                 e.Item.Cells[(int)ColumnasListado.Empresa].Text = afiliado.NombreEmpresa;
                 e.Item.Cells[(int)ColumnasListado.Poliza].Text = afiliado.Poliza;
-                e.Item.Cells[(int)ColumnasListado.Poliza].Attributes.Add("onClick", "javascript:contarCasos(event,'" + afiliado.Poliza + "');");
-                e.Item.Cells[(int)ColumnasListado.Poliza].Attributes.Add("onMouseout", "javascript:OcultarContador();");
-                e.Item.Cells[(int)ColumnasListado.Poliza].Attributes.Add("class", "style_Count");
+                //e.Item.Cells[(int)ColumnasListado.Poliza].Attributes.Add("onClick", "javascript:contarCasos(event,'" + afiliado.Poliza + "');");
+                //e.Item.Cells[(int)ColumnasListado.Poliza].Attributes.Add("onMouseout", "javascript:OcultarContador();");
+                //e.Item.Cells[(int)ColumnasListado.Poliza].Attributes.Add("class", "style_Count");
                 e.Item.Cells[(int)ColumnasListado.Patente].Text = afiliado.Patente;
                 e.Item.Cells[(int)ColumnasListado.Marca].Text = afiliado.Marca;
                 e.Item.Cells[(int)ColumnasListado.Categoria].Text = afiliado.NombreCategoria;
                 ((LinkButton)e.Item.Cells[(int)ColumnasListado.Modificar].Controls[0]).CommandArgument = afiliado.ID.ToString();
                 ((LinkButton)e.Item.Cells[(int)ColumnasListado.NuevoCaso].Controls[0]).CommandArgument = afiliado.ID.ToString();
                 ((LinkButton)e.Item.Cells[(int)ColumnasListado.NuevoCaso].Controls[0]).Enabled = afiliado.Estado;
-
+                
+                if (afiliado.Estado)
+                    ((LinkButton)e.Item.Cells[(int)ColumnasListado.NuevoCaso].Controls[0]).Attributes.Add("OnClick", "verificarCaso('" + afiliado.Poliza.ToString() + "','" + afiliado.ID.ToString() + "')");
+                
                 // Si el afiliado esta activo se permite el crear un nuevo caso.
                 if (!afiliado.Estado)
                 {
@@ -297,6 +310,27 @@ namespace UI.InterAssist.Views
 
 
             return c;
+        }
+
+        [Ext.Net.DirectMethod]
+        public void VerificarCasos(string Poliza, string idAfiliado)
+        {
+            this.ResetVerificarCasos();
+            this.WdoInformacionCasos.Hidden = false;
+            this.WdoInformacionCasos.ShowModal();
+            this.VerifcacionCasos.LoadAfiliado(Int32.Parse(idAfiliado));
+        }
+
+
+        public void ResetVerificarCasos()
+        {
+            this.chkAceptarInfoCasos.Checked = false;
+            this.btnContinuarCaso.Disabled = true;
+        }
+
+        protected void ContinuarCaso(object sender, Ext.Net.DirectEventArgs e)
+        {
+            this.goView(Classes.Views.CASO_MODIF);
         }
 
         #endregion Eventos

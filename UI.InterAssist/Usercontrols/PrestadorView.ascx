@@ -56,7 +56,7 @@
                                 <ext:TextField 
                                         ID="TxtEmailPrestador" 
                                         runat="server" 
-                                        Width="600"
+                                        Width="400"
                                         ReadOnly="true"/>
                                     </td>
                             </tr>
@@ -64,14 +64,14 @@
                                 <td><ext:TextField 
                                         ID="TxtNextelPrestador" 
                                         runat="server" 
-                                        Width="600"
+                                        Width="400"
                                         ReadOnly="true"/>
                                                
                                     <ext:TextField 
                                         ID="TxtTelefonoPrestador" 
                                         runat="server" 
                                         ReadOnly="true"
-                                        Width="600"/>
+                                        Width="400"/>
                                 </td>
                             </tr>
                             <tr>
@@ -79,19 +79,19 @@
                                         ID="TxtTelefono2Prestador" 
                                         runat="server" 
                                         ReadOnly="true"
-                                        Width="600"/>
+                                        Width="400"/>
                                                 
                                     <ext:TextField 
                                         ID="TxtCelularPrestador" 
                                         runat="server" 
                                         ReadOnly="true"
-                                        Width="600"/>
+                                        Width="400"/>
 
                                     <ext:TextField 
                                         ID="TxtCelular2Prestador" 
                                         runat="server" 
                                         ReadOnly="true"
-                                        Width="600"/>
+                                        Width="400"/>
                                 </td>
                             </tr>
                         </table> 
@@ -114,39 +114,38 @@
             </tr>
             <tr>
                 <td>
-                  <ext:FieldSet 
-                    runat="server"
-                    Title="Tarifas"
-                    Collapsible="false"
-                    Layout="form">
-                    <Content>
-                        <table style="border: 1px solid #000000; width: 80%">
+                    <table>
+                        <tr>
+                            <td style="font-weight: bold; color: #000066;">Tarifas:</td>
+                        </tr>
+                        <tr>
+                            <td>
+                        <table style="border: 1px solid #000000; width:600px">
                             <tr>
                                 <td align="center">
-                                    &nbsp;</td>
+                                    &nbsp;
+				                </td>
                                 <td align="center">
-                                    <asp:Label ID="lblLiv" runat="server"></asp:Label>
+                                    <ext:Label ID="lblLiv" runat="server"></ext:Label>
                                 </td>
                                 <td align="center">
-                                    <asp:Label ID="lblSp1" runat="server"></asp:Label>
+                                    <ext:Label ID="lblSp1" runat="server"></ext:Label>
                                 </td>
                                 <td align="center">
-                                    <asp:Label ID="lblSp2" runat="server"></asp:Label>
+                                    <ext:Label ID="lblSp2" runat="server"></ext:Label>
                                 </td>
                                 <td align="center">
-                                    <asp:Label ID="lblps1" runat="server"></asp:Label>
+                                    <ext:Label ID="lblps1" runat="server"></ext:Label>
                                 </td>
                                 <td align="center">
-                                    <asp:Label ID="lblPs2" runat="server"></asp:Label>
+                                    <ext:Label ID="lblPs2" runat="server"></ext:Label>
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" 
-                                    style="border-style: 1; border-width: 1px; border-color: #000000;">
-                                    <asp:Label ID="lblMovida" runat="server"></asp:Label>
+                                <td align="right" style="border-style: 1; border-width: 1px; border-color: #000000;">
+                                    <ext:Label ID="lblMovida" runat="server"></ext:Label>
                                 </td>
-                                <td style="border: 1px solid #000000; margin-left: 80px;" align="right" 
-                                    nowrap="nowrap">
+                                <td style="border: 1px solid #000000; margin-left: 80px;" align="right" nowrap="nowrap">
                                     <ext:Label 
                                     ID="txtLivMovida" 
                                     runat="server" 
@@ -167,7 +166,6 @@
                                     Width="50"/>
                                 </td>
                                 <td style="border: 1px solid #000000;" align="right" nowrap="nowrap">
-                                    
                                     <ext:Label 
                                     ID="txtPs1Movida" 
                                     runat="server" 
@@ -183,9 +181,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" 
-                                    style="border-style: 1; border-width: 1px; border-color: #000000;">
-                                    <asp:Label ID="lblkm" runat="server"></asp:Label>
+                                <td align="right" style="border-style: 1; border-width: 1px; border-color: #000000;">
+                                    <ext:Label ID="lblkm" runat="server"></ext:Label>
                                 </td>
                                 <td style="border: 1px solid #000000;" align="right" nowrap="nowrap">
                                     <ext:Label 
@@ -194,9 +191,7 @@
                                     ReadOnly="true"
                                     Width="50"/>
                                 </td>
-                                </td>
                                 <td style="border: 1px solid #000000;" align="right" nowrap="nowrap">
-                                    
                                     <ext:Label 
                                     ID="txtSp1Km" 
                                     runat="server" 
@@ -204,7 +199,6 @@
                                     Width="50"/>
                                 </td>
                                 <td style="border: 1px solid #000000;" align="right" nowrap="nowrap">
-                                    
                                     <ext:Label 
                                     ID="txtSp2Km" 
                                     runat="server" 
@@ -212,16 +206,13 @@
                                     Width="50"/>
                                 </td>
                                 <td style="border: 1px solid #000000;" align="right" nowrap="nowrap">
-                                    
                                     <ext:Label 
                                     ID="txtPs1Km" 
                                     runat="server" 
                                     ReadOnly="true"
                                     Width="50"/>
                                 </td>
-                                <td style="border: 1px solid #000000;" align="right" colspan="1" 
-                                    nowrap="nowrap">
-                                    
+                                <td style="border: 1px solid #000000;" align="right" colspan="1" nowrap="nowrap">
                                     <ext:Label 
                                     ID="txtPs2Km" 
                                     runat="server" 
@@ -230,13 +221,13 @@
                                 </td>
                             </tr>
                         </table>
-
-                    </Content>
-                  </ext:FieldSet>
+                         </td>
+                      </tr>
+                    </table>              
                 </td>
             </tr>
 
-        </table>
+            </table>
         
         
         

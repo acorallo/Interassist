@@ -337,6 +337,15 @@ namespace UI.InterAssist.Views {
         protected global::System.Web.UI.WebControls.Button UpdatePanel_postBack;
         
         /// <summary>
+        /// cmvPrestador_valid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cmvPrestador_valid;
+        
+        /// <summary>
         /// cmvPrestador control.
         /// </summary>
         /// <remarks>
@@ -416,24 +425,6 @@ namespace UI.InterAssist.Views {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Ext.Net.Button btnQuitarPrestador;
-        
-        /// <summary>
-        /// divDatosPrestador control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDatosPrestador;
-        
-        /// <summary>
-        /// PrestadorctrlDetalle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::UI.InterAssist.Usercontrols.Prestadorctrl PrestadorctrlDetalle;
         
         /// <summary>
         /// ValidationSummary1 control.

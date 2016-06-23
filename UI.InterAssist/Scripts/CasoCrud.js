@@ -111,6 +111,7 @@ function ShowErrorPop() {
 
     $("#dialog-message_create").dialog({
         modal: true,
+        width: 600,
         buttons: {
             Aceptar: function () {
                 $(this).dialog("close");

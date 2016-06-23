@@ -41,6 +41,16 @@ namespace Entities.InterAsisst
             return resultRow;
         }
 
+
+
+
+        public bool IsNew
+        {
+            get
+            {
+                return ID == PersistEntity.NULL_ID;
+            }
+        }
         
 
     }

@@ -313,6 +313,15 @@ namespace UI.InterAssist {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Los datos de el/los prestadores adjuntos no son correctos.
+        /// </summary>
+        internal static string ERR_CASO_PRESTADOR {
+            get {
+                return ResourceManager.GetString("ERR_CASO_PRESTADOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to La clave anterior no es correcta.
         /// </summary>
         internal static string ERR_CLAVE_ANTERIOR {
@@ -1753,6 +1762,24 @@ namespace UI.InterAssist {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to He analizado la cantidad de casos correspondientes a la poliza.
+        /// </summary>
+        internal static string TXT_INFO_CASOS_DISCLAMER {
+            get {
+                return ResourceManager.GetString("TXT_INFO_CASOS_DISCLAMER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Información de Casos.
+        /// </summary>
+        internal static string TXT_INFORMACION_CASOS {
+            get {
+                return ResourceManager.GetString("TXT_INFORMACION_CASOS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NO Activo.
         /// </summary>
         internal static string TXT_NO_ACTIVO {
@@ -1839,6 +1866,15 @@ namespace UI.InterAssist {
         internal static string TXT_SESSION_VEHICULO {
             get {
                 return ResourceManager.GetString("TXT_SESSION_VEHICULO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No registra casos asignados.
+        /// </summary>
+        internal static string TXT_SIN_CASOS {
+            get {
+                return ResourceManager.GetString("TXT_SIN_CASOS", resourceCulture);
             }
         }
         

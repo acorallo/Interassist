@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Data;
+using Entities.InterAsisst;
+using System.Security.Cryptography;
+using Cognitas.Framework.Repository;
+using Cognitas.Framework.Repository.Interfaces;
 using Utils.InterAssist;
 
 namespace UI.InterAssist.Modelviews
@@ -9,6 +14,7 @@ namespace UI.InterAssist.Modelviews
     [Serializable]
     public class PrestadorCasoMV
     {
+        
         public string Id
         {
             get;
@@ -110,5 +116,29 @@ namespace UI.InterAssist.Modelviews
 
             return resultList;
         }
+
+
+
+        public Entities.InterAsisst.PrestadorCaso getPrestadorCaso()
+        {
+            Entities.InterAsisst.PrestadorCaso result = new Entities.InterAsisst.PrestadorCaso();
+
+            result.Prestador = Entities.InterAsisst.Prestador.Get_Shadow(this.IdPrestador);
+            result.TipoServicio = Entities.InterAsisst.TipoServicio.get_Shadow(Int32.Parse(this.IdTipoAsistencia));
+            result.Comentarios = string.Empty;
+            
+            result.TipoOperacion = this.Estado;
+            result.Costo = this.Costo;
+            result.Kilometros = this.Kilometros;
+
+            // Verifica si es un nuevo id y en tal caso lo convierte a null.
+            if (Utils.InterAssist.Constants.IsNewPrefix(this.Id))
+                result.ID = Entities.InterAsisst.PersistEntity.NULL_ID;
+            else
+                result.ID = Int32.Parse(this.Id);
+
+            return result;
+        }
+         
     }
 }

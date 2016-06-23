@@ -11,6 +11,8 @@ namespace Entities.InterAsisst
 
         #region Miembros
 
+        public static readonly Int32 NULL_ID = -1;
+
         public static Nullable<float> FloatConvet(object value)
         {
             Nullable<float> result = null;

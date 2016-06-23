@@ -23,8 +23,10 @@ namespace DAL.InterAssist
         private const string CONST_DELETE_TICKET_PRESTADOR_PROCEDURE_NAME = "TICKET_PKG.DELETE_TICKET_PRESTADOR";
         private const string CONST_DELETE_PRESTADOR_BY_TICKET_PROCEDURE_NAME = "TICKET_PKG.DELETE_PRESTADOR_BY_TICKET";
         private const string CONST_CREATE_TICKET_PRESTADOR_PROCEDURE_NAME = "TICKET_PKG.CREATE_TICKET_PRESTADOR";
+        private const string CONST_UPDATTE_TICKET_PRESTADOR_PROCEDURE_NAME = "TICKET_PKG.MODIFY_TICKET_PRESTADOR";
 
         private const string CONST_LIST_PROSTADORES_PROCEDURE_NAME = "TICKET_PKG.LIST_PRESTADORES_BY_TICKET";
+        
 
         
 
@@ -138,11 +140,6 @@ namespace DAL.InterAssist
 
             try
             {
-                
-
-                // Primero guarda el ticket
-                
-
                 List<IDbDataParameter> paramList = new List<IDbDataParameter>();
 
                 Datasets.Tickets.TICKETSDataTable dtable = (Datasets.Tickets.TICKETSDataTable)r.Table;
@@ -232,7 +229,6 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_ID_PAIS_DEST", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDPAIS_DESTINOColumn].ToString()))));
                 paramList.Add(repository.DbFactory.getDataParameter("P_ID_PROV_DEST", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDPROVINCIA_DESTINOColumn].ToString()))));
                 paramList.Add(repository.DbFactory.getDataParameter("P_CIUDAD_DEST", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDCIUDAD_DESTINOColumn].ToString()))));
-                //paramList.Add(repository.DbFactory.getDataParameter("P_IDPRESTADOR", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDPRESTADORColumn].ToString()))));
                 paramList.Add(repository.DbFactory.getDataParameter("P_TELEFONO", DbType.String, dr[dtable.TELEFONOColumn].ToString()));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDESTADO", DbType.Int32, Int32.Parse(dr[dtable.IDESTADOColumn].ToString())));
                 paramList.Add(repository.DbFactory.getDataParameter("P_CALLE_ORIGEN", DbType.String, dr[dtable.CALLE_ORIGENColumn].ToString()));
@@ -242,7 +238,6 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_ID_LOCALIDAD_DESTINO", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDLOCALIDAD_DESTINOColumn].ToString()))));
                 paramList.Add(repository.DbFactory.getDataParameter("P_ID_LOCALIDAD_ORIGEN", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDLOCALIDAD_ORIGENColumn].ToString()))));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Int32.Parse(dr[dtable.IDPROBLEMAColumn].ToString())));
-                //paramList.Add(repository.DbFactory.getDataParameter("P_IDTIPOSERVICIO", DbType.Int32, Int32.Parse(dr[dtable.IDTIPOSERVICIOColumn].ToString())));
                 paramList.Add(repository.DbFactory.getDataParameter("P_TIPO_TICKET", DbType.String, dr[dtable.TIPO_TICKETColumn].ToString()));
 
 
@@ -285,28 +280,36 @@ namespace DAL.InterAssist
 
         private void PersistPrestadores(int idTicketAsociado, Datasets.Ticket_Prestador.TICKET_PRESTADORESDataTable Prestadores, DBRepository repository)
         {
-            foreach(Datasets.Ticket_Prestador.TICKET_PRESTADORESRow r in Prestadores)
+            foreach (Datasets.Ticket_Prestador.TICKET_PRESTADORESRow r in Prestadores)
             {
-                /*
-                if(r.PERSISTOPERATION!=(int)Utils.InterAssist.Constants.PersistOperationType.Void && (r.IDTICKETPRESTADOR!=-1 || r.PERSISTOPERATION!=(int)Utils.InterAssist.Constants.PersistOperationType.Void))
-                {
-                    if(r.PERSISTOPERATION==(int)Utils.InterAssist.Constants.PersistOperationType.Create)
-                    {
-                         Insert_Preveedor_Ticket(repository, idTicketAsociado, r.IDPRESTADOR, r.IDTIPOSERVICIO, r.COMENTARIOS, r.KILOMETROS, r.COSTO, "ObjectHash");
-                    }
-                    else if (r.PERSISTOPERATION == (int)Utils.InterAssist.Constants.PersistOperationType.Delete)
-                    {
-                        Delete_Proveedor_Ticket(r.IDTICKETPRESTADOR, repository);
-                    }
-                    else if (r.PERSISTOPERATION == (int)Utils.InterAssist.Constants.PersistOperationType.Update)
-                    {
 
+                if (r.PERSISTOPERATION != (int)Utils.InterAssist.Constants.PersistOperationType.Void)
+                {
+                    // Si es distinto de void hace una actualización en la base de datos.
+                    if (r.PERSISTOPERATION == (int)Utils.InterAssist.Constants.PersistOperationType.Persist)
+                    {
+                        if (r.IDTICKETPRESTADOR == NULL_INT)
+                        {
+                            Insert_Proveedor_Ticket(repository, idTicketAsociado, r.IDPRESTADOR, r.IDTIPOSERVICIO, r.COMENTARIOS, r.KILOMETROS, r.COSTO, "ObjectHash");
+                        }
+                        else
+                        {
+                            Update_Proveedor_Ticket(repository, r.IDTICKETPRESTADOR, idTicketAsociado, r.IDPRESTADOR, r.IDTIPOSERVICIO, r.COMENTARIOS, r.KILOMETROS, r.COSTO, "ObjectHash");
+                        }
                     }
-                 
+                    else
+                    {
+                        if (r.PERSISTOPERATION == ((int)Utils.InterAssist.Constants.PersistOperationType.Delete))
+                        {
+                            Delete_Proveedor_Ticket(r.IDTICKETPRESTADOR, repository);
+                        }
+                    }
+
                 }
-                 */
+
             }
         }
+    
 
         public DataSet List_PrestadoresByTicket(int idTicket)
         {
@@ -373,7 +376,60 @@ namespace DAL.InterAssist
             return result;
         }
 
-        public int Insert_Preveedor_Ticket(DBRepository repository, 
+
+
+        public bool Update_Proveedor_Ticket(DBRepository repository,
+                                           Int32 idTicketPrestador,    
+                                           Int32 idTicket,
+                                           Int32 idPrestador,
+                                           Int32 idTipoServicio,
+                                           string comentarios,
+                                           decimal kIlometos,
+                                           decimal Costo,
+                                           string ObjectHash)
+        {
+            bool result = false;
+
+            try
+            {
+                /*
+                        P_ID IN TICKET_PRESTADORES.IDTICKETPRESTADOR%TYPE,
+                        P_IDTICKET IN NUMBER, 
+                        P_IDPRESTADOR IN NUMBER,
+                        P_IDTIPOSERVICIO IN NUMBER,
+                        P_OBJECTHASH IN PRESTADORES.objecthash%TYPE,
+                        P_COMENTARIOS IN TICKET_PRESTADORES.COMENTARIOS%TYPE,
+                        P_KILOMETROS IN TICKET_PRESTADORES.KILOMETROS%TYPE,
+                        P_COSTO IN TICKET_PRESTADORES.COSTO%TYPE
+                 */
+
+                List<IDbDataParameter> paramList = new List<IDbDataParameter>();
+
+                paramList.Add(repository.DbFactory.getDataParameter("P_ID", DbType.Int32, idTicketPrestador));
+                paramList.Add(repository.DbFactory.getDataParameter("P_IDTICKET", DbType.Int32, idTicket));
+                paramList.Add(repository.DbFactory.getDataParameter("P_IDPRESTADOR", DbType.Int32, idPrestador));
+                paramList.Add(repository.DbFactory.getDataParameter("P_IDTIPOSERVICIO", DbType.Int32, idTipoServicio));
+                paramList.Add(repository.DbFactory.getDataParameter("P_COMENTARIOS", DbType.String, comentarios));
+                paramList.Add(repository.DbFactory.getDataParameter("P_KILOMETROS", DbType.Decimal, kIlometos));
+                paramList.Add(repository.DbFactory.getDataParameter("P_COSTO", DbType.Decimal, Costo));
+
+
+                repository.ExecuteUpdateProcedure(CONST_UPDATTE_TICKET_PRESTADOR_PROCEDURE_NAME, paramList, ObjectHash);
+
+                result = true;
+
+
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
+
+            return result;
+        }
+
+        public int Insert_Proveedor_Ticket(DBRepository repository, 
                                            Int32 idTicket, 
                                            Int32 idPrestador, 
                                            Int32 idTipoServicio, 

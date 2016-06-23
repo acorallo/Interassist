@@ -11,8 +11,11 @@ namespace Entities.InterAsisst
 
     public class CasosMesurables
     {
-        public string TipoCaso;
-        public int Cantidad;
+        public string TipoCaso { get; set; }
+        public int Cantidad { get; set; }
+
+
+
     }
     
     public class ContadorCasos

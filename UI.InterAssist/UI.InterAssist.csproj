@@ -162,6 +162,7 @@
     <Content Include="Usercontrols\PrestadorView.ascx" />
     <Content Include="Usercontrols\Ubicacion.ascx" />
     <Content Include="Usercontrols\UbicacionPredictivo.ascx" />
+    <Content Include="Usercontrols\VerifcacionCasos.ascx" />
     <Content Include="Views\AfiliadoCrud.aspx" />
     <Content Include="Views\AfiliadosUnsync.aspx" />
     <Content Include="Views\Afiliados.aspx" />
@@ -347,6 +348,13 @@
     </Compile>
     <Compile Include="Usercontrols\UbicacionPredictivo.ascx.designer.cs">
       <DependentUpon>UbicacionPredictivo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Usercontrols\VerifcacionCasos.ascx.cs">
+      <DependentUpon>VerifcacionCasos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usercontrols\VerifcacionCasos.ascx.designer.cs">
+      <DependentUpon>VerifcacionCasos.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\AfiliadoCrud.aspx.cs">
       <DependentUpon>AfiliadoCrud.aspx</DependentUpon>

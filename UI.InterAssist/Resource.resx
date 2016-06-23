@@ -201,6 +201,9 @@
   <data name="DECIMAL_SEPARATOR" xml:space="preserve">
     <value>,</value>
   </data>
+  <data name="ERR_CASO_PRESTADOR" xml:space="preserve">
+    <value>Los datos de el/los prestadores adjuntos no son correctos</value>
+  </data>
   <data name="ERR_CLAVE_ANTERIOR" xml:space="preserve">
     <value>La clave anterior no es correcta</value>
   </data>
@@ -681,6 +684,12 @@
   <data name="TXT_ERROR_UBICACION_EMPTY" xml:space="preserve">
     <value>Debe elegir una hubicacion válida</value>
   </data>
+  <data name="TXT_INFORMACION_CASOS" xml:space="preserve">
+    <value>Información de Casos</value>
+  </data>
+  <data name="TXT_INFO_CASOS_DISCLAMER" xml:space="preserve">
+    <value>He analizado la cantidad de casos correspondientes a la poliza</value>
+  </data>
   <data name="TXT_NON_RESULTS" xml:space="preserve">
     <value>No hay registros para mostrar</value>
   </data>
@@ -710,6 +719,9 @@
   </data>
   <data name="TXT_SESSION_VEHICULO" xml:space="preserve">
     <value>Datos del Vehículo</value>
+  </data>
+  <data name="TXT_SIN_CASOS" xml:space="preserve">
+    <value>No registra casos asignados</value>
   </data>
   <data name="TXT_SIN_DIRECCION" xml:space="preserve">
     <value>Sin Direccion</value>

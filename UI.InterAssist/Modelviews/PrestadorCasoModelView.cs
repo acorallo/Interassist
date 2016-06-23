@@ -9,6 +9,7 @@ namespace UI.InterAssist.Modelviews
     [Serializable]
     public class PrestadorCasoModelView
     {
+        /*
         public int IdCasoPrestador = -1;
         public int IdPrestador;
         public string InternalID = Guid.NewGuid().ToString();
@@ -81,6 +82,6 @@ namespace UI.InterAssist.Modelviews
 
             return result;
         }
-
+        */
     }
 }   
