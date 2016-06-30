@@ -123,8 +123,12 @@ namespace UI.InterAssist.Modelviews
         {
             Entities.InterAsisst.PrestadorCaso result = new Entities.InterAsisst.PrestadorCaso();
 
-            result.Prestador = Entities.InterAsisst.Prestador.Get_Shadow(this.IdPrestador);
-            result.TipoServicio = Entities.InterAsisst.TipoServicio.get_Shadow(Int32.Parse(this.IdTipoAsistencia));
+            if(this.IdPrestador>0)
+                result.Prestador = Entities.InterAsisst.Prestador.Get_Shadow(this.IdPrestador);
+
+            if (this.IdTipoAsistencia.Trim()!=String.Empty)
+                result.TipoServicio = Entities.InterAsisst.TipoServicio.get_Shadow(Int32.Parse(this.IdTipoAsistencia));
+            
             result.Comentarios = string.Empty;
             
             result.TipoOperacion = this.Estado;

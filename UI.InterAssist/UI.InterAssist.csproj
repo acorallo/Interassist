@@ -104,10 +104,8 @@
     <Content Include="Estilos\InterAssist.css" />
     <Content Include="Estilos\jTPS.css" />
     <Content Include="Estilos\style.css" />
-    <Content Include="Ext.NET.Default.aspx" />
     <Content Include="fonts\Interassist.svg" />
     <Content Include="fonts\style.css" />
-    <Content Include="Grid.aspx" />
     <Content Include="Images\descarga.png" />
     <Content Include="Images\InterAssist.png" />
     <Content Include="Images\ui-anim_basic_16x16.gif" />
@@ -176,7 +174,6 @@
     <Content Include="Views\PrestadorCrud.aspx" />
     <Content Include="Views\Report.aspx" />
     <Content Include="Views\services.aspx" />
-    <Content Include="Testext.aspx" />
     <Content Include="Views\UpLoadErrors.aspx" />
     <Content Include="Views\Uploads.aspx" />
     <Content Include="Views\Usuario.aspx" />
@@ -197,20 +194,6 @@
     <Compile Include="Classes\Ubicacion.cs" />
     <Compile Include="Classes\Views.cs">
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Ext.NET.Default.aspx.cs">
-      <DependentUpon>Ext.NET.Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Ext.NET.Default.aspx.designer.cs">
-      <DependentUpon>Ext.NET.Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Grid.aspx.cs">
-      <DependentUpon>Grid.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Grid.aspx.designer.cs">
-      <DependentUpon>Grid.aspx</DependentUpon>
     </Compile>
     <Compile Include="InterAssist.Master.cs">
       <DependentUpon>InterAssist.Master</DependentUpon>
@@ -446,13 +429,6 @@
     </Compile>
     <Compile Include="Views\services.aspx.designer.cs">
       <DependentUpon>services.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Testext.aspx.cs">
-      <DependentUpon>Testext.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Testext.aspx.designer.cs">
-      <DependentUpon>Testext.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\UpLoadErrors.aspx.cs">
       <DependentUpon>UpLoadErrors.aspx</DependentUpon>

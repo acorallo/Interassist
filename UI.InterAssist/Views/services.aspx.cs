@@ -97,7 +97,13 @@ namespace UI.InterAssist.Views
         [System.Web.Services.WebMethod]
         public static Modelviews.PrestadorModelView getPrestadorWM(int idPrestador)
         {
-            Modelviews.PrestadorModelView result = CasoCrud.getPrestador(idPrestador);
+
+            Modelviews.PrestadorModelView result = null;
+
+            if (idPrestador > 0)
+            {
+                result = CasoCrud.getPrestador(idPrestador);
+            }
 
 
 

@@ -68,9 +68,11 @@
                 dataType: "json",
 
                 success: function (data) {
-
-                    prestador = { Ciudad: "", Comentarios: "", Domicilio: "", Id: data.d.Id, Localidad: "", Nombre: data.d.Nombre, Pais: "", Provincia: "", Telefono: "" };
-
+                    
+                    if (data.d != null) {
+                        prestador = { Ciudad: "", Comentarios: "", Domicilio: "", Id: data.d.Id, Localidad: "", Nombre: data.d.Nombre, Pais: "", Provincia: "", Telefono: "" };
+                    }
+                
                 },
                 failure: function (data) { return null;}
             });
