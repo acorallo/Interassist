@@ -9,7 +9,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" AsyncPostBackTimeout="99999999"></asp:ScriptManager>
+    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" AsyncPostBackTimeout="99999999"></asp:ScriptManager>
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
     <script language="javascript" src="../Scripts/jquery-1.10.1.min.js"></script>   
@@ -62,7 +62,7 @@
                             onitemcommand="gdwOperadores_ItemCommand" 
                             onitemdatabound="gdwOperadores_ItemDataBound" 
                             onpageindexchanged="gdwOperadores_PageIndexChanged" 
-                            onselectedindexchanged="gdwOperadores_SelectedIndexChanged" PageSize="20" 
+                            onselectedindexchanged="gdwOperadores_SelectedIndexChanged" PageSize="100" 
                             Width="100%">
                             <Columns>
                                 <asp:BoundColumn></asp:BoundColumn>

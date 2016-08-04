@@ -1,0 +1,768 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BTN_ACEPTAR" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="BTN_ASIGNAR_PRESTADOR" xml:space="preserve">
+    <value>Asignar Prestador</value>
+  </data>
+  <data name="BTN_BUSCAR" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="BTN_CAMBIAR_CLAVE" xml:space="preserve">
+    <value>Cambiar Clave</value>
+  </data>
+  <data name="BTN_CANCELAR" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="BTN_CREAR_AFILIADO" xml:space="preserve">
+    <value>Crear Nuevo Afiliado</value>
+  </data>
+  <data name="BTN_CREAR_NUEVO_PRESTADOR" xml:space="preserve">
+    <value>Crear Nuevo Prestador</value>
+  </data>
+  <data name="BTN_CREAR_USUARIO" xml:space="preserve">
+    <value>Crear Nuevo Usuario</value>
+  </data>
+  <data name="BTN_FREE_SEARCH" xml:space="preserve">
+    <value>Limpiar</value>
+  </data>
+  <data name="BTN_GRID_MODIFICAR" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
+  <data name="BTN_GUARDAR_Y_SALIR" xml:space="preserve">
+    <value>Guardar y Salir</value>
+  </data>
+  <data name="BTN_INICIAR_SESION" xml:space="preserve">
+    <value>Ingresar</value>
+  </data>
+  <data name="BTN_LOGOUT" xml:space="preserve">
+    <value>Salir</value>
+  </data>
+  <data name="BTN_MENU_AFILIADOS" xml:space="preserve">
+    <value>AFILIADOS</value>
+  </data>
+  <data name="BTN_MENU_CASOS" xml:space="preserve">
+    <value>CASOS</value>
+  </data>
+  <data name="BTN_MENU_OPERADORES" xml:space="preserve">
+    <value>OPERADORES</value>
+  </data>
+  <data name="BTN_MENU_PRESTADORES" xml:space="preserve">
+    <value>PRESTADORES</value>
+  </data>
+  <data name="BTN_MENU_REPORTES" xml:space="preserve">
+    <value>REPORTES</value>
+  </data>
+  <data name="BTN_MENU_UPLODAS" xml:space="preserve">
+    <value>DATOS</value>
+  </data>
+  <data name="BTN_PRESTADOR_ASIGNAR" xml:space="preserve">
+    <value>Asignar</value>
+  </data>
+  <data name="BTN_PRESTADOR_INFO" xml:space="preserve">
+    <value>Información</value>
+  </data>
+  <data name="BTN_QUITAR_PRESTADOR" xml:space="preserve">
+    <value>Quitar Prestador</value>
+  </data>
+  <data name="BTN_REINICIAR_PASSWORD" xml:space="preserve">
+    <value>Reiniciar Clave</value>
+  </data>
+  <data name="BTN_VER" xml:space="preserve">
+    <value>Ver</value>
+  </data>
+  <data name="BTN_VOLVER" xml:space="preserve">
+    <value>Volver</value>
+  </data>
+  <data name="CHK_ADMIN" xml:space="preserve">
+    <value>Administrador</value>
+  </data>
+  <data name="CHK_ESTADO" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="DECIMAL_SEPARATOR" xml:space="preserve">
+    <value>,</value>
+  </data>
+  <data name="ERR_CASO_PRESTADOR" xml:space="preserve">
+    <value>Los datos de el/los prestadores adjuntos no son correctos</value>
+  </data>
+  <data name="ERR_CLAVE_ANTERIOR" xml:space="preserve">
+    <value>La clave anterior no es correcta</value>
+  </data>
+  <data name="ERR_FIELD_EMAIL" xml:space="preserve">
+    <value>El campo {0} debe ser una dirección de email</value>
+  </data>
+  <data name="ERR_FORMATO_AÑO" xml:space="preserve">
+    <value>El campo {0}  debe ser numérico de 4 dígitos</value>
+  </data>
+  <data name="ERR_GENERIC_CMB" xml:space="preserve">
+    <value>El campo {0} no es correcto</value>
+  </data>
+  <data name="ERR_LOGIN_EMPTY_PASSWORD" xml:space="preserve">
+    <value>El campo {0} no puede ser vacío</value>
+  </data>
+  <data name="ERR_LOGIN_EMPTY_USER" xml:space="preserve">
+    <value>El campo {0} no puede ser vacío</value>
+  </data>
+  <data name="ERR_LOGIN_FAIL" xml:space="preserve">
+    <value>El {0} o {1} no son correctos</value>
+  </data>
+  <data name="ERR_LOGIN_NOT_ACTIVE" xml:space="preserve">
+    <value>El {0} no está activo en el sistema</value>
+  </data>
+  <data name="ERR_LONG_PASSWORD" xml:space="preserve">
+    <value>El campo {0} debe tener al menos {1} caracteres</value>
+  </data>
+  <data name="ERR_LONG_USUARIO" xml:space="preserve">
+    <value>El {0} debe tener entre {1} y {2} caracteres</value>
+  </data>
+  <data name="ERR_PASSWORD_COMPARE" xml:space="preserve">
+    <value>Los campos {0} y {1} deben ser iguales</value>
+  </data>
+  <data name="ERR_POLIZA_EXISTENTE" xml:space="preserve">
+    <value>La póliza ya existe en el sistema</value>
+  </data>
+  <data name="ERR_PRESTADOR_OBLIGATORIO" xml:space="preserve">
+    <value>Debe asignar un prestador al caso</value>
+  </data>
+  <data name="ERR_REQUEST_COMBO" xml:space="preserve">
+    <value>Debe elegir una opción para el combo {0}</value>
+  </data>
+  <data name="ERR_REQUEST_FIELD" xml:space="preserve">
+    <value>El campo {0} no puede ser vacío</value>
+  </data>
+  <data name="ERR_USUARIO_EXISTENTE" xml:space="preserve">
+    <value>El {0} ya existe en el sistema.</value>
+  </data>
+  <data name="LAYOUT_MENU_USER_LOGOUT" xml:space="preserve">
+    <value>Salir</value>
+  </data>
+  <data name="LAYOUT_MENU_USER_PROFIL" xml:space="preserve">
+    <value>Perfil Usuario</value>
+  </data>
+  <data name="LAYOUT_MENU_USER_SETINGS" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <data name="LBL_AFIILIADO_EMPRESA" xml:space="preserve">
+    <value>Empresa</value>
+  </data>
+  <data name="LBL_AFILIADO_ANO" xml:space="preserve">
+    <value>Año</value>
+  </data>
+  <data name="LBL_AFILIADO_APELLIDO" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="LBL_AFILIADO_CATEGORIA" xml:space="preserve">
+    <value>Categoría</value>
+  </data>
+  <data name="LBL_AFILIADO_CODIGO_POSTAL" xml:space="preserve">
+    <value>Código Postal</value>
+  </data>
+  <data name="LBL_AFILIADO_COLOR" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="LBL_AFILIADO_DIRECCION" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="LBL_AFILIADO_DOCUMENTO" xml:space="preserve">
+    <value>Documento</value>
+  </data>
+  <data name="LBL_AFILIADO_ESTADO" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="LBL_AFILIADO_FECHA_DESDE" xml:space="preserve">
+    <value>Fecha Desde</value>
+  </data>
+  <data name="LBL_AFILIADO_FECHA_HASTA" xml:space="preserve">
+    <value>Fecha Hasta</value>
+  </data>
+  <data name="LBL_AFILIADO_HOGAR" xml:space="preserve">
+    <value>Cobertura Hogar</value>
+  </data>
+  <data name="LBL_AFILIADO_ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="LBL_AFILIADO_MARCA" xml:space="preserve">
+    <value>Marca</value>
+  </data>
+  <data name="LBL_AFILIADO_MODELO" xml:space="preserve">
+    <value>Modelo</value>
+  </data>
+  <data name="LBL_AFILIADO_NOMBRE" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="LBL_AFILIADO_NUEVO_CASO" xml:space="preserve">
+    <value>Crear Caso</value>
+  </data>
+  <data name="LBL_AFILIADO_POLIZA" xml:space="preserve">
+    <value>Póliza</value>
+  </data>
+  <data name="LBL_AFILIAFO_PATENTE" xml:space="preserve">
+    <value>Patente</value>
+  </data>
+  <data name="LBL_CASO_DETALLES" xml:space="preserve">
+    <value>Detalles</value>
+  </data>
+  <data name="LBL_CASO_HISTORICO" xml:space="preserve">
+    <value>Historicos</value>
+  </data>
+  <data name="LBL_CASO_ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="LBL_OPERADORE_NUEVA_CLAVE" xml:space="preserve">
+    <value>Nueva Clave</value>
+  </data>
+  <data name="LBL_OPERADOR_ACTIVO" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="LBL_OPERADOR_ADMIN" xml:space="preserve">
+    <value>Administrador</value>
+  </data>
+  <data name="LBL_OPERADOR_APELLIDO" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="LBL_OPERADOR_CLAVE" xml:space="preserve">
+    <value>Clave</value>
+  </data>
+  <data name="LBL_OPERADOR_CLAVE_ANTERIOR" xml:space="preserve">
+    <value>Clave Anterior</value>
+  </data>
+  <data name="LBL_OPERADOR_EMAIL" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LBL_OPERADOR_ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="LBL_OPERADOR_NOMBRE" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="LBL_OPERADOR_RE_CLAVE" xml:space="preserve">
+    <value>Confirmar Clave</value>
+  </data>
+  <data name="LBL_OPERADOR_USUARIO" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="LBL_PRESTADOR_ACTIVO" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="LBL_PRESTADOR_CELULAR" xml:space="preserve">
+    <value>Celular</value>
+  </data>
+  <data name="LBL_PRESTADOR_CELULAR2" xml:space="preserve">
+    <value>Celular2</value>
+  </data>
+  <data name="LBL_PRESTADOR_CIUDAD" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="LBL_PRESTADOR_CIUT" xml:space="preserve">
+    <value>CUIT</value>
+  </data>
+  <data name="LBL_PRESTADOR_DESCRIPCION" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="LBL_PRESTADOR_DOMICILIO" xml:space="preserve">
+    <value>Domicilio</value>
+  </data>
+  <data name="LBL_PRESTADOR_EMAIL" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LBL_PRESTADOR_ESTADO" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="LBL_PRESTADOR_ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="LBL_PRESTADOR_IVA" xml:space="preserve">
+    <value>IVA</value>
+  </data>
+  <data name="LBL_PRESTADOR_KM" xml:space="preserve">
+    <value>KM</value>
+  </data>
+  <data name="LBL_PRESTADOR_LIV" xml:space="preserve">
+    <value>Liv</value>
+  </data>
+  <data name="LBL_PRESTADOR_LOCALIDAD" xml:space="preserve">
+    <value>Localidad</value>
+  </data>
+  <data name="LBL_PRESTADOR_MOVIDA" xml:space="preserve">
+    <value>Movida</value>
+  </data>
+  <data name="LBL_PRESTADOR_NEXT_TEX" xml:space="preserve">
+    <value>NextTel</value>
+  </data>
+  <data name="LBL_PRESTADOR_NOMBRE" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="LBL_PRESTADOR_PAIS" xml:space="preserve">
+    <value>Pais</value>
+  </data>
+  <data name="LBL_PRESTADOR_PROVINCIA" xml:space="preserve">
+    <value>Provincia</value>
+  </data>
+  <data name="LBL_PRESTADOR_PS1" xml:space="preserve">
+    <value>PS1</value>
+  </data>
+  <data name="LBL_PRESTADOR_PS2" xml:space="preserve">
+    <value>PS2</value>
+  </data>
+  <data name="LBL_PRESTADOR_SP1" xml:space="preserve">
+    <value>SP1</value>
+  </data>
+  <data name="LBL_PRESTADOR_SP2" xml:space="preserve">
+    <value>SP2</value>
+  </data>
+  <data name="LBL_PRESTADOR_TARIFAS" xml:space="preserve">
+    <value>Tarifas</value>
+  </data>
+  <data name="LBL_PRESTADOR_TELEFONO1" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="LBL_PRESTADOR_TELEFONO2" xml:space="preserve">
+    <value>Telefono2</value>
+  </data>
+  <data name="LBL_PRESTADOR_UBICACION" xml:space="preserve">
+    <value>Ubicación</value>
+  </data>
+  <data name="LBL_SECCION_CAMBIO_CLAVE" xml:space="preserve">
+    <value>Cambio de Clave</value>
+  </data>
+  <data name="LBL_SECCION_CASO_DESTINO" xml:space="preserve">
+    <value>Destino</value>
+  </data>
+  <data name="LBL_SECCION_CASO_ORIGEN" xml:space="preserve">
+    <value>Origen</value>
+  </data>
+  <data name="LBL_SEPARADOR" xml:space="preserve">
+    <value>:</value>
+  </data>
+  <data name="LBL_TICKET_COSTO" xml:space="preserve">
+    <value>Costo</value>
+  </data>
+  <data name="LBL_TICKET_ESTADO" xml:space="preserve">
+    <value>Estado del Caso</value>
+  </data>
+  <data name="LBL_TICKET_FECHA_HORA" xml:space="preserve">
+    <value>Fecha/Hora</value>
+  </data>
+  <data name="LBL_TICKET_KILOMETRO" xml:space="preserve">
+    <value>Kilometros</value>
+  </data>
+  <data name="LBL_TICKET_LISTADO_EMPRESA" xml:space="preserve">
+    <value>Empresa</value>
+  </data>
+  <data name="LBL_TICKET_LISTADO_FECHA" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="LBL_TICKET_LISTADO_ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="LBL_TICKET_LISTADO_LOCALIDAD_DESTINO" xml:space="preserve">
+    <value>Loc. Destino</value>
+  </data>
+  <data name="LBL_TICKET_LISTADO_LOCALIDAD_ORIGEN" xml:space="preserve">
+    <value>Loc. Origen</value>
+  </data>
+  <data name="LBL_TICKET_LISTADO_MARCA" xml:space="preserve">
+    <value>Marca/Modelo</value>
+  </data>
+  <data name="LBL_TICKET_LISTADO_NOMBRE_AFILIADO" xml:space="preserve">
+    <value>Afiliado</value>
+  </data>
+  <data name="LBL_TICKET_LISTADO_OPERADOR" xml:space="preserve">
+    <value>Operador</value>
+  </data>
+  <data name="LBL_TICKET_LISTADO_PATENTE" xml:space="preserve">
+    <value>Patente</value>
+  </data>
+  <data name="LBL_TICKET_LISTADO_POLIZA" xml:space="preserve">
+    <value>Poliza</value>
+  </data>
+  <data name="LBL_TICKET_NON_OBSERVACIONES" xml:space="preserve">
+    <value>No hay observaciones para mostrar</value>
+  </data>
+  <data name="LBL_TICKET_NUEVO" xml:space="preserve">
+    <value>Nuevo Caso</value>
+  </data>
+  <data name="LBL_TICKET_OPERADOR" xml:space="preserve">
+    <value>Operador</value>
+  </data>
+  <data name="LBL_TICKET_PROBLEMA" xml:space="preserve">
+    <value>Problema</value>
+  </data>
+  <data name="LBL_TICKET_TELEFONO" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="LBL_TICKET_TIPO" xml:space="preserve">
+    <value>Tipo Caso</value>
+  </data>
+  <data name="LBL_TICKET_TIPO_ASISTENCIA" xml:space="preserve">
+    <value>Tipo Asistencia</value>
+  </data>
+  <data name="LBL_TOTAL_ERRORS" xml:space="preserve">
+    <value>TOTAL ERRORES: {0}</value>
+  </data>
+  <data name="LBL_UBICACION_CIUDAD" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="LBL_UBICACION_DIRECCION" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="LBL_UBICACION_LOCALIDAD" xml:space="preserve">
+    <value>Localidad</value>
+  </data>
+  <data name="LBL_UBICACION_PAIS" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="LBL_UBICACION_PROVINCIA" xml:space="preserve">
+    <value>Provincia</value>
+  </data>
+  <data name="LBL_UBICACION_UBICACION" xml:space="preserve">
+    <value>Ubicación</value>
+  </data>
+  <data name="LBL_UDDATE_REG_TOTAL" xml:space="preserve">
+    <value>Rg. TOTALES</value>
+  </data>
+  <data name="LBL_UPDATE_DELETED" xml:space="preserve">
+    <value>Rg. ELIMINADOS</value>
+  </data>
+  <data name="LBL_UPDATE_DETALLES" xml:space="preserve">
+    <value>Detalles</value>
+  </data>
+  <data name="LBL_UPDATE_ERRORES" xml:space="preserve">
+    <value>Errores</value>
+  </data>
+  <data name="LBL_UPDATE_ERROR_DESCRIPCION" xml:space="preserve">
+    <value>DESCRIPCIÓN</value>
+  </data>
+  <data name="LBL_UPDATE_ERROR_FILELINE" xml:space="preserve">
+    <value>LINEA</value>
+  </data>
+  <data name="LBL_UPDATE_ERROR_INFORMACION" xml:space="preserve">
+    <value>INFORMACIÓN</value>
+  </data>
+  <data name="LBL_UPDATE_ERROR_TYPE" xml:space="preserve">
+    <value>ID. ERROR</value>
+  </data>
+  <data name="LBL_UPDATE_INSERTED" xml:space="preserve">
+    <value>Rg. NUEVOS</value>
+  </data>
+  <data name="LBL_UPDATE_PROCESSED" xml:space="preserve">
+    <value>Rg. PROCESADOS</value>
+  </data>
+  <data name="LBL_UPDATE_REC_ERR" xml:space="preserve">
+    <value>Rg. ERRORES</value>
+  </data>
+  <data name="LBL_UPDATE_UPDATED" xml:space="preserve">
+    <value>Rg. ACTUALIZADOS</value>
+  </data>
+  <data name="LBL_UPLOAD_CANT_ERRORES" xml:space="preserve">
+    <value>ERRORES</value>
+  </data>
+  <data name="LBL_UPLOAD_EMPRESA" xml:space="preserve">
+    <value>EMPRESA</value>
+  </data>
+  <data name="LBL_UPLOAD_ESTADO" xml:space="preserve">
+    <value>ESTADO</value>
+  </data>
+  <data name="LBL_UPLOAD_FAIL" xml:space="preserve">
+    <value>FALLO</value>
+  </data>
+  <data name="LBL_UPLOAD_FECHA" xml:space="preserve">
+    <value>FECHA</value>
+  </data>
+  <data name="LBL_UPLOAD_FN_FECHA" xml:space="preserve">
+    <value>FIN</value>
+  </data>
+  <data name="LBL_UPLOAD_HIT" xml:space="preserve">
+    <value>EXITO</value>
+  </data>
+  <data name="LBL_UPLOAD_ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="LBL_UPLOAD_NOMBRE_ARCHIVO" xml:space="preserve">
+    <value>ARCHIVO</value>
+  </data>
+  <data name="LBL_UPLOAD_REGISTROS" xml:space="preserve">
+    <value>REGISTROS</value>
+  </data>
+  <data name="LBL_UPLOAD_ST_FECHA" xml:space="preserve">
+    <value>COMIENZO</value>
+  </data>
+  <data name="MSG_RESET_PASSWORD" xml:space="preserve">
+    <value>La Clave se ha reiniciado correctamente. La nueva clave es: {0}</value>
+  </data>
+  <data name="SECCION_ADM_AFILIADOS" xml:space="preserve">
+    <value>Administraci&amp;oacute;n de Afiliados</value>
+  </data>
+  <data name="SECCION_ADM_CASOS" xml:space="preserve">
+    <value>Administración de Casos</value>
+  </data>
+  <data name="SECCION_ADM_HUERFANOS" xml:space="preserve">
+    <value>Administración de Registros Huerfanos</value>
+  </data>
+  <data name="SECCION_ADM_OPERADORES" xml:space="preserve">
+    <value>Administraci&amp;oacute;n de Operadores</value>
+  </data>
+  <data name="SECCION_ADM_PRESTADORES" xml:space="preserve">
+    <value>Administración de Prestadores</value>
+  </data>
+  <data name="SECCION_LOGIN" xml:space="preserve">
+    <value>Autenticación en Sistema</value>
+  </data>
+  <data name="SECCION_MI_USUARIO" xml:space="preserve">
+    <value>Administrar mi Usuarios</value>
+  </data>
+  <data name="SECCION_MODIFICACION_OPERADOR" xml:space="preserve">
+    <value>Modificando Operador</value>
+  </data>
+  <data name="SECCION_NUEVO_OPERADOR" xml:space="preserve">
+    <value>Creando Nuevo Operador</value>
+  </data>
+  <data name="SECCION_REPORTES" xml:space="preserve">
+    <value>Reportes</value>
+  </data>
+  <data name="SECTION_ADM_UPLOADS" xml:space="preserve">
+    <value>Administración de Datos</value>
+  </data>
+  <data name="SECTION_DETALLES_UPLOADS" xml:space="preserve">
+    <value>Detalles de actualización</value>
+  </data>
+  <data name="SESSION_MODIF_AFILIADO" xml:space="preserve">
+    <value>Modificando Afiliado</value>
+  </data>
+  <data name="SESSION_NUEVO_AFILIADO" xml:space="preserve">
+    <value>Creando Nuevo Afiliado</value>
+  </data>
+  <data name="TEXT_ERR_CAMBIO_CLAVE" xml:space="preserve">
+    <value>Se produjo un error al intentar cambiar la clave. Debe iniciar sesión con la credenciales existentes.</value>
+  </data>
+  <data name="TOOL_TIP_ID_CASO" xml:space="preserve">
+    <value>Click aquí para ver caso {0}</value>
+  </data>
+  <data name="TXT_ACTIVO" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="TXT_BOOL_FALSE" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="TXT_BOOL_TRUE" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+  <data name="TXT_BUSQUEDA_AVANZADA" xml:space="preserve">
+    <value>Todos los campos</value>
+  </data>
+  <data name="TXT_BUSQUEDA_ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="TXT_CASO_ERROR" xml:space="preserve">
+    <value>Error: No se puede modificar el objeto. Es posible que otro usuario lo esté modificando en este momento. Intente en otro momento.</value>
+  </data>
+  <data name="TXT_CASO_SIN_PRESTADOR" xml:space="preserve">
+    <value>No hay prestadores asignados</value>
+  </data>
+  <data name="TXT_CASO_SUCCESS" xml:space="preserve">
+    <value>Se ha cargado el caso {0} correctamente en el sistema</value>
+  </data>
+  <data name="TXT_COMBO_ELIJA_OPCION" xml:space="preserve">
+    <value>Elija una opción</value>
+  </data>
+  <data name="TXT_CONCURENCY_ERROR" xml:space="preserve">
+    <value>Error: No se puede modificar el objeto. Es posible que otro usuario lo esté modificando en este momento. Intente en otro momento.</value>
+  </data>
+  <data name="TXT_DEFAULT_PAGE_TITLE" xml:space="preserve">
+    <value>InterAssist Travel</value>
+  </data>
+  <data name="TXT_ERROR_UBICACION_EMPTY" xml:space="preserve">
+    <value>Debe elegir una hubicacion válida</value>
+  </data>
+  <data name="TXT_INFORMACION_CASOS" xml:space="preserve">
+    <value>Información de Casos</value>
+  </data>
+  <data name="TXT_INFO_CASOS_DISCLAMER" xml:space="preserve">
+    <value>He analizado la cantidad de casos correspondientes a la poliza</value>
+  </data>
+  <data name="TXT_NON_RESULTS" xml:space="preserve">
+    <value>No hay registros para mostrar</value>
+  </data>
+  <data name="TXT_NO_ACTIVO" xml:space="preserve">
+    <value>NO Activo</value>
+  </data>
+  <data name="TXT_OBSERVACIONES_SIN_OBS" xml:space="preserve">
+    <value>Sin Observaciones</value>
+  </data>
+  <data name="TXT_PRESTADORES_INFORMACION" xml:space="preserve">
+    <value>Información del Prestador</value>
+  </data>
+  <data name="TXT_PRESTADOR_ERROR" xml:space="preserve">
+    <value>Error: No se puede modificar el objeto. Es posible que otro usuario lo esté modificando en este momento. Intente en otro momento.</value>
+  </data>
+  <data name="TXT_PRESTADOR_SUCCESS" xml:space="preserve">
+    <value>Se ha cargado el Prestador {0} correctamente en el sistema</value>
+  </data>
+  <data name="TXT_RECORD_COUNT" xml:space="preserve">
+    <value>Registros</value>
+  </data>
+  <data name="TXT_SECCION_PERSONAL" xml:space="preserve">
+    <value>Datos Personales</value>
+  </data>
+  <data name="TXT_SECCION_POLIZA" xml:space="preserve">
+    <value>Datos de la Póliza</value>
+  </data>
+  <data name="TXT_SESSION_VEHICULO" xml:space="preserve">
+    <value>Datos del Vehículo</value>
+  </data>
+  <data name="TXT_SIN_CASOS" xml:space="preserve">
+    <value>No registra casos asignados</value>
+  </data>
+  <data name="TXT_SIN_DIRECCION" xml:space="preserve">
+    <value>Sin Direccion</value>
+  </data>
+  <data name="TXT_SUCC_AFILIADO_CREATE" xml:space="preserve">
+    <value>El Afiliado se ha creado correctamente en el sistema. ¿Agregar otro usuario?</value>
+  </data>
+  <data name="TXT_SUCC_AFILIADO_MODIF" xml:space="preserve">
+    <value>El Afiliado se ha modificado correctamente en el sistema.</value>
+  </data>
+  <data name="TXT_SUCC_CAMBIO_CLAVE" xml:space="preserve">
+    <value>La clave se ha cambiado correctamente. Debe iniciar sesión con la nuevas credenciales.</value>
+  </data>
+  <data name="TXT_SUCC_OPERADOR_CREATE" xml:space="preserve">
+    <value>El usuario se ha creado correctamente en el sistema. ¿Agregar otro usuario?</value>
+  </data>
+  <data name="TXT_SUCC_OPERADOR_MODIF" xml:space="preserve">
+    <value>El usuario se ha modificado correctamente en el sistema.</value>
+  </data>
+  <data name="TXT_SUCC_PRESTADOR_CREATE" xml:space="preserve">
+    <value>El Prestador se ha creado correctamente en el sistema. ¿Agregar otro Prestador?</value>
+  </data>
+  <data name="TXT_SUCC_PRESTADOR_MODIF" xml:space="preserve">
+    <value>El Prestador se ha modificado correctamente en el sistema.</value>
+  </data>
+  <data name="TXT_TOOL_TIP_AFILIADO_NO_ACTIVO" xml:space="preserve">
+    <value>El afiliado NO está activo.</value>
+  </data>
+  <data name="TXT_VALOR_NO_DISPONIBLE" xml:space="preserve">
+    <value>N/D</value>
+  </data>
+  <data name="TXT_VER_HUERFANOS" xml:space="preserve">
+    <value>Ver Registros Huerfanos</value>
+  </data>
+</root>
