@@ -110,6 +110,21 @@ namespace UI.InterAssist.Views
             this.CargarListado(this.Filtro, 1);
         }
 
+        List<Entities.InterAsisst.Afiliado> getListado(FiltroAfiliado filtro, out int totalRegistros)
+        {
+            List<Entities.InterAsisst.Afiliado> listaAfiliados = null;
+
+            if (this.rdbFindPatente.Checked)
+            {
+                filtro.Patente = filtro.Search;
+                listaAfiliados = Afiliado.ListByPatente(filtro, out totalRegistros);
+            }
+            else
+                listaAfiliados = Afiliado.List(filtro, out totalRegistros);
+
+            return listaAfiliados;
+        }
+
         public void CargarListado(FiltroAfiliado filtro, int pageNumber)
         {
             int totalRegistros;
@@ -118,7 +133,7 @@ namespace UI.InterAssist.Views
             filtro.IsPaged = true;
             filtro.StartRow = ((pageNumber - 1) * PAGE_SIZE) + 1;
 
-            List<Entities.InterAsisst.Afiliado> listaAfiliados = Afiliado.List((FiltroAfiliado)filtro, out totalRegistros);
+            List<Entities.InterAsisst.Afiliado> listaAfiliados = getListado((FiltroAfiliado)filtro, out totalRegistros);
 
             this.Filtro.FiltredRowsQtty = totalRegistros;
 

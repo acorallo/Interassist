@@ -21,6 +21,7 @@ namespace DAL.InterAssist
         private const string CONST_DELETE_PROCEDURE_NAME = "AFILIADO_PKG.DELETE_AFILIADO";
         private const string CONST_LIST_PROCEDURE_NAME = "AFILIADO_PKG.LIST_AFILIADO";
         private const string CONST_LIST_HUERFANOS_NAME = "AFILIADO_PKG.LIST_AFILIADO_HUEARFANO";
+        private const string CONST_LIST_BY_PATENTE = "AFILIADO_PKG.LIST_AFILIADO_BY_PATENTE";
 
 
         // Columnas
@@ -232,6 +233,31 @@ namespace DAL.InterAssist
             return ds;
 
         }
+
+        public System.Data.DataSet ListByPatente(Filter f, out int RecordCount)
+        {
+            DataSet ds = new DataSet();
+
+            try
+            {
+                FiltroAfiliado filtro = (FiltroAfiliado)f;
+
+                List<IDbDataParameter> paramList = new List<IDbDataParameter>();
+                DBRepository repository = DBRepository.GetDbRepository();
+
+                paramList.Add(repository.DbFactory.getDataParameter("P_PATENTE", DbType.String, filtro.Patente));
+
+                bool result = repository.ExecuteListProcedure(CONST_LIST_BY_PATENTE, paramList, f, ds, out RecordCount);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return ds;
+        }
+
 
         #endregion Metodos
     }

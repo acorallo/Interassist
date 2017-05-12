@@ -1,0 +1,129 @@
+﻿
+@model InterAssistMVC.Models.Provider
+
+@{
+ 
+    Layout = "~/Views/Shared/InterAssistLayout.cshtml";
+}
+
+<link href="~/Styles/InterassistUI.css" rel="stylesheet" />
+
+<style>
+
+
+.x-column-header {
+            font-weight: bold;
+            
+        }
+
+.x-grid-row .x-grid-cell {
+            font: 13px/18px tahoma,arial,verdana,sans-serif;
+        }
+
+</style>
+
+
+
+<h1 class="page-header">@ViewBag.Title</h1>
+
+    @if (ViewBag.CanCreateProviders)
+    {
+
+        <div>
+            <p><button type="button" class="btn btn-success" onclick="javascript:window.location('@Url.Action("Create", "Provider", null)')" data-toggle="tooltip" data-placement="top" title="Crear un nuevo proveedor en el sistema">Nuevo Prestador</button></p>
+        </div>
+    }
+        
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="fa fa-truck fa-fw"></i> @ViewBag.TableTitle
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table style="width: 100%">
+                <tr>
+                    <td>
+                        <table>
+                            <tr><td style="width: 100%">
+                                &nbsp;
+                                </td>
+                                <td>
+                                    <div class="form-group input-group">
+                                        <input type="text" class="form-control" style="width: 500px" placeholder="Buscar..." id="txtSearch">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" onclick="_onClickSearch()">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                            </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 100%">
+
+                        @(Html.X().ResourceManager())
+
+                        @(Html.X().GridPanel()
+                                .ID("GrdProviders")
+                                .Frame(false)
+                                .Height(450)
+                                .Store(
+                                    Html.X().StoreForModel()
+                                        .Proxy(Html.X().AjaxProxy()
+                                                    .Url(Url.Action("ListProviders"))
+                                            .Reader(Html.X().JsonReader().RootProperty("data"))
+                                        )
+                                        .RemoteSort(true)
+                                        .PageSize(10)
+                                        .SorterFor(Model, m => m.Nombre, Ext.Net.SortDirection.ASC)
+                                    
+                                )
+                                .ColumnModel(
+                                    Html.X().Column().DataIndex(Model, m => m.Id).Text("ID").Width(60),
+                                    Html.X().Column().DataIndex(Model, m => m.Nombre).Text("NOMBRE").Width(250),
+                                    Html.X().Column().DataIndex(Model, m => m.Pais).Text("PAIS"),
+                                    Html.X().Column().DataIndex(Model, m => m.Provincia).Text("PROVINCIA").Width(150),
+                                    Html.X().Column().DataIndex(Model, m => m.Ciudad).Text("CIUDAD"),
+                                    Html.X().Column().DataIndex(Model, m => m.Localidad).Text("LOCALIDAD").Width(200),
+                                    Html.X().Column().DataIndex(Model, m => m.Domicilio).Text("DOMICILIO").Width(200),
+                                    Html.X().Column().DataIndex(Model, m => m.Telefono).Text("TELEFONO").Width(200)
+                                    
+                                )
+                                .BottomBar(
+                                    Html.X().PagingToolbar()
+                                        .DisplayInfo(true)
+                                        .DisplayMsg("Mostrando Proveedores {0} - {1} of {2}")
+                                        .EmptyMsg(@ViewBag.NoRecords)
+                                )
+                        )
+
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="~/Scripts/InterassistUI.js"></script>
+
+<script>
+    function _onClickSearch()
+    {
+        var textToSearch = $("#txtSearch").val();
+        var store = App.GrdProviders.getStore();
+        store.load({ params: { paramWideSearch: textToSearch } });
+        
+    }
+</script>

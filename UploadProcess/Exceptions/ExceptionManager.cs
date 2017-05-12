@@ -32,7 +32,7 @@ namespace UploadProcess.Exceptions
         public static void TrackError(System.Exception ex)
         {
             string errTxt = "Exception: {0}. Erromsg{1}";
-            CheckEventLogEntry();
+               CheckEventLogEntry();
             EventLog.WriteEntry(sSource, string.Format(errTxt, ex.ToString(), ex.Message), EventLogEntryType.Error);
         }
 

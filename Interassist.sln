@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.InterAssist", "Utils.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.ConsoleTest", "UI.ConsoleTest\UI.ConsoleTest.csproj", "{4F13F111-3C53-4F4C-9E75-377D2D7CD61D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.InterAssistMVC", "UI.InterAssistMVC\UI.InterAssistMVC.csproj", "{8F5C1F78-1F86-4CAD-A70A-19B10F831992}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterAssistMVC", "InterAssistMVC\InterAssistMVC.csproj", "{8F5C1F78-1F86-4CAD-A70A-19B10F831992}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

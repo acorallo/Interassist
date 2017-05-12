@@ -52,9 +52,6 @@ namespace UploadProcess.Entities
 
         #endregion Miembros
 
-
-        
-
         public static void Start()
         {
             Running = true;

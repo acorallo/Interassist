@@ -31,6 +31,24 @@ namespace UI.InterAssist.Views {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
+        /// rdbFindPatente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbFindPatente;
+        
+        /// <summary>
+        /// rdbFindTodos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbFindTodos;
+        
+        /// <summary>
         /// txtSearch control.
         /// </summary>
         /// <remarks>

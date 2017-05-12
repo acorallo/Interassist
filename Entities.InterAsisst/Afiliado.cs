@@ -213,7 +213,33 @@ namespace Entities.InterAsisst
             return List(f, out r);
         }
 
-       
+        public static List<Afiliado> ListByPatente(FiltroAfiliado f, out int RecordCount)
+        {
+            List<Afiliado> resultList = new List<Afiliado>();
+
+            try
+            {
+                AfiliadoDS dataservice = new AfiliadoDS();
+                DataSet ds = dataservice.ListByPatente(f, out RecordCount);
+
+                if (ds.Tables.Count > 0)
+                {
+                    foreach (DataRow r in ds.Tables[0].Rows)
+                    {
+                        Afiliado a = new Afiliado();
+                        ORM(a, r);
+                        resultList.Add(a);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return resultList;
+        }
 
         public static List<Afiliado> List(FiltroAfiliado f, out int RecordCount)
         {

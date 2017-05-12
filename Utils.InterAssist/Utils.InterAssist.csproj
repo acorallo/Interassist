@@ -58,6 +58,7 @@
     <Compile Include="FiltroTipoServicio.cs" />
     <Compile Include="FiltroUpload.cs" />
     <Compile Include="FiltroUploadError.cs" />
+    <Compile Include="Json.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +66,17 @@
       <Project>{BB0E3E7E-6030-4477-B030-320B3060F3A7}</Project>
       <Name>Cognitas.Framework.Repository</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

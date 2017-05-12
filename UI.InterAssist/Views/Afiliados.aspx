@@ -52,13 +52,16 @@
     <table class="style1">
         <tr>
             <td class="style3" align="right">
-                        <asp:TextBox ID="txtSearch" runat="server" MaxLength="255" 
-                    Width="250px"></asp:TextBox>
-                        &nbsp;<asp:Button ID="btnBuscar" runat="server" 
-                    onclick="btnBuscar_Click" />
-                        &nbsp;<asp:Button ID="btnFreeSeacrh" runat="server" 
-                            onclick="btnFreeSeacrh_Click" />
+                        <asp:RadioButton ID="rdbFindPatente" runat="server" Checked="True" GroupName="busqueda" Text=" Patente" />
+                        <asp:RadioButton ID="rdbFindTodos" runat="server" GroupName="busqueda" Text=" Todos" />
                     </td>
+        </tr>
+            <tr>
+                <td align="right" class="style3">
+                    <asp:TextBox ID="txtSearch" runat="server" MaxLength="255" Width="250px"></asp:TextBox>
+                    &nbsp;<asp:Button ID="btnBuscar" runat="server" onclick="btnBuscar_Click" />
+                    &nbsp;<asp:Button ID="btnFreeSeacrh" runat="server" onclick="btnFreeSeacrh_Click" />
+                </td>
         </tr>
             <div id="divListado" runat="server">
         <tr>
@@ -128,6 +131,7 @@
             </td>
         </tr>
     </table>
+
     </ContentTemplate>
     </asp:UpdatePanel>
     <script type="text/javascript">
