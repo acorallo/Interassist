@@ -20,6 +20,9 @@ namespace InterAssistMVC.Controllers
         public ActionResult Index()
         {
            
+            // Este es el metodo principal.
+
+
             if (!UISecurityManager.HasAccessTo(UISecurityManager.PROVIDER_LIST_KEY))
                 return View(IAController.ACCESS_DENY_VIEW);
 
