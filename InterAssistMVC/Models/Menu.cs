@@ -49,7 +49,10 @@ namespace InterAssistMVC.Models
             MenuItem itemCasos = new MenuItem();
             itemCasos.Text = "Casos";
             itemCasos.BootstrapIcon = "fa fa-ambulance fa-fw";
-            itemCasos.Action = "Case";
+            // EGV 14May2017 Inicio
+            //itemCasos.Action = "Case";
+            itemCasos.Action = "/Case";
+            // EGV 14May2017 Fin
             resultMenu.Items.Add(itemCasos);
             
             // Datos
