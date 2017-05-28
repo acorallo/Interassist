@@ -14,7 +14,7 @@
   <xs:element name="Ticket_Prestador" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Ticket_Prestador" msprop:Generator_UserDSName="Ticket_Prestador">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="TICKET_PRESTADORES" msprop:Generator_TableClassName="TICKET_PRESTADORESDataTable" msprop:Generator_TableVarName="tableTICKET_PRESTADORES" msprop:Generator_TablePropName="TICKET_PRESTADORES" msprop:Generator_RowDeletingName="TICKET_PRESTADORESRowDeleting" msprop:Generator_RowChangingName="TICKET_PRESTADORESRowChanging" msprop:Generator_RowEvHandlerName="TICKET_PRESTADORESRowChangeEventHandler" msprop:Generator_RowDeletedName="TICKET_PRESTADORESRowDeleted" msprop:Generator_UserTableName="TICKET_PRESTADORES" msprop:Generator_RowChangedName="TICKET_PRESTADORESRowChanged" msprop:Generator_RowEvArgName="TICKET_PRESTADORESRowChangeEvent" msprop:Generator_RowClassName="TICKET_PRESTADORESRow">
+        <xs:element name="TICKET_PRESTADORES" msprop:Generator_TableClassName="TICKET_PRESTADORESDataTable" msprop:Generator_TableVarName="tableTICKET_PRESTADORES" msprop:Generator_RowChangedName="TICKET_PRESTADORESRowChanged" msprop:Generator_TablePropName="TICKET_PRESTADORES" msprop:Generator_RowDeletingName="TICKET_PRESTADORESRowDeleting" msprop:Generator_RowChangingName="TICKET_PRESTADORESRowChanging" msprop:Generator_RowEvHandlerName="TICKET_PRESTADORESRowChangeEventHandler" msprop:Generator_RowDeletedName="TICKET_PRESTADORESRowDeleted" msprop:Generator_RowClassName="TICKET_PRESTADORESRow" msprop:Generator_UserTableName="TICKET_PRESTADORES" msprop:Generator_RowEvArgName="TICKET_PRESTADORESRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IDTICKETPRESTADOR" msprop:Generator_ColumnVarNameInTable="columnIDTICKETPRESTADOR" msprop:Generator_ColumnPropNameInRow="IDTICKETPRESTADOR" msprop:Generator_ColumnPropNameInTable="IDTICKETPRESTADORColumn" msprop:Generator_UserColumnName="IDTICKETPRESTADOR" type="xs:int" minOccurs="0" />
@@ -38,6 +38,52 @@
               <xs:element name="PERSISTOPERATION" msprop:Generator_ColumnVarNameInTable="columnPERSISTOPERATION" msprop:Generator_ColumnPropNameInRow="PERSISTOPERATION" msprop:Generator_ColumnPropNameInTable="PERSISTOPERATIONColumn" msprop:Generator_UserColumnName="PERSISTOPERATION" type="xs:int" minOccurs="0" />
               <xs:element name="KILOMETROS" msprop:Generator_ColumnVarNameInTable="columnKILOMETROS" msprop:Generator_ColumnPropNameInRow="KILOMETROS" msprop:Generator_ColumnPropNameInTable="KILOMETROSColumn" msprop:Generator_UserColumnName="KILOMETROS" type="xs:decimal" minOccurs="0" />
               <xs:element name="COSTO" msprop:Generator_ColumnVarNameInTable="columnCOSTO" msprop:Generator_ColumnPropNameInRow="COSTO" msprop:Generator_ColumnPropNameInTable="COSTOColumn" msprop:Generator_UserColumnName="COSTO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="IDPROBLEMA" msprop:Generator_ColumnVarNameInTable="columnIDPROBLEMA" msprop:Generator_ColumnPropNameInRow="IDPROBLEMA" msprop:Generator_ColumnPropNameInTable="IDPROBLEMAColumn" msprop:Generator_UserColumnName="IDPROBLEMA" type="xs:int" minOccurs="0" />
+              <xs:element name="IDPAIS_ORIGEN" msprop:Generator_ColumnVarNameInTable="columnIDPAIS_ORIGEN" msprop:Generator_ColumnPropNameInRow="IDPAIS_ORIGEN" msprop:Generator_ColumnPropNameInTable="IDPAIS_ORIGENColumn" msprop:Generator_UserColumnName="IDPAIS_ORIGEN" type="xs:int" minOccurs="0" />
+              <xs:element name="IDPAIS_DESTINO" msprop:Generator_ColumnVarNameInTable="columnIDPAIS_DESTINO" msprop:Generator_ColumnPropNameInRow="IDPAIS_DESTINO" msprop:Generator_ColumnPropNameInTable="IDPAIS_DESTINOColumn" msprop:Generator_UserColumnName="IDPAIS_DESTINO" type="xs:int" minOccurs="0" />
+              <xs:element name="IDPROVINCIA_ORIGEN" msprop:Generator_ColumnVarNameInTable="columnIDPROVINCIA_ORIGEN" msprop:Generator_ColumnPropNameInRow="IDPROVINCIA_ORIGEN" msprop:Generator_ColumnPropNameInTable="IDPROVINCIA_ORIGENColumn" msprop:Generator_UserColumnName="IDPROVINCIA_ORIGEN" type="xs:int" minOccurs="0" />
+              <xs:element name="IDPROVINCIA_DESTINO" msprop:Generator_ColumnVarNameInTable="columnIDPROVINCIA_DESTINO" msprop:Generator_ColumnPropNameInRow="IDPROVINCIA_DESTINO" msprop:Generator_ColumnPropNameInTable="IDPROVINCIA_DESTINOColumn" msprop:Generator_UserColumnName="IDPROVINCIA_DESTINO" type="xs:int" minOccurs="0" />
+              <xs:element name="IDCIUDAD_ORIGEN" msprop:Generator_ColumnVarNameInTable="columnIDCIUDAD_ORIGEN" msprop:Generator_ColumnPropNameInRow="IDCIUDAD_ORIGEN" msprop:Generator_ColumnPropNameInTable="IDCIUDAD_ORIGENColumn" msprop:Generator_UserColumnName="IDCIUDAD_ORIGEN" type="xs:int" minOccurs="0" />
+              <xs:element name="IDCIUDAD_DESTINO" msprop:Generator_ColumnVarNameInTable="columnIDCIUDAD_DESTINO" msprop:Generator_ColumnPropNameInRow="IDCIUDAD_DESTINO" msprop:Generator_ColumnPropNameInTable="IDCIUDAD_DESTINOColumn" msprop:Generator_UserColumnName="IDCIUDAD_DESTINO" type="xs:int" minOccurs="0" />
+              <xs:element name="CALLE_ORIGEN" msprop:Generator_ColumnVarNameInTable="columnCALLE_ORIGEN" msprop:Generator_ColumnPropNameInRow="CALLE_ORIGEN" msprop:Generator_ColumnPropNameInTable="CALLE_ORIGENColumn" msprop:Generator_UserColumnName="CALLE_ORIGEN" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1024" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDLOCALIDAD_ORIGEN" msprop:Generator_ColumnVarNameInTable="columnIDLOCALIDAD_ORIGEN" msprop:Generator_ColumnPropNameInRow="IDLOCALIDAD_ORIGEN" msprop:Generator_ColumnPropNameInTable="IDLOCALIDAD_ORIGENColumn" msprop:Generator_UserColumnName="IDLOCALIDAD_ORIGEN" type="xs:int" minOccurs="0" />
+              <xs:element name="IDLOCALIDAD_DESTINO" msprop:Generator_ColumnVarNameInTable="columnIDLOCALIDAD_DESTINO" msprop:Generator_ColumnPropNameInRow="IDLOCALIDAD_DESTINO" msprop:Generator_ColumnPropNameInTable="IDLOCALIDAD_DESTINOColumn" msprop:Generator_UserColumnName="IDLOCALIDAD_DESTINO" type="xs:int" minOccurs="0" />
+              <xs:element name="CALLE_DESTINO" msprop:Generator_ColumnVarNameInTable="columnCALLE_DESTINO" msprop:Generator_ColumnPropNameInRow="CALLE_DESTINO" msprop:Generator_ColumnPropNameInTable="CALLE_DESTINOColumn" msprop:Generator_UserColumnName="CALLE_DESTINO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1024" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDESTADO" msprop:Generator_ColumnVarNameInTable="columnIDESTADO" msprop:Generator_ColumnPropNameInRow="IDESTADO" msprop:Generator_ColumnPropNameInTable="IDESTADOColumn" msprop:Generator_UserColumnName="IDESTADO" type="xs:int" minOccurs="0" />
+              <xs:element name="IDTICKETPRESTADOR_RETRABAJO" msprop:Generator_ColumnVarNameInTable="columnIDTICKETPRESTADOR_RETRABAJO" msprop:Generator_ColumnPropNameInRow="IDTICKETPRESTADOR_RETRABAJO" msprop:Generator_ColumnPropNameInTable="IDTICKETPRESTADOR_RETRABAJOColumn" msprop:Generator_UserColumnName="IDTICKETPRESTADOR_RETRABAJO" type="xs:int" minOccurs="0" />
+              <xs:element name="DEMORA" msprop:Generator_ColumnVarNameInTable="columnDEMORA" msprop:Generator_ColumnPropNameInRow="DEMORA" msprop:Generator_ColumnPropNameInTable="DEMORAColumn" msprop:Generator_UserColumnName="DEMORA" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PATENTE" msprop:Generator_ColumnVarNameInTable="columnPATENTE" msprop:Generator_ColumnPropNameInRow="PATENTE" msprop:Generator_ColumnPropNameInTable="PATENTEColumn" msprop:Generator_UserColumnName="PATENTE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NOMBRE_CHOFER" msprop:Generator_ColumnVarNameInTable="columnNOMBRE_CHOFER" msprop:Generator_ColumnPropNameInRow="NOMBRE_CHOFER" msprop:Generator_ColumnPropNameInTable="NOMBRE_CHOFERColumn" msprop:Generator_UserColumnName="NOMBRE_CHOFER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

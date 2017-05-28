@@ -143,8 +143,12 @@
     <Compile Include="Controllers\IAController.cs" />
     <Compile Include="Controllers\ProviderController.cs" />
     <Compile Include="Helper\Html.cs" />
+    <Compile Include="Models\AfiliadoModel.cs" />
+    <Compile Include="Models\Case.cs" />
     <Compile Include="Models\Companies.cs" />
     <Compile Include="Models\ExtNetModel.cs" />
+    <Compile Include="Models\Observacion.cs" />
+    <Compile Include="Models\Prestacion.cs" />
     <Compile Include="Models\Provider.cs" />
     <Compile Include="Resource.Designer.cs">
       <DependentUpon>Resource.resx</DependentUpon>
@@ -172,7 +176,6 @@
     <Content Include="App_Readme\Ext.NET\LICENSE" />
     <Content Include="App_Readme\Ext.NET\CHANGELOG.md" />
     <Content Include="Views\Default\Index.cshtml" />
-    <Content Include="Views\Case\Create.cshtml" />
     <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.css.map" />
     <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.min.css.map" />
     <Content Include="bower_components\bootstrap\dist\css\bootstrap.css.map" />
@@ -215,6 +218,7 @@
     <Content Include="bower_components\font-awesome\scss\_stacked.scss" />
     <Content Include="bower_components\font-awesome\scss\_variables.scss" />
     <Content Include="bower_components\metisMenu\dist\metisMenu.js.map" />
+    <Content Include="Views\Case\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

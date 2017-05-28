@@ -81,6 +81,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Empresas.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Datasets\Estados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Estados.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Datasets\Localidades.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -129,6 +134,7 @@
       <DependentUpon>Ticket_Prestador.xsd</DependentUpon>
     </Compile>
     <Compile Include="EmpresaDS.cs" />
+    <Compile Include="EstadoDS.cs" />
     <Compile Include="LocalidadDS.cs" />
     <Compile Include="ObservacionDS.cs" />
     <Compile Include="OperadorDS.cs" />
@@ -222,6 +228,17 @@
     <None Include="Datasets\Empresas.xss">
       <DependentUpon>Empresas.xsd</DependentUpon>
     </None>
+    <None Include="Datasets\Estados.xsc">
+      <DependentUpon>Estados.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Estados.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Estados.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Estados.xss">
+      <DependentUpon>Estados.xsd</DependentUpon>
+    </None>
     <None Include="Datasets\Localidades.xsc">
       <DependentUpon>Localidades.xsd</DependentUpon>
     </None>
@@ -299,7 +316,6 @@
     <None Include="Datasets\Ticket_Prestador.xss">
       <DependentUpon>Ticket_Prestador.xsd</DependentUpon>
     </None>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

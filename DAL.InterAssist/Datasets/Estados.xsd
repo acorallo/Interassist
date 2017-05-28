@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Estados" targetNamespace="http://tempuri.org/Estados.xsd" xmlns:mstns="http://tempuri.org/Estados.xsd" xmlns="http://tempuri.org/Estados.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Estados" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Estados" msprop:Generator_UserDSName="Estados">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ESTADOS" msprop:Generator_TableClassName="ESTADOSDataTable" msprop:Generator_TableVarName="tableESTADOS" msprop:Generator_TablePropName="ESTADOS" msprop:Generator_RowDeletingName="ESTADOSRowDeleting" msprop:Generator_RowChangingName="ESTADOSRowChanging" msprop:Generator_RowEvHandlerName="ESTADOSRowChangeEventHandler" msprop:Generator_RowDeletedName="ESTADOSRowDeleted" msprop:Generator_UserTableName="ESTADOS" msprop:Generator_RowChangedName="ESTADOSRowChanged" msprop:Generator_RowEvArgName="ESTADOSRowChangeEvent" msprop:Generator_RowClassName="ESTADOSRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDESTADO" msprop:Generator_ColumnVarNameInTable="columnIDESTADO" msprop:Generator_ColumnPropNameInRow="IDESTADO" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInTable="IDESTADOColumn" msprop:Generator_UserColumnName="IDESTADO" type="xs:int" minOccurs="0" />
+              <xs:element name="DESCRIPCION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPCION" msprop:Generator_ColumnPropNameInRow="DESCRIPCION" msprop:Generator_ColumnPropNameInTable="DESCRIPCIONColumn" msprop:Generator_UserColumnName="DESCRIPCION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GRUPO" msprop:Generator_ColumnVarNameInTable="columnGRUPO" msprop:Generator_ColumnPropNameInRow="GRUPO" msprop:Generator_ColumnPropNameInTable="GRUPOColumn" msprop:Generator_UserColumnName="GRUPO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

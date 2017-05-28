@@ -38,6 +38,13 @@ namespace InterAssistMVC.Utils
             return result;
         }
 
+        // EGV 22May2017 Inicio
+        public static int GetOperador()
+        {
+            return 25;
+        }
+        // EGV 22May2017 Fin
+
         /// <summary>
         /// Verify whether the user has access to specific key
         /// </summary>

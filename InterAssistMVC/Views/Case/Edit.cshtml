@@ -1,0 +1,355 @@
+﻿@model InterAssistMVC.Models.Case
+
+@{
+    /*** EGV 25May2017 Creación de Archivo para la Vista de Edición de Casos ***/
+    ViewBag.Title = "Caso";
+    Layout = "~/Views/Shared/InterAssistLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <h1 class="page-header">@ViewBag.Title</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="form-group">
+                        <div class="col-lg-3"><label>Número de Caso:</label></div>
+                        <div class="col-lg-2"><span class="form-control-static">@Html.DisplayFor(model => model.Id)</span></div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-2"><p class="form-control-static">Vehículo</p></div>
+                        @{
+    if (Model.IdEstado != 4)
+    {
+        <div class="col-lg-2"><p class="form-control-static">@Html.DisplayFor(model => model.Patente)</p></div>
+                            <div class="col-lg-5"><p class="form-control-static">@Html.DisplayFor(model => model.NombreAfiliado)</p></div>
+    }
+    else
+    {
+        <div class="col-lg-1"><p class="form-control-static">Afiliado</p></div>
+                                    <!--div class="col-lg-6"><input type="text" class="form-control" id="busq-afil"/></div-->
+                            <div class="col-lg-6">
+                                @(Html.X().ComboBox()
+                                            .DisplayField("PatenteApeYNom")
+                                            .ValueField("DatosAfiliado")
+                                            .TypeAhead(false)
+                                            .Value(Model.Afiliado != null ? Model.Afiliado.PatenteApeYNom : null)
+            //.Width(new System.Web.UI.WebControls.Unit(100,System.Web.UI.WebControls.UnitType.Percentage))
+                                            .Width(400)
+                                            .PageSize(10)
+                                            .HideTrigger(true)
+                                            .MinChars(2)
+                                            .TriggerAction(TriggerAction.Query)
+                                            .ListConfig(Html.X().BoundList()
+                                                .LoadingText("Buscando...")
+                                                .ItemTpl(Html.X().XTemplate()
+                                                    .Html(@<text>
+                                                    <div class="search-item">
+                                                        <strong>{PatenteApeYNom}</strong><br />
+                                                        {Id} {Poliza} {NombreEmpresa} {NombreCategoria} {Documento}
+                                                    </div>
+                                                    </text>
+                        )
+                    )
+                )
+                .Listeners(ls => ls.Select.Handler = "EligeAfiliado(item);")
+                .Store(Html.X().Store()
+                    .AutoLoad(false)
+                    .Proxy(Html.X().AjaxProxy()
+                        .Url(Url.Action("TraeAfiliados"))
+                        .ActionMethods(af => af.Read = HttpMethod.POST)
+                        .Reader(Html.X().JsonReader().RootProperty("data"))
+                    )
+                    .Model(Html.X().Model()
+                        .Fields(
+                            Html.X().ModelField().Name("Id"),
+                            Html.X().ModelField().Name("Patente"),
+                            Html.X().ModelField().Name("ApellidoYNombre"),
+                            Html.X().ModelField().Name("NombreEmpresa"),
+                            Html.X().ModelField().Name("NombreCategoria"),
+                            Html.X().ModelField().Name("Poliza"),
+                            Html.X().ModelField().Name("Documento"),
+                            Html.X().ModelField().Name("DatosAfiliado")
+                        )
+                    )
+                )
+                                )
+                            </div>
+    }
+                        }
+                        <div>@Html.HiddenFor(model => model.IdAfiliado, new { htmlAttributes = new { id = "idAfiliado" } })</div>
+                        <div class="col-lg-3">@Html.DropDownListFor(model => model.IdEstado, Model.CaseEstados, new { @class = "form-control" })</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel-body">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" style="margin-bottom:10px;">
+                                    <li class="active">
+                                        <a href="#afiliado" data-toggle="tab" aria-expanded="false">Afiliado</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#ubicacion" data-toggle="tab" aria-expanded="false">Ubicación</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#prestaciones" data-toggle="tab" aria-expanded="true">Prestaciones</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#modificaciones" data-toggle="tab" aria-expanded="false">Modificaciones</a>
+                                    </li>
+                                </ul>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane fade active in" id="afiliado">
+                                        <!--div class="row">
+                                            <div class="col-lg-2"><p class="form-control-static">Patente:</p></div>
+                                            <div class="col-lg-2"><input type="text" class="form-control" value="ETF144" /></div>
+                                        </div-->
+                                        <div class="row">
+                                            <div class="col-lg-8">@Html.EditorFor(model => model.NombreAfiliado, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Nombre y Apellido", @disabled = "disabled", @id = "ApyNom" } })@Html.HiddenFor(model => model.Afiliado.Nombre)@Html.HiddenFor(model => model.Afiliado.Apellido)</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Documento, new { htmlAttributes = new { @class = "form-control", @placeholder = "Documento", @disabled = "disabled", @id = "Doc" } })</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-8">@Html.EditorFor(model => model.Afiliado.Direccion, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Dirección: calle número, localidad, provincia", @disabled = "disabled", @id = "Dir" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.CodigoPostal, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese CP", @disabled = "disabled", @id = "cp" } })</div>
+                                        </div>
+                                        <div class="row">
+                                            <h4 class="col-lg-12">Póliza</h4>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Poliza, new { htmlAttributes = new { @class = "form-control", @placeholder = "Número", @disabled = "disabled", @id = "pol" } })</div>
+                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.NombreEmpresa, new { htmlAttributes = new { @class = "form-control", @placeholder = "Compañía", @disabled = "disabled", @id = "cia" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.FechaDesde, new { htmlAttributes = new { @class = "form-control", @placeholder = "dd/mm/yyyy", @disabled = "disabled", @id = "fd" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.FechaHasta, new { htmlAttributes = new { @class = "form-control", @placeholder = "dd/mm/yyyy", @disabled = "disabled", @id = "fh" } })</div>
+                                            <div class="col-lg-3"><div class="checkbox"><label><input type="checkbox" disabled />Vigente</label></div></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4"><input type="text" class="form-control" value="" placeholder="Tipo Poliza" disabled /></div>
+                                            <div class="col-lg-4"><input type="text" class="form-control" value="" placeholder="Sub Tipo de Póliza" disabled /></div>
+                                        </div>
+                                        <div class="row">
+                                            <h4 class="col-lg-12">Vehículo</h4>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Patente, new { htmlAttributes = new { @class = "form-control", @placeholder = "Patente", @disabled = "disabled", @id = "pat" } })</div>
+                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.Marca, new { htmlAttributes = new { @class = "form-control", @placeholder = "Marca", @disabled = "disabled", @id = "marca" } })</div>
+                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.Modelo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Modelo", @disabled = "disabled", @id = "mod" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Color, new { htmlAttributes = new { @class = "form-control", @placeholder = "Color", @disabled = "disabled", @id = "col" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Anio, new { htmlAttributes = new { @class = "form-control", @placeholder = "Año", @disabled = "disabled", @id = "anio" } })</div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="ubicacion">
+                                        <div class="row"></div>
+                                        <div class="row">
+                                            <div class="col-lg-12"><label>Origen:</label>@Html.EditorFor(model => model.UbicacionOrigen, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Dirección: calle número, localidad, provincia" } })@Html.HiddenFor(model => model.CalleOrigen)@Html.HiddenFor(model => model.IdLocalidadOrigen)@Html.HiddenFor(model => model.IdCiudadOrigen)@Html.HiddenFor(model => model.IdProvinciaOrigen)@Html.HiddenFor(model => model.IdPaisOrigen)</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12"><label>Destino:</label>@Html.EditorFor(model => model.UbicacionDestino, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Dirección: calle número, localidad, provincia" } })@Html.HiddenFor(model => model.CalleDestino)@Html.HiddenFor(model => model.IdLocalidadDestino)@Html.HiddenFor(model => model.IdCiudadDestino)@Html.HiddenFor(model => model.IdProvinciaDestino)@Html.HiddenFor(model => model.IdPaisDestino)</div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="prestaciones">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <p><button id="btnPrestacionAgregar" type="button" class="btn btn-success" onclick="" data-toggle="modal" data-target="#modalPrestacion" data-placement="top" title="Agregar Prestación">Nueva Prestación</button></p>
+
+                                                <div class="modal fade" id="modalPrestacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                    <div class="modal-dialog" style="width:80%">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                <h4 class="modal-title" id="myModalLabel">Prestaciones</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-lg-3"><label>Tipo:</label>@Html.DropDownList("prestacionTipoServicio", Model.TiposServicio, new { @class = "form-control", @id = "prestacionTipoServicio" })</div>
+                                                                    <div class="col-lg-3"><label>Problema:</label>@Html.DropDownList("prestacionProblema", Model.Problemas, new { @class = "form-control", @id = "prestacionProblema" })</div>
+                                                                    <div class="col-lg-3"><label>Estado:</label>@Html.DropDownList("prestEstados", Model.PrestacionEstados, new { @class = "form-control", @id = "prestacionProblema" })</div>
+                                                                    <div class="col-lg-3"><label>Retrabajo:</label>@Html.DropDownList("prestacionRetrabajo", Model.PrestacionesRetrabajo, new { @class = "form-control", @id = "prestacionRetrabajo" })</div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6"><label>Detalles:</label><textarea class="form-control" id="prestacionDetalles" rows="4" style="margin: 0px -3.83333px 0px 0px; width: 100%; height: 150px;"></textarea></div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12"><label>Prestador:</label><div class="form-group input-group"><input type="text" class="form-control"><span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span></div></div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6"><label>Demora:</label><input type="text" id="prestacionDemora" class="form-control"></div>
+                                                                            <div class="col-lg-6"><label>Patente:</label><input type="text" id="prestacionPatente" class="form-control"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6"><label>Origen:</label><input type="text" class="form-control" placeholder="Ingrese Dirección: calle número, localidad, provincia" /></div>
+                                                                    <div class="col-lg-6"><label>Nombre conductor de Grúa:</label><input type="text" id="prestacionNombreChofer" class="form-control"></div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6"><label>Destino:</label><input type="text" class="form-control" placeholder="Ingrese Dirección: calle número, localidad, provincia" /></div>
+                                                                    <div class="col-lg-6"><label>Kilómetros:</label><input type="text" id="prestacionKilometros" class="form-control"></div>
+                                                                </div>
+                                                                <div class="row">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="AceptarPrestacion();">Aceptar</button>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.modal-content -->
+                                                    </div>
+                                                    <!-- /.modal-dialog -->
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="panel-body">
+                                                    @(Html.X().ResourceManager())
+                                                    @(Html.X().GridPanel()
+                                                                .Title("Prestaciones")
+                                                                .ID("GrdPrestaciones")
+                                                                .Width(800)
+        //.ForceFit(true)
+                                                                .Height(350)
+                                                                .Store(Html.X().StoreForModel().DataSource(Model.Prestaciones)
+                                                                )
+                                                                .ColumnModel(
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.Id).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.NombrePrestador).ToBuilder<Column.Builder>().Width(300).Text("Prestador"),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.DescripcionServicio).ToBuilder<Column.Builder>().Width(300).Text("Servicio"),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.IdProblema).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.IdPrestador).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.IdTipoServicio).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.Comentarios).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.Kilometros).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.Costo).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.IdPaisOrigen).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.IdPaisDestino).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.IdProvinciaOrigen).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.IdProvinciaDestino).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.IdCiudadOrigen).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.IdCiudadDestino).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.CalleOrigen).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.IdLocalidadOrigen).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.IdLocalidadDestino).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.CalleDestino).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.IdEstado).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.IdTicketPrestadorRetrabajo).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.Demora).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.Patente).ToBuilder<Column.Builder>().Hidden(true),
+                                                                    Html.X().ColumnFor(Model.Prestaciones, x => x.NombreChofer).ToBuilder<Column.Builder>().Hidden(true)
+                                                                )
+                                                                .Listeners(ls => ls.RowDblClick.Handler = "ModificarPrestacion(record.data);")
+                                                                .Buttons(
+                                                                        Html.X().Button().Text("Agregar")
+                                                                            .Icon(Icon.Add)
+                                                                            .Listeners(ls => ls.Click.Handler = "this.addRecord();")
+                                                                )
+                                                    )
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="modificaciones">
+                                        <p>Grilla con las Fechas-Horas, Operador y Estado del Ticket, de todas las veces que se grabó el ticket</p>
+                                        <p>De solo visualización</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row botonera">
+                    <div class="col-lg-12">
+                        <input type="submit" value="Grabar" class="btn btn-primary" style="float:right;margin-right:20px;" />
+                        <input type="button" value="Cancelar" class="btn btn-default" onclick="javascript: window.location.assign('@Url.Action("Index", "Case", null)')" style="float:right;margin-right:20px;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var gridPrestacion;
+        var gridPrestacionRow;
+        var prestacionAceptar = false;
+        var accionPrestacion = "N";
+
+        function EligeAfiliado(item) {
+            if (item != undefined && item != null) {
+                var a = JSON.parse(item.value);
+                $('input#IdAfiliado').val(a.Id);
+                $('input#ApyNom').val(a.ApyNom);
+                $('input#Doc').val(a.Doc);
+                $('input#Dir').val(a.Dir);
+                $('input#cp').val(a.cp);
+                $('input#pol').val(a.pol);
+                $('input#cia').val(a.cia);
+                $('input#fd').val(a.fd);
+                $('input#fh').val(a.fh);
+                $('input#tp').val(a.tp);
+                $('input#sp').val(a.sp);
+                $('input#pat').val(a.pat);
+                $('input#marca').val(a.marca);
+                $('input#mod').val(a.mod);
+                $('input#col').val(a.col);
+                $('input#anio').val(a.anio);
+            }
+        }
+
+        function AgregarPrestacion(grid) {
+            prestacionAceptar = false;
+            accionPrestacion = "A";
+            gridPrestacion = grid;
+            //grid.store.insert(1,{NombrePrestador : "Pepe",DescripcionServicio: "Servicio",IdProblema : "200"})
+        }
+
+        function ModificarPrestacion(data) {
+            $('#prestacionTipoServicio').val(data.IdTipoServicio);
+            $('#prestacionProblema').val(data.IdProblema);
+            $('#prestacionEstado').val(data.IdEstado);
+            $('#prestacionRetrabajo').val(data.IdTicketPrestadorRetrabajo);
+            $("#prestacionDetalles").val(data.Comentarios);
+            $('#prestacionDemora').val(data.Demora);
+            $('#prestacionPatente').val(data.Patente);
+            $('#prestacionNombreChofer').val(data.NombreChofer);
+            $('#prestacionKilometros').val(data.Kilometros);
+            prestacionAceptar = false;
+            accionPrestacion = "U";
+            gridPrestacionRow = data;
+            $('button#btnPrestacionAgregar').click();
+        }
+
+        function AceptarPrestacion() {
+            prestacionAceptar = true;
+            if (accionPrestacion == "U") {
+
+                gridPrestacionRow.IdTipoServicio = $('#prestacionTipoServicio').val();
+                gridPrestacionRow.IdProblema = $('#prestacionProblema').val();
+                gridPrestacionRow.IdEstado = $('#prestacionEstado').val();
+                gridPrestacionRow.IdTicketPrestadorRetrabajo = $('#prestacionRetrabajo').val();
+                gridPrestacionRow.Comentarios = $("#prestacionDetalles").val();
+                gridPrestacionRow.Demora = $('#prestacionDemora').val();
+                gridPrestacionRow.Patente = $('#prestacionPatente').val();
+                gridPrestacionRow.NombreChofer = $('#prestacionNombreChofer').val();
+                gridPrestacionRow.Kilometros = $('#prestacionKilometros').val();
+
+            }
+        }
+    </script>
+
+}
+
+
+
+

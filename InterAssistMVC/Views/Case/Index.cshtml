@@ -1,5 +1,7 @@
-﻿@{ 
- /* EGV 14May2017
+﻿@model InterAssistMVC.Models.Case
+
+@{
+    /* EGV 14May2017
   InterAssist: Página para la Búsqueda/Consulta/Edición o Alta de Casos.
   Botón de alta redirecciona a la página de Alta.
   Filtro de búsqueda con botón, al presionarlo se completa la grilla con el resultado de búsqueda.
@@ -29,7 +31,7 @@
 @if (true)// esteban crear CanCreateCases (ViewBag.CanCreateProviders)
 {
     <div>
-        <p><button type="button" class="btn btn-success" onclick="javascript:window.location.assign('@Url.Action("Create", "Case", null)')" data-toggle="tooltip" data-placement="top" title="Crear un nuevo caso en el sistema">Nuevo Caso</button></p>
+        <p><button type="button" class="btn btn-success" onclick="javascript:window.location.assign('@Url.Action("Create", "Case")')" data-toggle="tooltip" data-placement="top" title="Crear un nuevo caso en el sistema">Nuevo Caso</button></p>
     </div>
 }
 
@@ -71,28 +73,33 @@
                                 .Height(450)
                                 .Store(
                                     Html.X().StoreForModel()
-                                        // esteban agregar el metod ListCases al Controller
-                                        /*.Proxy(Html.X().AjaxProxy()
+                                        .Proxy(Html.X().AjaxProxy()
                                                     .Url(Url.Action("ListCases"))
                                             .Reader(Html.X().JsonReader().RootProperty("data"))
-                                        )*/
+                                        )
                                         .RemoteSort(true)
                                         .PageSize(10)
-                                        // esteban agregar al modelo
-                                        //.SorterFor(Model, m => m.Nombre, Ext.Net.SortDirection.ASC)
-
+                                        .SorterFor(Model, m => m.Id, Ext.Net.SortDirection.DESC)
                                 )
-                                // esteban agregar las columnas en el modelo
-                                /*.ColumnModel(
-                                    Html.X().Column().DataIndex(Model, m => m.Id).Text("ID").Width(60),
-                                    Html.X().Column().DataIndex(Model, m => m.Nombre).Text("NOMBRE").Width(250),
-                                    Html.X().Column().DataIndex(Model, m => m.Pais).Text("PAIS"),
-                                    Html.X().Column().DataIndex(Model, m => m.Provincia).Text("PROVINCIA").Width(150),
-                                    Html.X().Column().DataIndex(Model, m => m.Ciudad).Text("CIUDAD"),
-                                    Html.X().Column().DataIndex(Model, m => m.Localidad).Text("LOCALIDAD").Width(200),
-                                    Html.X().Column().DataIndex(Model, m => m.Domicilio).Text("DOMICILIO").Width(200),
-                                    Html.X().Column().DataIndex(Model, m => m.Telefono).Text("TELEFONO").Width(200)
-                                    )*/
+                                .ColumnModel(
+                                    Html.X().Column().DataIndex(Model, m => m.Id).Text("Id").Width(100),
+                                    Html.X().Column().DataIndex(Model, m => m.NombreAfiliado).Text("Afiliado").Width(250),
+                                    Html.X().Column().DataIndex(Model, m => m.Patente).Text("Patente").Width(100),
+                                    Html.X().Column().DataIndex(Model, m => m.Poliza).Text("Poliza").Width(100),
+                                    Html.X().Column().DataIndex(Model, m => m.Marca).Text("Marca").Width(100),
+                                    Html.X().Column().DataIndex(Model, m => m.NombreOperador).Text("Operador").Width(250)/*,
+                                    Html.X().CommandColumn()
+                                        .Width(20)
+                                        .Commands(
+                                            Html.X().GridCommand()
+                                                .CommandName("Editar")
+                                                .Icon(Icon.NoteEdit)
+                                                .ToolTip(tt => tt.Text = "Editar Caso")
+                                        )
+                                        .Listeners(ls => ls.Command.Handler = "alert('comando boton');")*/
+                                )
+                                //.Listeners(ls => ls.RowDblClick.Handler = "alert(record.data.Id);")
+                                .Listeners(ls => ls.RowDblClick.Handler = "EditarCaso(record.data.Id)")
                                 .BottomBar(
                                     Html.X().PagingToolbar()
                                         .DisplayInfo(true)
@@ -113,12 +120,15 @@
 
 <script src="~/Scripts/InterassistUI.js"></script>
 <script>
-    function _onClickSearch()
-    {
+    function _onClickSearch() {
         var textToSearch = $("#txtSearch").val();
         var store = App.GrdCases.getStore();
         store.load({ params: { paramWideSearch: textToSearch } });
 
+    }
+
+    function EditarCaso(id) {
+        window.location.assign('@Url.Action("Edit", "Case")' + '/' + id);
     }
 </script>
 
