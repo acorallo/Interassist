@@ -57,6 +57,8 @@ namespace InterAssistMVC.Controllers
             if (ModelState.IsValid)
             {
                 //m.Observacion = "Probando la Edición";
+                m.Prestaciones.Clear();
+                m.Prestaciones = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Prestacion>>(m.DatosPrestaciones);
                 Ticket e = m.ModelToEntity();
                 e.Persist();
                 return RedirectToAction("Edit", "Case", new { Id = e.ID });

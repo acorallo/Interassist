@@ -21,6 +21,8 @@ namespace Entities.InterAsisst
         public Decimal Kilometros;
         public Decimal Costo;
         // EGV 25May2017 Inicio
+        public int IdPrestador { get; set; }
+        public int IdTipoServicio { get; set; }
         public int IdProblema { get; set; }
         public int IdPaisOrigen { get; set; }
         public int IdPaisDestino { get; set; }
@@ -61,14 +63,20 @@ namespace Entities.InterAsisst
             this.IdProvinciaDestino = PersistEntity.NULL_ID;
             this.IdProvinciaOrigen = PersistEntity.NULL_ID;
             this.IdTicketPrestadorRetrabajo = PersistEntity.NULL_ID;
+            this.IdPrestador = PersistEntity.NULL_ID;
+            this.IdTipoServicio = PersistEntity.NULL_ID;
         }
         // EGV 25May2017 Fin
 
         public void ObjectToRow(Ticket_Prestador.TICKET_PRESTADORESRow resultRow)
         {
             resultRow.IDTICKETPRESTADOR = this.ID;
-            resultRow.IDPRESTADOR = this.Prestador.ID;
-            resultRow.IDTIPOSERVICIO = this.TipoServicio.ID;
+            // EGV 25May2017 Inicio
+            //resultRow.IDPRESTADOR = this.Prestador.ID;
+            //resultRow.IDTIPOSERVICIO = this.TipoServicio.ID;
+            resultRow.IDPRESTADOR = this.IdPrestador;
+            resultRow.IDTIPOSERVICIO = this.IdTipoServicio;
+            // EGV 25May2017 Fin
             resultRow.COMENTARIOS = this.Comentarios;
             resultRow.PERSISTOPERATION = (int)this.TipoOperacion;
             resultRow.COSTO = this.Costo;
