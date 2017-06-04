@@ -521,15 +521,23 @@ namespace Entities.InterAsisst
         public static void ORM_PrestadorCaso(PrestadorCaso prestadorCaso, DataRow dr)
         {
             prestadorCaso.ID = Int32.Parse(dr["IDTICKETPRESTADOR"].ToString());
-            prestadorCaso.Prestador = Prestador.GetById(Int32.Parse(dr["IDPRESTADOR"].ToString()));
+            prestadorCaso.IdPrestador = PersistEntity.NuleableInt(dr["IDPRESTADOR"].ToString());
+            if (prestadorCaso.IdPrestador > 0)
+                prestadorCaso.Prestador = Prestador.GetById(Int32.Parse(dr["IDPRESTADOR"].ToString()));
 
 
             decimal costo = 0;
             decimal kilometros = 0;
 
-            FiltroTipoServicio f = new FiltroTipoServicio();
-            f.ID = Int32.Parse(dr["IDTIPOSERVICIO"].ToString());
-            prestadorCaso.TipoServicio = TipoServicio.GetById(Int32.Parse(dr["IDTIPOSERVICIO"].ToString()));
+            prestadorCaso.IdTipoServicio = PersistEntity.NuleableInt(dr["IDTIPOSERVICIO"].ToString());
+
+            if (prestadorCaso.IdTipoServicio > 0)
+            {
+                FiltroTipoServicio f = new FiltroTipoServicio();
+                f.ID = Int32.Parse(dr["IDTIPOSERVICIO"].ToString());
+                prestadorCaso.TipoServicio = TipoServicio.GetById(Int32.Parse(dr["IDTIPOSERVICIO"].ToString()));
+            }
+
             prestadorCaso.Comentarios = dr["COMENTARIOS"].ToString();
 
             Decimal.TryParse(dr["COSTO"].ToString().Replace(",", "."), NumberStyles.Any, new CultureInfo("en-US"), out costo);
@@ -539,6 +547,13 @@ namespace Entities.InterAsisst
             prestadorCaso.Costo = costo;
 
             prestadorCaso.IdProblema = PersistEntity.NuleableInt(dr["IDPROBLEMA"].ToString());
+            if (prestadorCaso.IdProblema > 0)
+            {
+                FiltroProblema f = new FiltroProblema();
+                f.ID = prestadorCaso.IdProblema;
+                prestadorCaso.Problema = Problema.List(f).FirstOrDefault().Desripcion;
+            }
+
             prestadorCaso.IdPaisOrigen = PersistEntity.NuleableInt(dr["IDPAIS_ORIGEN"].ToString());
             prestadorCaso.IdPaisDestino = PersistEntity.NuleableInt(dr["IDPAIS_DESTINO"].ToString());
             prestadorCaso.IdProvinciaOrigen = PersistEntity.NuleableInt(dr["IDPROVINCIA_ORIGEN"].ToString());
@@ -550,10 +565,18 @@ namespace Entities.InterAsisst
             prestadorCaso.IdLocalidadDestino = PersistEntity.NuleableInt(dr["IDLOCALIDAD_DESTINO"].ToString());
             prestadorCaso.CalleDestino = dr["CALLE_DESTINO"].ToString();
             prestadorCaso.IdEstado = PersistEntity.NuleableInt(dr["IDESTADO"].ToString());
+            if (prestadorCaso.IdEstado > 0)
+            {
+                FiltroEstado f = new FiltroEstado("PRESTACION");
+                f.ID = prestadorCaso.IdEstado;
+                prestadorCaso.Estado = Estado.List(f).FirstOrDefault().Descripcion;
+            }
             prestadorCaso.IdTicketPrestadorRetrabajo = PersistEntity.NuleableInt(dr["IDTICKETPRESTADOR_RETRABAJO"].ToString());
             prestadorCaso.Demora = dr["DEMORA"].ToString();
             prestadorCaso.Patente = dr["PATENTE"].ToString();
             prestadorCaso.NombreChofer = dr["NOMBRE_CHOFER"].ToString();
+            prestadorCaso.NombreLocalidadOrigen = dr["LOCALIDAD_ORIGEN_NOMBRE"].ToString();
+            prestadorCaso.NombreLocalidadDestino = dr["LOCALIDAD_DESTINO_NOMBRE"].ToString();
 
         }
         // EGV 25May2017 Fin
@@ -680,6 +703,9 @@ namespace Entities.InterAsisst
             {
                 Ticket_Prestador.TICKET_PRESTADORESRow r = resulTable.NewTICKET_PRESTADORESRow();
                 c.ObjectToRow(r);
+                // EGV 25May2017 Inicio
+                r.IDTICKET = this.ID;
+                // EGV 25May2017 Fin
                 resulTable.Rows.Add(r);
             }
 

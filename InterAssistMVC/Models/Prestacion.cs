@@ -41,6 +41,11 @@ namespace InterAssistMVC.Models
         public virtual string NombreChofer { get; set; }
         public virtual string Estado { get; set; }
 
+        public virtual string NombreLocalidadOrigen { get; set; }
+        public virtual string NombreLocalidadDestino { get; set; }
+        public virtual string UbicacionOrigen { get; set; }
+        public virtual string UbicacionDestino { get; set; }
+
         public static Prestacion EntityToModel(PrestadorCaso e)
         {
             Prestacion m = new Prestacion();
@@ -57,7 +62,7 @@ namespace InterAssistMVC.Models
             m.Kilometros = e.Kilometros;
             //m.Costo = e.Costo;
             m.IdProblema = e.IdProblema;
-            //m.Problema = 
+            m.Problema = e.Problema;
             m.IdPaisOrigen = e.IdPaisOrigen;
             m.IdPaisDestino = e.IdPaisDestino;
             m.IdProvinciaOrigen = e.IdProvinciaOrigen;
@@ -69,10 +74,14 @@ namespace InterAssistMVC.Models
             m.IdLocalidadDestino = e.IdLocalidadDestino;
             m.CalleDestino = e.CalleDestino;
             m.IdEstado = e.IdEstado;
+            m.Estado = e.Estado;
             m.IdTicketPrestadorRetrabajo = e.IdTicketPrestadorRetrabajo;
             m.Demora = e.Demora;
             m.Patente = e.Patente;
             m.NombreChofer = e.NombreChofer;
+
+            m.UbicacionOrigen = e.CalleOrigen + ", " + e.NombreLocalidadOrigen;
+            m.UbicacionDestino = e.CalleDestino + ", " + e.NombreLocalidadDestino;
 
             return m;
 

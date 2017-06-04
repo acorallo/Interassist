@@ -111,5 +111,61 @@ namespace InterAssistMVC.Controllers
 
         }
 
+        //public ActionResult TraePrestadores(int start, int limit, int page, string query)
+        public ActionResult TraePrestadores(string query)
+        {
+            FiltroPrestador f = new FiltroPrestador();
+            int totalRegistros;
+
+            f.Search = query;
+
+            f.IsPaged = false;
+            //f.PageSize = limit;
+            f.OrderBY = " ORDER BY NOMBRE";
+
+
+            //f.StartRow = ((page - 1) * limit) + 1;
+            
+            List<Provider> list = Provider.EntityToModel(Prestador.List(f, out totalRegistros));
+
+            Paging<Provider> paging = new Paging<Provider>(list, totalRegistros);
+
+            return this.Store(paging.Data, paging.TotalRecords);
+        }
+
+        //public ActionResult TraeUbicaciones(int start, int limit, int page, string query)
+        public ActionResult TraeUbicaciones(string query)
+        {
+             FiltroUbicacion f = new FiltroUbicacion();
+            int totalRegistros, indexOfComma;
+
+            indexOfComma = query.IndexOf(',');
+
+            if (indexOfComma < 0)
+            {
+                return this.Store(new object(),0);
+            }
+
+            string calle = query.Substring(0,indexOfComma);
+            string q = query.Substring(indexOfComma + 1, query.Length - (indexOfComma + 1)).Trim();
+
+            f.Search = q;
+
+            //f.IsPaged = true;
+            f.IsPaged = false;
+            //f.PageSize = limit;
+            f.OrderBY = " ORDER BY ORDEN, NOMBRE";
+
+            //f.StartRow = ((page - 1) * limit) + 1;
+
+            List<UbicacionModel> list = UbicacionModel.EntityToModel(Ubicacion.List(f, out totalRegistros));
+
+            list.ForEach(l => { l.CalleUbicacion = calle + ", " + l.Nombre; l.Calle = calle; l.DatosUbicacion = l.DatosUbicacion = Newtonsoft.Json.JsonConvert.SerializeObject(new { IdLocalidad = l.IdLocalidad, IdCiudad = l.IdCiudad, IdProvincia = l.IdProvincia, IdPais = l.IdPais, Calle = l.Calle }); });
+
+            Paging<UbicacionModel> paging = new Paging<UbicacionModel>(list, totalRegistros);
+
+            return this.Store(paging.Data, paging.TotalRecords);
+        }
+
     }
 }

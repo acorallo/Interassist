@@ -149,6 +149,7 @@
     <Compile Include="ReportesDS.cs" />
     <Compile Include="TicketDS.cs" />
     <Compile Include="TipoServicioDS.cs" />
+    <Compile Include="UbicacionDS.cs" />
     <Compile Include="UploadErrorDS.cs" />
     <Compile Include="UploadsDS.cs" />
   </ItemGroup>

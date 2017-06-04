@@ -150,6 +150,7 @@
     <Compile Include="Models\Observacion.cs" />
     <Compile Include="Models\Prestacion.cs" />
     <Compile Include="Models\Provider.cs" />
+    <Compile Include="Models\UbicacionModel.cs" />
     <Compile Include="Resource.Designer.cs">
       <DependentUpon>Resource.resx</DependentUpon>
       <AutoGen>True</AutoGen>

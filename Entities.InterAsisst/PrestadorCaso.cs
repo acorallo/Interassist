@@ -24,6 +24,7 @@ namespace Entities.InterAsisst
         public int IdPrestador { get; set; }
         public int IdTipoServicio { get; set; }
         public int IdProblema { get; set; }
+        public string Problema { get; set; }
         public int IdPaisOrigen { get; set; }
         public int IdPaisDestino { get; set; }
         public int IdProvinciaOrigen { get; set; }
@@ -35,13 +36,19 @@ namespace Entities.InterAsisst
         public int IdLocalidadDestino { get; set; }
         public string CalleDestino { get; set; }
         public int IdEstado { get; set; }
+        public string Estado { get; set; }
         public int IdTicketPrestadorRetrabajo { get; set; }
         public string Demora { get; set; }
         public string Patente { get; set; }
         public string NombreChofer { get; set; }
+        public virtual string NombreLocalidadOrigen { get; set; }
+        public virtual string NombreLocalidadDestino { get; set; }
         // EGV 25May2017 Fin
 
-        public Utils.InterAssist.Constants.PersistOperationType TipoOperacion = Utils.InterAssist.Constants.PersistOperationType.Void;
+        // EGV 25May2017 Inicio
+        //public Utils.InterAssist.Constants.PersistOperationType TipoOperacion = Utils.InterAssist.Constants.PersistOperationType.Void;
+        public Utils.InterAssist.Constants.PersistOperationType TipoOperacion = Utils.InterAssist.Constants.PersistOperationType.Persist;
+        // EGV 25May2017 Fin
 
         // EGV 25May2017 Inicio
         public PrestadorCaso()

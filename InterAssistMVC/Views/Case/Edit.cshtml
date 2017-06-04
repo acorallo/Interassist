@@ -39,8 +39,9 @@
                                             .ValueField("DatosAfiliado")
                                             .TypeAhead(false)
                                             .Value(Model.Afiliado != null ? Model.Afiliado.PatenteApeYNom : null)
-        //.Width(new System.Web.UI.WebControls.Unit(100,System.Web.UI.WebControls.UnitType.Percentage))
-                                            .Width(400)
+                                            //.Width(new System.Web.UI.WebControls.Unit(100,System.Web.UI.WebControls.UnitType.Percentage))
+                                            //.Width(400)
+                                            .StyleSpec("width:100%")
                                             .PageSize(10)
                                             .HideTrigger(true)
                                             .MinChars(2)
@@ -147,10 +148,98 @@
                                     <div class="tab-pane fade" id="ubicacion">
                                         <div class="row"></div>
                                         <div class="row">
-                                            <div class="col-lg-12"><label>Origen:</label>@Html.EditorFor(model => model.UbicacionOrigen, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Dirección: calle número, localidad, provincia" } })@Html.HiddenFor(model => model.CalleOrigen)@Html.HiddenFor(model => model.IdLocalidadOrigen)@Html.HiddenFor(model => model.IdCiudadOrigen)@Html.HiddenFor(model => model.IdProvinciaOrigen)@Html.HiddenFor(model => model.IdPaisOrigen)</div>
+                                            <div class="col-lg-12">
+                                                <label>Origen:</label>
+                                                <div>
+                                                    @(Html.X().ComboBox()
+                                                        .DisplayField("CalleUbicacion")
+                                                        .ValueField("DatosUbicacion")
+                                                        .Text(Model.UbicacionOrigen)
+                                                        .InputID("UbicacionOrigen")
+                                                        .TypeAhead(false)
+                                                        .StyleSpec("width:100%")
+                                                        .HideTrigger(true)
+                                                        .PageSize(0)
+                                                        .MinChars(2)
+                                                        .TriggerAction(TriggerAction.Query)
+                                                        .ListConfig(Html.X().BoundList()
+                                                            .LoadingText("Buscando...")
+                                                            .ItemTpl(Html.X().XTemplate()
+                                                                .Html(@<text>
+                                                                        <div class="search-item search-item-small">
+                                                                            {CalleUbicacion}
+                                                                        </div>
+                                                                </text>
+                                                                )
+                                                            )
+                                                        )
+                                                        .Listeners(ls => ls.Select.Handler = "SeleccionaUbicacionOrigen(item);")
+                                                            .Store(Html.X().Store()
+                                                                .AutoLoad(false)
+                                                                .Proxy(Html.X().AjaxProxy()
+                                                                    .Url(Url.Action("TraeUbicaciones"))
+                                                                    .ActionMethods(af => af.Read = HttpMethod.POST)
+                                                                    .Reader(Html.X().JsonReader().RootProperty("data"))
+                                                                )
+                                                                .Model(Html.X().Model()
+                                                                    .Fields(
+                                                                        Html.X().ModelField().Name("CalleUbicacion"),
+                                                                        Html.X().ModelField().Name("DatosUbicacion")
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+
+                                                    @Html.HiddenFor(model => model.CalleOrigen)@Html.HiddenFor(model => model.IdLocalidadOrigen)@Html.HiddenFor(model => model.IdCiudadOrigen)@Html.HiddenFor(model => model.IdProvinciaOrigen)@Html.HiddenFor(model => model.IdPaisOrigen)
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-12"><label>Destino:</label>@Html.EditorFor(model => model.UbicacionDestino, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Dirección: calle número, localidad, provincia" } })@Html.HiddenFor(model => model.CalleDestino)@Html.HiddenFor(model => model.IdLocalidadDestino)@Html.HiddenFor(model => model.IdCiudadDestino)@Html.HiddenFor(model => model.IdProvinciaDestino)@Html.HiddenFor(model => model.IdPaisDestino)</div>
+                                            <div class="col-lg-12"><label>Destino:</label>
+                                                <div>
+                                                    @(Html.X().ComboBox()
+                                                        .DisplayField("CalleUbicacion")
+                                                        .Text(Model.UbicacionDestino)
+                                                        .ValueField("DatosUbicacion")
+                                                        .InputID("UbicacionDestino")
+                                                        .TypeAhead(false)
+                                                        .StyleSpec("width:100%")
+                                                        .HideTrigger(true)
+                                                        .PageSize(0)
+                                                        .MinChars(2)
+                                                        .TriggerAction(TriggerAction.Query)
+                                                        .ListConfig(Html.X().BoundList()
+                                                            .LoadingText("Buscando...")
+                                                            .ItemTpl(Html.X().XTemplate()
+                                                                .Html(@<text>
+                                                                <div class="search-item search-item-small">
+                                                                    {CalleUbicacion}
+                                                                </div>
+                                                                </text>
+                                                            )
+                                                        )
+                                                    )
+                                                    .Listeners(ls => ls.Select.Handler = "SeleccionaUbicacionDestino(item);")
+                                                        .Store(Html.X().Store()
+                                                            .AutoLoad(false)
+                                                            .Proxy(Html.X().AjaxProxy()
+                                                                .Url(Url.Action("TraeUbicaciones"))
+                                                                .ActionMethods(af => af.Read = HttpMethod.POST)
+                                                                .Reader(Html.X().JsonReader().RootProperty("data"))
+                                                            )
+                                                            .Model(Html.X().Model()
+                                                                .Fields(
+                                                                    Html.X().ModelField().Name("CalleUbicacion"),
+                                                                    Html.X().ModelField().Name("DatosUbicacion")
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+
+                                                    @Html.HiddenFor(model => model.CalleDestino)@Html.HiddenFor(model => model.IdLocalidadDestino)@Html.HiddenFor(model => model.IdCiudadDestino)@Html.HiddenFor(model => model.IdProvinciaDestino)@Html.HiddenFor(model => model.IdPaisDestino)
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="prestaciones">
@@ -172,14 +261,65 @@
                                                                 <div class="row">
                                                                     <div class="col-lg-3"><label>Tipo:</label>@Html.DropDownList("prestacionTipoServicio", Model.TiposServicio, new { @class = "form-control", @id = "prestacionTipoServicio" })</div>
                                                                     <div class="col-lg-3"><label>Problema:</label>@Html.DropDownList("prestacionProblema", Model.Problemas, new { @class = "form-control", @id = "prestacionProblema" })</div>
-                                                                    <div class="col-lg-3"><label>Estado:</label>@Html.DropDownList("prestEstados", Model.PrestacionEstados, new { @class = "form-control", @id = "prestacionProblema" })</div>
+                                                                    <div class="col-lg-3"><label>Estado:</label>@Html.DropDownList("prestEstados", Model.PrestacionEstados, new { @class = "form-control", @id = "prestacionEstado" })</div>
                                                                     <div class="col-lg-3"><label>Retrabajo:</label>@Html.DropDownList("prestacionRetrabajo", Model.PrestacionesRetrabajo, new { @class = "form-control", @id = "prestacionRetrabajo" })</div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-lg-6"><label>Detalles:</label><textarea class="form-control" id="prestacionDetalles" rows="4" style="margin: 0px -3.83333px 0px 0px; width: 100%; height: 150px;"></textarea></div>
                                                                     <div class="col-lg-6">
                                                                         <div class="row">
-                                                                            <div class="col-lg-12"><label>Prestador:</label><div class="form-group input-group"><input type="text" id="prestacionNombre" class="form-control"><span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span></div></div>
+                                                                            <div class="col-lg-12"><label>Prestador:</label><input type="hidden" id="prestacionIdPrestador"/><!--div class="form-group input-group"><input type="text" id="prestacionNombre" class="form-control"><span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span></div-->
+                                                                                @(Html.X().ComboBox()
+                                                                                    .DisplayField("Nombre")
+                                                                                    .ValueField("Id")
+                                                                                    .InputID("prestacionNombrePrestador")
+                                                                                    .TypeAhead(false)
+                                                                                    //.Width(400)
+                                                                                    .StyleSpec("width:100%")
+                                                                                    .PageSize(0)
+                                                                                    .HideTrigger(true)
+                                                                                    .MinChars(2)
+                                                                                    .TriggerAction(TriggerAction.Query)
+                                                                                    .ListConfig(Html.X().BoundList()
+                                                                                    .LoadingText("Buscando...")
+                                                                                    .ItemTpl(Html.X().XTemplate()
+                                                                                        .Html(@<text>
+                                                                                            <div class="search-item row search-item-small">
+                                                                                                <div class="col-lg-1 provider-info-arrow">
+                                                                                                    <span class="glyphicon glyphicon-triangle-left" onmouseover="MasInfoPrestador('{Id}', '{Nombre}', '{Provincia}', '{Ciudad}', '{Localidad}', '{Domicilio}')"></span>
+                                                                                                </div>
+                                                                                                <div class="col-lg-11">
+                                                                                                    <p><strong>{Nombre}</strong></p>
+                                                                                                    <p>{Provincia} {Ciudad} {Localidad}</p>
+                                                                                                    <p>{Domicilio}</p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            </text>
+                                                                                        )
+                                                                                    )
+                                                                                )
+                                                                                .Listeners(ls => ls.Select.Handler = "$('#prestacionIdPrestador').val(item.value);")
+                                                                                .Listeners(ls => ls.Collapse.Handler = "CerrarInfoPrestador();")
+                                                                                .Store(Html.X().Store()
+                                                                                    .AutoLoad(false)
+                                                                                    .Proxy(Html.X().AjaxProxy()
+                                                                                        .Url(Url.Action("TraePrestadores"))
+                                                                                        .ActionMethods(af => af.Read = HttpMethod.POST)
+                                                                                        .Reader(Html.X().JsonReader().RootProperty("data"))
+                                                                                    )
+                                                                                    .Model(Html.X().Model()
+                                                                                        .Fields(
+                                                                                            Html.X().ModelField().Name("Id"),
+                                                                                            Html.X().ModelField().Name("Nombre"),
+                                                                                            Html.X().ModelField().Name("Provincia"),
+                                                                                            Html.X().ModelField().Name("Ciudad"),
+                                                                                            Html.X().ModelField().Name("Localidad"),
+                                                                                            Html.X().ModelField().Name("Domicilio")
+                                                                                        )
+                                                                                    )
+                                                                                )
+                                                                                )
+                                                                            </div>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-lg-6"><label>Demora:</label><input type="text" id="prestacionDemora" class="form-control"></div>
@@ -188,11 +328,93 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <div class="col-lg-6"><label>Origen:</label><input type="text" class="form-control" placeholder="Ingrese Dirección: calle número, localidad, provincia" /></div>
+                                                                    <div class="col-lg-6"><label>Origen:</label>
+                                                                        <div>
+                                                                            @(Html.X().ComboBox()
+                                                                                .DisplayField("CalleUbicacion")
+                                                                                .ValueField("DatosUbicacion")
+                                                                                .InputID("prestacionUbicacionOrigen")
+                                                                                .TypeAhead(false)
+                                                                                .StyleSpec("width:100%")
+                                                                                .HideTrigger(true)
+                                                                                .PageSize(0)
+                                                                                .MinChars(2)
+                                                                                .TriggerAction(TriggerAction.Query)
+                                                                                .ListConfig(Html.X().BoundList()
+                                                                                    .LoadingText("Buscando...")
+                                                                                    .ItemTpl(Html.X().XTemplate()
+                                                                                        .Html(@<text>
+                                                                                            <div class="search-item search-item-small">
+                                                                                            {CalleUbicacion}
+                                                                                            </div>
+                                                                                            </text>
+                                                                                        )
+                                                                                    )
+                                                                                )
+                                                                                .Listeners(ls => ls.Select.Handler = "SeleccionaPrestacionUbicacionOrigen(item);")
+                                                                                .Store(Html.X().Store()
+                                                                                    .AutoLoad(false)
+                                                                                    .Proxy(Html.X().AjaxProxy()
+                                                                                        .Url(Url.Action("TraeUbicaciones"))
+                                                                                        .ActionMethods(af => af.Read = HttpMethod.POST)
+                                                                                        .Reader(Html.X().JsonReader().RootProperty("data"))
+                                                                                    )
+                                                                                    .Model(Html.X().Model()
+                                                                                        .Fields(
+                                                                                            Html.X().ModelField().Name("CalleUbicacion"),
+                                                                                            Html.X().ModelField().Name("DatosUbicacion")
+                                                                                        )
+                                                                                    )
+                                                                                )
+                                                                            )
+                                                                            <input type="hidden" id="prestacionCalleOrigen"/><input type="hidden" id="prestacionIdLocalidadOrigen" /><input type="hidden" id="prestacionIdCiudadOrigen" /><input type="hidden" id="prestacionIdProvinciaOrigen" /><input type="hidden" id="prestacionIdPaisOrigen" />
+                                                                        </div>
+                                                                    </div>
                                                                     <div class="col-lg-6"><label>Nombre conductor de Grúa:</label><input type="text" id="prestacionNombreChofer" class="form-control"></div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <div class="col-lg-6"><label>Destino:</label><input type="text" class="form-control" placeholder="Ingrese Dirección: calle número, localidad, provincia" /></div>
+                                                                    <div class="col-lg-6"><label>Destino:</label>
+                                                                        <div>
+                                                                            @(Html.X().ComboBox()
+                                                                                .DisplayField("CalleUbicacion")
+                                                                                .ValueField("DatosUbicacion")
+                                                                                .InputID("prestacionUbicacionDestino")
+                                                                                .TypeAhead(false)
+                                                                                .StyleSpec("width:100%")
+                                                                                .HideTrigger(true)
+                                                                                .PageSize(0)
+                                                                                .MinChars(2)
+                                                                                .TriggerAction(TriggerAction.Query)
+                                                                                .ListConfig(Html.X().BoundList()
+                                                                                    .LoadingText("Buscando...")
+                                                                                    .ItemTpl(Html.X().XTemplate()
+                                                                                        .Html(@<text>
+                                                                                            <div class="search-item search-item-small">
+                                                                                            {CalleUbicacion}
+                                                                                            </div>
+                                                                                            </text>
+                                                                                        )
+                                                                                    )
+                                                                                )
+                                                                                .Listeners(ls => ls.Select.Handler = "SeleccionaPrestacionUbicacionDestino(item);")
+                                                                                .Store(Html.X().Store()
+                                                                                    .AutoLoad(false)
+                                                                                    .Proxy(Html.X().AjaxProxy()
+                                                                                        .Url(Url.Action("TraeUbicaciones"))
+                                                                                        .ActionMethods(af => af.Read = HttpMethod.POST)
+                                                                                        .Reader(Html.X().JsonReader().RootProperty("data"))
+                                                                                    )
+                                                                                    .Model(Html.X().Model()
+                                                                                        .Fields(
+                                                                                            Html.X().ModelField().Name("CalleUbicacion"),
+                                                                                            Html.X().ModelField().Name("DatosUbicacion")
+                                                                                        )
+                                                                                    )
+                                                                                )
+                                                                            )
+                                                                            <input type="hidden" id="prestacionCalleDestino" /><input type="hidden" id="prestacionIdLocalidadDestino" /><input type="hidden" id="prestacionIdCiudadDestino" /><input type="hidden" id="prestacionIdProvinciaDestino" /><input type="hidden" id="prestacionIdPaisDestino" />
+                                                                        </div>
+                                                                    </div>
                                                                     <div class="col-lg-3"><label>Kilómetros:</label><input type="text" id="prestacionKilometros" class="form-control"></div>
                                                                     <div class="col-lg-3"><label>Costo:</label><input type="text" id="prestacionCosto" class="form-control" disabled></div>
                                                                 </div>
@@ -227,26 +449,6 @@
                                                                 <th>Estado</th>
                                                                 <th style="display:none">Id</th>
                                                                 <th style="display:none">DatosPrestacion</th>
-                                                                <!--th>IdProblema</th>
-                                                                <th>IdPrestador</th>
-
-                                                                <th>IdPrestador</th>
-                                                                <th>IdTipoServicio</th>
-                                                                <th>Comentarios</th>
-                                                                <th>Kilometros</th>
-                                                                <th>Costo</th>
-                                                                <th>IdPaisOrigen</th>
-                                                                <th>IdPaisDestino</th>
-                                                                <th>IdProvinciaOrigen</th>
-                                                                <th>IdProvinciaDestino</th>
-                                                                <th>IdCiudadOrigen</th>
-
-                                                                <th>IdCiudadOrigen</th>
-                                                                <th>IdCiudadDestino</th>
-                                                                <th>CalleOrigen</th>
-                                                                <th>IdLocalidadOrigen</th>
-                                                                <th>IdLocalidadDestino</th>
-                                                                <th>CalleDestino</th-->
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -256,15 +458,13 @@
                                                                     <td>@p.NombrePrestador</td>
                                                                     <td>@p.DescripcionServicio</td>
                                                                     <td>@p.Problema</td>
-                                                                    <td>@p.IdEstado</td>
+                                                                    <td>@p.Estado</td>
                                                                     <td style="display:none">@p.Id</td>
                                                                     <td style="display:none">@Newtonsoft.Json.JsonConvert.SerializeObject(p)</td>
                                                                 </tr>
                                                             }
                                                         </tbody>
                                                     </table>
-
-
                                                 </div>
                                             </div>
                                         </div>
@@ -293,20 +493,6 @@
         var prestacionAceptar = false;
         var accionPrestacion = "N";     // N = Nothing - A: Add - U: Update
 
-        /*$('#gridPrestaciones').DataTAble({
-            "columnDefs":[
-                {
-                    "targets": [4],
-                    "visible":false
-                },
-                {
-                    "targets": [5],
-                    "visible":false
-                }
-            ]
-        });*/
-
-
         function EligeAfiliado(item) {
             if (item != undefined && item != null) {
                 var a = JSON.parse(item.value);
@@ -332,13 +518,71 @@
         function AgregarPrestacion(grid) {
             prestacionAceptar = false;
             accionPrestacion = "A";
+            LimpiarPrestacionPopUp();
         }
 
         function ModificarPrestacion(data) {
             prestacionAceptar = false;
             accionPrestacion = "U";
+            LimpiarPrestacionPopUp();
             gridPrestacionRow = $(data);
+
+            var p = JSON.parse($(data).children()[5].innerText);
+
+            $('#prestacionNombrePrestador').val(p.NombrePrestador);
+            $('#prestacionIdPrestador').val(p.IdPrestador);
+            $('#prestacionTipoServicio').val(p.IdTipoServicio);
+            $("#prestacionDetalles").val(p.Comentarios);
+            $('#prestacionKilometros').val(p.Kilometros);
+            $('#prestacionCosto').val(p.Costo);
+            $('#prestacionProblema').val(p.IdProblema);
+            $('#prestacionIdPaisOrigen').val(p.IdPaisOrigen);
+            $('#prestacionIdPaisDestino').val(p.IdPaisDestino);
+            $('#prestacionIdProvinciaOrigen').val(p.IdProvinciaOrigen);
+            $('#prestacionIdProvinciaDestino').val(p.IdProvinciaDestino);
+            $('#prestacionIdCiudadOrigen').val(p.IdCiudadOrigen);
+            $('#prestacionIdCiudadDestino').val(p.IdCiudadDestino);
+            $('#prestacionCalleOrigen').val(p.CalleOrigen);
+            $('#prestacionIdLocalidadOrigen').val(p.IdLocalidadOrigen);
+            $('#prestacionIdLocalidadDestino').val(p.IdLocalidadDestino);
+            $('#prestacionCalleDestino').val(p.CalleDestino);
+            $('#prestacionEstado').val(p.IdEstado);
+            $('#prestacionRetrabajo').val(p.IdTicketPrestadorRetrabajo);
+            $('#prestacionDemora').val(p.Demora);
+            $('#prestacionPatente').val(p.Patente);
+            $('#prestacionNombreChofer').val(p.NombreChofer);
+
+            $('#prestacionUbicacionOrigen').val(p.UbicacionOrigen);
+            $('#prestacionUbicacionDestino').val(p.UbicacionDestino);
+
             $('button#btnPrestacionModificar').click();
+        }
+
+        function LimpiarPrestacionPopUp(){
+            $('#prestacionNombrePrestador').val('');
+            $('#prestacionIdPrestador').val('');
+            $('#prestacionTipoServicio').val('');
+            $("#prestacionDetalles").val('');
+            $('#prestacionKilometros').val('');
+            $('#prestacionCosto').val('');
+            $('#prestacionProblema').val('');
+            $('#prestacionIdPaisOrigen').val('');
+            $('#prestacionIdPaisDestino').val('');
+            $('#prestacionIdProvinciaOrigen').val('');
+            $('#prestacionIdProvinciaDestino').val('');
+            $('#prestacionIdCiudadOrigen').val('');
+            $('#prestacionIdCiudadDestino').val('');
+            $('#prestacionCalleOrigen').val('');
+            $('#prestacionIdLocalidadOrigen').val('');
+            $('#prestacionIdLocalidadDestino').val('');
+            $('#prestacionCalleDestino').val('');
+            $('#prestacionEstado').val('');
+            $('#prestacionRetrabajo').val('');
+            $('#prestacionDemora').val('');
+            $('#prestacionPatente').val('');
+            $('#prestacionNombreChofer').val('');
+            $('#prestacionUbicacionOrigen').val('');
+            $('#prestacionUbicacionDestino').val('');
         }
 
         function AceptarPrestacion() {
@@ -350,7 +594,8 @@
                 gridPrestacionRow = $(a.children()[0]);
             }
             prestacion = JSON.parse(gridPrestacionRow.children()[5].innerText);
-            prestacion.NombrePrestador = $('#prestacionNombre').val();
+            prestacion.NombrePrestador = $('#prestacionNombrePrestador').val();
+            prestacion.IdPrestador = $('#prestacionIdPrestador').val();
             prestacion.IdTipoServicio = $('#prestacionTipoServicio').val();
             prestacion.DescripcionServicio = $('#prestacionTipoServicio option:selected').text();
             prestacion.Comentarios = $("#prestacionDetalles").val();
@@ -358,25 +603,30 @@
             prestacion.Costo = $('#prestacionCosto').val();
             prestacion.IdProblema = $('#prestacionProblema').val();
             prestacion.Problema = $('#prestacionProblema option:selected').text();
-            /*prestacion.IdPaisOrigen = ;
-            prestacion.IdPaisDestino = ;
-            prestacion.IdProvinciaOrigen = ;
-            prestacion.IdProvinciaDestino = ;
-            prestacion.IdCiudadOrigen = ;
-            prestacion.IdCiudadDestino = ;
-            prestacion.CalleOrigen = ;
-            prestacion.IdLocalidadOrigen = ;
-            prestacion.IdLocalidadDestino = ;
-            prestacion.CalleDestino = ;*/
+            prestacion.IdPaisOrigen = $('#prestacionIdPaisOrigen').val();
+            prestacion.IdPaisDestino = $('#prestacionIdPaisDestino').val();
+            prestacion.IdProvinciaOrigen = $('#prestacionIdProvinciaOrigen').val();
+            prestacion.IdProvinciaDestino = $('#prestacionIdProvinciaDestino').val();
+            prestacion.IdCiudadOrigen = $('#prestacionIdCiudadOrigen').val();
+            prestacion.IdCiudadDestino = $('#prestacionIdCiudadDestino').val();
+            prestacion.CalleOrigen = $('#prestacionCalleOrigen').val();
+            prestacion.IdLocalidadOrigen = $('#prestacionIdLocalidadOrigen').val();
+            prestacion.IdLocalidadDestino = $('#prestacionIdLocalidadDestino').val();
+            prestacion.CalleDestino = $('#prestacionCalleDestino').val();
             prestacion.IdEstado = $('#prestacionEstado').val();
+            prestacion.Estado = $('#prestacionEstado option:selected').text();
             prestacion.IdTicketPrestadorRetrabajo = $('#prestacionRetrabajo').val();
             prestacion.Demora = $('#prestacionDemora').val();
             prestacion.Patente = $('#prestacionPatente').val();
             prestacion.NombreChofer = $('#prestacionNombreChofer').val();
 
+            prestacion.UbicacionOrigen = $('#prestacionUbicacionOrigen').val();
+            prestacion.UbicacionDestino = $('#prestacionUbicacionDestino').val();
+
             gridPrestacionRow.children()[0].innerText = prestacion.NombrePrestador;
             gridPrestacionRow.children()[1].innerText = prestacion.DescripcionServicio;
             gridPrestacionRow.children()[2].innerText = prestacion.Problema;
+            gridPrestacionRow.children()[3].innerText = prestacion.Estado;
 
             gridPrestacionRow.children()[5].innerText = JSON.stringify(prestacion);
 
@@ -387,6 +637,9 @@
 
             for (i = 0; i < $('#gridPrestaciones tbody').children().length ; i++) {
                 var p = JSON.parse($($('#gridPrestaciones tbody').children()[i]).children()[5].innerText);
+                if (p.IdPrestador == null || p.IdPrestador == "") {
+                    p.IdPrestador = -1;
+                }
                 if (p.Kilometros == null || p.Kilometros == "") {
                     p.Kilometros = -1;
                 }
@@ -436,6 +689,112 @@
             }
             $('#DatosPrestaciones').val(JSON.stringify(a));
         }
+
+        function MasInfoPrestador(id,nombre,pcia, ciudad, localidad,domi){
+            //$('#masInfoPrestador').css('display','block');
+            $('.provider-info .close').click();
+            var html = '<div class="alert provider-info panel panel-info">';
+            html = html + '<div class="row">';
+            html = html + '    <div class="col-lg-2 provider-info-arrow">';
+            html = html + '       <a href="#" class="close glyphicon glyphicon-triangle-right" data-dismiss="alert" aria-label="close" onmouseover="$(this).click()"></a>';
+            html = html + '    </div>';
+            html = html + '    <div class="col-lg-10">';
+            html = html + '       <p>' + id + ' ' + nombre + '</p>';
+            html = html + '    </div>';
+            html = html + '</div>';
+            html = html + '<div class="row">';
+            html = html + '    <div class="col-lg-12">';
+            html = html + '        <div class="panel-body">';
+            html = html + '            <ul class="nav nav-pills">';
+            html = html + '                <li class="active"><a href="#direccion-pills" data-toggle="tab" aria-expanded="true">Direccion</a></li>';
+            html = html + '                <li class=""><a href="#telefono-pills" data-toggle="tab" aria-expanded="false">Teléfonos</a></li>';
+            html = html + '                <li class=""><a href="#fiscales-pills" data-toggle="tab" aria-expanded="false">Fiscales</a></li>';
+            html = html + '                <li class=""><a href="#costos-pills" data-toggle="tab" aria-expanded="false">Costos</a></li>';
+            html = html + '                <li class=""><a href="#comentarios-pills" data-toggle="tab" aria-expanded="false">Comentarios</a></li>';
+            html = html + '            </ul>';
+            html = html + '            <div class="tab-content">';
+            html = html + '                <div class="tab-pane fade active in" id="direccion-pills">';
+            html = html + '                    <h4>Home Tab</h4>';
+            html = html + '                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>';
+            html = html + '                </div>';
+            html = html + '                <div class="tab-pane fade" id="telefono-pills">';
+            html = html + '                    <h4>Profile Tab</h4>';
+            html = html + '                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>';
+            html = html + '                </div>';
+            html = html + '                <div class="tab-pane fade" id="fiscales-pills">';
+            html = html + '                    <h4>Messages Tab</h4>';
+            html = html + '                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>';
+            html = html + '                </div>';
+            html = html + '                <div class="tab-pane fade" id="comentarios-pills">';
+            html = html + '                    <h4>Settings Tab</h4>';
+            html = html + '                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>';
+            html = html + '                </div>';
+            html = html + '            </div>';
+            html = html + '        </div>';
+
+            //html = html + '<p>' + domi + '</p>';
+            //html = html + '<p>' + ciudad + ' ' + localidad + ' ' + pcia + '</p>';
+            html = html + '    </div>'
+            html = html + '</div>'
+            html = html + '</div>'
+            $($('#prestacionNombrePrestador').parent()).prepend(html);
+            var w = $('.provider-info').outerWidth() - 10;
+            $('.provider-info').css("left", w * -1);
+            //$('.provider-info').css("z-index","100");
+        }
+
+
+        function CerrarInfoPrestador() {
+            if ($('.provider-info').length > 0) {
+                $('.provider-info a.close').click();
+            }
+        }
+
+        function SeleccionaUbicacionOrigen(item){
+            if (item != undefined && item != null) {
+                var o = JSON.parse(item.value);
+                $('#CalleOrigen').val(o.Calle);
+                $('#IdLocalidadOrigen').val(o.IdLocalidad);
+                $('#IdCiudadOrigen').val(o.IdCiudad);
+                $('#IdProvinciaOrigen').val(o.IdProvincia);
+                $('#IdPaisOrigen').val(o.IdPais);
+            }
+        }
+
+        function SeleccionaUbicacionDestino(item){
+            if (item != undefined && item != null) {
+                var o = JSON.parse(item.value);
+                $('#CalleDestino').val(o.Calle);
+                $('#IdLocalidadDestino').val(o.IdLocalidad);
+                $('#IdCiudadDestino').val(o.IdCiudad);
+                $('#IdProvinciaDestino').val(o.IdProvincia);
+                $('#IdPaisDestino').val(o.IdPais);
+            }
+        }
+
+        function SeleccionaPrestacionUbicacionOrigen(item){
+            if (item != undefined && item != null) {
+                var o = JSON.parse(item.value);
+                $('#prestacionCalleOrigen').val(o.Calle);
+                $('#prestacionIdLocalidadOrigen').val(o.IdLocalidad);
+                $('#prestacionIdCiudadOrigen').val(o.IdCiudad);
+                $('#prestacionIdProvinciaOrigen').val(o.IdProvincia);
+                $('#prestacionIdPaisOrigen').val(o.IdPais);
+            }
+        }
+
+        function SeleccionaPrestacionUbicacionDestino(item){
+            if (item != undefined && item != null) {
+                var o = JSON.parse(item.value);
+                $('#prestacionCalleDestino').val(o.Calle);
+                $('#prestacionIdLocalidadDestino').val(o.IdLocalidad);
+                $('#prestacionIdCiudadDestino').val(o.IdCiudad);
+                $('#prestacionIdProvinciaDestino').val(o.IdProvincia);
+                $('#prestacionIdPaisDestino').val(o.IdPais);
+            }
+        }
+
+
     </script>
 
 }

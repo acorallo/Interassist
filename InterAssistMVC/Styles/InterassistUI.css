@@ -21,5 +21,30 @@
     padding-bottom:10px;
     padding-top:10px;
 }
+
+.provider-info{
+    background-color: cornsilk;
+    border-width:medium;
+    position:absolute;
+    z-index:10;
+    width:540px;
+    -webkit-transition: left 12s; 
+}
+
+.provider-info-arrow{
+    border-right:solid;
+    border-right-width:thin;
+}
+
+.search-item-small{
+    font-size:0.75em;
+}
+
+.search-item-small div p{
+    margin-top:0px;
+    margin-bottom:0px;
+    padding-bottom:0px;
+    padding-top:0px;
+}
 /* EGV 15May2017 Fin */
 
