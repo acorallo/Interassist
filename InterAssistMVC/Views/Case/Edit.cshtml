@@ -286,7 +286,9 @@
                                                                                         .Html(@<text>
                                                                                             <div class="search-item row search-item-small">
                                                                                                 <div class="col-lg-1 provider-info-arrow">
-                                                                                                    <span class="glyphicon glyphicon-triangle-left" onmouseover="MasInfoPrestador('{Id}', '{Nombre}', '{Provincia}', '{Ciudad}', '{Localidad}', '{Domicilio}')"></span>
+                                                                                                    <span class="glyphicon glyphicon-triangle-left" onmouseover="MasInfoPrestador($(this));" onmouseout="OutFlecha($(this))" id="flecha{Id}">
+                                                                                                        <span style="display:none">{DatosPrestador}</span>
+                                                                                                    </span>
                                                                                                 </div>
                                                                                                 <div class="col-lg-11">
                                                                                                     <p><strong>{Nombre}</strong></p>
@@ -314,11 +316,64 @@
                                                                                             Html.X().ModelField().Name("Provincia"),
                                                                                             Html.X().ModelField().Name("Ciudad"),
                                                                                             Html.X().ModelField().Name("Localidad"),
-                                                                                            Html.X().ModelField().Name("Domicilio")
+                                                                                            Html.X().ModelField().Name("Domicilio"),
+                                                                                            Html.X().ModelField().Name("DatosPrestador")
                                                                                         )
                                                                                     )
                                                                                 )
                                                                                 )
+
+                                                                                <div class="alert provider-info panel panel-info provider-info-hide provider-info-hide2">
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-2 provider-info-arrow">
+                                                                                            <a href="#" class="close glyphicon glyphicon-triangle-right" aria-label="close" id="flecha0" onmouseover="HideProviderInfo();"></a>
+                                                                                        </div>
+                                                                                        <div class="col-lg-10">
+                                                                                            <p id="prestInfoNombre"></p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-12">
+                                                                                            <div class="panel-body">
+                                                                                                <ul class="nav nav-pills">
+                                                                                                    <li class="active"><a href="#direccion-pills" data-toggle="tab" aria-expanded="true" onmouseover="InforProviderPill(this);">Direccion</a></li>
+                                                                                                    <li class=""><a href="#telefono-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Teléfonos</a></li>
+                                                                                                    <li class=""><a href="#fiscales-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Fiscales</a></li>
+                                                                                                    <li class=""><a href="#costos-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Costos</a></li>
+                                                                                                    <li class=""><a href="#comentarios-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Comentarios</a></li>
+                                                                                                </ul>
+                                                                                                <div class="tab-content tab-provider-info">
+                                                                                                    <div class="tab-pane fade active in" id="direccion-pills">
+                                                                                                        <p id="prestInfoDomicilio"></p>
+                                                                                                        <p><span id="prestInfoLocalidad"></span><span class="provider-info-separator">/</span><span id="prestInfoCiudad"></span></p>
+                                                                                                        <p><span id="prestInfoProvincia"></span><span class="provider-info-separator">/</span><span id="prestInfoPais"></span></p>
+                                                                                                    </div>
+                                                                                                    <div class="tab-pane fade" id="telefono-pills">
+                                                                                                        <p><span id ="prestInfoTelefono1"></span><span class="provider-info-separator">/</span><span id="prestInfoTelefono2"></span></p>
+                                                                                                        <p><span id="prestInfoCelular1"></span><span class="provider-info-separator">/</span><span id="prestInfoCelular2"></span></p>
+                                                                                                        <p><span id="prestInfoNextel"></span><span class="provider-info-separator">/</span><span id="prestEmail"></span></p>
+                                                                                                    </div>
+                                                                                                    <div class="tab-pane fade" id="fiscales-pills">
+                                                                                                        <p id="prestInfoCuit"></p>
+                                                                                                        <p id="prestInfoIva"></p>
+                                                                                                    </div>
+                                                                                                    <div class="tab-pane fade" id="costos-pills">
+                                                                                                        <p><span>Liv:</span><span class="provider-info-separator"></span><span id="prestInfoLivMovida"></span><span class="provider-info-separator">/</span><span id="prestInfoLivKm"></span></p>
+                                                                                                        <p><span>SP1:</span><span class="provider-info-separator"></span><span id="prestInfoSp1Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoSp1Km"></span></p>
+                                                                                                        <p><span>SP2:</span><span class="provider-info-separator"></span><span id="prestInfoSp2Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoSp2Km"></span></p>
+                                                                                                        <p><span>PS1:</span><span class="provider-info-separator"></span><span id="prestInfoPs1Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoPs1Km"></span></p>
+                                                                                                        <p><span>PS2:</span><span class="provider-info-separator"></span><span id="prestInfoPs2Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoPs2Km"></span></p>
+                                                                                                    </div>
+                                                                                                    <div class="tab-pane fade" id="comentarios-pills">
+                                                                                                        <p id="prestInfoDescripcion"></p>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>                                                                                
+
                                                                             </div>
                                                                         </div>
                                                                         <div class="row">
@@ -480,8 +535,9 @@
                 </div>
                 <div class="row botonera">
                     <div class="col-lg-12">
-                        <input type="submit" value="Grabar" class="btn btn-primary" style="float:right;margin-right:20px;"/>
-                        <input type="button" value="Cancelar" class="btn btn-default" onclick="javascript: window.location.assign('@Url.Action("Index", "Case", null)')" style="float:right;margin-right:20px;" />
+                        <input type="submit" value="Grabar" class="btn btn-primary"/>
+                        <button class="btn btn-default" onclick="javascript: window.location.assign('@Url.Action("Index", "Case", null)')">Cancelar</button>
+                        <button type="button" class="btn btn-success" onclick="Message('SMS enviado con éxito!');">SMS<span class="fa fa-envelope-o" style="margin-left:10px;"></span></button>
                     </div>
                 </div>
             </div>
@@ -690,64 +746,105 @@
             $('#DatosPrestaciones').val(JSON.stringify(a));
         }
 
-        function MasInfoPrestador(id,nombre,pcia, ciudad, localidad,domi){
-            //$('#masInfoPrestador').css('display','block');
-            $('.provider-info .close').click();
-            var html = '<div class="alert provider-info panel panel-info">';
-            html = html + '<div class="row">';
-            html = html + '    <div class="col-lg-2 provider-info-arrow">';
-            html = html + '       <a href="#" class="close glyphicon glyphicon-triangle-right" data-dismiss="alert" aria-label="close" onmouseover="$(this).click()"></a>';
-            html = html + '    </div>';
-            html = html + '    <div class="col-lg-10">';
-            html = html + '       <p>' + id + ' ' + nombre + '</p>';
-            html = html + '    </div>';
-            html = html + '</div>';
-            html = html + '<div class="row">';
-            html = html + '    <div class="col-lg-12">';
-            html = html + '        <div class="panel-body">';
-            html = html + '            <ul class="nav nav-pills">';
-            html = html + '                <li class="active"><a href="#direccion-pills" data-toggle="tab" aria-expanded="true">Direccion</a></li>';
-            html = html + '                <li class=""><a href="#telefono-pills" data-toggle="tab" aria-expanded="false">Teléfonos</a></li>';
-            html = html + '                <li class=""><a href="#fiscales-pills" data-toggle="tab" aria-expanded="false">Fiscales</a></li>';
-            html = html + '                <li class=""><a href="#costos-pills" data-toggle="tab" aria-expanded="false">Costos</a></li>';
-            html = html + '                <li class=""><a href="#comentarios-pills" data-toggle="tab" aria-expanded="false">Comentarios</a></li>';
-            html = html + '            </ul>';
-            html = html + '            <div class="tab-content">';
-            html = html + '                <div class="tab-pane fade active in" id="direccion-pills">';
-            html = html + '                    <h4>Home Tab</h4>';
-            html = html + '                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>';
-            html = html + '                </div>';
-            html = html + '                <div class="tab-pane fade" id="telefono-pills">';
-            html = html + '                    <h4>Profile Tab</h4>';
-            html = html + '                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>';
-            html = html + '                </div>';
-            html = html + '                <div class="tab-pane fade" id="fiscales-pills">';
-            html = html + '                    <h4>Messages Tab</h4>';
-            html = html + '                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>';
-            html = html + '                </div>';
-            html = html + '                <div class="tab-pane fade" id="comentarios-pills">';
-            html = html + '                    <h4>Settings Tab</h4>';
-            html = html + '                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>';
-            html = html + '                </div>';
-            html = html + '            </div>';
-            html = html + '        </div>';
-
-            //html = html + '<p>' + domi + '</p>';
-            //html = html + '<p>' + ciudad + ' ' + localidad + ' ' + pcia + '</p>';
-            html = html + '    </div>'
-            html = html + '</div>'
-            html = html + '</div>'
-            $($('#prestacionNombrePrestador').parent()).prepend(html);
-            var w = $('.provider-info').outerWidth() - 10;
-            $('.provider-info').css("left", w * -1);
-            //$('.provider-info').css("z-index","100");
+        function OutFlecha(item) {
+            item.removeClass("glyphicon-menu-left");
+            item.addClass("glyphicon-triangle-left");
         }
 
+        function MasInfoPrestador(item){
+            item.removeClass("glyphicon-triangle-left");
+            item.addClass("glyphicon-menu-left");
+
+            setTimeout(function () {
+                if ($('#' + item.attr("id") + ':hover').length > 0) {
+
+                    var oPrest = JSON.parse(item.children().text());
+
+                    CleanInfoPrestador();
+
+                    $('#prestInfoNombre').text(oPrest.Nombre);
+                    $('#prestInfoDomicilio').text(oPrest.Domicilio);
+                    $('#prestInfoLocalidad').text(oPrest.Localidad);
+                    $('#prestInfoCiudad').text(oPrest.Ciudad);
+                    $('#prestInfoProvincia').text(oPrest.Provincia);
+                    $('#prestInfoPais').text(oPrest.Pais);
+                    $('#prestInfoTelefono1').text(oPrest.Telefono);
+                    $('#prestInfoTelefono2').text(oPrest.Telefono2);
+                    $('#prestInfoCelular1').text(oPrest.Celular);
+                    $('#prestInfoCelular2').text(oPrest.Celular2);
+                    $('#prestInfoNextel').text(oPrest.Nextel);
+                    $('#prestEmail').text(oPrest.Email);
+                    $('#prestInfoCuit').text(oPrest.Cuit);
+                    $('#prestInfoIva').text(oPrest.Iva);
+                    $('#prestInfoLivMovida').text(oPrest.LivMovida);
+                    $('#prestInfoLivKm').text(oPrest.LivKm);
+                    $('#prestInfoSp1Movida').text(oPrest.Sp1Movida);
+                    $('#prestInfoSp1Km').text(oPrest.Sp1Km);
+                    $('#prestInfoSp2Movida').text(oPrest.Sp2Movida);
+                    $('#prestInfoSp2Km').text(oPrest.Sp2Km);
+                    $('#prestInfoPs1Movida').text(oPrest.Ps1Movida);
+                    $('#prestInfoPs1Km').text(oPrest.Ps1Km);
+                    $('#prestInfoPs2Movida').text(oPrest.Ps2Movida);
+                    $('#prestInfoPs2Km').text(oPrest.Ps2Km);
+                    $('#prestInfoDescripcion').text(oPrest.Descripcion);
+
+                    $('.provider-info').addClass('provider-info-show');
+                    setTimeout(function () {
+                        $('.provider-info').addClass('provider-info-move');
+                        item.removeClass("glyphicon-menu-left");
+                        item.addClass("glyphicon-triangle-left");
+                    }, 10);
+                }
+            }, 500);
+        }
+
+        function HideProviderInfo() {
+            setTimeout(function () {
+                if ($('#flecha0:hover').length > 0) {
+                    $('.provider-info').removeClass('provider-info-move');
+                    setTimeout(function () {
+                        $('.provider-info').removeClass('provider-info-show');
+                        CleanInfoPrestador();
+                    }, 1000);
+                }
+            }, 500);
+        }
 
         function CerrarInfoPrestador() {
             if ($('.provider-info').length > 0) {
-                $('.provider-info a.close').click();
+                $('.provider-info').removeClass('provider-info-move');
+                $('.provider-info').removeClass('provider-info-show');
+                CleanInfoPrestador();
             }
+        }
+
+        function CleanInfoPrestador() {
+            $('#prestInfoNombre').text('');
+            $('#prestInfoDomicilio').text('');
+            $('#prestInfoLocalidad').text('');
+            $('#prestInfoCiudad').text('');
+            $('#prestInfoProvincia').text('');
+            $('#prestInfoPais').text('');
+            $('#prestInfoTelefono1').text('');
+            $('#prestInfoTelefono2').text('');
+            $('#prestInfoCelular1').text('');
+            $('#prestInfoCelular2').text('');
+            $('#prestInfoNextel').text('');
+            $('#prestEmail').text('');
+            $('#prestInfoCuit').text('');
+            $('#prestInfoIva').text('');
+            $('#prestInfoLivMovida').text('');
+            $('#prestInfoLivKm').text('');
+            $('#prestInfoSp1Movida').text('');
+            $('#prestInfoSp1Km').text('');
+            $('#prestInfoSp2Movida').text('');
+            $('#prestInfoSp2Km').text('');
+            $('#prestInfoPs1Movida').text('');
+            $('#prestInfoPs1Km').text('');
+            $('#prestInfoPs2Movida').text('');
+            $('#prestInfoPs2Km').text('');
+            $('#prestInfoDescripcion').text('');
+
         }
 
         function SeleccionaUbicacionOrigen(item){
@@ -792,6 +889,14 @@
                 $('#prestacionIdProvinciaDestino').val(o.IdProvincia);
                 $('#prestacionIdPaisDestino').val(o.IdPais);
             }
+        }
+
+        function InforProviderPill(aref) {
+            setTimeout(function () {
+                if ($('a[href="' + $(aref).attr("href") + '"]:hover').length > 0) {
+                    $(aref).click();
+                }
+            }, 500);
         }
 
 

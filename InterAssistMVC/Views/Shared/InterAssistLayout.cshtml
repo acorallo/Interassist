@@ -45,6 +45,12 @@
 </head>
 <body>
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- EGV 09Jun2017 Inicio -->
+    <div id="mensaje-exito" class="alert alert-success mensaje mensaje-hide">
+        <button type="button" class="close" aria-hidden="true" onclick="OcultaMsj()">×</button>
+        <p></p>
+    </div>
+    <!-- EGV 09Jun2017 Fin -->
     <div id="wrapper">
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -135,5 +141,19 @@
     <!--script src="../dist/js/sb-admin-2.js"></script-->
     <script src="/dist/js/sb-admin-2.js"></script>
     <!-- EGV 21May2017 Fin -->
+
+    <script>
+        function OcultaMsj() {
+            $('.mensaje').removeClass("mensaje-show");
+            $('.mensaje').addClass("mensaje-hide");
+            $('.mensaje p').text('');
+        }
+
+        function Message(msj) {
+            $('#mensaje-exito p').text(msj);
+            $('.mensaje').removeClass("mensaje-hide");
+            $('.mensaje').addClass("mensaje-show");
+        }
+    </script>
 </body>
 </html>

@@ -94,11 +94,12 @@ namespace InterAssistMVC.Controllers
             FiltroAfiliado f = new FiltroAfiliado();
             int totalRegistros;
 
-            f.Search = query;
+            f.Search = query.Replace(',',' ').Replace('-',' ').Replace(' ','%');
 
             f.IsPaged = true;
             f.PageSize = limit;
             f.OrderBY = " ORDER BY PATENTE";
+            f.Vigente = true;
 
 
             f.StartRow = ((page - 1) * limit) + 1;

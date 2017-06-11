@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterAssistMVC", "InterAssi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DBScripts", "DBScripts", "{709DF3E4-7589-465C-8F61-5C47F239A872}"
 	ProjectSection(SolutionItems) = preProject
+		DBScripts\AFILIADO_PKG Body.sql = DBScripts\AFILIADO_PKG Body.sql
+		DBScripts\AFILIADO_PKG.sql = DBScripts\AFILIADO_PKG.sql
 		DBScripts\ESTADO_PKG Body.sql = DBScripts\ESTADO_PKG Body.sql
 		DBScripts\ESTADO_PKG.sql = DBScripts\ESTADO_PKG.sql
 		DBScripts\Modificaciones Tablas.sql = DBScripts\Modificaciones Tablas.sql

@@ -17,6 +17,7 @@ namespace Utils.InterAssist
         public string Patente = string.Empty;
         public int IDEmpresa = FiltroAfiliado.NULL_ID;
         public string Search = string.Empty;
+        public bool Vigente = false;        // EGV 10Jun2017
 
         protected override void ResetElements()
         {
@@ -28,6 +29,7 @@ namespace Utils.InterAssist
            this.Patente = string.Empty;
            this.IDEmpresa = FiltroAfiliado.NULL_ID;
            this.Search = string.Empty;
+           this.Vigente = false;        // EGV 10Jun2017
         }
 
     }

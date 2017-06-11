@@ -188,6 +188,7 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_PATENTE", DbType.String, filtro.Patente));
                 paramList.Add(repository.DbFactory.getDataParameter("P_ID_EMPRESA", DbType.Int32, filtro.IDEmpresa));
                 paramList.Add(repository.DbFactory.getDataParameter("P_SEARCH", DbType.String, filtro.Search));
+                paramList.Add(repository.DbFactory.getDataParameter("P_VIGENTE", DbType.Int32, Convert.ToInt32(filtro.Vigente)));      // EGV 10Jun2017
 
                 bool result = repository.ExecuteListProcedure(CONST_LIST_PROCEDURE_NAME, paramList, f, ds, out RecordCount);
 

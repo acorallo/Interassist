@@ -22,18 +22,44 @@
     padding-top:10px;
 }
 
+.botonera button {
+    float:right;
+    margin-right:20px;
+}
+
+.botonera input {
+    float:right;
+    margin-right:20px;
+}
+
 .provider-info{
     background-color: cornsilk;
     border-width:medium;
     position:absolute;
-    z-index:10;
+    z-index:1;
     width:540px;
-    -webkit-transition: left 12s; 
+    right:-57px;
+    display:none;
+    -webkit-transition: right 1s; 
+    transition: right 1s; 
+}
+
+.provider-info-move{
+    right:485px;
+}
+
+.provider-info-show{
+    display:inline;
 }
 
 .provider-info-arrow{
     border-right:solid;
     border-right-width:thin;
+}
+
+.provider-info-separator{
+    padding-left:10px;
+    padding-right:10px;
 }
 
 .search-item-small{
@@ -45,6 +71,28 @@
     margin-bottom:0px;
     padding-bottom:0px;
     padding-top:0px;
+}
+
+.mensaje{
+    position:fixed;
+    z-index:2000;
+    top: 10px;
+    transition: right 1s;
+    -webkit-transition: right 1s;
+    max-width:500px;
+}
+
+.mensaje-hide{
+    right:-510px;
+}
+
+.mensaje-show{
+    right:10px;
+}
+
+.tab-provider-info{
+    font-size:0.85em;
+    padding-top:10px;
 }
 /* EGV 15May2017 Fin */
 
