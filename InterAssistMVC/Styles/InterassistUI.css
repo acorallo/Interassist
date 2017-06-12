@@ -94,5 +94,13 @@
     font-size:0.85em;
     padding-top:10px;
 }
+
+textarea{
+    width:100%;
+}
+
+.field-validation-error {
+    color:Red;
+}
 /* EGV 15May2017 Fin */
 

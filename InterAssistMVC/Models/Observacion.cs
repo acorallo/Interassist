@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Entities.InterAsisst;
+using System.ComponentModel.DataAnnotations;        // EGV 11Jun2017
 
 namespace InterAssistMVC.Models
 {
@@ -11,9 +12,17 @@ namespace InterAssistMVC.Models
         public virtual int Id { get; set; }
         public virtual DateTime Fecha { get; set; }
         public virtual bool Estado { get; set; }
+
+        [Required]                  // EGV 11Jun2017
+        [StringLength(3999)]        // EGV 11Jun2017
         public virtual string Descripcion { get; set; }
+
+        [Required]                  // EGV 11Jun2017
         public virtual int IdOperador { get; set; }
+
+        [Required]                  // EGV 11Jun2017
         public virtual int IdTicket { get; set; }
+
         public virtual string NombreOperador { get; set; }
         public virtual string ApellidoOperador { get; set; }
 

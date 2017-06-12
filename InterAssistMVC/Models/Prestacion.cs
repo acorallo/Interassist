@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Entities.InterAsisst;
+using System.ComponentModel.DataAnnotations;
 
 namespace InterAssistMVC.Models
 {
@@ -16,11 +17,21 @@ namespace InterAssistMVC.Models
         //public virtual TipoServicio TipoServicio { get; set; }
         public virtual int IdPrestador { get; set; }
         public virtual string NombrePrestador { get; set; }
+        
+        [Required]
         public virtual int IdTipoServicio { get; set; }
+
         public virtual string DescripcionServicio { get; set; }
+        
+        [StringLength(1024)]
         public virtual string Comentarios { get; set; }
+
+        [Range(-1, 9999999)]
         public virtual Decimal Kilometros { get; set; }
+
+        [Range(-1, 9999999)]
         public virtual Decimal Costo { get; set; }
+
         // EGV 25May2017 Inicio
         public virtual int IdProblema { get; set; }
         public virtual string Problema { get; set; }
@@ -36,9 +47,16 @@ namespace InterAssistMVC.Models
         public virtual string CalleDestino { get; set; }
         public virtual int IdEstado { get; set; }
         public virtual int IdTicketPrestadorRetrabajo { get; set; }
+
+        [StringLength(20)]
         public virtual string Demora { get; set; }
+
+        [StringLength(20)]
         public virtual string Patente { get; set; }
+
+        [StringLength(255)]
         public virtual string NombreChofer { get; set; }
+
         public virtual string Estado { get; set; }
 
         public virtual string NombreLocalidadOrigen { get; set; }
