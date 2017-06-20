@@ -82,6 +82,7 @@
                                                                         )
                                                                     )
                                                             )
+                                                    <input type="hidden" id="AfiliadoSelectVal" value="@(Model.Afiliado != null ? Model.Afiliado.PatenteApeYNom : null)" />
                                                 </div>
                         }
                         }
@@ -98,6 +99,30 @@
                                 }
                             }
                         </div>
+
+                        <div class="modal fade" id="modalOkAfiliado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                            <div class="modal-dialog" style="width:40%">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" id="myModalLabel">Ok Afiliado</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-12">Casos en el Mes del Afiliado: @Html.EditorFor(model => model.CantTicketsAfil, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @style="width:3em;" } })</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">Acepta el Ingreso del Caso @Html.CheckBoxFor(model => model.OkAfiliado)</div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnOkAfiliadoAceptar">Aceptar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="btnOkAfiliado" type="button" class="btn btn-success" onclick="" data-toggle="modal" data-target="#modalOkAfiliado" data-placement="top" title="Ok Afiliado" style="display:none">Ok Afiliado</button>
+
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
@@ -618,7 +643,8 @@
 
     function EligeAfiliado(item) {
         if (item != undefined && item != null) {
-            if (item.value != undefined && item.value != null){
+            if (item.value != undefined && item.value != null) {
+                $('#btnOkAfiliado').click();
                 var a = JSON.parse(item.value);
                 $('input#IdAfiliado').val(a.Id);
                 $('input#ApyNom').val(a.ApyNom);
@@ -636,6 +662,7 @@
                 $('input#mod').val(a.mod);
                 $('input#col').val(a.col);
                 $('input#anio').val(a.anio);
+                $('input#AfiliadoSelectVal').val(item.selection.data.PatenteApeYNom)
             }else{
                 $('input#IdAfiliado').val('');
                 $('input#ApyNom').val('');
@@ -654,6 +681,7 @@
                 $('input#col').val('');
                 $('input#anio').val('');
                 $('#AfiliadoSelect').val('');
+                $('input#AfiliadoSelectVal').val('')
             }
         }else{
             $('input#IdAfiliado').val('');
@@ -673,6 +701,7 @@
             $('input#col').val('');
             $('input#anio').val('');
             $('#AfiliadoSelect').val('');
+            $('input#AfiliadoSelectVal').val('')
         }
     }
 
@@ -681,6 +710,26 @@
         accionPrestacion = "A";
         LimpiarPrestacionPopUp();
         $('#prestacionDemora').val('02:00');
+        $('#prestacionEstado').val(8);
+
+        $('#prestacionIdPaisOrigen').val($('#IdPaisOrigen').val());
+        $('#prestacionIdPaisDestino').val($('#IdPaisDestino').val());
+        $('#prestacionIdProvinciaOrigen').val($('#IdProvinciaOrigen').val());
+        $('#prestacionIdProvinciaDestino').val($('#IdProvinciaDestino').val());
+        $('#prestacionIdCiudadOrigen').val($('#IdCiudadOrigen').val());
+        $('#prestacionIdCiudadDestino').val($('#IdCiudadDestino').val());
+        $('#prestacionCalleOrigen').val($('#CalleOrigen').val());
+        $('#prestacionIdLocalidadOrigen').val($('#IdLocalidadOrigen').val());
+        $('#prestacionIdLocalidadDestino').val($('#IdLocalidadDestino').val());
+        $('#prestacionCalleDestino').val($('#CalleDestino').val());
+
+        $('#prestacionUbicacionOrigen').val($('#UbicacionOrigen').val());
+        $('#prestacionUbicacionDestino').val($('#UbicacionDestino').val());
+
+        $('#prestacionUbicacionOrigenVal').val($('#UbicacionOrigen').val());
+        $('#prestacionUbicacionDestinoVal').val($('#UbicacionDestino').val());
+        
+
     }
 
     function ModificarPrestacion(data) {
@@ -692,6 +741,7 @@
         var p = JSON.parse($(data).children()[5].innerText);
 
         $('#prestacionNombrePrestador').val(p.NombrePrestador);
+        $('#prestacionNombrePrestadorVal').val(p.NombrePrestador);
         $('#prestacionIdPrestador').val(p.IdPrestador);
         $('#prestacionTipoServicio').val(p.IdTipoServicio);
         $("#prestacionDetalles").val(p.Comentarios);
@@ -733,6 +783,7 @@
 
     function LimpiarPrestacionPopUp() {
         $('#prestacionNombrePrestador').val('');
+        $('#prestacionNombrePrestadorVal').val('');
         $('#prestacionIdPrestador').val('');
         $('#prestacionTipoServicio').val('');
         $("#prestacionDetalles").val('');
@@ -1202,6 +1253,12 @@
                 }
             }
         });
+
+        if ($('#AfiliadoSelect').length = 1){
+            $('#AfiliadoSelect').rules("add",{
+                validaAutocompletar: true
+            },"Afiliado inválido");
+        }
 
         $('#UbicacionOrigen').rules("add",{
             validaAutocompletar: true

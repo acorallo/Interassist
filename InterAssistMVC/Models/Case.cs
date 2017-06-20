@@ -56,7 +56,7 @@ namespace InterAssistMVC.Models
         public virtual string Modelo { get; set; }
         public virtual string Marca { get; set; }
 
-        public virtual string OkAfiliado { get; set; }
+        public virtual bool OkAfiliado { get; set; }
         public virtual int CantTicketsAfil { get; set; }
 
         public virtual AfiliadoModel Afiliado { get; set; }

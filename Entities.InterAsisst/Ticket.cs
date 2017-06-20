@@ -48,7 +48,7 @@ namespace Entities.InterAsisst
             this.IdProvinciaDestino = NULL_ID;
             this.IdProvinciaOrigen = NULL_ID;
             this.CantTicketsAfil = NULL_ID;
-            this.OkAfiliado = "N";
+            this.OkAfiliado = false;
             // EGV 25May2017 Fin
         }
 
@@ -285,9 +285,9 @@ namespace Entities.InterAsisst
             get { return _idTipoServicio; }
             set { _idTipoServicio = value; }
         }*/
-        private string _okAfiliado;
+        private bool _okAfiliado;
 
-        public string OkAfiliado
+        public bool OkAfiliado
         {
             get { return _okAfiliado; }
             set { _okAfiliado = value; }
@@ -528,7 +528,7 @@ namespace Entities.InterAsisst
             // EGV 25May2017 Fin
             resultRow.TIPO_TICKET = this.TipoTicket;
             // EGV 20Jun2017 Inicio
-            resultRow.OKAFILIADO = this.OkAfiliado;
+            resultRow.OKAFILIADO = this.OkAfiliado ? "S" : "N";
             resultRow.CANT_TICKETS_AFIL = this.CantTicketsAfil;
             // EGV 20Jun2017 Fin
 
@@ -645,7 +645,7 @@ namespace Entities.InterAsisst
             ticket._nombreOperador = dr[TicketDS.COL_NOMBRE_OPERADOR].ToString();
             // EGV 25May2017 Inicio
             //ticket._problema = dr[TicketDS.COL_PROBLEMA].ToString();
-            ticket._okAfiliado = dr[TicketDS.COL_OKAFILIADO].ToString();
+            ticket._okAfiliado = dr[TicketDS.COL_OKAFILIADO].ToString() == "S" ? true : false;
             ticket._cantTicketsAfil = PersistEntity.NuleableInt(dr[TicketDS.COL_CANT_TICKETS_AFIL].ToString());
             // EGV 25May2017 Fin
             ticket._nombreEmpresa = dr[TicketDS.COL_NOMBRE_EMPRESA].ToString();

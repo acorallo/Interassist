@@ -58,7 +58,7 @@ namespace InterAssistMVC.Utils
         {
             bool result = true;
             if (SecurityKey == CASE_CHANGE_STATUS_KEY)
-                result = true;
+                result = false;
             return result;
         }
     }
