@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="AjaxResponseCiudaes.cs" />
     <Compile Include="Campos.cs" />
+    <Compile Include="Common.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="FiltroAfiliado.cs" />
     <Compile Include="FiltroCategorias.cs" />

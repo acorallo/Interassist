@@ -329,6 +329,8 @@ namespace DAL.InterAssist.Datasets {
             
             private global::System.Data.DataColumn columnNOMBRE_CHOFER;
             
+            private global::System.Data.DataColumn columnIDFINALIZACION;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TICKET_PRESTADORESDataTable() {
@@ -564,6 +566,14 @@ namespace DAL.InterAssist.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDFINALIZACIONColumn {
+                get {
+                    return this.columnIDFINALIZACION;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -624,7 +634,8 @@ namespace DAL.InterAssist.Datasets {
                         int IDTICKETPRESTADOR_RETRABAJO, 
                         string DEMORA, 
                         string PATENTE, 
-                        string NOMBRE_CHOFER) {
+                        string NOMBRE_CHOFER, 
+                        int IDFINALIZACION) {
                 TICKET_PRESTADORESRow rowTICKET_PRESTADORESRow = ((TICKET_PRESTADORESRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IDTICKETPRESTADOR,
@@ -651,7 +662,8 @@ namespace DAL.InterAssist.Datasets {
                         IDTICKETPRESTADOR_RETRABAJO,
                         DEMORA,
                         PATENTE,
-                        NOMBRE_CHOFER};
+                        NOMBRE_CHOFER,
+                        IDFINALIZACION};
                 rowTICKET_PRESTADORESRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTICKET_PRESTADORESRow);
                 return rowTICKET_PRESTADORESRow;
@@ -699,6 +711,7 @@ namespace DAL.InterAssist.Datasets {
                 this.columnDEMORA = base.Columns["DEMORA"];
                 this.columnPATENTE = base.Columns["PATENTE"];
                 this.columnNOMBRE_CHOFER = base.Columns["NOMBRE_CHOFER"];
+                this.columnIDFINALIZACION = base.Columns["IDFINALIZACION"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -754,6 +767,8 @@ namespace DAL.InterAssist.Datasets {
                 base.Columns.Add(this.columnPATENTE);
                 this.columnNOMBRE_CHOFER = new global::System.Data.DataColumn("NOMBRE_CHOFER", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNOMBRE_CHOFER);
+                this.columnIDFINALIZACION = new global::System.Data.DataColumn("IDFINALIZACION", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIDFINALIZACION);
                 this.columnOBJECTHASH.MaxLength = 50;
                 this.columnCOMENTARIOS.MaxLength = 1024;
                 this.columnCALLE_ORIGEN.MaxLength = 1024;
@@ -1309,6 +1324,22 @@ namespace DAL.InterAssist.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int IDFINALIZACION {
+                get {
+                    try {
+                        return ((int)(this[this.tableTICKET_PRESTADORES.IDFINALIZACIONColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IDFINALIZACION\' in table \'TICKET_PRESTADORES\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTICKET_PRESTADORES.IDFINALIZACIONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsIDTICKETPRESTADORNull() {
                 return this.IsNull(this.tableTICKET_PRESTADORES.IDTICKETPRESTADORColumn);
             }
@@ -1605,6 +1636,18 @@ namespace DAL.InterAssist.Datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNOMBRE_CHOFERNull() {
                 this[this.tableTICKET_PRESTADORES.NOMBRE_CHOFERColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIDFINALIZACIONNull() {
+                return this.IsNull(this.tableTICKET_PRESTADORES.IDFINALIZACIONColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIDFINALIZACIONNull() {
+                this[this.tableTICKET_PRESTADORES.IDFINALIZACIONColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -47,6 +47,8 @@ namespace Entities.InterAsisst
             this.IdPaisOrigen = NULL_ID;
             this.IdProvinciaDestino = NULL_ID;
             this.IdProvinciaOrigen = NULL_ID;
+            this.CantTicketsAfil = NULL_ID;
+            this.OkAfiliado = "N";
             // EGV 25May2017 Fin
         }
 
@@ -283,6 +285,21 @@ namespace Entities.InterAsisst
             get { return _idTipoServicio; }
             set { _idTipoServicio = value; }
         }*/
+        private string _okAfiliado;
+
+        public string OkAfiliado
+        {
+            get { return _okAfiliado; }
+            set { _okAfiliado = value; }
+        }
+
+        private int _cantTicketsAfil;
+
+        public int CantTicketsAfil
+        {
+            get { return _cantTicketsAfil; }
+            set { _cantTicketsAfil = value; }
+        }
         // EGV 25May2017 Fin
 
         private string _nombreLocalidadOrigen;
@@ -510,6 +527,10 @@ namespace Entities.InterAsisst
             //resultRow.IDPROBLEMA = this.IdProblema;
             // EGV 25May2017 Fin
             resultRow.TIPO_TICKET = this.TipoTicket;
+            // EGV 20Jun2017 Inicio
+            resultRow.OKAFILIADO = this.OkAfiliado;
+            resultRow.CANT_TICKETS_AFIL = this.CantTicketsAfil;
+            // EGV 20Jun2017 Fin
 
 
             //resultRow.IDTIPOSERVICIO = this.IdTipoServicio;
@@ -577,6 +598,7 @@ namespace Entities.InterAsisst
             prestadorCaso.NombreChofer = dr["NOMBRE_CHOFER"].ToString();
             prestadorCaso.NombreLocalidadOrigen = dr["LOCALIDAD_ORIGEN_NOMBRE"].ToString();
             prestadorCaso.NombreLocalidadDestino = dr["LOCALIDAD_DESTINO_NOMBRE"].ToString();
+            prestadorCaso.IdFinalizacion = PersistEntity.NuleableInt(dr["IDFINALIZACION"].ToString());
 
         }
         // EGV 25May2017 Fin
@@ -623,6 +645,8 @@ namespace Entities.InterAsisst
             ticket._nombreOperador = dr[TicketDS.COL_NOMBRE_OPERADOR].ToString();
             // EGV 25May2017 Inicio
             //ticket._problema = dr[TicketDS.COL_PROBLEMA].ToString();
+            ticket._okAfiliado = dr[TicketDS.COL_OKAFILIADO].ToString();
+            ticket._cantTicketsAfil = PersistEntity.NuleableInt(dr[TicketDS.COL_CANT_TICKETS_AFIL].ToString());
             // EGV 25May2017 Fin
             ticket._nombreEmpresa = dr[TicketDS.COL_NOMBRE_EMPRESA].ToString();
             ticket._nombreAfiliado = dr[TicketDS.COL_NOMBRE_AFILIADO].ToString();

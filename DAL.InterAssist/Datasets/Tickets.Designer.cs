@@ -315,6 +315,10 @@ namespace DAL.InterAssist.Datasets {
             
             private global::System.Data.DataColumn columnTIPO_TICKET;
             
+            private global::System.Data.DataColumn columnOKAFILIADO;
+            
+            private global::System.Data.DataColumn columnCANT_TICKETS_AFIL;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TICKETSDataTable() {
@@ -494,6 +498,22 @@ namespace DAL.InterAssist.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn OKAFILIADOColumn {
+                get {
+                    return this.columnOKAFILIADO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CANT_TICKETS_AFILColumn {
+                get {
+                    return this.columnCANT_TICKETS_AFIL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -547,7 +567,9 @@ namespace DAL.InterAssist.Datasets {
                         double IDLOCALIDAD_ORIGEN, 
                         double IDLOCALIDAD_DESTINO, 
                         string CALLE_DESTINO, 
-                        string TIPO_TICKET) {
+                        string TIPO_TICKET, 
+                        string OKAFILIADO, 
+                        int CANT_TICKETS_AFIL) {
                 TICKETSRow rowTICKETSRow = ((TICKETSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IDTICKET,
@@ -567,7 +589,9 @@ namespace DAL.InterAssist.Datasets {
                         IDLOCALIDAD_ORIGEN,
                         IDLOCALIDAD_DESTINO,
                         CALLE_DESTINO,
-                        TIPO_TICKET};
+                        TIPO_TICKET,
+                        OKAFILIADO,
+                        CANT_TICKETS_AFIL};
                 rowTICKETSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTICKETSRow);
                 return rowTICKETSRow;
@@ -615,6 +639,8 @@ namespace DAL.InterAssist.Datasets {
                 this.columnIDLOCALIDAD_DESTINO = base.Columns["IDLOCALIDAD_DESTINO"];
                 this.columnCALLE_DESTINO = base.Columns["CALLE_DESTINO"];
                 this.columnTIPO_TICKET = base.Columns["TIPO_TICKET"];
+                this.columnOKAFILIADO = base.Columns["OKAFILIADO"];
+                this.columnCANT_TICKETS_AFIL = base.Columns["CANT_TICKETS_AFIL"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -656,6 +682,10 @@ namespace DAL.InterAssist.Datasets {
                 base.Columns.Add(this.columnCALLE_DESTINO);
                 this.columnTIPO_TICKET = new global::System.Data.DataColumn("TIPO_TICKET", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTIPO_TICKET);
+                this.columnOKAFILIADO = new global::System.Data.DataColumn("OKAFILIADO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOKAFILIADO);
+                this.columnCANT_TICKETS_AFIL = new global::System.Data.DataColumn("CANT_TICKETS_AFIL", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCANT_TICKETS_AFIL);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIDTICKET}, true));
                 this.columnIDTICKET.AllowDBNull = false;
@@ -677,6 +707,7 @@ namespace DAL.InterAssist.Datasets {
                 this.columnIDLOCALIDAD_ORIGEN.AllowDBNull = false;
                 this.columnIDLOCALIDAD_DESTINO.AllowDBNull = false;
                 this.columnCALLE_DESTINO.MaxLength = 1024;
+                this.columnOKAFILIADO.MaxLength = 1;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1037,6 +1068,38 @@ namespace DAL.InterAssist.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string OKAFILIADO {
+                get {
+                    try {
+                        return ((string)(this[this.tableTICKETS.OKAFILIADOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OKAFILIADO\' in table \'TICKETS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTICKETS.OKAFILIADOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int CANT_TICKETS_AFIL {
+                get {
+                    try {
+                        return ((int)(this[this.tableTICKETS.CANT_TICKETS_AFILColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CANT_TICKETS_AFIL\' in table \'TICKETS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTICKETS.CANT_TICKETS_AFILColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTELEFONONull() {
                 return this.IsNull(this.tableTICKETS.TELEFONOColumn);
             }
@@ -1081,6 +1144,30 @@ namespace DAL.InterAssist.Datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTIPO_TICKETNull() {
                 this[this.tableTICKETS.TIPO_TICKETColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsOKAFILIADONull() {
+                return this.IsNull(this.tableTICKETS.OKAFILIADOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetOKAFILIADONull() {
+                this[this.tableTICKETS.OKAFILIADOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCANT_TICKETS_AFILNull() {
+                return this.IsNull(this.tableTICKETS.CANT_TICKETS_AFILColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCANT_TICKETS_AFILNull() {
+                this[this.tableTICKETS.CANT_TICKETS_AFILColumn] = global::System.Convert.DBNull;
             }
         }
         

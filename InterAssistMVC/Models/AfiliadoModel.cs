@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using Entities.InterAsisst;
 using System.Web.Mvc;
+using Utils.InterAssist;
 
 
 namespace InterAssistMVC.Models
@@ -62,7 +63,7 @@ namespace InterAssistMVC.Models
             m.Estado = e.Estado;
             m.NombreEmpresa = e.NombreEmpresa;
 
-            m.ApellidoYNombre = e.Apellido + ", " + e.Nombre;
+            m.ApellidoYNombre = Common.ApeYNom(e.Nombre, e.Apellido);
             m.PatenteApeYNom = e.Patente + " - " + m.ApellidoYNombre;
             m.DatosAfiliado = Newtonsoft.Json.JsonConvert.SerializeObject(new { Id = m.Id, ApyNom = m.ApellidoYNombre, Doc = m.Documento, Dir = m.Direccion, cp = m.CodigoPostal, pol = m.Poliza, cia = m.NombreEmpresa, fd = m.FechaDesde.ToString("dd/MM/yyyy"), fh = m.FechaHasta.ToString("dd/MM/yyyy"), tp = " ", sp = " ", pat = m.Patente, marca = m.Marca, mod = m.Modelo, col = m.Color, anio = m.Anio });
 

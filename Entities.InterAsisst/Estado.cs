@@ -20,6 +20,12 @@ namespace Entities.InterAsisst
         public string Descripcion { get; set; }
         public string Grupo { get; set; }
 
+        // EGV 25May2017 Inicio
+        public enum Prestacion { Borrador = 8, PendientePrestador = 9, PendienteAsistencia = 10, PendienteCierre = 11, Cerrado = 12 }
+        public enum Caso { Borrador = 4, Abierto = 5, PendienteCierre = 6, Cerrado = 7 }
+        public enum FinalPrestacion { CancelaAfiliado = 13, CancelaPrestador = 14, AsistenciaOk = 15 }
+        // EGV 25May2017 Fin
+
         public static void ORM(Estado estado, DataRow r)
         {
             estado._id = Int32.Parse(r[EstadoDS.COLUMN_IDESTADO].ToString());

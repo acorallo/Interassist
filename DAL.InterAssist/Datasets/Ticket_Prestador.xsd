@@ -14,7 +14,7 @@
   <xs:element name="Ticket_Prestador" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Ticket_Prestador" msprop:Generator_UserDSName="Ticket_Prestador">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="TICKET_PRESTADORES" msprop:Generator_TableClassName="TICKET_PRESTADORESDataTable" msprop:Generator_TableVarName="tableTICKET_PRESTADORES" msprop:Generator_RowChangedName="TICKET_PRESTADORESRowChanged" msprop:Generator_TablePropName="TICKET_PRESTADORES" msprop:Generator_RowDeletingName="TICKET_PRESTADORESRowDeleting" msprop:Generator_RowChangingName="TICKET_PRESTADORESRowChanging" msprop:Generator_RowEvHandlerName="TICKET_PRESTADORESRowChangeEventHandler" msprop:Generator_RowDeletedName="TICKET_PRESTADORESRowDeleted" msprop:Generator_RowClassName="TICKET_PRESTADORESRow" msprop:Generator_UserTableName="TICKET_PRESTADORES" msprop:Generator_RowEvArgName="TICKET_PRESTADORESRowChangeEvent">
+        <xs:element name="TICKET_PRESTADORES" msprop:Generator_TableClassName="TICKET_PRESTADORESDataTable" msprop:Generator_TableVarName="tableTICKET_PRESTADORES" msprop:Generator_TablePropName="TICKET_PRESTADORES" msprop:Generator_RowDeletingName="TICKET_PRESTADORESRowDeleting" msprop:Generator_RowChangingName="TICKET_PRESTADORESRowChanging" msprop:Generator_RowEvHandlerName="TICKET_PRESTADORESRowChangeEventHandler" msprop:Generator_RowDeletedName="TICKET_PRESTADORESRowDeleted" msprop:Generator_UserTableName="TICKET_PRESTADORES" msprop:Generator_RowChangedName="TICKET_PRESTADORESRowChanged" msprop:Generator_RowEvArgName="TICKET_PRESTADORESRowChangeEvent" msprop:Generator_RowClassName="TICKET_PRESTADORESRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IDTICKETPRESTADOR" msprop:Generator_ColumnVarNameInTable="columnIDTICKETPRESTADOR" msprop:Generator_ColumnPropNameInRow="IDTICKETPRESTADOR" msprop:Generator_ColumnPropNameInTable="IDTICKETPRESTADORColumn" msprop:Generator_UserColumnName="IDTICKETPRESTADOR" type="xs:int" minOccurs="0" />
@@ -84,6 +84,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="IDFINALIZACION" msprop:Generator_ColumnVarNameInTable="columnIDFINALIZACION" msprop:Generator_ColumnPropNameInRow="IDFINALIZACION" msprop:Generator_ColumnPropNameInTable="IDFINALIZACIONColumn" msprop:Generator_UserColumnName="IDFINALIZACION" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

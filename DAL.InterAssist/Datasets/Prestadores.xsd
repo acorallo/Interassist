@@ -5,7 +5,7 @@
       <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString (Settings)" PropertyReference="ApplicationSettings.DAL.InterAssist.Properties.Settings.GlobalReference.Default.ConnectionString" Provider="System.Data.OleDb" />
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString1 (Settings)" ParameterPrefix=":" PropertyReference="ApplicationSettings.DAL.InterAssist.Properties.Settings.GlobalReference.Default.ConnectionString1" Provider="Oracle.DataAccess.Client" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ConnectionString1" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString1 (Settings)" ParameterPrefix=":" PropertyReference="ApplicationSettings.DAL.InterAssist.Properties.Settings.GlobalReference.Default.ConnectionString1" Provider="Oracle.DataAccess.Client" />
         </Connections>
         <Tables />
         <Sources />
@@ -15,7 +15,7 @@
   <xs:element name="Prestadores" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Prestadores" msprop:Generator_UserDSName="Prestadores">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="PRESTADORES" msprop:Generator_TableClassName="PRESTADORESDataTable" msprop:Generator_TableVarName="tablePRESTADORES" msprop:Generator_TablePropName="PRESTADORES" msprop:Generator_RowDeletingName="PRESTADORESRowDeleting" msprop:Generator_UserTableName="PRESTADORES" msprop:Generator_RowChangingName="PRESTADORESRowChanging" msprop:Generator_RowEvHandlerName="PRESTADORESRowChangeEventHandler" msprop:Generator_RowDeletedName="PRESTADORESRowDeleted" msprop:Generator_RowEvArgName="PRESTADORESRowChangeEvent" msprop:Generator_RowChangedName="PRESTADORESRowChanged" msprop:Generator_RowClassName="PRESTADORESRow">
+        <xs:element name="PRESTADORES" msprop:Generator_TableClassName="PRESTADORESDataTable" msprop:Generator_TableVarName="tablePRESTADORES" msprop:Generator_TablePropName="PRESTADORES" msprop:Generator_RowDeletingName="PRESTADORESRowDeleting" msprop:Generator_RowChangingName="PRESTADORESRowChanging" msprop:Generator_RowEvHandlerName="PRESTADORESRowChangeEventHandler" msprop:Generator_RowDeletedName="PRESTADORESRowDeleted" msprop:Generator_UserTableName="PRESTADORES" msprop:Generator_RowChangedName="PRESTADORESRowChanged" msprop:Generator_RowEvArgName="PRESTADORESRowChangeEvent" msprop:Generator_RowClassName="PRESTADORESRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IDPRESTADOR" msprop:Generator_ColumnVarNameInTable="columnIDPRESTADOR" msprop:Generator_ColumnPropNameInRow="IDPRESTADOR" msprop:Generator_ColumnPropNameInTable="IDPRESTADORColumn" msprop:Generator_UserColumnName="IDPRESTADOR" type="xs:decimal" />

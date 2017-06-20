@@ -102,5 +102,28 @@ textarea{
 .field-validation-error {
     color:Red;
 }
+
+label.error{
+    color:red;
+    font-weight:400;
+}
+
+.mark-error{
+    border-color:red;
+    border-style:solid;
+    border-width:medium;
+}
+
+.validation-summary-errors{
+    color:red;
+}
+
+.uppercase{
+    text-transform: uppercase;
+}
+
+.grid-row-moreinfo{
+    cursor:default;
+}
 /* EGV 15May2017 Fin */
 

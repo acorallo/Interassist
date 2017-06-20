@@ -11,6 +11,10 @@ namespace InterAssistMVC.Utils
         public static readonly string PROVIDER_LIST_KEY = "IA.Provider.List";
         public static readonly string PROVIDER_MODIFY_KEY = "IA.Provider.Modify";
 
+        public static readonly string CASE_CREATE_KEY = "IA.Case.Create";
+        public static readonly string CASE_MODIFY_KEY = "IA.Case.Modify";
+        public static readonly string CASE_CHANGE_STATUS_KEY = "IA.Case.ChangeStatus";
+
 
         /// <summary>
         /// Return Whether the user is authenticated on the system
@@ -53,6 +57,8 @@ namespace InterAssistMVC.Utils
         public static bool HasAccessTo(string SecurityKey)
         {
             bool result = true;
+            if (SecurityKey == CASE_CHANGE_STATUS_KEY)
+                result = true;
             return result;
         }
     }

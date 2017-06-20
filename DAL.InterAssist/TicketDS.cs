@@ -71,6 +71,8 @@ namespace DAL.InterAssist
         public const string COL_IDTICKETPRESTADOR_RETRABAJO = "IDTICKETPRESTADOR_RETRABAJO";
         public const string COL_DEMORA = "DEMORA";
         public const string COL_NOMBRE_CHOFER = "NOMBRE_CHOFER";
+        public const string COL_OKAFILIADO = "OKAFILIADO";
+        public const string COL_CANT_TICKETS_AFIL = "CANT_TICKETS_AFIL";
         // EGV 25May2017 Fin
 
 
@@ -184,18 +186,18 @@ namespace DAL.InterAssist
                 //paramList.Add(repository.DbFactory.getDataParameter("P_IDTIPOSERVICIO", DbType.Int32, Int32.Parse(dr[dtable.IDTIPOSERVICIOColumn].ToString())));
                 paramList.Add(repository.DbFactory.getDataParameter("P_TIPO_TICKET", DbType.String, dr[dtable.TIPO_TICKETColumn].ToString()));
 
-
+                // EGV 20Jun2017 Inicio
+                paramList.Add(repository.DbFactory.getDataParameter("P_OKAFILIADO", DbType.String, dr[dtable.OKAFILIADOColumn].ToString()));
+                paramList.Add(repository.DbFactory.getDataParameter("P_CANT_TICKETS_AFIL", DbType.Int32, Dataservices.IntNUlleable((Int32.Parse(dr[dtable.CANT_TICKETS_AFILColumn].ToString())))));
+                // EGV 20Jun2017 Fin
 
                 result = repository.ExecuteCreateProcedure(CONST_CREATE_PROCEDURE_NAME, paramList, dr[dtable.OBJECTHASHColumn].ToString());
-
-
+                
                 // EGV 25May2017 Inicio
                 if (observacion != null)
                 {
                     // EGV 25May2017 Fin
                     DBRepository repositoryObservacion = DBRepository.GetDbRepository(repository);
-
-
 
                     ObservacionDS dsObservaciones = new ObservacionDS();
                     Datasets.Observaciones.OBSERVACIONESRow obs = (Datasets.Observaciones.OBSERVACIONESRow)observacion;
@@ -269,6 +271,11 @@ namespace DAL.InterAssist
                 //paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Int32.Parse(dr[dtable.IDPROBLEMAColumn].ToString())));
                 // EGV 25May2017 Fin
                 paramList.Add(repository.DbFactory.getDataParameter("P_TIPO_TICKET", DbType.String, dr[dtable.TIPO_TICKETColumn].ToString()));
+
+                // EGV 20Jun2017 Inicio
+                paramList.Add(repository.DbFactory.getDataParameter("P_OKAFILIADO", DbType.String, dr[dtable.OKAFILIADOColumn].ToString()));
+                paramList.Add(repository.DbFactory.getDataParameter("P_CANT_TICKETS_AFIL", DbType.Int32, Dataservices.IntNUlleable((Int32.Parse(dr[dtable.CANT_TICKETS_AFILColumn].ToString())))));
+                // EGV 20Jun2017 Fin
 
 
                 result = (repository.ExecuteUpdateProcedure(CONST_UPDATE_PROCEDURE_NAME, paramList, dr[dtable.OBJECTHASHColumn].ToString()) == 1);
@@ -484,6 +491,9 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_PATENTE", DbType.String, r.PATENTE));
                 paramList.Add(repository.DbFactory.getDataParameter("P_NOMBRE_CHOFER", DbType.String, r.NOMBRE_CHOFER));
                 // EGV 25May2017 Inicio
+                // EGV 20Jun2017 Inicio
+                paramList.Add(repository.DbFactory.getDataParameter("P_IDFINALIZACION", DbType.Int32, Dataservices.IntNUlleable(r.IDFINALIZACION)));
+                // EGV 20Jun2017 Fin
 
 
                 repository.ExecuteUpdateProcedure(CONST_UPDATTE_TICKET_PRESTADOR_PROCEDURE_NAME, paramList, ObjectHash);
@@ -551,6 +561,9 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_PATENTE", DbType.String, r.PATENTE));
                 paramList.Add(repository.DbFactory.getDataParameter("P_NOMBRE_CHOFER", DbType.String, r.NOMBRE_CHOFER));
                 // EGV 25May2017 Fin
+                // EGV 20Jun2017 Inicio
+                paramList.Add(repository.DbFactory.getDataParameter("P_IDFINALIZACION", DbType.Int32, Dataservices.IntNUlleable(r.IDFINALIZACION)));
+                // EGV 20Jun2017 Fin
 
                 resultID = repository.ExecuteCreateProcedure(CONST_CREATE_TICKET_PRESTADOR_PROCEDURE_NAME, paramList, ObjectHash);
 

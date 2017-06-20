@@ -8,6 +8,7 @@ using Utils.InterAssist;
 using Ext.Net.MVC;
 using Ext.Net;
 using InterAssistMVC.Models;
+using System.Text.RegularExpressions;
 
 /*** EGV 25May2017 Archivo creado ***/
 
@@ -26,8 +27,6 @@ namespace InterAssistMVC.Controllers
             Ticket t = new Ticket();
             t.IDOperador = Utils.UISecurityManager.GetOperador();
             t.Fecha = System.DateTime.Today;
-            //t.Observacion = new Entities.InterAsisst.Observacion(25);
-            //t.Observacion.Descripcion = "Alta Caso";
             t.IdEstado = 4;
             t.Persist();
 
@@ -40,13 +39,7 @@ namespace InterAssistMVC.Controllers
 
             Case m = Case.EntityToModel(e);
 
-            //m.TiposServicio = new SelectList(TipoServicio.List(new FiltroTipoServicio()),"ID","Descripcion",m.idtipo);
-
-            m.CaseEstados = new SelectList(Estado.List(new FiltroEstado("CASO")), "ID", "Descripcion", m.IdEstado);
-            m.TiposServicio = new SelectList(TipoServicio.List(new FiltroTipoServicio()), "ID", "Descripcion");
-            m.Problemas = new SelectList(Problema.List(new FiltroProblema()), "ID", "Desripcion");
-            m.PrestacionEstados = new SelectList(Estado.List(new FiltroEstado("PRESTACION")), "ID", "Descripcion");
-            m.PrestacionesRetrabajo = new SelectList(m.Prestaciones, "Id", "DescripcionServicio");
+            FillCombos(m);
 
             return View(m);
         }
@@ -59,6 +52,15 @@ namespace InterAssistMVC.Controllers
                 //m.Observacion = "Probando la Edición";
                 m.Prestaciones.Clear();
                 m.Prestaciones = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Prestacion>>(m.DatosPrestaciones);
+                foreach (Prestacion p in m.Prestaciones)
+                {
+                    if (!TryValidateModel(p))
+                    {
+                        FillCombos(m);
+                        return View(m);
+                    }
+                }
+                Validate(m);
                 if (ModelState.IsValid)
                 {
                     Ticket e = m.ModelToEntity();
@@ -66,6 +68,7 @@ namespace InterAssistMVC.Controllers
                     return RedirectToAction("Edit", "Case", new { Id = e.ID });
                 }
             }
+            FillCombos(m);
             return View(m);
         }
 
@@ -164,11 +167,68 @@ namespace InterAssistMVC.Controllers
 
             List<UbicacionModel> list = UbicacionModel.EntityToModel(Ubicacion.List(f, out totalRegistros));
 
-            list.ForEach(l => { l.CalleUbicacion = calle + ", " + l.Nombre; l.Calle = calle; l.DatosUbicacion = l.DatosUbicacion = Newtonsoft.Json.JsonConvert.SerializeObject(new { IdLocalidad = l.IdLocalidad, IdCiudad = l.IdCiudad, IdProvincia = l.IdProvincia, IdPais = l.IdPais, Calle = l.Calle }); });
+            list.ForEach(l => { l.CalleUbicacion = Common.Ubicacion(calle, l.Nombre); l.Calle = calle; l.DatosUbicacion = l.DatosUbicacion = Newtonsoft.Json.JsonConvert.SerializeObject(new { IdLocalidad = l.IdLocalidad, IdCiudad = l.IdCiudad, IdProvincia = l.IdProvincia, IdPais = l.IdPais, Calle = l.Calle, CalleUbicacion = calle + ", " + l.Nombre }); });
 
             Paging<UbicacionModel> paging = new Paging<UbicacionModel>(list, totalRegistros);
 
             return this.Store(paging.Data, paging.TotalRecords);
+        }
+
+        private void FillCombos(Case m)
+        {
+            m.CaseEstados = new SelectList(Estado.List(new FiltroEstado("CASO")), "ID", "Descripcion", m.IdEstado);
+            m.TiposServicio = new SelectList(TipoServicio.List(new FiltroTipoServicio()), "ID", "Descripcion");
+            m.Problemas = new SelectList(Problema.List(new FiltroProblema()), "ID", "Desripcion");
+            m.PrestacionEstados = new SelectList(Estado.List(new FiltroEstado("PRESTACION")), "ID", "Descripcion");
+            m.PrestacionesRetrabajo = new SelectList(m.Prestaciones, "Id", "DescripcionServicio");
+            m.FinalizacionesPretaciones = new SelectList(Estado.List(new FiltroEstado("FINAL_PREST")), "ID", "Descripcion");
+        }
+
+        private void Validate(Case m)
+        {
+
+            Estado.Prestacion EstadoPrestacionOriginal = Estado.Prestacion.Borrador;
+            Estado.Caso EstadoCasoOriginal = Estado.Caso.Borrador;
+
+            if (m.OkAfiliado == null || m.OkAfiliado != "S")
+                m.OkAfiliado = "N";
+ 
+            foreach (Prestacion p in m.Prestaciones)
+            {
+                // Validación de Patente
+                if (p.Patente != null && p.Patente != "")
+                {
+                    if (p.Patente.Length != 6 && p.Patente.Length != 7)
+                        ModelState.AddModelError("prestPatente" + p.Id.ToString(), "Patente de la Prestación inválida.");
+                    else
+                    {
+                        if (p.Patente.Length == 6)
+                        {
+                            if (!Regex.IsMatch(p.Patente.Substring(0, 3), @"^[a-zA-Z]+$") || !Regex.IsMatch(p.Patente.Substring(0, 3), @"^[0-9]+$"))
+                                ModelState.AddModelError("prestPatente" + p.Id.ToString(), "Patente de la Prestación inválida.");
+                        }
+                        else
+                        {
+                            if (!Regex.IsMatch(p.Patente.Substring(0, 2), @"^[a-zA-Z]+$") || !Regex.IsMatch(p.Patente.Substring(2, 3), @"^[0-9]+$") || !Regex.IsMatch(p.Patente.Substring(5, 2), @"^[a-zA-Z]+$"))
+                                ModelState.AddModelError("prestPatente" + p.Id.ToString(), "Patente de la Prestación inválida.");
+                        }
+                    }
+                }
+
+                // Validacion Demora
+                if (p.Demora != null && p.Demora != "")
+                {
+                    if (p.Demora.Length != 5)
+                        ModelState.AddModelError("prestDemora" + p.Id.ToString(), "Demora inválida. Ingrese HH:MM.");
+                    else 
+                    { 
+                        if (!Regex.IsMatch(p.Demora,@"[0-9][0-9]:[0-5][0-9]"))
+                            ModelState.AddModelError("prestDemora" + p.Id.ToString(), "Demora inválida. Ingrese HH:MM.");
+                    }
+                }
+            }
+
+
         }
 
     }

@@ -14,7 +14,7 @@
   <xs:element name="Tickets" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Tickets" msprop:Generator_UserDSName="Tickets">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="TICKETS" msprop:Generator_TableClassName="TICKETSDataTable" msprop:Generator_TableVarName="tableTICKETS" msprop:Generator_TablePropName="TICKETS" msprop:Generator_RowDeletingName="TICKETSRowDeleting" msprop:Generator_RowChangingName="TICKETSRowChanging" msprop:Generator_RowEvHandlerName="TICKETSRowChangeEventHandler" msprop:Generator_RowDeletedName="TICKETSRowDeleted" msprop:Generator_UserTableName="TICKETS" msprop:Generator_RowChangedName="TICKETSRowChanged" msprop:Generator_RowEvArgName="TICKETSRowChangeEvent" msprop:Generator_RowClassName="TICKETSRow">
+        <xs:element name="TICKETS" msprop:Generator_TableClassName="TICKETSDataTable" msprop:Generator_TableVarName="tableTICKETS" msprop:Generator_RowChangedName="TICKETSRowChanged" msprop:Generator_TablePropName="TICKETS" msprop:Generator_RowDeletingName="TICKETSRowDeleting" msprop:Generator_RowChangingName="TICKETSRowChanging" msprop:Generator_RowEvHandlerName="TICKETSRowChangeEventHandler" msprop:Generator_RowDeletedName="TICKETSRowDeleted" msprop:Generator_RowClassName="TICKETSRow" msprop:Generator_UserTableName="TICKETS" msprop:Generator_RowEvArgName="TICKETSRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IDTICKET" msprop:Generator_ColumnVarNameInTable="columnIDTICKET" msprop:Generator_ColumnPropNameInRow="IDTICKET" msprop:Generator_ColumnPropNameInTable="IDTICKETColumn" msprop:Generator_UserColumnName="IDTICKET" type="xs:double" />
@@ -59,6 +59,14 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="TIPO_TICKET" msprop:Generator_ColumnVarNameInTable="columnTIPO_TICKET" msprop:Generator_ColumnPropNameInRow="TIPO_TICKET" msprop:Generator_ColumnPropNameInTable="TIPO_TICKETColumn" msprop:Generator_UserColumnName="TIPO_TICKET" type="xs:string" minOccurs="0" />
+              <xs:element name="OKAFILIADO" msprop:Generator_ColumnVarNameInTable="columnOKAFILIADO" msprop:Generator_ColumnPropNameInRow="OKAFILIADO" msprop:Generator_ColumnPropNameInTable="OKAFILIADOColumn" msprop:Generator_UserColumnName="OKAFILIADO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CANT_TICKETS_AFIL" msprop:Generator_ColumnVarNameInTable="columnCANT_TICKETS_AFIL" msprop:Generator_ColumnPropNameInRow="CANT_TICKETS_AFIL" msprop:Generator_ColumnPropNameInTable="CANT_TICKETS_AFILColumn" msprop:Generator_UserColumnName="CANT_TICKETS_AFIL" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

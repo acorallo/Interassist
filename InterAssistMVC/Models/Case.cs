@@ -8,6 +8,7 @@ using System.Web;
 using Entities.InterAsisst;
 using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
+using Utils.InterAssist;
 
 namespace InterAssistMVC.Models
 {
@@ -55,11 +56,17 @@ namespace InterAssistMVC.Models
         public virtual string Modelo { get; set; }
         public virtual string Marca { get; set; }
 
+        public virtual string OkAfiliado { get; set; }
+        public virtual int CantTicketsAfil { get; set; }
+
         public virtual AfiliadoModel Afiliado { get; set; }
 
         public virtual List<Prestacion> Prestaciones { get; set; }
 
         public virtual string DatosPrestaciones { get; set; }
+
+        public virtual int CantidadCasosAnteriores { get; set; }
+        public virtual bool AceptaAfiliado { get; set; }
 
         // Combos
         public SelectList CaseEstados { get; set; }
@@ -67,6 +74,7 @@ namespace InterAssistMVC.Models
         public SelectList Problemas { get; set; }
         public SelectList PrestacionEstados { get; set; }
         public SelectList PrestacionesRetrabajo { get; set; }
+        public SelectList FinalizacionesPretaciones { get; set; }
 
         public Case()
         {
@@ -108,10 +116,13 @@ namespace InterAssistMVC.Models
 
             m.NombreLocalidadOrigen = e.NombreLocalidadOrigen;
             m.NombreLocalidadDestino = e.NombreLocalidadDestino;
-            m.UbicacionOrigen = e.CalleOrigen + ", " + e.NombreLocalidadOrigen;
-            m.UbicacionDestino = e.CalleDestino + ", " + e.NombreLocalidadDestino;
+            m.UbicacionOrigen = Common.Ubicacion(e.CalleOrigen,e.NombreLocalidadOrigen);
+            m.UbicacionDestino = Common.Ubicacion(e.CalleDestino,e.NombreLocalidadDestino);
             m.Modelo = e.Modelo;
             m.Marca = e.Marca;
+
+            m.OkAfiliado = e.OkAfiliado;
+            m.CantTicketsAfil = e.CantTicketsAfil;
 
             if (e.Afiliado != null)
                 m.Afiliado = AfiliadoModel.EntityToModel(e.Afiliado);
@@ -135,7 +146,6 @@ namespace InterAssistMVC.Models
         public Ticket ModelToEntity()
         {
             Ticket e;
-            bool existPrest = false;
 
             if (this.Id > 0)
             {
@@ -166,6 +176,9 @@ namespace InterAssistMVC.Models
 
             e.TipoTicket = this.TipoTicket;
 
+            e.OkAfiliado = this.OkAfiliado;
+            e.CantTicketsAfil = this.CantTicketsAfil;
+
             if (Observacion != null && Observacion.Trim() != "")
             {
                 e.Observacion = new Entities.InterAsisst.Observacion(this.IDOperador);
@@ -173,21 +186,7 @@ namespace InterAssistMVC.Models
                 e.Observacion.IdTicket = this.Id;
                 e.Observacion.Fecha = System.DateTime.Today;
             }
-            /*
-            foreach (Prestacion p in this.Prestaciones)
-            {
-                existPrest = false;
-                foreach(PrestadorCaso pc in e.PrestadorCaso)
-                {
-                    if(pc.ID == p.Id)
-                    {
-                        existPrest = true;
-                        pc = p.ModelToEntity();
-                    }
-                }
-                if (!existPrest)
-                    e.PrestadorCaso.Add(p.ModelToEntity());
-            }*/
+
             e.PrestadorCaso.Clear();
             foreach (Prestacion p in this.Prestaciones)
             {

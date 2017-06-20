@@ -35,6 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DBScripts", "DBScripts", "{
 		DBScripts\AFILIADO_PKG.sql = DBScripts\AFILIADO_PKG.sql
 		DBScripts\ESTADO_PKG Body.sql = DBScripts\ESTADO_PKG Body.sql
 		DBScripts\ESTADO_PKG.sql = DBScripts\ESTADO_PKG.sql
+		Modificaciones Tablas 2.sql = Modificaciones Tablas 2.sql
 		DBScripts\Modificaciones Tablas.sql = DBScripts\Modificaciones Tablas.sql
 		DBScripts\TICKET_PKG Body.sql = DBScripts\TICKET_PKG Body.sql
 		DBScripts\TICKET_PKG.sql = DBScripts\TICKET_PKG.sql

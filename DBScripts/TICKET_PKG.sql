@@ -1,7 +1,4 @@
 --------------------------------------------------------
--- Archivo creado  - domingo-junio-04-2017   
---------------------------------------------------------
---------------------------------------------------------
 --  DDL for Package TICKET_PKG
 --------------------------------------------------------
 
@@ -59,6 +56,10 @@
     --P_IDPROBLEMA IN tickets.idproblema%TYPE,
     -- EGV 25May2017 Fin
     P_TIPO_TICKET IN tickets.tipo_ticket%TYPE
+    -- EGV 20Jun2017 Inicio
+    ,P_OKAFILIADO IN tickets.okafiliado%TYPE
+    ,P_CANT_TICKETS_AFIL in tickets.cant_tickets_afil%TYPE
+    -- EGV 20Jun2017 Fin
     
   );
   
@@ -90,6 +91,10 @@
     --P_IDPROBLEMA IN tickets.idproblema%TYPE,
     -- EGV 25May2017 Fin
     P_TIPO_TICKET IN tickets.tipo_ticket%TYPE,
+    -- EGV 20Jun2017 Inicio
+    P_OKAFILIADO IN tickets.okafiliado%TYPE,
+    P_CANT_TICKETS_AFIL in tickets.cant_tickets_afil%TYPE,
+    -- EGV 20Jun2017 Fin
     P_AFFECTED_ROWS OUT number
   );
   
@@ -128,7 +133,10 @@
 	P_DEMORA IN TICKET_PRESTADORES.DEMORA%TYPE, 
 	P_PATENTE IN TICKET_PRESTADORES.PATENTE%TYPE, 
 	P_NOMBRE_CHOFER IN TICKET_PRESTADORES.NOMBRE_CHOFER%TYPE
-    -- EGV 25May2017 Fin    
+    -- EGV 25May2017 Fin   
+    -- EGV 20Jun2017 Inicio
+    ,P_IDFINALIZACION IN TICKET_PRESTADORES.IDFINALIZACION%TYPE
+    -- EGV 20Jun2017 Fin
   );  
   
     PROCEDURE MODIFY_TICKET_PRESTADOR (
@@ -158,6 +166,9 @@
 	P_PATENTE IN TICKET_PRESTADORES.PATENTE%TYPE, 
 	P_NOMBRE_CHOFER IN TICKET_PRESTADORES.NOMBRE_CHOFER%TYPE,
     -- EGV 25May2017 Fin       
+        -- EGV 20Jun2017 Inicio
+    P_IDFINALIZACION IN TICKET_PRESTADORES.IDFINALIZACION%TYPE,
+    -- EGV 20Jun2017 Fin
     P_AFFECTED_ROWS OUT number
   );
   

@@ -1,7 +1,4 @@
 --------------------------------------------------------
--- Archivo creado  - domingo-junio-04-2017   
---------------------------------------------------------
---------------------------------------------------------
 --  DDL for Package Body TICKET_PKG
 --------------------------------------------------------
 
@@ -114,11 +111,13 @@
                     B.POLIZA,
                     B.MARCA,
                     B.MODELO,
-                    (UPPER(B.APELLIDO) || '', ''|| UPPER(B.NOMBRE)) NOMBRE_AFILIADO,
-                    (UPPER(C.APELLIDO) || '', ''|| UPPER(C.NOMBRE)) NOMBRE_OPERADOR,
+                    rtrim(rtrim((UPPER(B.APELLIDO) || '', ''|| UPPER(B.NOMBRE))),'','') NOMBRE_AFILIADO,
+                    rtrim(rtrim((UPPER(C.APELLIDO) || '', ''|| UPPER(C.NOMBRE))),'','') NOMBRE_OPERADOR,
                     F.NOMBRE NOMBRE_EMPRESA,
                     B.FECHADESDE,
-                    B.FECHAHASTA
+                    B.FECHAHASTA,
+                    A.OKAFILIADO,
+                    A.CANT_TICKETS_AFIL
               FROM TICKETS A,
                    AFILIADOS B,
                    OPERADORES C,
@@ -206,6 +205,10 @@
     --P_IDPROBLEMA IN tickets.idproblema%TYPE,
     -- EGV 25May2017 Fin
     P_TIPO_TICKET IN tickets.tipo_ticket%TYPE
+    -- EGV 20Jun2017 Inicio
+    ,P_OKAFILIADO IN tickets.okafiliado%TYPE
+    ,P_CANT_TICKETS_AFIL in tickets.cant_tickets_afil%TYPE
+    -- EGV 20Jun2017 Fin
   )
    IS
    ID_INSERT NUMBER;
@@ -242,6 +245,10 @@
       --tickets.idProblema,
       -- EGV 25May2017 Fin
       tickets.tipo_ticket
+      -- EGV 20Jun2017 Inicio
+      ,tickets.okafiliado
+      ,tickets.cant_tickets_afil
+      -- EGV 20Jun2017 Fin
     )
     VALUES 
     (
@@ -282,6 +289,10 @@
       decode(P_IDLOCALIDA_DESTINO,INT_NULL,null,P_IDLOCALIDA_DESTINO),
       -- EGV 25May2017 Fin
       P_TIPO_TICKET
+      -- EGV 20Jun2017 Inicio
+      ,P_OKAFILIADO
+      ,P_CANT_TICKETS_AFIL
+      -- EGV 20Jun2017 Fin
     );
     
     P_ID:= ID_INSERT;
@@ -316,6 +327,10 @@
     --P_IDPROBLEMA IN tickets.idproblema%TYPE,
     -- EGV 25May2017 Fin
     P_TIPO_TICKET IN tickets.tipo_ticket%TYPE,
+    -- EGV 20Jun2017 Inicio
+    P_OKAFILIADO IN tickets.okafiliado%TYPE,
+    P_CANT_TICKETS_AFIL in tickets.cant_tickets_afil%TYPE,
+    -- EGV 20Jun2017 Fin
     P_AFFECTED_ROWS OUT number
   )
   IS
@@ -360,6 +375,10 @@
       tickets.idlocalidad_destino = decode(P_ID_LOCALIDAD_DESTINO,INT_NULL,null,P_ID_LOCALIDAD_DESTINO),
       -- EGV 25May2017 Fin
       tickets.tipo_ticket = P_TIPO_TICKET
+      -- EGV 20Jun2017 Inicio
+      ,tickets.okafiliado = P_OKAFILIADO
+      ,tickets.cant_tickets_afil = P_CANT_TICKETS_AFIL
+      -- EGV 20Jun2017 Fin
     WHERE tickets.idticket = P_ID and tickets.objecthash = P_OBJECTHASH;
     
     P_AFFECTED_ROWS:= sql%rowcount;
@@ -417,6 +436,9 @@
 	P_PATENTE IN TICKET_PRESTADORES.PATENTE%TYPE, 
 	P_NOMBRE_CHOFER IN TICKET_PRESTADORES.NOMBRE_CHOFER%TYPE
     -- EGV 25May2017 Fin
+    -- EGV 20Jun2017 Inicio
+    ,P_IDFINALIZACION IN TICKET_PRESTADORES.IDFINALIZACION%TYPE
+    -- EGV 20Jun2017 Fin
   )
    IS
    ID_INSERT NUMBER;
@@ -453,6 +475,9 @@
         PATENTE,
         NOMBRE_CHOFER
         -- EGV 25May2017 Fin
+        -- EGV 20Jun2017 Inicio
+        ,IDFINALIZACION
+        -- EGV 20Jun2017 Fin
       )
       VALUES
       (
@@ -482,6 +507,9 @@
         P_PATENTE,
         P_NOMBRE_CHOFER
         -- EGV 25May2017 Fin
+        -- EGV 20Jun2017 Inicio
+        ,P_IDFINALIZACION
+        -- EGV 20Jun2017 Fin
       );
       
       P_ID:= ID_INSERT;
@@ -514,7 +542,10 @@
 	P_DEMORA IN TICKET_PRESTADORES.DEMORA%TYPE, 
 	P_PATENTE IN TICKET_PRESTADORES.PATENTE%TYPE, 
 	P_NOMBRE_CHOFER IN TICKET_PRESTADORES.NOMBRE_CHOFER%TYPE,
-    -- EGV 25May2017 Fin    
+    -- EGV 25May2017 Fin  
+    -- EGV 20Jun2017 Inicio
+    P_IDFINALIZACION IN TICKET_PRESTADORES.IDFINALIZACION%TYPE,
+    -- EGV 20Jun2017 Fin
     P_AFFECTED_ROWS OUT number
   )
    IS
@@ -544,6 +575,9 @@
         TICKET_PRESTADORES.PATENTE = P_PATENTE,
         TICKET_PRESTADORES.NOMBRE_CHOFER = P_NOMBRE_CHOFER
         -- EGV 25May2017 Fin        
+        -- EGV 20Jun2017 Inicio
+        ,TICKET_PRESTADORES.IDFINALIZACION = P_IDFINALIZACION
+        -- EGV 20Jun2017 Fin
         WHERE TICKET_PRESTADORES.IDTICKETPRESTADOR = P_ID;
         
    P_AFFECTED_ROWS:= sql%rowcount;     
@@ -596,6 +630,9 @@
               A.NOMBRE_CHOFER,
               E.NOMBRE AS LOCALIDAD_ORIGEN_NOMBRE,
               F.NOMBRE AS LOCALIDAD_DESTINO_NOMBRE
+              -- EGV 20Jun2017 Inicio
+              ,A.IDFINALIZACION
+              -- EGV 20Jun2017 Fin
       FROM TICKET_PRESTADORES A, PRESTADORES B, PROBLEMAS C, TIPOSERVICIOS D, UBICACIONES_VW E, UBICACIONES_VW F
       WHERE IDTICKET = P_IDTICKET
       AND A.IDPRESTADOR = B.IDPRESTADOR (+)

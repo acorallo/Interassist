@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using Entities.InterAsisst;
 using System.ComponentModel.DataAnnotations;
+using Utils.InterAssist;
 
 namespace InterAssistMVC.Models
 {
@@ -41,9 +42,13 @@ namespace InterAssistMVC.Models
         public virtual int IdProvinciaDestino { get; set; }
         public virtual int IdCiudadOrigen { get; set; }
         public virtual int IdCiudadDestino { get; set; }
+
+        [StringLength(1024)]
         public virtual string CalleOrigen { get; set; }
         public virtual int IdLocalidadOrigen { get; set; }
         public virtual int IdLocalidadDestino { get; set; }
+
+        [StringLength(1024)]
         public virtual string CalleDestino { get; set; }
         public virtual int IdEstado { get; set; }
         public virtual int IdTicketPrestadorRetrabajo { get; set; }
@@ -54,7 +59,7 @@ namespace InterAssistMVC.Models
         [StringLength(20)]
         public virtual string Patente { get; set; }
 
-        [StringLength(255)]
+        [StringLength(2)]
         public virtual string NombreChofer { get; set; }
 
         public virtual string Estado { get; set; }
@@ -63,6 +68,7 @@ namespace InterAssistMVC.Models
         public virtual string NombreLocalidadDestino { get; set; }
         public virtual string UbicacionOrigen { get; set; }
         public virtual string UbicacionDestino { get; set; }
+        public virtual int IdFinalizacion { get; set; }
 
         public static Prestacion EntityToModel(PrestadorCaso e)
         {
@@ -97,9 +103,10 @@ namespace InterAssistMVC.Models
             m.Demora = e.Demora;
             m.Patente = e.Patente;
             m.NombreChofer = e.NombreChofer;
+            m.IdFinalizacion = e.IdFinalizacion;
 
-            m.UbicacionOrigen = e.CalleOrigen + ", " + e.NombreLocalidadOrigen;
-            m.UbicacionDestino = e.CalleDestino + ", " + e.NombreLocalidadDestino;
+            m.UbicacionOrigen = Common.Ubicacion(e.CalleOrigen, e.NombreLocalidadOrigen);
+            m.UbicacionDestino = Common.Ubicacion(e.CalleDestino, e.NombreLocalidadDestino);
 
             return m;
 
@@ -150,6 +157,7 @@ namespace InterAssistMVC.Models
             e.Demora = this.Demora;
             e.Patente = this.Patente;
             e.NombreChofer = this.NombreChofer;
+            e.IdFinalizacion = this.IdFinalizacion;
             
             return e;
 

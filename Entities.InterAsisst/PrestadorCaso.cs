@@ -45,6 +45,10 @@ namespace Entities.InterAsisst
         public virtual string NombreLocalidadDestino { get; set; }
         // EGV 25May2017 Fin
 
+        // EGV 20Jun2017 Inicio
+        public virtual int IdFinalizacion { get; set; }
+        // EGV 20Jun2017 Fin
+
         // EGV 25May2017 Inicio
         //public Utils.InterAssist.Constants.PersistOperationType TipoOperacion = Utils.InterAssist.Constants.PersistOperationType.Void;
         public Utils.InterAssist.Constants.PersistOperationType TipoOperacion = Utils.InterAssist.Constants.PersistOperationType.Persist;
@@ -72,6 +76,7 @@ namespace Entities.InterAsisst
             this.IdTicketPrestadorRetrabajo = PersistEntity.NULL_ID;
             this.IdPrestador = PersistEntity.NULL_ID;
             this.IdTipoServicio = PersistEntity.NULL_ID;
+            this.IdFinalizacion = PersistEntity.NULL_ID;
         }
         // EGV 25May2017 Fin
 
@@ -105,6 +110,7 @@ namespace Entities.InterAsisst
             resultRow.DEMORA = this.Demora;
             resultRow.PATENTE = this.Patente;
             resultRow.NOMBRE_CHOFER = this.NombreChofer;
+            resultRow.IDFINALIZACION = this.IdFinalizacion;
             // EGV 25May2017 Fin
         }
 
