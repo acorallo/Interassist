@@ -55,6 +55,10 @@
         <button type="button" class="close" aria-hidden="true" onclick="OcultaMsj()">×</button>
         <p></p>
     </div>
+    <div id="mensaje-error" class="alert alert-danger mensaje mensaje-hide">
+        <button type="button" class="close" aria-hidden="true" onclick="OcultaMsjError()">×</button>
+        <p></p>
+    </div>
     <!-- EGV 09Jun2017 Fin -->
     <div id="wrapper">
         <!-- Navigation -->
@@ -149,15 +153,30 @@
 
     <script>
         function OcultaMsj() {
-            $('.mensaje').removeClass("mensaje-show");
-            $('.mensaje').addClass("mensaje-hide");
-            $('.mensaje p').text('');
+            $('#mensaje-exito').removeClass("mensaje-show");
+            $('#mensaje-exito').addClass("mensaje-hide");
+            $('#mensaje-exito p').text('');
         }
 
         function Message(msj) {
             $('#mensaje-exito p').text(msj);
-            $('.mensaje').removeClass("mensaje-hide");
-            $('.mensaje').addClass("mensaje-show");
+            $('#mensaje-exito').removeClass("mensaje-hide");
+            $('#mensaje-exito').addClass("mensaje-show");
+            setTimeout(function () {
+                OcultaMsj()
+            }, 3000);
+        }
+
+        function OcultaMsjError() {
+            $('#mensaje-error').removeClass("mensaje-show");
+            $('#mensaje-error').addClass("mensaje-hide");
+            $('#mensaje-error p').text('');
+        }
+
+        function MensajeError(msj) {
+            $('#mensaje-error p').text(msj);
+            $('#mensaje-error').removeClass("mensaje-hide");
+            $('#mensaje-error').addClass("mensaje-show");
         }
     </script>
 </body>

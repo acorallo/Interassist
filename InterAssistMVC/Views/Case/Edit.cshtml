@@ -18,12 +18,12 @@
                 <div class="panel-heading">
                     <div class="form-group">
                         <div class="col-lg-3"><label>Número de Caso:</label></div>
-                        <div class="col-lg-2"><span class="form-control-static">@Html.DisplayFor(model => model.Id)</span></div>
+                        <div class="col-lg-2"><span class="form-control-static" id="idTicket">@Html.DisplayFor(model => model.Id)</span></div>
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-lg-2"><p class="form-control-static">Vehículo</p></div>
+                        <div class="col-lg-2"><p class="form-control-static">@Html.DisplayFor(model => model.TipoTicket)</p></div>
                         @{
                         if (Model.IdEstado != 4)
                         {
@@ -101,22 +101,50 @@
                         </div>
 
                         <div class="modal fade" id="modalOkAfiliado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                            <div class="modal-dialog" style="width:40%">
+                            <div class="modal-dialog" style="width:25%">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>*@
                                         <h4 class="modal-title" id="myModalLabel">Ok Afiliado</h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="row">
-                                            <div class="col-lg-12">Casos en el Mes del Afiliado: @Html.EditorFor(model => model.CantTicketsAfil, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @style="width:3em;" } })</div>
+                                            @*<div class="col-lg-12">Casos en el Mes del Afiliado: @Html.EditorFor(model => model.CantTicketsAfil, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @style="width:3em;" } })</div>*@
+                                            <div class="col-lg-12">
+                                                <div class="panel panel-red">
+                                                    <div class="panel-heading">
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <i class="fa fa-support fa-5x"></i>
+                                                            </div>
+                                                            <div class="col-lg-8 text-right">
+                                                                <div class="row">
+                                                                    <div class="huge col-lg-12" id="cantCasosAfilPanel" style="width:100%"></div>
+                                                                </div>
+                                                                <div class="row" style="margin-top:25px;">
+                                                                    <div class="col-lg-12">Casos</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-12">Acepta el Ingreso del Caso @Html.CheckBoxFor(model => model.OkAfiliado)</div>
+                                            <div class="col-lg-12">¿Acepta el Ingreso del Caso?</div>
+                                            @Html.HiddenFor(model => model.CantTicketsAfil)
+                                            @*@Html.CheckBoxFor(model => model.OkAfiliado, new { @style = "display:none;" })*@
+                                            @Html.HiddenFor(model => model.OkAfiliado)
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnOkAfiliadoAceptar">Aceptar</button>
+                                        <button type="button" class="btn btn-danger btn-circle btn-lg" data-dismiss="modal" id="btnOkAfiliadoCancelar" onclick="$('#OkAfiliado').val(false);">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-success btn-circle btn-lg" data-dismiss="modal" id="btnOkAfiliadoAceptar" onclick="$('#OkAfiliado').val(true);">
+                                            <i class="fa fa-check"></i>
+                                        </button>
+                                        @*<button type="button" class="btn btn-primary" data-dismiss="modal" id="btnOkAfiliadoAceptar">Aceptar</button>*@
                                     </div>
                                 </div>
                             </div>
@@ -644,8 +672,34 @@
     function EligeAfiliado(item) {
         if (item != undefined && item != null) {
             if (item.value != undefined && item.value != null) {
-                $('#btnOkAfiliado').click();
                 var a = JSON.parse(item.value);
+                $('#btnOkAfiliado').click();
+                $('#modalOkAfiliado .panel').removeClass("panel-green");
+                $('#modalOkAfiliado .panel').removeClass("panel-red");
+
+                $.ajax({
+                    url: '/Case/TraeCantidadCasosPorMes',
+                    success : function(result){
+                        $('#CantTicketsAfil').val(result);
+                        $('#modalOkAfiliado').removeClass("wait");
+                        $('#cantCasosAfilPanel').text(result);
+                        if (parseInt(result,10) > 0){
+                            $('#modalOkAfiliado .panel').addClass("panel-red");
+                        }else{
+                            $('#modalOkAfiliado .panel').addClass("panel-green");
+                        }
+                    },
+                    error:function(jqXHR, textStatus, errorThrown){
+                        $('#CantTicketsAfil').val('0');
+                        $('#modalOkAfiliado').removeClass("wait");
+                        $('#btnOkAfiliado').prop('disabled',false);
+                        MensajeError('Ocurrió un error al buscar la Cantidad de Casos: ' + errorThrown);
+                    },
+                    data: { idAfiliado : a.Id , idTicket : $('#idTicket').text()}
+                });
+
+                $('#modalOkAfiliado').addClass("wait");
+                
                 $('input#IdAfiliado').val(a.Id);
                 $('input#ApyNom').val(a.ApyNom);
                 $('input#Doc').val(a.Doc);

@@ -613,6 +613,39 @@ namespace DAL.InterAssist
             return resultSet;
         }
 
+        // EGV 20Jun2017 Inicio
+        public int ObtenercasosMensuales(int idAfiliado, int idTicket)
+        {
+
+            try
+            {
+                DBRepository repository = DBRepository.GetDbRepository();
+
+                string sqlQuery = "select Count(*) Cantidad from tickets A, tickets B where A.IDAFILIADO = :idAfiliado and B.IDTICKET = :idTicket and A.FECHA <= B.FECHA and to_char(A.FECHA,'MMYYYY') = to_char(B.FECHA,'MMYYYY') and A.TIPO_TICKET = B.TIPO_TICKET and A.IDTICKET <> B.IDTICKET";
+
+                List<IDbDataParameter> paramList = new List<IDbDataParameter>();
+
+                paramList.Add(repository.DbFactory.getDataParameter("idAfiliado", DbType.Int32, idAfiliado));
+                paramList.Add(repository.DbFactory.getDataParameter("idTicket", DbType.Int32, idTicket));
+
+                DataSet ds = new DataSet();
+
+                repository.ExecuteQueryParam(ds, sqlQuery, paramList);
+
+                if (ds.Tables.Count > 0)
+                    return Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+            return 0;
+        }
+        // EGV 20Jun2017 Fin
+
 
         #endregion Dataservices Metodos
     }

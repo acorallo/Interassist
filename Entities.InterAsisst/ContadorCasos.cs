@@ -63,6 +63,14 @@ namespace Entities.InterAsisst
             return rContador;
         }
 
+        // EGV 20Jun2017 Inicio
+        public static int GetCantidadCasos(int idAfiliado, int idTicket)
+        {
+            TicketDS ds = new TicketDS();
+            return ds.ObtenercasosMensuales(idAfiliado, idTicket);
+        }
+        // EGV 20Jun2017 Fin
+
         #endregion Constructores
 
         #region Miembros

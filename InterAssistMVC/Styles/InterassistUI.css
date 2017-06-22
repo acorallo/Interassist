@@ -125,5 +125,13 @@ label.error{
 .grid-row-moreinfo{
     cursor:default;
 }
+
+.wait{
+    pointer-events:none;
+}
+
+.wait:hover{
+    cursor:wait;
+}
 /* EGV 15May2017 Fin */
 

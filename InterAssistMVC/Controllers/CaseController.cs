@@ -28,6 +28,7 @@ namespace InterAssistMVC.Controllers
             t.IDOperador = Utils.UISecurityManager.GetOperador();
             t.Fecha = System.DateTime.Today;
             t.IdEstado = 4;
+            t.TipoTicket = "Vehículo";
             t.Persist();
 
             return RedirectToAction("Edit", "Case", new { Id = t.ID });
@@ -174,6 +175,13 @@ namespace InterAssistMVC.Controllers
             return this.Store(paging.Data, paging.TotalRecords);
         }
 
+        [HttpGet]
+        [Route("Case/TraeCantidadCasosPorMes")]
+        public int TraeCantidadCasosPorMes(int idAfiliado, int idTicket)
+        {
+            return ContadorCasos.GetCantidadCasos(idAfiliado, idTicket);
+        }
+
         private void FillCombos(Case m)
         {
             m.CaseEstados = new SelectList(Estado.List(new FiltroEstado("CASO")), "ID", "Descripcion", m.IdEstado);
@@ -198,7 +206,7 @@ namespace InterAssistMVC.Controllers
                     {
                         if (p.Patente.Length == 6)
                         {
-                            if (!Regex.IsMatch(p.Patente.Substring(0, 3), @"^[a-zA-Z]+$") || !Regex.IsMatch(p.Patente.Substring(0, 3), @"^[0-9]+$"))
+                            if (!Regex.IsMatch(p.Patente.Substring(0, 3), @"^[a-zA-Z]+$") || !Regex.IsMatch(p.Patente.Substring(3, 3), @"^[0-9]+$"))
                                 ModelState.AddModelError("prestPatente" + p.Id.ToString(), "Patente de la Prestación inválida.");
                         }
                         else
@@ -226,6 +234,7 @@ namespace InterAssistMVC.Controllers
             Ticket t = Ticket.GetById(m.Id);
             m.IDOperador = t.IDOperador;
             m.Fecha = t.Fecha;
+            m.TipoTicket = t.TipoTicket;
             if (t.IdAfiliado == m.IdAfiliado)
             {
                 m.OkAfiliado = t.OkAfiliado;

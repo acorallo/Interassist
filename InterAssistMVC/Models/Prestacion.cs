@@ -59,7 +59,7 @@ namespace InterAssistMVC.Models
         [StringLength(20)]
         public virtual string Patente { get; set; }
 
-        [StringLength(2)]
+        [StringLength(255)]
         public virtual string NombreChofer { get; set; }
 
         public virtual string Estado { get; set; }
