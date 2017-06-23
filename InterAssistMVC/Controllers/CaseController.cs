@@ -70,6 +70,7 @@ namespace InterAssistMVC.Controllers
                 }
             }
             FillCombos(m);
+            
             return View(m);
         }
 
@@ -188,7 +189,7 @@ namespace InterAssistMVC.Controllers
             m.TiposServicio = new SelectList(TipoServicio.List(new FiltroTipoServicio()), "ID", "Descripcion");
             m.Problemas = new SelectList(Problema.List(new FiltroProblema()), "ID", "Desripcion");
             m.PrestacionEstados = new SelectList(Estado.List(new FiltroEstado("PRESTACION")), "ID", "Descripcion");
-            m.PrestacionesRetrabajo = new SelectList(m.Prestaciones, "Id", "DescripcionServicio");
+            m.PrestacionesRetrabajo = new SelectList(m.Prestaciones, "Id", "NombrePrestacion");
             m.FinalizacionesPretaciones = new SelectList(Estado.List(new FiltroEstado("FINAL_PREST")), "ID", "Descripcion");
         }
 
@@ -230,6 +231,9 @@ namespace InterAssistMVC.Controllers
                 }
             }
 
+            if (!ModelState.IsValid)
+                return;
+
             // Flujo de Estados
             Ticket t = Ticket.GetById(m.Id);
             m.IDOperador = t.IDOperador;
@@ -239,6 +243,14 @@ namespace InterAssistMVC.Controllers
             {
                 m.OkAfiliado = t.OkAfiliado;
                 m.CantTicketsAfil = t.CantTicketsAfil;
+            }
+            else
+            {
+                if (m.CantTicketsAfil != ContadorCasos.GetCantidadCasos(m.IdAfiliado, m.Id))
+                {
+                    ModelState.AddModelError("casoCantAfil", "Inconsistencia en la Cantidad de Casos.");
+                    return;
+                }
             }
 
             // Estados de la Prestacion
@@ -250,6 +262,15 @@ namespace InterAssistMVC.Controllers
                 ConfiguraEstadoCaso(m, t);
             }
 
+            if (!ModelState.IsValid)
+            {
+                m.IdEstado = t.IdEstado;
+                foreach(Prestacion p in m.Prestaciones)
+                {
+                    if (p.Id > 0)
+                        p.IdEstado = t.PrestadorCaso.Find(x => x.ID == p.Id).IdEstado;
+                }
+            }
 
         }
 
@@ -282,6 +303,37 @@ namespace InterAssistMVC.Controllers
 
         }
 
+        private Prestacion CopiaPrestacion(Prestacion p)
+        {
+            Prestacion pc = new Prestacion();
+
+            pc.Id = -1;
+            pc.IdFinalizacion = -1;
+            pc.IdPrestador = -1;
+
+            pc.IdTipoServicio = p.IdTipoServicio;
+            pc.Comentarios = p.Comentarios;
+            pc.Kilometros = p.Kilometros;
+            pc.IdProblema = p.IdProblema;
+            pc.IdPaisOrigen = p.IdPaisOrigen;
+            pc.IdPaisDestino = p.IdPaisDestino;
+            pc.IdProvinciaOrigen = p.IdProvinciaOrigen;
+            pc.IdProvinciaDestino = p.IdProvinciaDestino;
+            pc.IdCiudadOrigen = p.IdCiudadOrigen;
+            pc.IdCiudadDestino = p.IdCiudadDestino;
+            pc.CalleOrigen = p.CalleOrigen;
+            pc.IdLocalidadOrigen = p.IdLocalidadOrigen;
+            pc.IdLocalidadDestino = p.IdLocalidadDestino;
+            pc.CalleDestino = p.CalleDestino;
+            pc.IdTicketPrestadorRetrabajo = p.IdTicketPrestadorRetrabajo;
+            pc.Demora = "02:00";
+            pc.IdEstado = (int) Estado.Prestacion.PendientePrestador;
+            pc.Patente = "";
+            pc.NombreChofer = "";
+
+            return pc;
+        }
+
         private bool PrestacionTieneUbicaciones(Prestacion p)
         {
             if (p.CalleOrigen != "" && 
@@ -300,6 +352,8 @@ namespace InterAssistMVC.Controllers
 
         private void ConfiguraEstadoPrestacion(Case m, Ticket t)
         {
+            List<Prestacion> prestacionesAgregar = new List<Prestacion>();
+
             foreach (Prestacion p in m.Prestaciones)
             {
                 if (p.Id > 0)
@@ -336,7 +390,11 @@ namespace InterAssistMVC.Controllers
                             break;
                         case (int)Estado.Prestacion.PendienteAsistencia:
                             if (p.IdFinalizacion > 0)
+                            {
                                 p.IdEstado = (int)Estado.Prestacion.PendienteCierre;
+                                if (p.IdFinalizacion == (int) Estado.FinalPrestacion.CancelaPrestador)
+                                    prestacionesAgregar.Add(CopiaPrestacion(p));
+                            }
                             else
                                 p.IdEstado = (int)Estado.Prestacion.PendienteAsistencia;
                             break;
@@ -357,6 +415,12 @@ namespace InterAssistMVC.Controllers
                     }
                 }
             }
+
+            foreach(Prestacion p in prestacionesAgregar)
+            {
+                m.Prestaciones.Add(p);
+            }
+
         }
 
 

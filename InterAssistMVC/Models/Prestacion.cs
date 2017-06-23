@@ -23,6 +23,9 @@ namespace InterAssistMVC.Models
         public virtual int IdTipoServicio { get; set; }
 
         public virtual string DescripcionServicio { get; set; }
+
+        public virtual int Numero { get; set; }
+        public virtual string NombrePrestacion { get; set; }
         
         [StringLength(1024)]
         public virtual string Comentarios { get; set; }
@@ -70,7 +73,7 @@ namespace InterAssistMVC.Models
         public virtual string UbicacionDestino { get; set; }
         public virtual int IdFinalizacion { get; set; }
 
-        public static Prestacion EntityToModel(PrestadorCaso e)
+        public static Prestacion EntityToModel(PrestadorCaso e, int numPrest)
         {
             Prestacion m = new Prestacion();
 
@@ -82,6 +85,8 @@ namespace InterAssistMVC.Models
             m.IdTipoServicio = e.IdTipoServicio;
             if (e.TipoServicio != null)
                 m.DescripcionServicio = e.TipoServicio.Descripcion;
+            m.Numero = numPrest;
+            m.NombrePrestacion = (m.Numero.ToString() + " " + m.DescripcionServicio).Trim();
             m.Comentarios = e.Comentarios;
             m.Kilometros = e.Kilometros;
             //m.Costo = e.Costo;
@@ -166,11 +171,11 @@ namespace InterAssistMVC.Models
         public static List<Prestacion> EntityToModel(List<PrestadorCaso> le)
         {
             List<Prestacion> resultList = new List<Prestacion>();
-
+            int numPrest = 1;
 
             foreach (PrestadorCaso e in le)
             {
-                resultList.Add(EntityToModel(e));
+                resultList.Add(EntityToModel(e, numPrest++));
             }
 
             return resultList;

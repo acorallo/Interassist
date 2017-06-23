@@ -132,10 +132,12 @@ namespace InterAssistMVC.Models
                 m.Observaciones.Add(InterAssistMVC.Models.Observacion.EntityToModel(o));
             }
 
-            foreach (Entities.InterAsisst.PrestadorCaso p in e.PrestadorCaso)
+            /*foreach (Entities.InterAsisst.PrestadorCaso p in e.PrestadorCaso)
             {
                 m.Prestaciones.Add(InterAssistMVC.Models.Prestacion.EntityToModel(p));
-            }
+            }*/
+
+            m.Prestaciones = Prestacion.EntityToModel(e.PrestadorCaso);
 
             m.DatosPrestaciones = Newtonsoft.Json.JsonConvert.SerializeObject(m.Prestaciones);
 

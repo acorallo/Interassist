@@ -27,7 +27,7 @@
                         @{
                         if (Model.IdEstado != 4)
                         {
-                            <div class="col-lg-2"><p class="form-control-static">@Html.DisplayFor(model => model.Patente)</p></div>
+                            <div class="col-lg-2"><p class="form-control-static">@Html.DisplayFor(model => model.Afiliado.Patente)</p></div>
                                                 <div class="col-lg-5"><p class="form-control-static">@Html.DisplayFor(model => model.NombreAfiliado)</p></div>
                         }
                         else
@@ -178,21 +178,21 @@
                                 <div class="tab-content">
                                     <div class="tab-pane fade active in" id="afiliado">
                                         <div class="row">
-                                            <div class="col-lg-8">@Html.EditorFor(model => model.NombreAfiliado, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Nombre y Apellido", @disabled = "disabled", @id = "ApyNom" } })@Html.HiddenFor(model => model.Afiliado.Nombre)@Html.HiddenFor(model => model.Afiliado.Apellido)</div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Documento, new { htmlAttributes = new { @class = "form-control", @placeholder = "Documento", @disabled = "disabled", @id = "Doc" } })</div>
+                                            <div class="col-lg-8">@Html.EditorFor(model => model.NombreAfiliado, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Nombre y Apellido", @readonly = true, @id = "ApyNom" } })@Html.HiddenFor(model => model.Afiliado.Nombre)@Html.HiddenFor(model => model.Afiliado.Apellido)</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Documento, new { htmlAttributes = new { @class = "form-control", @placeholder = "Documento", @readonly = true, @id = "Doc" } })</div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-8">@Html.EditorFor(model => model.Afiliado.Direccion, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Dirección: calle número, localidad, provincia", @disabled = "disabled", @id = "Dir" } })</div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.CodigoPostal, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese CP", @disabled = "disabled", @id = "cp" } })</div>
+                                            <div class="col-lg-8">@Html.EditorFor(model => model.Afiliado.Direccion, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Dirección: calle número, localidad, provincia", @readonly = true, @id = "Dir" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.CodigoPostal, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese CP", @readonly = true, @id = "cp" } })</div>
                                         </div>
                                         <div class="row">
                                             <h4 class="col-lg-12">Póliza</h4>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Poliza, new { htmlAttributes = new { @class = "form-control", @placeholder = "Número", @disabled = "disabled", @id = "pol" } })</div>
-                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.NombreEmpresa, new { htmlAttributes = new { @class = "form-control", @placeholder = "Compañía", @disabled = "disabled", @id = "cia" } })</div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.FechaDesde, new { htmlAttributes = new { @class = "form-control", @placeholder = "dd/mm/yyyy", @disabled = "disabled", @id = "fd" } })</div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.FechaHasta, new { htmlAttributes = new { @class = "form-control", @placeholder = "dd/mm/yyyy", @disabled = "disabled", @id = "fh" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Poliza, new { htmlAttributes = new { @class = "form-control", @placeholder = "Número", @readonly = true, @id = "pol" } })</div>
+                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.NombreEmpresa, new { htmlAttributes = new { @class = "form-control", @placeholder = "Compañía", @readonly = true, @id = "cia" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.FechaDesde, new { htmlAttributes = new { @class = "form-control", @placeholder = "dd/mm/yyyy", @readonly = true, @id = "fd" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.FechaHasta, new { htmlAttributes = new { @class = "form-control", @placeholder = "dd/mm/yyyy", @readonly = true, @id = "fh" } })</div>
                                             <div class="col-lg-3"><div class="checkbox"><label><input type="checkbox" disabled />Vigente</label></div></div>
                                         </div>
                                         <div class="row">
@@ -203,11 +203,11 @@
                                             <h4 class="col-lg-12">Vehículo</h4>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Patente, new { htmlAttributes = new { @class = "form-control", @placeholder = "Patente", @disabled = "disabled", @id = "pat" } })</div>
-                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.Marca, new { htmlAttributes = new { @class = "form-control", @placeholder = "Marca", @disabled = "disabled", @id = "marca" } })</div>
-                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.Modelo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Modelo", @disabled = "disabled", @id = "mod" } })</div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Color, new { htmlAttributes = new { @class = "form-control", @placeholder = "Color", @disabled = "disabled", @id = "col" } })</div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Anio, new { htmlAttributes = new { @class = "form-control", @placeholder = "Año", @disabled = "disabled", @id = "anio" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Patente, new { htmlAttributes = new { @class = "form-control", @placeholder = "Patente", @readonly = true, @id = "pat" } })</div>
+                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.Marca, new { htmlAttributes = new { @class = "form-control", @placeholder = "Marca", @readonly = true, @id = "marca" } })</div>
+                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.Modelo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Modelo", @readonly = true, @id = "mod" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Color, new { htmlAttributes = new { @class = "form-control", @placeholder = "Color", @readonly = true, @id = "col" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Anio, new { htmlAttributes = new { @class = "form-control", @placeholder = "Año", @readonly = true, @id = "anio" } })</div>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="ubicacion">
@@ -328,7 +328,7 @@
                                                     <table id="gridPrestaciones" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                                                         <thead>
                                                             <tr>
-                                                                <th>Servicio</th>
+                                                                <th>Prestacion</th>
                                                                 <th>Problema</th>
                                                                 <th>Prestador</th>
                                                                 <th>Estado</th>
@@ -340,7 +340,7 @@
                                                             @foreach (InterAssistMVC.Models.Prestacion p in Model.Prestaciones)
                                                             {
                                                                 <tr ondblclick="ModificarPrestacion(this);" class="grid-row-moreinfo">
-                                                                    <td>@p.DescripcionServicio</td>
+                                                                    <td>@p.NombrePrestacion</td>
                                                                     <td>@p.Problema</td>
                                                                     <td>@p.NombrePrestador</td>
                                                                     <td>@p.Estado</td>
@@ -419,6 +419,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
+                        <input type="hidden" id="prestacionNombrePrestacion"/>
                         <div class="col-lg-3"><label>Tipo:</label>@Html.DropDownList("prestacionTipoServicio", Model.TiposServicio, new { @class = "form-control", @id = "prestacionTipoServicio", @name = "prestacionTipoServicio" })</div>
                         <div class="col-lg-3"><label>Problema:</label>@Html.DropDownList("prestacionProblema", Model.Problemas, new { @class = "form-control", @id = "prestacionProblema" })</div>
                         <div class="col-lg-3"><label>Estado:</label>
@@ -429,7 +430,7 @@
                             }
                             else
                             {
-                                @Html.DropDownList("prestEstados", Model.PrestacionEstados, new { @class = "form-control", @id = "prestacionEstado", @name = "prestacionEstado", @disabled = true})
+                                @Html.DropDownList("prestEstados", Model.PrestacionEstados, new { @class = "form-control", @id = "prestacionEstado", @name = "prestacionEstado", @disabled = "disabled" })
                             }
                         }
                         </div>
@@ -832,6 +833,8 @@
 
         $('#prestacionFinalizacion').val(p.IdFinalizacion);
 
+        $('#prestacionNombrePrestacion').val(p.NombrePrestacion);
+
         $('button#btnPrestacionModificar').click();
     }
 
@@ -864,6 +867,7 @@
         $('#prestacionUbicacionOrigenVal').val('');
         $('#prestacionUbicacionDestinoVal').val('');
         $('#prestacionFinalizacion').val('');
+        $('#prestacionNombrePrestacion').val('');
     }
 
     function AceptarPrestacion() {
@@ -872,7 +876,7 @@
         var prestacion = Object();
         if (accionPrestacion == "A") {
             var a = $('#gridPrestaciones tbody');
-            a.prepend('<tr ondblclick="ModificarPrestacion(this);"><td></td><td></td><td></td><td>-1</td><td style="display:none"></td><td style="display:none">{"Id":-1,"IdPrestador":-1,"NombrePrestador":"","IdTipoServicio":-1,"DescripcionServicio":"","Comentarios":"","Kilometros":null,"Costo":null,"IdProblema":-1,"Problema":null,"IdPaisOrigen":-1,"IdPaisDestino":-1,"IdProvinciaOrigen":-1,"IdProvinciaDestino":-1,"IdCiudadOrigen":-1,"IdCiudadDestino":-1,"CalleOrigen":"","IdLocalidadOrigen":-1,"IdLocalidadDestino":-1,"CalleDestino":"","IdEstado":-1,"IdTicketPrestadorRetrabajo":-1,"Demora":"","Patente":"","NombreChofer":"","Estado":null,"IdFinalizacion":-1}</td></tr>')
+            a.prepend('<tr ondblclick="ModificarPrestacion(this);"><td></td><td></td><td></td><td>-1</td><td style="display:none"></td><td style="display:none">{"Id":-1,"IdPrestador":-1,"NombrePrestador":"","IdTipoServicio":-1,"DescripcionServicio":"","Comentarios":"","Kilometros":null,"Costo":null,"IdProblema":-1,"Problema":null,"IdPaisOrigen":-1,"IdPaisDestino":-1,"IdProvinciaOrigen":-1,"IdProvinciaDestino":-1,"IdCiudadOrigen":-1,"IdCiudadDestino":-1,"CalleOrigen":"","IdLocalidadOrigen":-1,"IdLocalidadDestino":-1,"CalleDestino":"","IdEstado":-1,"IdTicketPrestadorRetrabajo":-1,"Demora":"","Patente":"","NombreChofer":"","Estado":null,"IdFinalizacion":-1,"NombrePrestacion":null}</td></tr>')
             gridPrestacionRow = $(a.children()[0]);
         }
         prestacion = JSON.parse(gridPrestacionRow.children()[5].innerText);
@@ -907,8 +911,13 @@
 
         prestacion.IdFinalizacion = $('#prestacionFinalizacion').val();
 
+        if ($('#prestacionNombrePrestacion').val() == ""){
+            prestacion.NombrePrestacion = prestacion.DescripcionServicio;
+        }else{
+            prestacion.NombrePrestacion = $('#prestacionNombrePrestacion').val();
+        }
         
-        gridPrestacionRow.children()[0].innerText = prestacion.DescripcionServicio;
+        gridPrestacionRow.children()[0].innerText = prestacion.NombrePrestacion;
         gridPrestacionRow.children()[1].innerText = prestacion.Problema;
         gridPrestacionRow.children()[2].innerText = prestacion.NombrePrestador;
         gridPrestacionRow.children()[3].innerText = prestacion.Estado;
