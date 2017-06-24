@@ -300,6 +300,15 @@ namespace Entities.InterAsisst
             get { return _cantTicketsAfil; }
             set { _cantTicketsAfil = value; }
         }
+
+
+        private string _estado;
+
+        public string Estado
+        {
+            get { return _estado; }
+            set { _estado = value; }
+        }
         // EGV 25May2017 Fin
 
         private string _nombreLocalidadOrigen;
@@ -590,7 +599,7 @@ namespace Entities.InterAsisst
             {
                 FiltroEstado f = new FiltroEstado("PRESTACION");
                 f.ID = prestadorCaso.IdEstado;
-                prestadorCaso.Estado = Estado.List(f).FirstOrDefault().Descripcion;
+                prestadorCaso.Estado = Entities.InterAsisst.Estado.List(f).FirstOrDefault().Descripcion;
             }
             prestadorCaso.IdTicketPrestadorRetrabajo = PersistEntity.NuleableInt(dr["IDTICKETPRESTADOR_RETRABAJO"].ToString());
             prestadorCaso.Demora = dr["DEMORA"].ToString();
@@ -647,6 +656,7 @@ namespace Entities.InterAsisst
             //ticket._problema = dr[TicketDS.COL_PROBLEMA].ToString();
             ticket._okAfiliado = dr[TicketDS.COL_OKAFILIADO].ToString() == "S" ? true : false;
             ticket._cantTicketsAfil = PersistEntity.NuleableInt(dr[TicketDS.COL_CANT_TICKETS_AFIL].ToString());
+            ticket._estado = dr[TicketDS.COL_ESTADO].ToString();
             // EGV 25May2017 Fin
             ticket._nombreEmpresa = dr[TicketDS.COL_NOMBRE_EMPRESA].ToString();
             ticket._nombreAfiliado = dr[TicketDS.COL_NOMBRE_AFILIADO].ToString();

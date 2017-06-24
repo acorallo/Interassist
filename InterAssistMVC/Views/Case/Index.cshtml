@@ -11,7 +11,7 @@
 
 @{
     Layout = "~/Views/Shared/InterAssistLayout.cshtml";
-    // esteban a pasar al controller
+
     ViewBag.TableTitle = "Casos";
     ViewBag.Title = "Casos";
 }
@@ -28,7 +28,7 @@
 </style>
 
 <h1 class="page-header">@ViewBag.Title</h1>
-@if (true)// esteban crear CanCreateCases (ViewBag.CanCreateProviders)
+@if (InterAssistMVC.Utils.UISecurityManager.HasAccessTo(InterAssistMVC.Utils.UISecurityManager.CASE_CREATE_KEY))
 {
     <div>
         <p><button type="button" class="btn btn-success" onclick="javascript:window.location.assign('@Url.Action("Create", "Case")')" data-toggle="tooltip" data-placement="top" title="Crear un nuevo caso en el sistema">Nuevo Caso</button></p>
@@ -82,23 +82,13 @@
                                         .SorterFor(Model, m => m.Id, Ext.Net.SortDirection.DESC)
                                 )
                                 .ColumnModel(
-                                    Html.X().Column().DataIndex(Model, m => m.Id).Text("Id").Width(100),
-                                    Html.X().Column().DataIndex(Model, m => m.NombreAfiliado).Text("Afiliado").Width(250),
+                                    Html.X().Column().DataIndex(Model, m => m.Id).Text("Id").Width(80),
+                                    Html.X().Column().DataIndex(Model, m => m.NombreAfiliado).Text("Afiliado").Width(200),
                                     Html.X().Column().DataIndex(Model, m => m.Patente).Text("Patente").Width(100),
-                                    Html.X().Column().DataIndex(Model, m => m.Poliza).Text("Poliza").Width(100),
-                                    Html.X().Column().DataIndex(Model, m => m.Marca).Text("Marca").Width(100),
-                                    Html.X().Column().DataIndex(Model, m => m.NombreOperador).Text("Operador").Width(250)/*,
-                                    Html.X().CommandColumn()
-                                        .Width(20)
-                                        .Commands(
-                                            Html.X().GridCommand()
-                                                .CommandName("Editar")
-                                                .Icon(Icon.NoteEdit)
-                                                .ToolTip(tt => tt.Text = "Editar Caso")
-                                        )
-                                        .Listeners(ls => ls.Command.Handler = "alert('comando boton');")*/
+                                    Html.X().Column().DataIndex(Model, m => m.Poliza).Text("Poliza").Width(120),
+                                    Html.X().Column().DataIndex(Model, m => m.Estado).Text("Estado").Width(150),
+                                    Html.X().Column().DataIndex(Model, m => m.NombreOperador).Text("Operador").Width(200)
                                 )
-                                //.Listeners(ls => ls.RowDblClick.Handler = "alert(record.data.Id);")
                                 .Listeners(ls => ls.RowDblClick.Handler = "EditarCaso(record.data.Id)")
                                 .BottomBar(
                                     Html.X().PagingToolbar()

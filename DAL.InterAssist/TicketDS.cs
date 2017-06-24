@@ -73,6 +73,7 @@ namespace DAL.InterAssist
         public const string COL_NOMBRE_CHOFER = "NOMBRE_CHOFER";
         public const string COL_OKAFILIADO = "OKAFILIADO";
         public const string COL_CANT_TICKETS_AFIL = "CANT_TICKETS_AFIL";
+        public const string COL_ESTADO = "ESTADO";
         // EGV 25May2017 Fin
 
 

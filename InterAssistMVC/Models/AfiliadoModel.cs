@@ -38,6 +38,9 @@ namespace InterAssistMVC.Models
         public virtual string PatenteApeYNom { get; set; }
         public virtual string DatosAfiliado { get; set; }
 
+        public virtual string FechaDesdeDisplay { get; set; }
+        public virtual string FechaHastaDisplay { get; set; }
+
         public static AfiliadoModel EntityToModel(Afiliado e)
         {
             AfiliadoModel m = new AfiliadoModel();
@@ -65,7 +68,11 @@ namespace InterAssistMVC.Models
 
             m.ApellidoYNombre = Common.ApeYNom(e.Nombre, e.Apellido);
             m.PatenteApeYNom = e.Patente + " - " + m.ApellidoYNombre;
-            m.DatosAfiliado = Newtonsoft.Json.JsonConvert.SerializeObject(new { Id = m.Id, ApyNom = m.ApellidoYNombre, Doc = m.Documento, Dir = m.Direccion, cp = m.CodigoPostal, pol = m.Poliza, cia = m.NombreEmpresa, fd = m.FechaDesde.ToString("dd/MM/yyyy"), fh = m.FechaHasta.ToString("dd/MM/yyyy"), tp = " ", sp = " ", pat = m.Patente, marca = m.Marca, mod = m.Modelo, col = m.Color, anio = m.Anio });
+
+            m.FechaDesdeDisplay = m.FechaDesde.ToString("dd/MM/yyyy");
+            m.FechaHastaDisplay = m.FechaHasta.ToString("dd/MM/yyyy");
+
+            m.DatosAfiliado = Newtonsoft.Json.JsonConvert.SerializeObject(new { Id = m.Id, ApyNom = m.ApellidoYNombre, Doc = m.Documento, Dir = m.Direccion, cp = m.CodigoPostal, pol = m.Poliza, cia = m.NombreEmpresa, fd = m.FechaDesdeDisplay, fh = m.FechaHastaDisplay, tp = " ", sp = " ", pat = m.Patente, marca = m.Marca, mod = m.Modelo, col = m.Color, anio = m.Anio });
 
             return m;
 

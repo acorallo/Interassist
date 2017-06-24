@@ -24,6 +24,10 @@ namespace InterAssistMVC.Controllers
 
         public ActionResult Create()
         {
+            if (!InterAssistMVC.Utils.UISecurityManager.HasAccessTo(InterAssistMVC.Utils.UISecurityManager.CASE_MODIFY_KEY))
+            {
+                throw new Exception("No tiene acceso a Crear Casos");
+            }
             Ticket t = new Ticket();
             t.IDOperador = Utils.UISecurityManager.GetOperador();
             t.Fecha = System.DateTime.Today;
@@ -48,9 +52,12 @@ namespace InterAssistMVC.Controllers
         [HttpPost]
         public ActionResult Edit(Case m)
         {
+            if (!InterAssistMVC.Utils.UISecurityManager.HasAccessTo(InterAssistMVC.Utils.UISecurityManager.CASE_MODIFY_KEY))
+            {
+                throw new Exception("No tiene acceso a Modificar Casos");
+            }
             if (ModelState.IsValid)
             {
-                //m.Observacion = "Probando la Edición";
                 m.Prestaciones.Clear();
                 m.Prestaciones = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Prestacion>>(m.DatosPrestaciones);
                 foreach (Prestacion p in m.Prestaciones)
@@ -120,7 +127,6 @@ namespace InterAssistMVC.Controllers
 
         }
 
-        //public ActionResult TraePrestadores(int start, int limit, int page, string query)
         public ActionResult TraePrestadores(string query)
         {
             FiltroPrestador f = new FiltroPrestador();
@@ -129,11 +135,7 @@ namespace InterAssistMVC.Controllers
             f.Search = query;
 
             f.IsPaged = false;
-            //f.PageSize = limit;
             f.OrderBY = " ORDER BY NOMBRE";
-
-
-            //f.StartRow = ((page - 1) * limit) + 1;
             
             List<Provider> list = Provider.EntityToModel(Prestador.List(f, out totalRegistros));
 
@@ -142,7 +144,6 @@ namespace InterAssistMVC.Controllers
             return this.Store(paging.Data, paging.TotalRecords);
         }
 
-        //public ActionResult TraeUbicaciones(int start, int limit, int page, string query)
         public ActionResult TraeUbicaciones(string query)
         {
              FiltroUbicacion f = new FiltroUbicacion();
@@ -160,14 +161,17 @@ namespace InterAssistMVC.Controllers
 
             f.Search = q;
 
-            //f.IsPaged = true;
             f.IsPaged = false;
-            //f.PageSize = limit;
             f.OrderBY = " ORDER BY ORDEN, NOMBRE";
 
-            //f.StartRow = ((page - 1) * limit) + 1;
-
             List<UbicacionModel> list = UbicacionModel.EntityToModel(Ubicacion.List(f, out totalRegistros));
+            if (list.Count > 300)
+            {
+                list.RemoveRange(300, list.Count - 300);
+                UbicacionModel u = new UbicacionModel();
+                u.Nombre = "... acote su búsqueda ...";
+                list.Add(u);
+            }
 
             list.ForEach(l => { l.CalleUbicacion = Common.Ubicacion(calle, l.Nombre); l.Calle = calle; l.DatosUbicacion = l.DatosUbicacion = Newtonsoft.Json.JsonConvert.SerializeObject(new { IdLocalidad = l.IdLocalidad, IdCiudad = l.IdCiudad, IdProvincia = l.IdProvincia, IdPais = l.IdPais, Calle = l.Calle, CalleUbicacion = calle + ", " + l.Nombre }); });
 

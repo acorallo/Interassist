@@ -34,7 +34,6 @@ namespace InterAssistMVC.Models
         public virtual string CalleOrigen { get; set; }
         public virtual string CalleDestino { get; set; }
 
-        //public virtual Observacion Observacion { get; set; }
         public virtual List<Observacion> Observaciones { get; set; }
 
         [StringLength(3999)]
@@ -68,6 +67,8 @@ namespace InterAssistMVC.Models
         public virtual int CantidadCasosAnteriores { get; set; }
         public virtual bool AceptaAfiliado { get; set; }
 
+        public virtual string Estado { get; set; }
+
         // Combos
         public SelectList CaseEstados { get; set; }
         public SelectList TiposServicio { get; set; }
@@ -95,6 +96,7 @@ namespace InterAssistMVC.Models
             m.IdAfiliado = e.IdAfiliado;
             m.Telefono = e.Telefono;
             m.IdEstado = e.IdEstado;
+            m.Estado = e.Estado;
             m.IdProvinciaOrigen = e.IdProvinciaOrigen;
             m.IdCiudadOrigen = e.IdCiudadOrigen;
             m.IdLocalidadOrigen = e.IdLocalidadOrigen;
@@ -131,11 +133,6 @@ namespace InterAssistMVC.Models
             {
                 m.Observaciones.Add(InterAssistMVC.Models.Observacion.EntityToModel(o));
             }
-
-            /*foreach (Entities.InterAsisst.PrestadorCaso p in e.PrestadorCaso)
-            {
-                m.Prestaciones.Add(InterAssistMVC.Models.Prestacion.EntityToModel(p));
-            }*/
 
             m.Prestaciones = Prestacion.EntityToModel(e.PrestadorCaso);
 

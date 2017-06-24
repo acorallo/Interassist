@@ -149,7 +149,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button id="btnOkAfiliado" type="button" class="btn btn-success" onclick="" data-toggle="modal" data-target="#modalOkAfiliado" data-placement="top" title="Ok Afiliado" style="display:none">Ok Afiliado</button>
+                        <button id="btnOkAfiliado" type="button" class="btn btn-success" onclick="" data-toggle="modal" data-target="#modalOkAfiliado" data-placement="top" title="Ok Afiliado" style="display:none" data-backdrop="static" data-keyboard="false">Ok Afiliado</button>
 
                     </div>
                     <div class="row">
@@ -178,36 +178,37 @@
                                 <div class="tab-content">
                                     <div class="tab-pane fade active in" id="afiliado">
                                         <div class="row">
-                                            <div class="col-lg-8">@Html.EditorFor(model => model.NombreAfiliado, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Nombre y Apellido", @readonly = true, @id = "ApyNom" } })@Html.HiddenFor(model => model.Afiliado.Nombre)@Html.HiddenFor(model => model.Afiliado.Apellido)</div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Documento, new { htmlAttributes = new { @class = "form-control", @placeholder = "Documento", @readonly = true, @id = "Doc" } })</div>
+                                            <div class="col-lg-6">@Html.EditorFor(model => model.NombreAfiliado, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Ingrese Nombre y Apellido", @readonly = true, @id = "ApyNom" } })@Html.HiddenFor(model => model.Afiliado.Nombre)@Html.HiddenFor(model => model.Afiliado.Apellido)</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Documento, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Documento", @readonly = true, @id = "Doc" } })</div>
+                                            <div class="col-lg-4">@Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control", @placeholder = "Telefono contacto", @id = "Doc" } })</div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-8">@Html.EditorFor(model => model.Afiliado.Direccion, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Dirección: calle número, localidad, provincia", @readonly = true, @id = "Dir" } })</div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.CodigoPostal, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese CP", @readonly = true, @id = "cp" } })</div>
+                                            <div class="col-lg-8">@Html.EditorFor(model => model.Afiliado.Direccion, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Ingrese Dirección: calle número, localidad, provincia", @readonly = true, @id = "Dir" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.CodigoPostal, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Ingrese CP", @readonly = true, @id = "cp" } })</div>
                                         </div>
                                         <div class="row">
                                             <h4 class="col-lg-12">Póliza</h4>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Poliza, new { htmlAttributes = new { @class = "form-control", @placeholder = "Número", @readonly = true, @id = "pol" } })</div>
-                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.NombreEmpresa, new { htmlAttributes = new { @class = "form-control", @placeholder = "Compañía", @readonly = true, @id = "cia" } })</div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.FechaDesde, new { htmlAttributes = new { @class = "form-control", @placeholder = "dd/mm/yyyy", @readonly = true, @id = "fd" } })</div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.FechaHasta, new { htmlAttributes = new { @class = "form-control", @placeholder = "dd/mm/yyyy", @readonly = true, @id = "fh" } })</div>
-                                            <div class="col-lg-3"><div class="checkbox"><label><input type="checkbox" disabled />Vigente</label></div></div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Poliza, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Número", @readonly = true, @id = "pol" } })</div>
+                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.NombreEmpresa, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Compañía", @readonly = true, @id = "cia" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.FechaDesdeDisplay, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "dd/mm/yyyy", @readonly = true, @id = "fd" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.FechaHastaDisplay, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "dd/mm/yyyy", @readonly = true, @id = "fh" } })</div>
+                                            <div class="col-lg-3">@*<div class="checkbox"><label><input type="checkbox" disabled />Vigente</label></div>*@</div>
                                         </div>
-                                        <div class="row">
+                                        @*<div class="row">
                                             <div class="col-lg-4"><input type="text" class="form-control" value="" placeholder="Tipo Poliza" disabled /></div>
                                             <div class="col-lg-4"><input type="text" class="form-control" value="" placeholder="Sub Tipo de Póliza" disabled /></div>
-                                        </div>
+                                        </div>*@
                                         <div class="row">
                                             <h4 class="col-lg-12">Vehículo</h4>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Patente, new { htmlAttributes = new { @class = "form-control", @placeholder = "Patente", @readonly = true, @id = "pat" } })</div>
-                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.Marca, new { htmlAttributes = new { @class = "form-control", @placeholder = "Marca", @readonly = true, @id = "marca" } })</div>
-                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.Modelo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Modelo", @readonly = true, @id = "mod" } })</div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Color, new { htmlAttributes = new { @class = "form-control", @placeholder = "Color", @readonly = true, @id = "col" } })</div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Anio, new { htmlAttributes = new { @class = "form-control", @placeholder = "Año", @readonly = true, @id = "anio" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Patente, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Patente", @readonly = true, @id = "pat" } })</div>
+                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.Marca, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Marca", @readonly = true, @id = "marca" } })</div>
+                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.Modelo, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Modelo", @readonly = true, @id = "mod" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Color, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Color", @readonly = true, @id = "col" } })</div>
+                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Anio, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Año", @readonly = true, @id = "anio" } })</div>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="ubicacion">
@@ -313,8 +314,8 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <p>
-                                                    <button id="btnPrestacionAgregar" type="button" class="btn btn-success" onclick="AgregarPrestacion()" data-toggle="modal" data-target="#modalPrestacion" data-placement="top" title="Agregar Prestación">Nueva Prestación</button>
-                                                    <button id="btnPrestacionModificar" type="button" class="btn btn-success" onclick="" data-toggle="modal" data-target="#modalPrestacion" data-placement="top" title="Agregar Prestación" style="display:none">Modificar Prestación</button>
+                                                    <button id="btnPrestacionAgregar" type="button" class="btn btn-success" onclick="AgregarPrestacion()" data-toggle="modal" data-target="#modalPrestacion" data-placement="top" title="Agregar Prestación" data-backdrop="static" data-keyboard="false">Nueva Prestación</button>
+                                                    <button id="btnPrestacionModificar" type="button" class="btn btn-success" onclick="" data-toggle="modal" data-target="#modalPrestacion" data-placement="top" title="Agregar Prestación" style="display:none" data-backdrop="static" data-keyboard="false">Modificar Prestación</button>
                                                 </p>
 
 
@@ -395,9 +396,15 @@
                 </div>
                 <div class="row botonera">
                     <div class="col-lg-12">
-                        <button type="submit" class="btn btn-primary">Grabar</button>
+                        @if (InterAssistMVC.Utils.UISecurityManager.HasAccessTo(InterAssistMVC.Utils.UISecurityManager.CASE_MODIFY_KEY))
+                        { 
+                            <button type="submit" class="btn btn-primary">Grabar</button>
+                        }
                         <button type="button" class="btn btn-default" onclick="javascript: window.location.assign('@Url.Action("Index", "Case", null)')">Cancelar</button>
-                        <button type="button" class="btn btn-success" onclick="Message('SMS enviado con éxito!');">SMS<span class="fa fa-envelope-o" style="margin-left:10px;"></span></button>
+                        @if (InterAssistMVC.Utils.UISecurityManager.HasAccessTo(InterAssistMVC.Utils.UISecurityManager.CASE_MODIFY_KEY))
+                        {
+                            <button type="button" class="btn btn-success" onclick="Message('SMS enviado con éxito!');">SMS<span class="fa fa-envelope-o" style="margin-left:10px;"></span></button>
+                        }
                     </div>
                 </div>
             </div>
@@ -1205,6 +1212,9 @@
             if (value != $('#' + $(element).attr('id') + 'Val').val()) {
                 return false;
             }
+            if (value.includes("... acote su búsqueda ...")){
+                return false;
+            }
             return true;
         },"Elija Valor de la Lista.");
 
@@ -1305,7 +1315,7 @@
         });
 
         $('#editCaseMainForm').validate({
-            ignore: "",
+            //ignore: "",
             errorPlacement: function(error,element){
                 if($(element).attr('name').length > 5 && $(element).attr('name').substring(0,5) == "combo"){
                     var a = $(element).parentsUntil('div.x-border-box');
