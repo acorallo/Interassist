@@ -176,6 +176,19 @@
 PROCEDURE LIST_PRESTADORES_BY_TICKET (P_IDTICKET IN TICKET_PRESTADORES.IDTICKET%TYPE,
                                         R_CURSOR OUT tyRefCursor);
                                         
+
+-- EGV 26Jun2017 Inicio                                        
+PROCEDURE LIST_TICKET_TRACK_BY_TICKET(P_IDTICKET IN TICKET_TRACK.IDTICKET%TYPE, R_CURSOR OUT tyRefCursor);   
+
+PROCEDURE CREATE_TICKET_TRACK (
+    P_ID OUT ticket_track.idticket_track%TYPE,
+    P_IDTICKET IN ticket_track.idticket%TYPE,
+    P_IDOPERADOR IN ticket_track.idoperador%TYPE,
+    P_IDESTADO IN ticket_track.idestado%TYPE,
+    P_OBJECTHASH IN ticket_track.objecthash%TYPE
+  );
+-- EGV 26Jun2017 Fin
+                                        
 END TICKET_PKG;
 
 /

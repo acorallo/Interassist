@@ -49,6 +49,7 @@ namespace Entities.InterAsisst
             this.IdProvinciaOrigen = NULL_ID;
             this.CantTicketsAfil = NULL_ID;
             this.OkAfiliado = false;
+            this.IdOperadorTrack = NULL_ID;
             // EGV 25May2017 Fin
         }
 
@@ -64,6 +65,15 @@ namespace Entities.InterAsisst
             get { return _isPrestadorLoaded; }
 
         }
+
+        // EGV 24jun2017 Inicio
+        private bool _isTrackingLoaded = false;
+
+        public bool IsTrackingLoaded
+        {
+            get { return _isTrackingLoaded;  }
+        }
+        // EGV 24jun2017 Fin
 
         private int _idOperador;
 
@@ -302,6 +312,14 @@ namespace Entities.InterAsisst
         }
 
 
+        private int _idOperadorTrack;
+
+        public int IdOperadorTrack
+        {
+            get { return _idOperadorTrack; }
+            set { _idOperadorTrack = value; }
+        }
+
         private string _estado;
 
         public string Estado
@@ -382,6 +400,18 @@ namespace Entities.InterAsisst
         public string Anio { get; set; }
          */
         public Afiliado Afiliado { get; set; }
+
+        private List<TicketTrack> _ticketTracking = new List<TicketTrack>();
+
+        public List<TicketTrack> TicketTracking
+        {
+            get
+            {
+
+                return _ticketTracking;
+            }
+            set { _ticketTracking = value; }
+        }
         // EGV 25May2017 Fin
 
         #endregion Miembros de Entidad
@@ -471,6 +501,7 @@ namespace Entities.InterAsisst
                     {
                         ticketResult.Afiliado = Afiliado.GetById(ticketResult.IdAfiliado);
                     }
+                    ticketResult.LoadTracking();
                     // EGV 15May2017 Fin
 
                 }
@@ -685,7 +716,7 @@ namespace Entities.InterAsisst
                 {
                     // EGV 25May2017 Inicio
                     //this._id = dataservice.Create(this.ObjectToRow(), this.Observacion.ObjectToRow(), this.GetPrestadoresTable());
-                    this._id = dataservice.Create(this.ObjectToRow(), (this.Observacion != null ? this.Observacion.ObjectToRow() : null), this.GetPrestadoresTable());
+                    this._id = dataservice.Create(this.ObjectToRow(), (this.Observacion != null ? this.Observacion.ObjectToRow() : null), this.GetPrestadoresTable(), this.IdOperadorTrack);
                     // EGV 25May2017 Fin
                     result = true;
                 }
@@ -693,7 +724,7 @@ namespace Entities.InterAsisst
                 {
                     // EGV 25May2017 Inicio
                     //result = dataservice.Update(this.ObjectToRow(), this.Observacion.ObjectToRow(), this.GetPrestadoresTable());
-                    result = dataservice.Update(this.ObjectToRow(), (this.Observacion != null ? this.Observacion.ObjectToRow() : null), this.GetPrestadoresTable());
+                    result = dataservice.Update(this.ObjectToRow(), (this.Observacion != null ? this.Observacion.ObjectToRow() : null), this.GetPrestadoresTable(), this.IdOperadorTrack);
                     // EGV 25May2017 Fin
                 }
 
@@ -746,6 +777,36 @@ namespace Entities.InterAsisst
             return resulTable;
 
         }
+
+        // EGV 24Jun2017 Inicio
+        private void LoadTracking()
+        {
+            if (this.ID != NULL_ID && !this.IsTrackingLoaded)
+            {
+                TicketDS ticketDataService = new TicketDS();
+                DataSet ds = ticketDataService.List_Ticket_TrackByTicket(this.ID);
+
+                if (ds.Tables.Count > 0)
+                {
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        TicketTrack t = new TicketTrack();
+                        t.ID = Int32.Parse(dr["IDTICKET_TRACK"].ToString());
+                        t.IdOperador = PersistEntity.NuleableInt(dr["IDOPERADOR"].ToString());
+                        t.IdEstado = PersistEntity.NuleableInt(dr["IDESTADO"].ToString());
+                        t.IdTicket = PersistEntity.NuleableInt(dr["IDTICKET"].ToString());
+                        t.FechaHora = Convert.ToDateTime(dr["FECHA_HORA"]);
+                        t.NombreOperador = dr["NOMBRE_OPERADOR"].ToString();
+                        t.Estado = dr["ESTADO"].ToString();
+                        this._ticketTracking.Add(t);
+                    }
+                }
+
+                this._isTrackingLoaded = true;
+
+            }
+        }
+        // EGV 24Jun2017 Fin
 
 
         #endregion Metodos

@@ -71,6 +71,7 @@
     <Compile Include="Provincia.cs" />
     <Compile Include="ReporteCasos.cs" />
     <Compile Include="Ticket.cs" />
+    <Compile Include="TicketTrack.cs" />
     <Compile Include="TipoCaso.cs" />
     <Compile Include="TipoIva.cs" />
     <Compile Include="TipoServicio.cs" />

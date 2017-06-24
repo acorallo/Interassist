@@ -30,6 +30,7 @@ namespace InterAssistMVC.Controllers
             }
             Ticket t = new Ticket();
             t.IDOperador = Utils.UISecurityManager.GetOperador();
+            t.IdOperadorTrack = t.IDOperador;
             t.Fecha = System.DateTime.Today;
             t.IdEstado = 4;
             t.TipoTicket = "Vehículo";
@@ -72,6 +73,7 @@ namespace InterAssistMVC.Controllers
                 if (ModelState.IsValid)
                 {
                     Ticket e = m.ModelToEntity();
+                    e.IdOperadorTrack = Utils.UISecurityManager.GetOperador();
                     e.Persist();
                     return RedirectToAction("Edit", "Case", new { Id = e.ID });
                 }

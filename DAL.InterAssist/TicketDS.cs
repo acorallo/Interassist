@@ -27,7 +27,10 @@ namespace DAL.InterAssist
 
         private const string CONST_LIST_PROSTADORES_PROCEDURE_NAME = "TICKET_PKG.LIST_PRESTADORES_BY_TICKET";
 
-
+        // EGV 24Jun2017 Inicio
+        private const string CONST_LIST_TICKET_TRACK_PROCEDURE_NAME = "TICKET_PKG.LIST_TICKET_TRACK_BY_TICKET";
+        private const string CONST_CREATE_TICKET_TRACK_PROCEDURE_NAME = "TICKET_PKG.CREATE_TICKET_TRACK";
+        // EGV 24Jun2017 Fin
 
 
         // Columnas de la tabla.
@@ -145,7 +148,10 @@ namespace DAL.InterAssist
             throw new NotImplementedException();
         }
 
-        public int Create(DataRow r, DataRow observacion, Datasets.Ticket_Prestador.TICKET_PRESTADORESDataTable Prestadores)
+        // EGV 24jun2017 Inicio
+        //public int Create(DataRow r, DataRow observacion, Datasets.Ticket_Prestador.TICKET_PRESTADORESDataTable Prestadores)
+        public int Create(DataRow r, DataRow observacion, Datasets.Ticket_Prestador.TICKET_PRESTADORESDataTable Prestadores, int idOperadorTrack)
+        // EGV 24jun2017 Fin
         {
             int result = 0;
 
@@ -210,6 +216,10 @@ namespace DAL.InterAssist
                 // Persiste los prestadores asociados.
                 this.PersistPrestadores(result, Prestadores, repository);
 
+                // EGV 24Jun2017 Inicio
+                this.Insert_Ticket_Track(repository, result, idOperadorTrack, Int32.Parse(dr[dtable.IDESTADOColumn].ToString()));
+                // EGV 24Jun2017 Fin
+
                 repository.CommitTransaction();
 
 
@@ -228,7 +238,10 @@ namespace DAL.InterAssist
             throw new NotImplementedException();
         }
 
-        public bool Update(DataRow r, DataRow observacion, Datasets.Ticket_Prestador.TICKET_PRESTADORESDataTable Prestadores)
+        // EGV 24jun2017 Inicio
+        //public bool Update(DataRow r, DataRow observacion, Datasets.Ticket_Prestador.TICKET_PRESTADORESDataTable Prestadores)
+        public bool Update(DataRow r, DataRow observacion, Datasets.Ticket_Prestador.TICKET_PRESTADORESDataTable Prestadores, int idOperadorTrack)
+        // EGV 24jun2017 Fin
         {
             bool result = false;
 
@@ -299,6 +312,9 @@ namespace DAL.InterAssist
 
                 this.PersistPrestadores(idTicketToUpdate, Prestadores, repository);
 
+                // EGV 24Jun2017 Inicio
+                this.Insert_Ticket_Track(repository, Int32.Parse(dr[dtable.IDTICKETColumn].ToString()), idOperadorTrack, Int32.Parse(dr[dtable.IDESTADOColumn].ToString()));
+                // EGV 24Jun2017 Fin
 
                 if (result)
                 {
@@ -577,6 +593,55 @@ namespace DAL.InterAssist
             return resultID;
 
         }
+
+        // EGV 24Jun2017 Inicio
+        public int Insert_Ticket_Track(DBRepository repository, int idTicket, int idOperadorTrack, int idEstado)
+        {
+            int resultID = -1;
+
+            try
+            {
+                List<IDbDataParameter> paramList = new List<IDbDataParameter>();
+
+                paramList.Add(repository.DbFactory.getDataParameter("P_IDTICKET", DbType.Int32, idTicket));
+                paramList.Add(repository.DbFactory.getDataParameter("P_IDOPERADOR", DbType.Int32, Dataservices.IntNUlleable(idOperadorTrack)));
+                paramList.Add(repository.DbFactory.getDataParameter("P_IDESTADO", DbType.Int32, Dataservices.IntNUlleable(idEstado)));
+
+                resultID = repository.ExecuteCreateProcedure(CONST_CREATE_TICKET_TRACK_PROCEDURE_NAME, paramList, " ");
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return resultID;
+        }
+
+        public DataSet List_Ticket_TrackByTicket(int idTicket)
+        {
+            DataSet resultSet = new DataSet();
+
+            try
+            {
+
+                DBRepository repository = DBRepository.GetDbRepository();
+
+                List<IDbDataParameter> paramList = new List<IDbDataParameter>();
+
+                paramList.Add(repository.DbFactory.getDataParameter("P_IDTICKET", DbType.Int32, idTicket));
+
+                repository.ExecuteProcedure(CONST_LIST_TICKET_TRACK_PROCEDURE_NAME, paramList, resultSet);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return resultSet;
+        }
+        // EGV 24Jun2017 Fin
 
         public DataTable ObtenercasosMensuales(int anno, int mes, string poliza)
         {

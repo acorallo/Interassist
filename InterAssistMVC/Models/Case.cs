@@ -61,13 +61,15 @@ namespace InterAssistMVC.Models
         public virtual AfiliadoModel Afiliado { get; set; }
 
         public virtual List<Prestacion> Prestaciones { get; set; }
-
+        public virtual List<TicketTrackModel> Tracking { get; set; }
         public virtual string DatosPrestaciones { get; set; }
 
         public virtual int CantidadCasosAnteriores { get; set; }
         public virtual bool AceptaAfiliado { get; set; }
 
         public virtual string Estado { get; set; }
+
+        public virtual int IdOperadorTrack { get; set; }
 
         // Combos
         public SelectList CaseEstados { get; set; }
@@ -81,6 +83,7 @@ namespace InterAssistMVC.Models
         {
             this.Observaciones = new List<Observacion>();
             this.Prestaciones = new List<Prestacion>();
+            this.Tracking = new List<TicketTrackModel>();
         }
 
 
@@ -137,6 +140,8 @@ namespace InterAssistMVC.Models
             m.Prestaciones = Prestacion.EntityToModel(e.PrestadorCaso);
 
             m.DatosPrestaciones = Newtonsoft.Json.JsonConvert.SerializeObject(m.Prestaciones);
+
+            m.Tracking = TicketTrackModel.EntityToModel(e.TicketTracking);
 
             return m;
 

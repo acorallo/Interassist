@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Ticket_Track" targetNamespace="http://tempuri.org/Ticket_Track.xsd" xmlns:mstns="http://tempuri.org/Ticket_Track.xsd" xmlns="http://tempuri.org/Ticket_Track.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Ticket_Track" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Ticket_Track" msprop:Generator_UserDSName="Ticket_Track">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TICKET_TRACK" msprop:Generator_TableClassName="TICKET_TRACKDataTable" msprop:Generator_TableVarName="tableTICKET_TRACK" msprop:Generator_TablePropName="TICKET_TRACK" msprop:Generator_RowDeletingName="TICKET_TRACKRowDeleting" msprop:Generator_RowChangingName="TICKET_TRACKRowChanging" msprop:Generator_RowEvHandlerName="TICKET_TRACKRowChangeEventHandler" msprop:Generator_RowDeletedName="TICKET_TRACKRowDeleted" msprop:Generator_UserTableName="TICKET_TRACK" msprop:Generator_RowChangedName="TICKET_TRACKRowChanged" msprop:Generator_RowEvArgName="TICKET_TRACKRowChangeEvent" msprop:Generator_RowClassName="TICKET_TRACKRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDTICKET_TRACK" msprop:Generator_ColumnVarNameInTable="columnIDTICKET_TRACK" msprop:Generator_ColumnPropNameInRow="IDTICKET_TRACK" msprop:Generator_ColumnPropNameInTable="IDTICKET_TRACKColumn" msprop:Generator_UserColumnName="IDTICKET_TRACK" type="xs:int" minOccurs="0" />
+              <xs:element name="IDTICKET" msprop:Generator_ColumnVarNameInTable="columnIDTICKET" msprop:Generator_ColumnPropNameInRow="IDTICKET" msprop:Generator_ColumnPropNameInTable="IDTICKETColumn" msprop:Generator_UserColumnName="IDTICKET" type="xs:int" minOccurs="0" />
+              <xs:element name="FECHA_HORA" msprop:Generator_ColumnVarNameInTable="columnFECHA_HORA" msprop:Generator_ColumnPropNameInRow="FECHA_HORA" msprop:Generator_ColumnPropNameInTable="FECHA_HORAColumn" msprop:Generator_UserColumnName="FECHA_HORA" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IDOPERADOR" msprop:Generator_ColumnVarNameInTable="columnIDOPERADOR" msprop:Generator_ColumnPropNameInRow="IDOPERADOR" msprop:Generator_ColumnPropNameInTable="IDOPERADORColumn" msprop:Generator_UserColumnName="IDOPERADOR" type="xs:int" minOccurs="0" />
+              <xs:element name="IDESTADO" msprop:Generator_ColumnVarNameInTable="columnIDESTADO" msprop:Generator_ColumnPropNameInRow="IDESTADO" msprop:Generator_ColumnPropNameInTable="IDESTADOColumn" msprop:Generator_UserColumnName="IDESTADO" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

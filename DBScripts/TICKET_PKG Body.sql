@@ -94,6 +94,7 @@
                    A.IDAFILIADO,
                    A.TELEFONO,
                    A.IDESTADO,
+                   I.DESCRIPCION as ESTADO,
                     A.IDPAIS_DESTINO,
                     A.IDPROVINCIA_ORIGEN,
                     A.IDPROVINCIA_DESTINO,
@@ -123,12 +124,14 @@
                    OPERADORES C,
                    EMPRESAS F,
                    UBICACIONES_VW G,
-                   UBICACIONES_VW H
+                   UBICACIONES_VW H,
+                   ESTADOS I
               WHERE a.idafiliado = b.idafiliado (+) and 
                     a.idoperador = c.idoperador and
                     b.idempresa = f.idempresa (+) and
                     a.idlocalidad_origen = g.idlocalidad(+) and
-                    a.idlocalidad_destino = h.idlocalidad(+)';
+                    a.idlocalidad_destino = h.idlocalidad(+) and
+                    a.idestado = i.idestado';
     -- EGV 25May2017 Fin
             
   -- ID
@@ -157,7 +160,7 @@
       -- EGV 21May2017 Inicio
       --strsql:=  strsql || IASSIST_PKG.WHERECLAUSE(isWhere) || '(UPPER(a.IDOPERADOR || A.IDTICKET || B.NOMBRE || B.APELLIDO || B.POLIZA || B.PATENTE || B.IDDOCUMENTO || B.MARCA || A.CALLE_DESTINO || A.CALLE_DESTINO || A.TIPO_TICKET) LIKE UPPER(''%'||P_SEARCH||'%'') or
       --                                                          C.IDOPERADOR IN (select idoperador from operadores where upper(NOMBRE || APELLIDO) LIKE ''%'||P_SEARCH||'%''))';
-      strsql:=  strsql || IASSIST_PKG.WHERECLAUSE(isWhere) || 'UPPER(a.IDOPERADOR || A.IDTICKET || NVL(B.NOMBRE,'''') || NVL(B.APELLIDO,'''') || NVL(B.POLIZA,'''') || NVL(B.PATENTE,'''') || NVL(B.IDDOCUMENTO,'''') || NVL(B.MARCA,'''') || A.CALLE_DESTINO || A.CALLE_DESTINO || A.TIPO_TICKET || C.APELLIDO || C.NOMBRE) LIKE UPPER(''%'||P_SEARCH||'%'')';
+      strsql:=  strsql || IASSIST_PKG.WHERECLAUSE(isWhere) || 'UPPER(a.IDOPERADOR || A.IDTICKET || NVL(B.NOMBRE,'''') || NVL(B.APELLIDO,'''') || NVL(B.POLIZA,'''') || NVL(B.PATENTE,'''') || C.APELLIDO || C.NOMBRE || I.DESCRIPCION) LIKE UPPER(''%'||P_SEARCH||'%'')';
       -- EGV 21May2017 Fin
   END IF;
   
@@ -644,6 +647,67 @@
       -- EGV 25May2017 Fin
       
   END LIST_PRESTADORES_BY_TICKET;
+  
+  
+  -- EGV 26Jun2017 Inicio                                        
+  PROCEDURE LIST_TICKET_TRACK_BY_TICKET(P_IDTICKET IN TICKET_TRACK.IDTICKET%TYPE, R_CURSOR OUT tyRefCursor)
+  IS
+  BEGIN
+  
+   OPEN R_CURSOR FOR
+      SELECT A.IDTICKET_TRACK,
+              A.IDTICKET,
+              A.FECHA_HORA,
+              A.IDOPERADOR,
+              A.IDESTADO,
+              rtrim(rtrim((UPPER(B.APELLIDO) || ', '|| UPPER(B.NOMBRE))),',') NOMBRE_OPERADOR,
+              C.DESCRIPCION AS ESTADO
+      FROM TICKET_TRACK A, OPERADORES B, ESTADOS C
+      WHERE IDTICKET = P_IDTICKET
+      AND A.IDOPERADOR = B.IDOPERADOR (+)
+      AND A.IDESTADO = C.IDESTADO (+)
+      AND 'CASO' = C.GRUPO (+)
+      ORDER BY A.IDTICKET_TRACK DESC;
+  
+  END LIST_TICKET_TRACK_BY_TICKET;
+
+  PROCEDURE CREATE_TICKET_TRACK (
+      P_ID OUT ticket_track.idticket_track%TYPE,
+      P_IDTICKET IN ticket_track.idticket%TYPE,
+      P_IDOPERADOR IN ticket_track.idoperador%TYPE,
+      P_IDESTADO IN ticket_track.idestado%TYPE,
+      P_OBJECTHASH IN ticket_track.objecthash%TYPE
+    )
+  IS
+   ID_INSERT NUMBER;
+  BEGIN
+  
+    ID_INSERT:= SEQ_TICKET_TRACK.NEXTVAL;
+    
+    INSERT
+    INTO TICKET_TRACK
+      (
+        IDTICKET_TRACK,
+        IDTICKET,
+        FECHA_HORA,
+        IDOPERADOR,
+        IDESTADO,
+        OBJECTHASH
+      )
+      VALUES
+      (
+        ID_INSERT,
+        P_IDTICKET,
+        SYSDATE,
+        P_IDOPERADOR,
+        P_IDESTADO,
+        P_OBJECTHASH
+      );
+      
+      P_ID:= ID_INSERT;
+  
+  END CREATE_TICKET_TRACK;
+-- EGV 26Jun2017 Fin
   
   
 END TICKET_PKG;

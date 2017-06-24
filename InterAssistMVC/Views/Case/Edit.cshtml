@@ -170,7 +170,7 @@
                                         <a href="#observaciones" data-toggle="tab" aria-expanded="false">Observaciones</a>
                                     </li>
                                     <li class="">
-                                        <a href="#modificaciones" data-toggle="tab" aria-expanded="false">Modificaciones</a>
+                                        <a href="#tracking" data-toggle="tab" aria-expanded="false">Tracking</a>
                                     </li>
                                 </ul>
 
@@ -385,9 +385,29 @@
 
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="modificaciones">
-                                        <p>Grilla con las Fechas-Horas, Operador y Estado del Ticket, de todas las veces que se grabó el ticket</p>
-                                        <p>De solo visualización</p>
+                                    <div class="tab-pane fade" id="tracking">
+                                        <div class="row">
+                                            <table id="gridTracking" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="col-lg-2">Fecha</th>
+                                                        <th class="col-lg-4">Operador</th>
+                                                        <th class="col-lg-6">Estado</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (InterAssistMVC.Models.TicketTrackModel t in Model.Tracking)
+                                                    {
+                                                        <tr ondblclick="">
+                                                            <td>@t.FechaHora</td>
+                                                            <td>@t.NombreOperador</td>
+                                                            <td>@t.Estado</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
