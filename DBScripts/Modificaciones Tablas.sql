@@ -5,7 +5,7 @@ Agregar campo llamada Grupo, para agrupar los códigos de estado que aplican a u
 */
 
 ALTER TABLE ESTADOS 
-ADD (GRUPO VARCHAR2(20) NOT NULL);
+ADD (GRUPO VARCHAR2(20));
 
 
 /*
