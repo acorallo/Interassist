@@ -79,6 +79,10 @@ namespace DAL.InterAssist
         public const string COL_ESTADO = "ESTADO";
         // EGV 25May2017 Fin
 
+        // EGV 26Ago2017 Inicio
+        public const string COL_IDCOLOR = "IDCOLOR";
+        // EGV 26Ago2017 Fin
+
 
         // Otras Columnas
         public const string COL_POLIZA = "POLIZA";
@@ -198,6 +202,11 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_CANT_TICKETS_AFIL", DbType.Int32, Dataservices.IntNUlleable((Int32.Parse(dr[dtable.CANT_TICKETS_AFILColumn].ToString())))));
                 // EGV 20Jun2017 Fin
 
+                // EGV 26Ago2017 Inicio
+                paramList.Add(repository.DbFactory.getDataParameter("P_IDCOLOR", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDCOLORColumn].ToString()))));
+                paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDPROBLEMAColumn].ToString()))));
+                // EGV 26Ago2017 Fin
+
                 result = repository.ExecuteCreateProcedure(CONST_CREATE_PROCEDURE_NAME, paramList, dr[dtable.OBJECTHASHColumn].ToString());
                 
                 // EGV 25May2017 Inicio
@@ -291,6 +300,10 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_CANT_TICKETS_AFIL", DbType.Int32, Dataservices.IntNUlleable((Int32.Parse(dr[dtable.CANT_TICKETS_AFILColumn].ToString())))));
                 // EGV 20Jun2017 Fin
 
+                // EGV 26Ago2017 Inicio
+                paramList.Add(repository.DbFactory.getDataParameter("P_IDCOLOR", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDCOLORColumn].ToString()))));
+                paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDPROBLEMAColumn].ToString()))));
+                // EGV 26Ago2017 Fin
 
                 result = (repository.ExecuteUpdateProcedure(CONST_UPDATE_PROCEDURE_NAME, paramList, dr[dtable.OBJECTHASHColumn].ToString()) == 1);
 
@@ -491,7 +504,9 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_COMENTARIOS", DbType.String, r.COMENTARIOS));
                 paramList.Add(repository.DbFactory.getDataParameter("P_KILOMETROS", DbType.Decimal, r.KILOMETROS));
                 paramList.Add(repository.DbFactory.getDataParameter("P_COSTO", DbType.Decimal, r.COSTO));
-                paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Dataservices.IntNUlleable(r.IDPROBLEMA)));
+                // EGV 27Ago2017 Inicio
+                //paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Dataservices.IntNUlleable(r.IDPROBLEMA)));
+                // EGV 27Ago2017 Fin
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPAIS_ORIGEN", DbType.Int32, Dataservices.IntNUlleable(r.IDPAIS_ORIGEN)));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPAIS_DESTINO", DbType.Int32, Dataservices.IntNUlleable(r.IDPAIS_DESTINO)));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPROVINCIA_ORIGEN", DbType.Int32, Dataservices.IntNUlleable(r.IDPROVINCIA_ORIGEN)));
@@ -561,7 +576,9 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_COMENTARIOS", DbType.String, r.COMENTARIOS));
                 paramList.Add(repository.DbFactory.getDataParameter("P_KILOMETROS", DbType.Decimal, r.KILOMETROS));
                 paramList.Add(repository.DbFactory.getDataParameter("P_COSTO", DbType.Decimal, r.COSTO));
-                paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Dataservices.IntNUlleable(r.IDPROBLEMA)));
+                // EGV 27Ago2017 Inicio
+                //paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Dataservices.IntNUlleable(r.IDPROBLEMA)));
+                // EGV 27Ago2017 Fin
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPAIS_ORIGEN", DbType.Int32, Dataservices.IntNUlleable(r.IDPAIS_ORIGEN)));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPAIS_DESTINO", DbType.Int32, Dataservices.IntNUlleable(r.IDPAIS_DESTINO)));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPROVINCIA_ORIGEN", DbType.Int32, Dataservices.IntNUlleable(r.IDPROVINCIA_ORIGEN)));

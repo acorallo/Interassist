@@ -153,10 +153,16 @@
 
                     </div>
                     <div class="row">
+                        <div class="col-lg-2">Problema:</div>
+                        <div class="col-lg-4">@Html.DropDownListFor(model => model.IdProblema, Model.Problemas, new { @class = "form-control" })</div>
+                        <div class="col-lg-6">@Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control remark", @placeholder = "Telefono contacto", @id = "TelefonoContacto" } })</div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-12">
                             <div class="panel-body">
                                 <!-- Nav tabs -->
-                                <ul class="nav nav-tabs" style="margin-bottom:10px;">
+                                @Html.HiddenFor(model => Model.NumTabActive, new { id = "NumTabActive" })
+                                <ul class="nav nav-tabs" style="margin-bottom:10px;" id="mainTabs">
                                     <li class="active">
                                         <a href="#afiliado" data-toggle="tab" aria-expanded="false">Afiliado</a>
                                     </li>
@@ -175,12 +181,11 @@
                                 </ul>
 
                                 <!-- Tab panes -->
-                                <div class="tab-content">
-                                    <div class="tab-pane fade active in" id="afiliado">
+                                <div class="tab-content" id="mainTabsContent">
+                                    <div class="tab-pane active fade in" id="afiliado">
                                         <div class="row">
-                                            <div class="col-lg-6">@Html.EditorFor(model => model.NombreAfiliado, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Ingrese Nombre y Apellido", @readonly = true, @id = "ApyNom" } })@Html.HiddenFor(model => model.Afiliado.Nombre)@Html.HiddenFor(model => model.Afiliado.Apellido)</div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Documento, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Documento", @readonly = true, @id = "Doc" } })</div>
-                                            <div class="col-lg-4">@Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control", @placeholder = "Telefono contacto", @id = "Doc" } })</div>
+                                            <div class="col-lg-8">@Html.EditorFor(model => model.NombreAfiliado, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Ingrese Nombre y Apellido", @readonly = true, @id = "ApyNom" } })@Html.HiddenFor(model => model.Afiliado.Nombre)@Html.HiddenFor(model => model.Afiliado.Apellido)</div>
+                                            <div class="col-lg-4">@Html.HiddenFor(model => model.Afiliado.Documento, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Documento", @readonly = true, @id = "Doc" } })</div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-8">@Html.EditorFor(model => model.Afiliado.Direccion, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Ingrese Dirección: calle número, localidad, provincia", @readonly = true, @id = "Dir" } })</div>
@@ -192,14 +197,15 @@
                                         <div class="row">
                                             <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Poliza, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Número", @readonly = true, @id = "pol" } })</div>
                                             <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.NombreEmpresa, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Compañía", @readonly = true, @id = "cia" } })</div>
+                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.NombreCategoria, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Categoría", @readonly = true, @id = "nomcate" } })</div>
                                             <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.FechaDesdeDisplay, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "dd/mm/yyyy", @readonly = true, @id = "fd" } })</div>
                                             <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.FechaHastaDisplay, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "dd/mm/yyyy", @readonly = true, @id = "fh" } })</div>
-                                            <div class="col-lg-3">@*<div class="checkbox"><label><input type="checkbox" disabled />Vigente</label></div>*@</div>
+                                            @*<div class="col-lg-3"><div class="checkbox"><label><input type="checkbox" disabled />Vigente</label></div></div>*@
                                         </div>
                                         @*<div class="row">
-                                            <div class="col-lg-4"><input type="text" class="form-control" value="" placeholder="Tipo Poliza" disabled /></div>
-                                            <div class="col-lg-4"><input type="text" class="form-control" value="" placeholder="Sub Tipo de Póliza" disabled /></div>
-                                        </div>*@
+                    <div class="col-lg-4"><input type="text" class="form-control" value="" placeholder="Tipo Poliza" disabled /></div>
+                    <div class="col-lg-4"><input type="text" class="form-control" value="" placeholder="Sub Tipo de Póliza" disabled /></div>
+                </div>*@
                                         <div class="row">
                                             <h4 class="col-lg-12">Vehículo</h4>
                                         </div>
@@ -207,7 +213,10 @@
                                             <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Patente, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Patente", @readonly = true, @id = "pat" } })</div>
                                             <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.Marca, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Marca", @readonly = true, @id = "marca" } })</div>
                                             <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.Modelo, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Modelo", @readonly = true, @id = "mod" } })</div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Color, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Color", @readonly = true, @id = "col" } })</div>
+                                            <div class="col-lg-2">
+                                                @Html.DropDownListFor(model => model.IdColor, Model.Colores, new { @class = "form-control" })
+                                                @Html.HiddenFor(model => model.Afiliado.Color, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Color", @readonly = true, @id = "col" } })
+                                            </div>
                                             <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Anio, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Año", @readonly = true, @id = "anio" } })</div>
                                         </div>
                                     </div>
@@ -218,43 +227,43 @@
                                                 <label>Origen:</label>
                                                 <div>
                                                     @(Html.X().ComboBox()
-                                                        .DisplayField("CalleUbicacion")
-                                                        .ValueField("DatosUbicacion")
-                                                        .Text(Model.UbicacionOrigen)
-                                                        .InputID("UbicacionOrigen")
-                                                        .TypeAhead(false)
-                                                        .StyleSpec("width:100%")
-                                                        .HideTrigger(true)
-                                                        .PageSize(0)
-                                                        .MinChars(2)
-                                                        .TriggerAction(TriggerAction.Query)
-                                                        .ListConfig(Html.X().BoundList()
-                                                            .LoadingText("Buscando...")
-                                                            .ItemTpl(Html.X().XTemplate()
-                                                                .Html(@<text>
-                                                                        <div class="search-item search-item-small">
-                                                                            {CalleUbicacion}
-                                                                        </div>
-                                                                </text>
-                                                                )
-                                                            )
-                                                        )
-                                                        .Listeners(ls => ls.Select.Handler = "SeleccionaUbicacionOrigen(item);")
-                                                            .Store(Html.X().Store()
-                                                                .AutoLoad(false)
-                                                                .Proxy(Html.X().AjaxProxy()
-                                                                    .Url(Url.Action("TraeUbicaciones"))
-                                                                    .ActionMethods(af => af.Read = HttpMethod.POST)
-                                                                    .Reader(Html.X().JsonReader().RootProperty("data"))
-                                                                )
-                                                                .Model(Html.X().Model()
-                                                                    .Fields(
-                                                                        Html.X().ModelField().Name("CalleUbicacion"),
-                                                                        Html.X().ModelField().Name("DatosUbicacion")
-                                                                    )
-                                                                )
-                                                            )
-                                                        )
+                                                            .DisplayField("CalleUbicacion")
+                                                            .ValueField("DatosUbicacion")
+                                                            .Text(Model.UbicacionOrigen)
+                                                            .InputID("UbicacionOrigen")
+                                                            .TypeAhead(false)
+                                                            .StyleSpec("width:100%")
+                                                            .HideTrigger(true)
+                                                            .PageSize(0)
+                                                            .MinChars(2)
+                                                            .TriggerAction(TriggerAction.Query)
+                                                            .ListConfig(Html.X().BoundList()
+                                                                .LoadingText("Buscando...")
+                                                                .ItemTpl(Html.X().XTemplate()
+                                                                    .Html(@<text>
+                                                                    <div class="search-item search-item-small">
+                                                                        {CalleUbicacion}
+                                                                    </div>
+                                                                    </text>
+                    )
+                )
+            )
+            .Listeners(ls => ls.Select.Handler = "SeleccionaUbicacionOrigen(item);")
+                .Store(Html.X().Store()
+                    .AutoLoad(false)
+                    .Proxy(Html.X().AjaxProxy()
+                        .Url(Url.Action("TraeUbicaciones"))
+                        .ActionMethods(af => af.Read = HttpMethod.POST)
+                        .Reader(Html.X().JsonReader().RootProperty("data"))
+                    )
+                    .Model(Html.X().Model()
+                        .Fields(
+                            Html.X().ModelField().Name("CalleUbicacion"),
+                            Html.X().ModelField().Name("DatosUbicacion")
+                        )
+                    )
+                )
+                                                    )
 
                                                     @Html.HiddenFor(model => model.CalleOrigen)@Html.HiddenFor(model => model.IdLocalidadOrigen)@Html.HiddenFor(model => model.IdCiudadOrigen)@Html.HiddenFor(model => model.IdProvinciaOrigen)@Html.HiddenFor(model => model.IdPaisOrigen)
                                                     @Html.HiddenFor(model => Model.UbicacionOrigen, new { id = "UbicacionOrigenVal" })
@@ -263,45 +272,46 @@
 
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-12"><label>Destino:</label>
+                                            <div class="col-lg-12">
+                                                <label>Destino:</label>
                                                 <div>
                                                     @(Html.X().ComboBox()
-                                                        .DisplayField("CalleUbicacion")
-                                                        .Text(Model.UbicacionDestino)
-                                                        .ValueField("DatosUbicacion")
-                                                        .InputID("UbicacionDestino")
-                                                        .TypeAhead(false)
-                                                        .StyleSpec("width:100%")
-                                                        .HideTrigger(true)
-                                                        .PageSize(0)
-                                                        .MinChars(2)
-                                                        .TriggerAction(TriggerAction.Query)
-                                                        .ListConfig(Html.X().BoundList()
-                                                            .LoadingText("Buscando...")
-                                                            .ItemTpl(Html.X().XTemplate()
-                                                                .Html(@<text>
-                                                                <div class="search-item search-item-small">
-                                                                    {CalleUbicacion}
-                                                                </div>
-                                                                </text>
-                                                            )
-                                                        )
-                                                    )
-                                                    .Listeners(ls => ls.Select.Handler = "SeleccionaUbicacionDestino(item);")
-                                                        .Store(Html.X().Store()
-                                                            .AutoLoad(false)
-                                                            .Proxy(Html.X().AjaxProxy()
-                                                                .Url(Url.Action("TraeUbicaciones"))
-                                                                .ActionMethods(af => af.Read = HttpMethod.POST)
-                                                                .Reader(Html.X().JsonReader().RootProperty("data"))
-                                                            )
-                                                            .Model(Html.X().Model()
-                                                                .Fields(
-                                                                    Html.X().ModelField().Name("CalleUbicacion"),
-                                                                    Html.X().ModelField().Name("DatosUbicacion")
-                                                                )
-                                                            )
-                                                        )
+                                                            .DisplayField("CalleUbicacion")
+                                                            .Text(Model.UbicacionDestino)
+                                                            .ValueField("DatosUbicacion")
+                                                            .InputID("UbicacionDestino")
+                                                            .TypeAhead(false)
+                                                            .StyleSpec("width:100%")
+                                                            .HideTrigger(true)
+                                                            .PageSize(0)
+                                                            .MinChars(2)
+                                                            .TriggerAction(TriggerAction.Query)
+                                                            .ListConfig(Html.X().BoundList()
+                                                                .LoadingText("Buscando...")
+                                                                .ItemTpl(Html.X().XTemplate()
+                                                                    .Html(@<text>
+                                                                    <div class="search-item search-item-small">
+                                                                        {CalleUbicacion}
+                                                                    </div>
+                                                                    </text>
+                )
+            )
+        )
+        .Listeners(ls => ls.Select.Handler = "SeleccionaUbicacionDestino(item);")
+            .Store(Html.X().Store()
+                .AutoLoad(false)
+                .Proxy(Html.X().AjaxProxy()
+                    .Url(Url.Action("TraeUbicaciones"))
+                    .ActionMethods(af => af.Read = HttpMethod.POST)
+                    .Reader(Html.X().JsonReader().RootProperty("data"))
+                )
+                .Model(Html.X().Model()
+                    .Fields(
+                        Html.X().ModelField().Name("CalleUbicacion"),
+                        Html.X().ModelField().Name("DatosUbicacion")
+                    )
+                )
+            )
                                                     )
 
                                                     @Html.HiddenFor(model => model.CalleDestino)@Html.HiddenFor(model => model.IdLocalidadDestino)@Html.HiddenFor(model => model.IdCiudadDestino)@Html.HiddenFor(model => model.IdProvinciaDestino)@Html.HiddenFor(model => model.IdPaisDestino)
@@ -325,12 +335,11 @@
                                             <div class="col-lg-12">
                                                 <div class="panel-body">
                                                     @(Html.X().ResourceManager())
-                                                   @Html.HiddenFor(model => model.DatosPrestaciones)
+                                                    @Html.HiddenFor(model => model.DatosPrestaciones)
                                                     <table id="gridPrestaciones" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                                                         <thead>
                                                             <tr>
                                                                 <th>Prestacion</th>
-                                                                <th>Problema</th>
                                                                 <th>Prestador</th>
                                                                 <th>Estado</th>
                                                                 <th style="display:none">Id</th>
@@ -342,7 +351,6 @@
                                                             {
                                                                 <tr ondblclick="ModificarPrestacion(this);" class="grid-row-moreinfo">
                                                                     <td>@p.NombrePrestacion</td>
-                                                                    <td>@p.Problema</td>
                                                                     <td>@p.NombrePrestador</td>
                                                                     <td>@p.Estado</td>
                                                                     <td style="display:none">@p.Id</td>
@@ -358,7 +366,7 @@
                                     <div class="tab-pane fade" id="observaciones">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                @Html.TextAreaFor(model => model.Observacion, new { @class = "form-control", @placeholder = "Ingrese comentarios u observaciones" , rows = "4" })
+                                                @Html.TextAreaFor(model => model.Observacion, new { @class = "form-control", @placeholder = "Ingrese comentarios u observaciones", rows = "4" })
                                                 @Html.ValidationMessageFor(model => model.Observacion)
                                             </div>
                                         </div>
@@ -367,15 +375,15 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="col-lg-2">Fecha</th>
-                                                        <th class="col-lg-4">Operador</th>
-                                                        <th class="col-lg-6">Observacion</th>
+                                                        <th class="col-lg-2">Operador</th>
+                                                        <th class="col-lg-8">Observacion</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @foreach (InterAssistMVC.Models.Observacion o in Model.Observaciones)
                                                     {
                                                         <tr ondblclick="">
-                                                            <td>@o.Fecha</td>
+                                                            <td>@o.FechaDisplay</td>
                                                             <td>@o.ApellidoOperador , @o.NombreOperador</td>
                                                             <td>@o.Descripcion</td>
                                                         </tr>
@@ -410,341 +418,364 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row botonera">
-                    <div class="col-lg-12">
-                        @if (InterAssistMVC.Utils.UISecurityManager.HasAccessTo(InterAssistMVC.Utils.UISecurityManager.CASE_MODIFY_KEY))
-                        { 
-                            <button type="submit" class="btn btn-primary">Grabar</button>
-                        }
-                        <button type="button" class="btn btn-default" onclick="javascript: window.location.assign('@Url.Action("Index", "Case", null)')">Cancelar</button>
-                        @if (InterAssistMVC.Utils.UISecurityManager.HasAccessTo(InterAssistMVC.Utils.UISecurityManager.CASE_MODIFY_KEY))
-                        {
-                            <button type="button" class="btn btn-success" onclick="Message('SMS enviado con éxito!');">SMS<span class="fa fa-envelope-o" style="margin-left:10px;"></span></button>
-                        }
+                    <div class="row botonera">
+                        <div class="col-lg-12">
+                            @Html.HiddenFor(model => Model.ModoGraba, new { id = "ModoGraba" })
+                            @if (InterAssistMVC.Utils.UISecurityManager.HasAccessTo(InterAssistMVC.Utils.UISecurityManager.CASE_MODIFY_KEY))
+                            {
+                                <button type="submit" class="btn btn-primary" onclick="$('#ModoGraba').val(0);">Grabar</button>
+                                <button type="submit" class="btn btn-info" onclick="$('#ModoGraba').val(1);">Grabar y Salir</button>
+                            }
+                            <button type="button" class="btn btn-default" onclick="javascript: window.location.assign('@Url.Action("Index", "Case", null)')">Cancelar</button>
+                            @if (InterAssistMVC.Utils.UISecurityManager.HasAccessTo(InterAssistMVC.Utils.UISecurityManager.CASE_MODIFY_KEY))
+                            {
+                                <button type="button" class="btn btn-success" onclick="Message('SMS enviado con éxito!');">SMS<span class="fa fa-envelope-o" style="margin-left:10px;"></span></button>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
 
-}
+    }
 
 
-<div class="modal fade" id="modalPrestacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog" style="width:80%">
-        <form id="prestacionForm" name="prestacionForm" action=" #" onsubmit="return false;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel">Prestaciones</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <input type="hidden" id="prestacionNombrePrestacion"/>
-                        <div class="col-lg-3"><label>Tipo:</label>@Html.DropDownList("prestacionTipoServicio", Model.TiposServicio, new { @class = "form-control", @id = "prestacionTipoServicio", @name = "prestacionTipoServicio" })</div>
-                        <div class="col-lg-3"><label>Problema:</label>@Html.DropDownList("prestacionProblema", Model.Problemas, new { @class = "form-control", @id = "prestacionProblema" })</div>
-                        <div class="col-lg-3"><label>Estado:</label>
-                        @{
-                            if (InterAssistMVC.Utils.UISecurityManager.HasAccessTo(InterAssistMVC.Utils.UISecurityManager.CASE_CHANGE_STATUS_KEY))
-                            {
-                                @Html.DropDownList("prestEstados", Model.PrestacionEstados, new { @class = "form-control", @id = "prestacionEstado", @name = "prestacionEstado" })
-                            }
-                            else
-                            {
-                                @Html.DropDownList("prestEstados", Model.PrestacionEstados, new { @class = "form-control", @id = "prestacionEstado", @name = "prestacionEstado", @disabled = "disabled" })
-                            }
-                        }
-                        </div>
-                        <div class="col-lg-3"><label>Retrabajo:</label>@Html.DropDownList("prestacionRetrabajo", Model.PrestacionesRetrabajo, " ", new { @class = "form-control", @id = "prestacionRetrabajo" })</div>
+    <div class="modal fade" id="modalPrestacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="width:80%">
+            <form id="prestacionForm" name="prestacionForm" action=" #" onsubmit="return false;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel">Prestaciones</h4>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6"><label>Detalles:</label><textarea class="form-control" id="prestacionDetalles" name="prestacionDetalles" rows="5" style="margin: 0px -3.83333px 0px 0px; "></textarea></div>
-                        <div class="col-lg-6">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <label>Prestador:</label><input type="hidden" id="prestacionIdPrestador" /><input type="hidden" id="prestacionNombrePrestadorVal"/>
+                    <div class="modal-body">
+                        <div class="row">
+                            <input type="hidden" id="prestacionNombrePrestacion"/>
+                            <div class="col-lg-6"><label>Tipo de Servicio:</label>@Html.DropDownList("prestacionTipoServicio", Model.TiposServicio, new { @class = "form-control", @id = "prestacionTipoServicio", @name = "prestacionTipoServicio" })</div>
+                            <div class="col-lg-6"><label>Estado:</label>
+                            @{
+                                if (InterAssistMVC.Utils.UISecurityManager.HasAccessTo(InterAssistMVC.Utils.UISecurityManager.CASE_CHANGE_STATUS_KEY))
+                                {
+                                    @Html.DropDownList("prestEstados", Model.PrestacionEstados, new { @class = "form-control", @id = "prestacionEstado", @name = "prestacionEstado" })
+                                }
+                                else
+                                {
+                                    @Html.DropDownList("prestEstados", Model.PrestacionEstados, new { @class = "form-control", @id = "prestacionEstado", @name = "prestacionEstado", @disabled = "disabled" })
+                                }
+                            }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6"><label>Detalles:</label><textarea class="form-control" id="prestacionDetalles" name="prestacionDetalles" rows="5" style="margin: 0px -3.83333px 0px 0px; "></textarea></div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label>Prestador:</label><input type="hidden" id="prestacionIdPrestador" /><input type="hidden" id="prestacionNombrePrestadorVal"/>
+                                        @(Html.X().ComboBox()
+                                                                                        .DisplayField("Nombre")
+                                                                                        .ValueField("Id")
+                                                                                        .InputID("prestacionNombrePrestador")
+                                                                                        .TypeAhead(false)
+                                                //.Width(400)
+                                                                                        .StyleSpec("width:100%")
+                                                                                        .PageSize(0)
+                                                                                        .HideTrigger(true)
+                                                                                        .MinChars(2)
+                                                                                        .TriggerAction(TriggerAction.Query)
+                                                                                        .ListConfig(Html.X().BoundList()
+                                                                                        .LoadingText("Buscando...")
+                                                                                        .ItemTpl(Html.X().XTemplate()
+                                                                                        .Html(@<text>
+                                                                                            <div class="search-item row search-item-small">
+                                                                                                <div class="col-lg-1 provider-info-arrow">
+                                                                                                    <span class="glyphicon glyphicon-triangle-left" onmouseover="MasInfoPrestador($(this));" onmouseout="OutFlecha($(this))" id="flecha{Id}">
+                                                                                                        <span style="display:none">{DatosPrestador}</span>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                                <div class="col-lg-11">
+                                                                                                    <p><strong>{Nombre}</strong></p>
+                                                                                                    <p>{Provincia} {Ciudad} {Localidad}</p>
+                                                                                                    <p>{Domicilio}</p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </text>
+                                                )
+                                                )
+                                                )
+                                                .Listeners(ls => ls.Select.Handler = "SeleccionaPrestador(item);")
+                                                .Listeners(ls => ls.Collapse.Handler = "CerrarInfoPrestador();")
+                                                .Store(Html.X().Store()
+                                                .AutoLoad(false)
+                                                .Proxy(Html.X().AjaxProxy()
+                                                .Url(Url.Action("TraePrestadores"))
+                                                .ActionMethods(af => af.Read = HttpMethod.POST)
+                                                .Reader(Html.X().JsonReader().RootProperty("data"))
+                                                )
+                                                .Model(Html.X().Model()
+                                                .Fields(
+                                                Html.X().ModelField().Name("Id"),
+                                                Html.X().ModelField().Name("Nombre"),
+                                                Html.X().ModelField().Name("Provincia"),
+                                                Html.X().ModelField().Name("Ciudad"),
+                                                Html.X().ModelField().Name("Localidad"),
+                                                Html.X().ModelField().Name("Domicilio"),
+                                                Html.X().ModelField().Name("DatosPrestador")
+                                                )
+                                                )
+                                                )
+                                        )
+
+                                        <div class="alert provider-info panel panel-info provider-info-hide provider-info-hide2">
+                                            <div class="row">
+                                                <div class="col-lg-2 provider-info-arrow">
+                                                    <a href="#" class="close glyphicon glyphicon-triangle-right" aria-label="close" id="flecha0" onmouseover="HideProviderInfo();"></a>
+                                                </div>
+                                                <div class="col-lg-10">
+                                                    <p id="prestInfoNombre"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="panel-body">
+                                                        <ul class="nav nav-pills">
+                                                            <li class="active"><a href="#direccion-pills" data-toggle="tab" aria-expanded="true" onmouseover="InforProviderPill(this);">Direccion</a></li>
+                                                            <li class=""><a href="#telefono-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Teléfonos</a></li>
+                                                            <li class=""><a href="#fiscales-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Fiscales</a></li>
+                                                            <li class=""><a href="#costos-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Costos</a></li>
+                                                            <li class=""><a href="#comentarios-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Comentarios</a></li>
+                                                        </ul>
+                                                        <div class="tab-content tab-provider-info">
+                                                            <div class="tab-pane fade active in" id="direccion-pills">
+                                                                <p id="prestInfoDomicilio"></p>
+                                                                <p><span id="prestInfoLocalidad"></span><span class="provider-info-separator">/</span><span id="prestInfoCiudad"></span></p>
+                                                                <p><span id="prestInfoProvincia"></span><span class="provider-info-separator">/</span><span id="prestInfoPais"></span></p>
+                                                            </div>
+                                                            <div class="tab-pane fade" id="telefono-pills">
+                                                                <p><span id="prestInfoTelefono1"></span><span class="provider-info-separator">/</span><span id="prestInfoTelefono2"></span></p>
+                                                                <p><span id="prestInfoCelular1"></span><span class="provider-info-separator">/</span><span id="prestInfoCelular2"></span></p>
+                                                                <p><span id="prestInfoNextel"></span><span class="provider-info-separator">/</span><span id="prestEmail"></span></p>
+                                                            </div>
+                                                            <div class="tab-pane fade" id="fiscales-pills">
+                                                                <p id="prestInfoCuit"></p>
+                                                                <p id="prestInfoIva"></p>
+                                                            </div>
+                                                            <div class="tab-pane fade" id="costos-pills">
+                                                                <p><span>Liv:</span><span class="provider-info-separator"></span><span id="prestInfoLivMovida"></span><span class="provider-info-separator">/</span><span id="prestInfoLivKm"></span></p>
+                                                                <p><span>SP1:</span><span class="provider-info-separator"></span><span id="prestInfoSp1Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoSp1Km"></span></p>
+                                                                <p><span>SP2:</span><span class="provider-info-separator"></span><span id="prestInfoSp2Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoSp2Km"></span></p>
+                                                                <p><span>PS1:</span><span class="provider-info-separator"></span><span id="prestInfoPs1Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoPs1Km"></span></p>
+                                                                <p><span>PS2:</span><span class="provider-info-separator"></span><span id="prestInfoPs2Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoPs2Km"></span></p>
+                                                            </div>
+                                                            <div class="tab-pane fade" id="comentarios-pills">
+                                                                <p id="prestInfoDescripcion"></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"><label>Demora:</label><input type="text" id="prestacionDemora" name="prestacionDemora" class="form-control" placeholder="HH:MM"></div>
+                                    <div class="col-lg-3"><label></label><input type="hidden" id="prestacionPatente" name="prestacionPatente" class="form-control uppercase"></div>
+                                    <div class="col-lg-3"><label>Km:</label><input type="text" id="prestacionKilometros" name="prestacionKilometros" class="form-control"></div>
+                                    <div class="col-lg-3"><label>Costo:</label><input type="text" id="prestacionCosto" class="form-control" disabled></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Origen:</label>
+                                <div>
                                     @(Html.X().ComboBox()
-                                                                                    .DisplayField("Nombre")
-                                                                                    .ValueField("Id")
-                                                                                    .InputID("prestacionNombrePrestador")
+                                                                                    .DisplayField("CalleUbicacion")
+                                                                                    .ValueField("DatosUbicacion")
+                                                                                    .InputID("prestacionUbicacionOrigen")
                                                                                     .TypeAhead(false)
-                                            //.Width(400)
                                                                                     .StyleSpec("width:100%")
-                                                                                    .PageSize(0)
                                                                                     .HideTrigger(true)
+                                                                                    .PageSize(0)
                                                                                     .MinChars(2)
                                                                                     .TriggerAction(TriggerAction.Query)
                                                                                     .ListConfig(Html.X().BoundList()
                                                                                     .LoadingText("Buscando...")
                                                                                     .ItemTpl(Html.X().XTemplate()
                                                                                     .Html(@<text>
-                                                                                        <div class="search-item row search-item-small">
-                                                                                            <div class="col-lg-1 provider-info-arrow">
-                                                                                                <span class="glyphicon glyphicon-triangle-left" onmouseover="MasInfoPrestador($(this));" onmouseout="OutFlecha($(this))" id="flecha{Id}">
-                                                                                                    <span style="display:none">{DatosPrestador}</span>
-                                                                                                </span>
-                                                                                            </div>
-                                                                                            <div class="col-lg-11">
-                                                                                                <p><strong>{Nombre}</strong></p>
-                                                                                                <p>{Provincia} {Ciudad} {Localidad}</p>
-                                                                                                <p>{Domicilio}</p>
-                                                                                            </div>
+                                                                                        <div class="search-item search-item-small">
+                                                                                            {CalleUbicacion}
                                                                                         </div>
                                                                                     </text>
                                             )
                                             )
                                             )
-                                            .Listeners(ls => ls.Select.Handler = "SeleccionaPrestador(item);")
-                                            .Listeners(ls => ls.Collapse.Handler = "CerrarInfoPrestador();")
+                                            .Listeners(ls => ls.Select.Handler = "SeleccionaPrestacionUbicacionOrigen(item);")
                                             .Store(Html.X().Store()
                                             .AutoLoad(false)
                                             .Proxy(Html.X().AjaxProxy()
-                                            .Url(Url.Action("TraePrestadores"))
+                                            .Url(Url.Action("TraeUbicaciones"))
                                             .ActionMethods(af => af.Read = HttpMethod.POST)
                                             .Reader(Html.X().JsonReader().RootProperty("data"))
                                             )
                                             .Model(Html.X().Model()
                                             .Fields(
-                                            Html.X().ModelField().Name("Id"),
-                                            Html.X().ModelField().Name("Nombre"),
-                                            Html.X().ModelField().Name("Provincia"),
-                                            Html.X().ModelField().Name("Ciudad"),
-                                            Html.X().ModelField().Name("Localidad"),
-                                            Html.X().ModelField().Name("Domicilio"),
-                                            Html.X().ModelField().Name("DatosPrestador")
+                                            Html.X().ModelField().Name("CalleUbicacion"),
+                                            Html.X().ModelField().Name("DatosUbicacion")
                                             )
                                             )
                                             )
                                     )
-
-                                    <div class="alert provider-info panel panel-info provider-info-hide provider-info-hide2">
-                                        <div class="row">
-                                            <div class="col-lg-2 provider-info-arrow">
-                                                <a href="#" class="close glyphicon glyphicon-triangle-right" aria-label="close" id="flecha0" onmouseover="HideProviderInfo();"></a>
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <p id="prestInfoNombre"></p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="panel-body">
-                                                    <ul class="nav nav-pills">
-                                                        <li class="active"><a href="#direccion-pills" data-toggle="tab" aria-expanded="true" onmouseover="InforProviderPill(this);">Direccion</a></li>
-                                                        <li class=""><a href="#telefono-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Teléfonos</a></li>
-                                                        <li class=""><a href="#fiscales-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Fiscales</a></li>
-                                                        <li class=""><a href="#costos-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Costos</a></li>
-                                                        <li class=""><a href="#comentarios-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Comentarios</a></li>
-                                                    </ul>
-                                                    <div class="tab-content tab-provider-info">
-                                                        <div class="tab-pane fade active in" id="direccion-pills">
-                                                            <p id="prestInfoDomicilio"></p>
-                                                            <p><span id="prestInfoLocalidad"></span><span class="provider-info-separator">/</span><span id="prestInfoCiudad"></span></p>
-                                                            <p><span id="prestInfoProvincia"></span><span class="provider-info-separator">/</span><span id="prestInfoPais"></span></p>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="telefono-pills">
-                                                            <p><span id="prestInfoTelefono1"></span><span class="provider-info-separator">/</span><span id="prestInfoTelefono2"></span></p>
-                                                            <p><span id="prestInfoCelular1"></span><span class="provider-info-separator">/</span><span id="prestInfoCelular2"></span></p>
-                                                            <p><span id="prestInfoNextel"></span><span class="provider-info-separator">/</span><span id="prestEmail"></span></p>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="fiscales-pills">
-                                                            <p id="prestInfoCuit"></p>
-                                                            <p id="prestInfoIva"></p>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="costos-pills">
-                                                            <p><span>Liv:</span><span class="provider-info-separator"></span><span id="prestInfoLivMovida"></span><span class="provider-info-separator">/</span><span id="prestInfoLivKm"></span></p>
-                                                            <p><span>SP1:</span><span class="provider-info-separator"></span><span id="prestInfoSp1Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoSp1Km"></span></p>
-                                                            <p><span>SP2:</span><span class="provider-info-separator"></span><span id="prestInfoSp2Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoSp2Km"></span></p>
-                                                            <p><span>PS1:</span><span class="provider-info-separator"></span><span id="prestInfoPs1Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoPs1Km"></span></p>
-                                                            <p><span>PS2:</span><span class="provider-info-separator"></span><span id="prestInfoPs2Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoPs2Km"></span></p>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="comentarios-pills">
-                                                            <p id="prestInfoDescripcion"></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    <input type="hidden" id="prestacionCalleOrigen" name="prestacionCalleOrigen" /><input type="hidden" id="prestacionIdLocalidadOrigen" /><input type="hidden" id="prestacionIdCiudadOrigen" /><input type="hidden" id="prestacionIdProvinciaOrigen" /><input type="hidden" id="prestacionIdPaisOrigen" />
+                                    <input type="hidden" id="prestacionUbicacionOrigenVal" />
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-3"><label>Demora:</label><input type="text" id="prestacionDemora" name="prestacionDemora" class="form-control" placeholder="HH:MM"></div>
-                                <div class="col-lg-3"><label>Patente:</label><input type="text" id="prestacionPatente" name="prestacionPatente" class="form-control uppercase"></div>
-                                <div class="col-lg-3"><label>Km:</label><input type="text" id="prestacionKilometros" name="prestacionKilometros" class="form-control"></div>
-                                <div class="col-lg-3"><label>Costo:</label><input type="text" id="prestacionCosto" class="form-control" disabled></div>
+                            <div class="col-lg-6"><label>Nombre conductor de Grúa:</label><input type="text" id="prestacionNombreChofer" name="prestacionNombreChofer" class="form-control"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Destino:</label>
+                                <div>
+                                    @(Html.X().ComboBox()
+                                            .DisplayField("CalleUbicacion")
+                                            .ValueField("DatosUbicacion")
+                                            .InputID("prestacionUbicacionDestino")
+                                            .TypeAhead(false)
+                                            .StyleSpec("width:100%")
+                                            .HideTrigger(true)
+                                            .PageSize(0)
+                                            .MinChars(2)
+                                            .TriggerAction(TriggerAction.Query)
+                                            .ListConfig(Html.X().BoundList()
+                                            .LoadingText("Buscando...")
+                                            .ItemTpl(Html.X().XTemplate()
+                                            .Html(@<text>
+                                                <div class="search-item search-item-small">
+                                                    {CalleUbicacion}
+                                                </div>
+                                            </text>
+                                            )
+                                            )
+                                            )
+                                            .Listeners(ls => ls.Select.Handler = "SeleccionaPrestacionUbicacionDestino(item);")
+                                            .Store(Html.X().Store()
+                                            .AutoLoad(false)
+                                            .Proxy(Html.X().AjaxProxy()
+                                            .Url(Url.Action("TraeUbicaciones"))
+                                            .ActionMethods(af => af.Read = HttpMethod.POST)
+                                            .Reader(Html.X().JsonReader().RootProperty("data"))
+                                            )
+                                            .Model(Html.X().Model()
+                                            .Fields(
+                                            Html.X().ModelField().Name("CalleUbicacion"),
+                                            Html.X().ModelField().Name("DatosUbicacion")
+                                            )
+                                            )
+                                            )
+                                    )
+                                    <input type="hidden" id="prestacionCalleDestino" name="prestacionCalleDestino"/><input type="hidden" id="prestacionIdLocalidadDestino" /><input type="hidden" id="prestacionIdCiudadDestino" /><input type="hidden" id="prestacionIdProvinciaDestino" /><input type="hidden" id="prestacionIdPaisDestino" />
+                                    <input type="hidden" id="prestacionUbicacionDestinoVal" />
+                                </div>
                             </div>
+                            <div class="col-lg-6"><label>Finalización Prestación</label>@Html.DropDownList("prestacionFinalizacion", Model.FinalizacionesPretaciones, " ", new { @class = "form-control", @id = "prestacionFinalizacion", @name = "prestacionFinalizacion" })</div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <label>Origen:</label>
-                            <div>
-                                @(Html.X().ComboBox()
-                                                                                .DisplayField("CalleUbicacion")
-                                                                                .ValueField("DatosUbicacion")
-                                                                                .InputID("prestacionUbicacionOrigen")
-                                                                                .TypeAhead(false)
-                                                                                .StyleSpec("width:100%")
-                                                                                .HideTrigger(true)
-                                                                                .PageSize(0)
-                                                                                .MinChars(2)
-                                                                                .TriggerAction(TriggerAction.Query)
-                                                                                .ListConfig(Html.X().BoundList()
-                                                                                .LoadingText("Buscando...")
-                                                                                .ItemTpl(Html.X().XTemplate()
-                                                                                .Html(@<text>
-                                                                                    <div class="search-item search-item-small">
-                                                                                        {CalleUbicacion}
-                                                                                    </div>
-                                                                                </text>
-                                        )
-                                        )
-                                        )
-                                        .Listeners(ls => ls.Select.Handler = "SeleccionaPrestacionUbicacionOrigen(item);")
-                                        .Store(Html.X().Store()
-                                        .AutoLoad(false)
-                                        .Proxy(Html.X().AjaxProxy()
-                                        .Url(Url.Action("TraeUbicaciones"))
-                                        .ActionMethods(af => af.Read = HttpMethod.POST)
-                                        .Reader(Html.X().JsonReader().RootProperty("data"))
-                                        )
-                                        .Model(Html.X().Model()
-                                        .Fields(
-                                        Html.X().ModelField().Name("CalleUbicacion"),
-                                        Html.X().ModelField().Name("DatosUbicacion")
-                                        )
-                                        )
-                                        )
-                                )
-                                <input type="hidden" id="prestacionCalleOrigen" name="prestacionCalleOrigen" /><input type="hidden" id="prestacionIdLocalidadOrigen" /><input type="hidden" id="prestacionIdCiudadOrigen" /><input type="hidden" id="prestacionIdProvinciaOrigen" /><input type="hidden" id="prestacionIdPaisOrigen" />
-                                <input type="hidden" id="prestacionUbicacionOrigenVal" />
-                            </div>
-                        </div>
-                        <div class="col-lg-6"><label>Nombre conductor de Grúa:</label><input type="text" id="prestacionNombreChofer" name="prestacionNombreChofer" class="form-control"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <label>Destino:</label>
-                            <div>
-                                @(Html.X().ComboBox()
-                                        .DisplayField("CalleUbicacion")
-                                        .ValueField("DatosUbicacion")
-                                        .InputID("prestacionUbicacionDestino")
-                                        .TypeAhead(false)
-                                        .StyleSpec("width:100%")
-                                        .HideTrigger(true)
-                                        .PageSize(0)
-                                        .MinChars(2)
-                                        .TriggerAction(TriggerAction.Query)
-                                        .ListConfig(Html.X().BoundList()
-                                        .LoadingText("Buscando...")
-                                        .ItemTpl(Html.X().XTemplate()
-                                        .Html(@<text>
-                                            <div class="search-item search-item-small">
-                                                {CalleUbicacion}
-                                            </div>
-                                        </text>
-                                        )
-                                        )
-                                        )
-                                        .Listeners(ls => ls.Select.Handler = "SeleccionaPrestacionUbicacionDestino(item);")
-                                        .Store(Html.X().Store()
-                                        .AutoLoad(false)
-                                        .Proxy(Html.X().AjaxProxy()
-                                        .Url(Url.Action("TraeUbicaciones"))
-                                        .ActionMethods(af => af.Read = HttpMethod.POST)
-                                        .Reader(Html.X().JsonReader().RootProperty("data"))
-                                        )
-                                        .Model(Html.X().Model()
-                                        .Fields(
-                                        Html.X().ModelField().Name("CalleUbicacion"),
-                                        Html.X().ModelField().Name("DatosUbicacion")
-                                        )
-                                        )
-                                        )
-                                )
-                                <input type="hidden" id="prestacionCalleDestino" name="prestacionCalleDestino"/><input type="hidden" id="prestacionIdLocalidadDestino" /><input type="hidden" id="prestacionIdCiudadDestino" /><input type="hidden" id="prestacionIdProvinciaDestino" /><input type="hidden" id="prestacionIdPaisDestino" />
-                                <input type="hidden" id="prestacionUbicacionDestinoVal" />
-                            </div>
-                        </div>
-                        <div class="col-lg-6"><label>Finalización Prestación</label>@Html.DropDownList("prestacionFinalizacion", Model.FinalizacionesPretaciones, " ", new { @class = "form-control", @id = "prestacionFinalizacion", @name = "prestacionFinalizacion" })</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="btnPrestacionCancelar">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="btnPrestacionAceptar">Aceptar</button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btnPrestacionCancelar">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="btnPrestacionAceptar">Aceptar</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </form>
+                <!-- /.modal-content -->
+            </form>
 
+        </div>
+        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
-</div>
 
 
-<script>
-    var gridPrestacionRow;
-    var prestacionAceptar = false;
-    var accionPrestacion = "N";     // N = Nothing - A: Add - U: Update
+    <script>
+        var gridPrestacionRow;
+        var prestacionAceptar = false;
+        var accionPrestacion = "N";     // N = Nothing - A: Add - U: Update
 
-    function EligeAfiliado(item) {
-        if (item != undefined && item != null) {
-            if (item.value != undefined && item.value != null) {
-                var a = JSON.parse(item.value);
-                $('#btnOkAfiliado').click();
-                $('#modalOkAfiliado .panel').removeClass("panel-green");
-                $('#modalOkAfiliado .panel').removeClass("panel-red");
+        function EligeAfiliado(item) {
+            if (item != undefined && item != null) {
+                if (item.value != undefined && item.value != null) {
+                    var a = JSON.parse(item.value);
+                    $('#btnOkAfiliado').click();
+                    $('#modalOkAfiliado .panel').removeClass("panel-green");
+                    $('#modalOkAfiliado .panel').removeClass("panel-red");
 
-                $.ajax({
-                    url: '/Case/TraeCantidadCasosPorMes',
-                    success : function(result){
-                        $('#CantTicketsAfil').val(result);
-                        $('#modalOkAfiliado').removeClass("wait");
-                        $('#cantCasosAfilPanel').text(result);
-                        if (parseInt(result,10) > 0){
-                            $('#modalOkAfiliado .panel').addClass("panel-red");
-                        }else{
-                            $('#modalOkAfiliado .panel').addClass("panel-green");
-                        }
-                    },
-                    error:function(jqXHR, textStatus, errorThrown){
-                        $('#CantTicketsAfil').val('0');
-                        $('#modalOkAfiliado').removeClass("wait");
-                        $('#btnOkAfiliado').prop('disabled',false);
-                        MensajeError('Ocurrió un error al buscar la Cantidad de Casos: ' + errorThrown);
-                    },
-                    data: { idAfiliado : a.Id , idTicket : $('#idTicket').text()}
-                });
+                    $.ajax({
+                        url: '/Case/TraeCantidadCasosPorMes',
+                        success : function(result){
+                            $('#CantTicketsAfil').val(result);
+                            $('#modalOkAfiliado').removeClass("wait");
+                            $('#cantCasosAfilPanel').text(result);
+                            if (parseInt(result,10) > 0){
+                                $('#modalOkAfiliado .panel').addClass("panel-red");
+                            }else{
+                                $('#modalOkAfiliado .panel').addClass("panel-green");
+                            }
+                        },
+                        error:function(jqXHR, textStatus, errorThrown){
+                            $('#CantTicketsAfil').val('0');
+                            $('#modalOkAfiliado').removeClass("wait");
+                            $('#btnOkAfiliado').prop('disabled',false);
+                            MensajeError('Ocurrió un error al buscar la Cantidad de Casos: ' + errorThrown);
+                        },
+                        data: { idAfiliado : a.Id , idTicket : $('#idTicket').text()}
+                    });
 
-                $('#modalOkAfiliado').addClass("wait");
-                
-                $('input#IdAfiliado').val(a.Id);
-                $('input#ApyNom').val(a.ApyNom);
-                $('input#Doc').val(a.Doc);
-                $('input#Dir').val(a.Dir);
-                $('input#cp').val(a.cp);
-                $('input#pol').val(a.pol);
-                $('input#cia').val(a.cia);
-                $('input#fd').val(a.fd);
-                $('input#fh').val(a.fh);
-                $('input#tp').val(a.tp);
-                $('input#sp').val(a.sp);
-                $('input#pat').val(a.pat);
-                $('input#marca').val(a.marca);
-                $('input#mod').val(a.mod);
-                $('input#col').val(a.col);
-                $('input#anio').val(a.anio);
-                $('input#AfiliadoSelectVal').val(item.selection.data.PatenteApeYNom)
+                    $('#modalOkAfiliado').addClass("wait");
+
+                    $('input#IdAfiliado').val(a.Id);
+                    $('input#ApyNom').val(a.ApyNom);
+                    $('input#Doc').val(a.Doc);
+                    $('input#Dir').val(a.Dir);
+                    $('input#cp').val(a.cp);
+                    $('input#pol').val(a.pol);
+                    $('input#cia').val(a.cia);
+                    $('input#nomcate').val(a.nomcate);
+                    $('input#fd').val(a.fd);
+                    $('input#fh').val(a.fh);
+                    $('input#tp').val(a.tp);
+                    $('input#sp').val(a.sp);
+                    $('input#pat').val(a.pat);
+                    $('input#marca').val(a.marca);
+                    $('input#mod').val(a.mod);
+                    $('input#col').val(a.col);
+                    $('input#anio').val(a.anio);
+                    $('input#AfiliadoSelectVal').val(item.selection.data.PatenteApeYNom)
+                }else{
+                    $('input#IdAfiliado').val('');
+                    $('input#ApyNom').val('');
+                    $('input#Doc').val('');
+                    $('input#Dir').val('');
+                    $('input#cp').val('');
+                    $('input#pol').val('');
+                    $('input#cia').val('');
+                    $('input#nomcate').val('');
+                    $('input#fd').val('');
+                    $('input#fh').val('');
+                    $('input#tp').val('');
+                    $('input#sp').val('');
+                    $('input#pat').val('');
+                    $('input#marca').val('');
+                    $('input#mod').val('');
+                    $('input#col').val('');
+                    $('input#anio').val('');
+                    $('#AfiliadoSelect').val('');
+                    $('input#AfiliadoSelectVal').val('')
+                }
             }else{
                 $('input#IdAfiliado').val('');
                 $('input#ApyNom').val('');
@@ -753,6 +784,7 @@
                 $('input#cp').val('');
                 $('input#pol').val('');
                 $('input#cia').val('');
+                $('input#nomcate').val('');
                 $('input#fd').val('');
                 $('input#fh').val('');
                 $('input#tp').val('');
@@ -765,623 +797,621 @@
                 $('#AfiliadoSelect').val('');
                 $('input#AfiliadoSelectVal').val('')
             }
-        }else{
-            $('input#IdAfiliado').val('');
-            $('input#ApyNom').val('');
-            $('input#Doc').val('');
-            $('input#Dir').val('');
-            $('input#cp').val('');
-            $('input#pol').val('');
-            $('input#cia').val('');
-            $('input#fd').val('');
-            $('input#fh').val('');
-            $('input#tp').val('');
-            $('input#sp').val('');
-            $('input#pat').val('');
-            $('input#marca').val('');
-            $('input#mod').val('');
-            $('input#col').val('');
-            $('input#anio').val('');
-            $('#AfiliadoSelect').val('');
-            $('input#AfiliadoSelectVal').val('')
         }
-    }
 
-    function AgregarPrestacion(grid) {
-        prestacionAceptar = false;
-        accionPrestacion = "A";
-        LimpiarPrestacionPopUp();
-        $('#prestacionDemora').val('02:00');
-        $('#prestacionEstado').val(8);
+        function AgregarPrestacion(grid) {
+            prestacionAceptar = false;
+            accionPrestacion = "A";
+            LimpiarPrestacionPopUp();
+            $('#prestacionDemora').val('02:00');
+            $('#prestacionEstado').val(8);
 
-        $('#prestacionIdPaisOrigen').val($('#IdPaisOrigen').val());
-        $('#prestacionIdPaisDestino').val($('#IdPaisDestino').val());
-        $('#prestacionIdProvinciaOrigen').val($('#IdProvinciaOrigen').val());
-        $('#prestacionIdProvinciaDestino').val($('#IdProvinciaDestino').val());
-        $('#prestacionIdCiudadOrigen').val($('#IdCiudadOrigen').val());
-        $('#prestacionIdCiudadDestino').val($('#IdCiudadDestino').val());
-        $('#prestacionCalleOrigen').val($('#CalleOrigen').val());
-        $('#prestacionIdLocalidadOrigen').val($('#IdLocalidadOrigen').val());
-        $('#prestacionIdLocalidadDestino').val($('#IdLocalidadDestino').val());
-        $('#prestacionCalleDestino').val($('#CalleDestino').val());
+            $('#prestacionIdPaisOrigen').val($('#IdPaisOrigen').val());
+            $('#prestacionIdPaisDestino').val($('#IdPaisDestino').val());
+            $('#prestacionIdProvinciaOrigen').val($('#IdProvinciaOrigen').val());
+            $('#prestacionIdProvinciaDestino').val($('#IdProvinciaDestino').val());
+            $('#prestacionIdCiudadOrigen').val($('#IdCiudadOrigen').val());
+            $('#prestacionIdCiudadDestino').val($('#IdCiudadDestino').val());
+            $('#prestacionCalleOrigen').val($('#CalleOrigen').val());
+            $('#prestacionIdLocalidadOrigen').val($('#IdLocalidadOrigen').val());
+            $('#prestacionIdLocalidadDestino').val($('#IdLocalidadDestino').val());
+            $('#prestacionCalleDestino').val($('#CalleDestino').val());
 
-        $('#prestacionUbicacionOrigen').val($('#UbicacionOrigen').val());
-        $('#prestacionUbicacionDestino').val($('#UbicacionDestino').val());
+            $('#prestacionUbicacionOrigen').val($('#UbicacionOrigen').val());
+            $('#prestacionUbicacionDestino').val($('#UbicacionDestino').val());
 
-        $('#prestacionUbicacionOrigenVal').val($('#UbicacionOrigen').val());
-        $('#prestacionUbicacionDestinoVal').val($('#UbicacionDestino').val());
-        
+            $('#prestacionUbicacionOrigenVal').val($('#UbicacionOrigen').val());
+            $('#prestacionUbicacionDestinoVal').val($('#UbicacionDestino').val());
 
-    }
 
-    function ModificarPrestacion(data) {
-        prestacionAceptar = false;
-        accionPrestacion = "U";
-        LimpiarPrestacionPopUp();
-        gridPrestacionRow = $(data);
+        }
 
-        var p = JSON.parse($(data).children()[5].innerText);
+        function ModificarPrestacion(data) {
+            prestacionAceptar = false;
+            accionPrestacion = "U";
+            LimpiarPrestacionPopUp();
+            gridPrestacionRow = $(data);
 
-        $('#prestacionNombrePrestador').val(p.NombrePrestador);
-        $('#prestacionNombrePrestadorVal').val(p.NombrePrestador);
-        $('#prestacionIdPrestador').val(p.IdPrestador);
-        $('#prestacionTipoServicio').val(p.IdTipoServicio);
-        $("#prestacionDetalles").val(p.Comentarios);
-        $('#prestacionKilometros').val(p.Kilometros);
-        $('#prestacionCosto').val(p.Costo);
-        if (p.Kilometros <= 0){
+            var p = JSON.parse($(data).children()[4].innerText);
+
+            $('#prestacionNombrePrestador').val(p.NombrePrestador);
+            $('#prestacionNombrePrestadorVal').val(p.NombrePrestador);
+            $('#prestacionIdPrestador').val(p.IdPrestador);
+            $('#prestacionTipoServicio').val(p.IdTipoServicio);
+            $("#prestacionDetalles").val(p.Comentarios);
+            $('#prestacionKilometros').val(p.Kilometros);
+            $('#prestacionCosto').val(p.Costo);
+            if (p.Kilometros <= 0){
+                $('#prestacionKilometros').val('');
+            }
+            if (p.Costo <= 0){
+                $('#prestacionCosto').val('');
+            }
+            $('#prestacionIdPaisOrigen').val(p.IdPaisOrigen);
+            $('#prestacionIdPaisDestino').val(p.IdPaisDestino);
+            $('#prestacionIdProvinciaOrigen').val(p.IdProvinciaOrigen);
+            $('#prestacionIdProvinciaDestino').val(p.IdProvinciaDestino);
+            $('#prestacionIdCiudadOrigen').val(p.IdCiudadOrigen);
+            $('#prestacionIdCiudadDestino').val(p.IdCiudadDestino);
+            $('#prestacionCalleOrigen').val(p.CalleOrigen);
+            $('#prestacionIdLocalidadOrigen').val(p.IdLocalidadOrigen);
+            $('#prestacionIdLocalidadDestino').val(p.IdLocalidadDestino);
+            $('#prestacionCalleDestino').val(p.CalleDestino);
+            $('#prestacionEstado').val(p.IdEstado);
+            $('#prestacionRetrabajo').val(p.IdTicketPrestadorRetrabajo);
+            $('#prestacionDemora').val(p.Demora);
+            $('#prestacionPatente').val(p.Patente);
+            $('#prestacionNombreChofer').val(p.NombreChofer);
+
+            $('#prestacionUbicacionOrigen').val(p.UbicacionOrigen);
+            $('#prestacionUbicacionDestino').val(p.UbicacionDestino);
+
+            $('#prestacionUbicacionOrigenVal').val(p.UbicacionOrigen);
+            $('#prestacionUbicacionDestinoVal').val(p.UbicacionDestino);
+
+            $('#prestacionFinalizacion').val(p.IdFinalizacion);
+
+            $('#prestacionNombrePrestacion').val(p.NombrePrestacion);
+
+            $('button#btnPrestacionModificar').click();
+        }
+
+        function LimpiarPrestacionPopUp() {
+            $('#prestacionNombrePrestador').val('');
+            $('#prestacionNombrePrestadorVal').val('');
+            $('#prestacionIdPrestador').val('');
+            $('#prestacionTipoServicio').val('');
+            $("#prestacionDetalles").val('');
             $('#prestacionKilometros').val('');
-        }
-        if (p.Costo <= 0){
             $('#prestacionCosto').val('');
+            $('#prestacionIdPaisOrigen').val('');
+            $('#prestacionIdPaisDestino').val('');
+            $('#prestacionIdProvinciaOrigen').val('');
+            $('#prestacionIdProvinciaDestino').val('');
+            $('#prestacionIdCiudadOrigen').val('');
+            $('#prestacionIdCiudadDestino').val('');
+            $('#prestacionCalleOrigen').val('');
+            $('#prestacionIdLocalidadOrigen').val('');
+            $('#prestacionIdLocalidadDestino').val('');
+            $('#prestacionCalleDestino').val('');
+            $('#prestacionEstado').val('');
+            $('#prestacionRetrabajo').val('');
+            $('#prestacionDemora').val('');
+            $('#prestacionPatente').val('');
+            $('#prestacionNombreChofer').val('');
+            $('#prestacionUbicacionOrigen').val('');
+            $('#prestacionUbicacionDestino').val('');
+            $('#prestacionUbicacionOrigenVal').val('');
+            $('#prestacionUbicacionDestinoVal').val('');
+            $('#prestacionFinalizacion').val('');
+            $('#prestacionNombrePrestacion').val('');
         }
-        $('#prestacionProblema').val(p.IdProblema);
-        $('#prestacionIdPaisOrigen').val(p.IdPaisOrigen);
-        $('#prestacionIdPaisDestino').val(p.IdPaisDestino);
-        $('#prestacionIdProvinciaOrigen').val(p.IdProvinciaOrigen);
-        $('#prestacionIdProvinciaDestino').val(p.IdProvinciaDestino);
-        $('#prestacionIdCiudadOrigen').val(p.IdCiudadOrigen);
-        $('#prestacionIdCiudadDestino').val(p.IdCiudadDestino);
-        $('#prestacionCalleOrigen').val(p.CalleOrigen);
-        $('#prestacionIdLocalidadOrigen').val(p.IdLocalidadOrigen);
-        $('#prestacionIdLocalidadDestino').val(p.IdLocalidadDestino);
-        $('#prestacionCalleDestino').val(p.CalleDestino);
-        $('#prestacionEstado').val(p.IdEstado);
-        $('#prestacionRetrabajo').val(p.IdTicketPrestadorRetrabajo);
-        $('#prestacionDemora').val(p.Demora);
-        $('#prestacionPatente').val(p.Patente);
-        $('#prestacionNombreChofer').val(p.NombreChofer);
 
-        $('#prestacionUbicacionOrigen').val(p.UbicacionOrigen);
-        $('#prestacionUbicacionDestino').val(p.UbicacionDestino);
+        function AceptarPrestacion() {
 
-        $('#prestacionUbicacionOrigenVal').val(p.UbicacionOrigen);
-        $('#prestacionUbicacionDestinoVal').val(p.UbicacionDestino);
+            prestacionAceptar = true;
+            var prestacion = Object();
+            if (accionPrestacion == "A") {
+                var a = $('#gridPrestaciones tbody');
+                a.prepend('<tr ondblclick="ModificarPrestacion(this);"><td></td><td></td><td>-1</td><td style="display:none"></td><td style="display:none">{"Id":-1,"IdPrestador":-1,"NombrePrestador":"","IdTipoServicio":-1,"DescripcionServicio":"","Comentarios":"","Kilometros":null,"Costo":null,"IdPaisOrigen":-1,"IdPaisDestino":-1,"IdProvinciaOrigen":-1,"IdProvinciaDestino":-1,"IdCiudadOrigen":-1,"IdCiudadDestino":-1,"CalleOrigen":"","IdLocalidadOrigen":-1,"IdLocalidadDestino":-1,"CalleDestino":"","IdEstado":-1,"IdTicketPrestadorRetrabajo":-1,"Demora":"","Patente":"","NombreChofer":"","Estado":null,"IdFinalizacion":-1,"NombrePrestacion":null}</td></tr>')
+                gridPrestacionRow = $(a.children()[0]);
+            }
+            prestacion = JSON.parse(gridPrestacionRow.children()[4].innerText);
+            prestacion.NombrePrestador = $('#prestacionNombrePrestador').val();
+            prestacion.IdPrestador = $('#prestacionIdPrestador').val();
+            prestacion.IdTipoServicio = $('#prestacionTipoServicio').val();
+            prestacion.DescripcionServicio = $('#prestacionTipoServicio option:selected').text();
+            prestacion.Comentarios = $("#prestacionDetalles").val();
+            prestacion.Kilometros = $('#prestacionKilometros').val();
+            prestacion.Costo = $('#prestacionCosto').val();
+            prestacion.IdPaisOrigen = $('#prestacionIdPaisOrigen').val();
+            prestacion.IdPaisDestino = $('#prestacionIdPaisDestino').val();
+            prestacion.IdProvinciaOrigen = $('#prestacionIdProvinciaOrigen').val();
+            prestacion.IdProvinciaDestino = $('#prestacionIdProvinciaDestino').val();
+            prestacion.IdCiudadOrigen = $('#prestacionIdCiudadOrigen').val();
+            prestacion.IdCiudadDestino = $('#prestacionIdCiudadDestino').val();
+            prestacion.CalleOrigen = $('#prestacionCalleOrigen').val();
+            prestacion.IdLocalidadOrigen = $('#prestacionIdLocalidadOrigen').val();
+            prestacion.IdLocalidadDestino = $('#prestacionIdLocalidadDestino').val();
+            prestacion.CalleDestino = $('#prestacionCalleDestino').val();
+            prestacion.IdEstado = $('#prestacionEstado').val();
+            prestacion.Estado = $('#prestacionEstado option:selected').text();
+            prestacion.IdTicketPrestadorRetrabajo = $('#prestacionRetrabajo').val();
+            prestacion.Demora = $('#prestacionDemora').val();
+            prestacion.Patente = $('#prestacionPatente').val();
+            prestacion.NombreChofer = $('#prestacionNombreChofer').val();
 
-        $('#prestacionFinalizacion').val(p.IdFinalizacion);
+            prestacion.UbicacionOrigen = $('#prestacionUbicacionOrigen').val();
+            prestacion.UbicacionDestino = $('#prestacionUbicacionDestino').val();
 
-        $('#prestacionNombrePrestacion').val(p.NombrePrestacion);
+            prestacion.IdFinalizacion = $('#prestacionFinalizacion').val();
 
-        $('button#btnPrestacionModificar').click();
-    }
-
-    function LimpiarPrestacionPopUp() {
-        $('#prestacionNombrePrestador').val('');
-        $('#prestacionNombrePrestadorVal').val('');
-        $('#prestacionIdPrestador').val('');
-        $('#prestacionTipoServicio').val('');
-        $("#prestacionDetalles").val('');
-        $('#prestacionKilometros').val('');
-        $('#prestacionCosto').val('');
-        $('#prestacionProblema').val('');
-        $('#prestacionIdPaisOrigen').val('');
-        $('#prestacionIdPaisDestino').val('');
-        $('#prestacionIdProvinciaOrigen').val('');
-        $('#prestacionIdProvinciaDestino').val('');
-        $('#prestacionIdCiudadOrigen').val('');
-        $('#prestacionIdCiudadDestino').val('');
-        $('#prestacionCalleOrigen').val('');
-        $('#prestacionIdLocalidadOrigen').val('');
-        $('#prestacionIdLocalidadDestino').val('');
-        $('#prestacionCalleDestino').val('');
-        $('#prestacionEstado').val('');
-        $('#prestacionRetrabajo').val('');
-        $('#prestacionDemora').val('');
-        $('#prestacionPatente').val('');
-        $('#prestacionNombreChofer').val('');
-        $('#prestacionUbicacionOrigen').val('');
-        $('#prestacionUbicacionDestino').val('');
-        $('#prestacionUbicacionOrigenVal').val('');
-        $('#prestacionUbicacionDestinoVal').val('');
-        $('#prestacionFinalizacion').val('');
-        $('#prestacionNombrePrestacion').val('');
-    }
-
-    function AceptarPrestacion() {
-
-        prestacionAceptar = true;
-        var prestacion = Object();
-        if (accionPrestacion == "A") {
-            var a = $('#gridPrestaciones tbody');
-            a.prepend('<tr ondblclick="ModificarPrestacion(this);"><td></td><td></td><td></td><td>-1</td><td style="display:none"></td><td style="display:none">{"Id":-1,"IdPrestador":-1,"NombrePrestador":"","IdTipoServicio":-1,"DescripcionServicio":"","Comentarios":"","Kilometros":null,"Costo":null,"IdProblema":-1,"Problema":null,"IdPaisOrigen":-1,"IdPaisDestino":-1,"IdProvinciaOrigen":-1,"IdProvinciaDestino":-1,"IdCiudadOrigen":-1,"IdCiudadDestino":-1,"CalleOrigen":"","IdLocalidadOrigen":-1,"IdLocalidadDestino":-1,"CalleDestino":"","IdEstado":-1,"IdTicketPrestadorRetrabajo":-1,"Demora":"","Patente":"","NombreChofer":"","Estado":null,"IdFinalizacion":-1,"NombrePrestacion":null}</td></tr>')
-            gridPrestacionRow = $(a.children()[0]);
-        }
-        prestacion = JSON.parse(gridPrestacionRow.children()[5].innerText);
-        prestacion.NombrePrestador = $('#prestacionNombrePrestador').val();
-        prestacion.IdPrestador = $('#prestacionIdPrestador').val();
-        prestacion.IdTipoServicio = $('#prestacionTipoServicio').val();
-        prestacion.DescripcionServicio = $('#prestacionTipoServicio option:selected').text();
-        prestacion.Comentarios = $("#prestacionDetalles").val();
-        prestacion.Kilometros = $('#prestacionKilometros').val();
-        prestacion.Costo = $('#prestacionCosto').val();
-        prestacion.IdProblema = $('#prestacionProblema').val();
-        prestacion.Problema = $('#prestacionProblema option:selected').text();
-        prestacion.IdPaisOrigen = $('#prestacionIdPaisOrigen').val();
-        prestacion.IdPaisDestino = $('#prestacionIdPaisDestino').val();
-        prestacion.IdProvinciaOrigen = $('#prestacionIdProvinciaOrigen').val();
-        prestacion.IdProvinciaDestino = $('#prestacionIdProvinciaDestino').val();
-        prestacion.IdCiudadOrigen = $('#prestacionIdCiudadOrigen').val();
-        prestacion.IdCiudadDestino = $('#prestacionIdCiudadDestino').val();
-        prestacion.CalleOrigen = $('#prestacionCalleOrigen').val();
-        prestacion.IdLocalidadOrigen = $('#prestacionIdLocalidadOrigen').val();
-        prestacion.IdLocalidadDestino = $('#prestacionIdLocalidadDestino').val();
-        prestacion.CalleDestino = $('#prestacionCalleDestino').val();
-        prestacion.IdEstado = $('#prestacionEstado').val();
-        prestacion.Estado = $('#prestacionEstado option:selected').text();
-        prestacion.IdTicketPrestadorRetrabajo = $('#prestacionRetrabajo').val();
-        prestacion.Demora = $('#prestacionDemora').val();
-        prestacion.Patente = $('#prestacionPatente').val();
-        prestacion.NombreChofer = $('#prestacionNombreChofer').val();
-
-        prestacion.UbicacionOrigen = $('#prestacionUbicacionOrigen').val();
-        prestacion.UbicacionDestino = $('#prestacionUbicacionDestino').val();
-
-        prestacion.IdFinalizacion = $('#prestacionFinalizacion').val();
-
-        if ($('#prestacionNombrePrestacion').val() == ""){
+            /*if ($('#prestacionNombrePrestacion').val() == ""){
+                prestacion.NombrePrestacion = prestacion.DescripcionServicio;
+            }else{
+                prestacion.NombrePrestacion = $('#prestacionNombrePrestacion').val();
+            }*/
             prestacion.NombrePrestacion = prestacion.DescripcionServicio;
-        }else{
-            prestacion.NombrePrestacion = $('#prestacionNombrePrestacion').val();
+
+            gridPrestacionRow.children()[0].innerText = prestacion.NombrePrestacion;
+            gridPrestacionRow.children()[1].innerText = prestacion.NombrePrestador;
+            gridPrestacionRow.children()[2].innerText = prestacion.Estado;
+
+            gridPrestacionRow.children()[4].innerText = JSON.stringify(prestacion);
+
+            $('#btnPrestacionCancelar').click();
         }
-        
-        gridPrestacionRow.children()[0].innerText = prestacion.NombrePrestacion;
-        gridPrestacionRow.children()[1].innerText = prestacion.Problema;
-        gridPrestacionRow.children()[2].innerText = prestacion.NombrePrestador;
-        gridPrestacionRow.children()[3].innerText = prestacion.Estado;
 
-        gridPrestacionRow.children()[5].innerText = JSON.stringify(prestacion);
+        function AntesDeSubmit() {
+            /*if (!$('#editCaseMainForm').valid()){
+                return false;
+            }*/
+            var a = Array();
 
-        $('#btnPrestacionCancelar').click();
-    }
+            for (i = 0; i < $('#gridPrestaciones tbody').children().length ; i++) {
+                var p = JSON.parse($($('#gridPrestaciones tbody').children()[i]).children()[4].innerText);
+                if (p.IdPrestador == null || p.IdPrestador == "") {
+                    p.IdPrestador = -1;
+                }
+                if (p.Kilometros == null || p.Kilometros == "") {
+                    p.Kilometros = -1;
+                }
+                if (p.Costo == null || p.Costo == "") {
+                    p.Costo = -1;
+                }
+                if (p.IdTipoServicio == null || p.IdTipoServicio == "") {
+                    p.IdTipoServicio = -1;
+                }
+                if (p.IdPaisOrigen == null || p.IdPaisOrigen == "") {
+                    p.IdPaisOrigen = -1;
+                }
+                if (p.IdPaisDestino == null || p.IdPaisDestino == "") {
+                    p.IdPaisDestino = -1;
+                }
+                if (p.IdProvinciaOrigen == null || p.IdProvinciaOrigen == "") {
+                    p.IdProvinciaOrigen = -1;
+                }
+                if (p.IdProvinciaDestino == null || p.IdProvinciaDestino == "") {
+                    p.IdProvinciaDestino = -1;
+                }
+                if (p.IdCiudadOrigen == null || p.IdCiudadOrigen == "") {
+                    p.IdCiudadOrigen = -1;
+                }
+                if (p.IdCiudadDestino == null || p.IdCiudadDestino == "") {
+                    p.IdCiudadDestino = -1;
+                }
+                if (p.IdLocalidadOrigen == null || p.IdLocalidadOrigen == "") {
+                    p.IdLocalidadOrigen = -1;
+                }
+                if (p.IdLocalidadDestino == null || p.IdLocalidadDestino == "") {
+                    p.IdLocalidadDestino = -1;
+                }
+                if (p.IdEstado == null || p.IdEstado == "") {
+                    p.IdEstado = -1;
+                }
+                if (p.IdTicketPrestadorRetrabajo == null || p.IdTicketPrestadorRetrabajo == "") {
+                    p.IdTicketPrestadorRetrabajo = -1;
+                }
+                if (p.Id == null || p.Id == "") {
+                    p.Id = -1;
+                }
+                if (p.IdFinalizacion == null || p.IdFinalizacion == ""){
+                    p.IdFinalizacion = -1;
+                }
+                a.push(p);
+            }
+            $('#DatosPrestaciones').val(JSON.stringify(a));
 
-    function AntesDeSubmit() {
-        /*if (!$('#editCaseMainForm').valid()){
-            return false;
-        }*/
-        var a = Array();
+            $('#NumTabActive').val(GetActiveMainTab());
 
-        for (i = 0; i < $('#gridPrestaciones tbody').children().length ; i++) {
-            var p = JSON.parse($($('#gridPrestaciones tbody').children()[i]).children()[5].innerText);
-            if (p.IdPrestador == null || p.IdPrestador == "") {
-                p.IdPrestador = -1;
-            }
-            if (p.Kilometros == null || p.Kilometros == "") {
-                p.Kilometros = -1;
-            }
-            if (p.Costo == null || p.Costo == "") {
-                p.Costo = -1;
-            }
-            if (p.IdTipoServicio == null || p.IdTipoServicio == "") {
-                p.IdTipoServicio = -1;
-            }
-            if (p.IdProblema == null || p.IdProblema == "") {
-                p.IdProblema = -1;
-            }
-            if (p.IdPaisOrigen == null || p.IdPaisOrigen == "") {
-                p.IdPaisOrigen = -1;
-            }
-            if (p.IdPaisDestino == null || p.IdPaisDestino == "") {
-                p.IdPaisDestino = -1;
-            }
-            if (p.IdProvinciaOrigen == null || p.IdProvinciaOrigen == "") {
-                p.IdProvinciaOrigen = -1;
-            }
-            if (p.IdProvinciaDestino == null || p.IdProvinciaDestino == "") {
-                p.IdProvinciaDestino = -1;
-            }
-            if (p.IdCiudadOrigen == null || p.IdCiudadOrigen == "") {
-                p.IdCiudadOrigen = -1;
-            }
-            if (p.IdCiudadDestino == null || p.IdCiudadDestino == "") {
-                p.IdCiudadDestino = -1;
-            }
-            if (p.IdLocalidadOrigen == null || p.IdLocalidadOrigen == "") {
-                p.IdLocalidadOrigen = -1;
-            }
-            if (p.IdLocalidadDestino == null || p.IdLocalidadDestino == "") {
-                p.IdLocalidadDestino = -1;
-            }
-            if (p.IdEstado == null || p.IdEstado == "") {
-                p.IdEstado = -1;
-            }
-            if (p.IdTicketPrestadorRetrabajo == null || p.IdTicketPrestadorRetrabajo == "") {
-                p.IdTicketPrestadorRetrabajo = -1;
-            }
-            if (p.Id == null || p.Id == "") {
-                p.Id = -1;
-            }
-            if (p.IdFinalizacion == null || p.IdFinalizacion == ""){
-                p.IdFinalizacion = -1;
-            }
-            a.push(p);
+            return true;
+
         }
-        $('#DatosPrestaciones').val(JSON.stringify(a));
 
-        return true;
+        function OutFlecha(item) {
+            item.removeClass("glyphicon-menu-left");
+            item.addClass("glyphicon-triangle-left");
+        }
 
-    }
+        function MasInfoPrestador(item) {
+            item.removeClass("glyphicon-triangle-left");
+            item.addClass("glyphicon-menu-left");
 
-    function OutFlecha(item) {
-        item.removeClass("glyphicon-menu-left");
-        item.addClass("glyphicon-triangle-left");
-    }
+            setTimeout(function () {
+                if ($('#' + item.attr("id") + ':hover').length > 0) {
 
-    function MasInfoPrestador(item) {
-        item.removeClass("glyphicon-triangle-left");
-        item.addClass("glyphicon-menu-left");
+                    var oPrest = JSON.parse(item.children().text());
 
-        setTimeout(function () {
-            if ($('#' + item.attr("id") + ':hover').length > 0) {
-
-                var oPrest = JSON.parse(item.children().text());
-
-                CleanInfoPrestador();
-
-                $('#prestInfoNombre').text(oPrest.Nombre);
-                $('#prestInfoDomicilio').text(oPrest.Domicilio);
-                $('#prestInfoLocalidad').text(oPrest.Localidad);
-                $('#prestInfoCiudad').text(oPrest.Ciudad);
-                $('#prestInfoProvincia').text(oPrest.Provincia);
-                $('#prestInfoPais').text(oPrest.Pais);
-                $('#prestInfoTelefono1').text(oPrest.Telefono);
-                $('#prestInfoTelefono2').text(oPrest.Telefono2);
-                $('#prestInfoCelular1').text(oPrest.Celular);
-                $('#prestInfoCelular2').text(oPrest.Celular2);
-                $('#prestInfoNextel').text(oPrest.Nextel);
-                $('#prestEmail').text(oPrest.Email);
-                $('#prestInfoCuit').text(oPrest.Cuit);
-                $('#prestInfoIva').text(oPrest.Iva);
-                $('#prestInfoLivMovida').text(oPrest.LivMovida);
-                $('#prestInfoLivKm').text(oPrest.LivKm);
-                $('#prestInfoSp1Movida').text(oPrest.Sp1Movida);
-                $('#prestInfoSp1Km').text(oPrest.Sp1Km);
-                $('#prestInfoSp2Movida').text(oPrest.Sp2Movida);
-                $('#prestInfoSp2Km').text(oPrest.Sp2Km);
-                $('#prestInfoPs1Movida').text(oPrest.Ps1Movida);
-                $('#prestInfoPs1Km').text(oPrest.Ps1Km);
-                $('#prestInfoPs2Movida').text(oPrest.Ps2Movida);
-                $('#prestInfoPs2Km').text(oPrest.Ps2Km);
-                $('#prestInfoDescripcion').text(oPrest.Descripcion);
-
-                $('.provider-info').addClass('provider-info-show');
-                setTimeout(function () {
-                    $('.provider-info').addClass('provider-info-move');
-                    item.removeClass("glyphicon-menu-left");
-                    item.addClass("glyphicon-triangle-left");
-                }, 10);
-            }
-        }, 500);
-    }
-
-    function HideProviderInfo() {
-        setTimeout(function () {
-            if ($('#flecha0:hover').length > 0) {
-                $('.provider-info').removeClass('provider-info-move');
-                setTimeout(function () {
-                    $('.provider-info').removeClass('provider-info-show');
                     CleanInfoPrestador();
-                }, 1000);
-            }
-        }, 500);
-    }
 
-    function CerrarInfoPrestador() {
-        if ($('.provider-info').length > 0) {
-            $('.provider-info').removeClass('provider-info-move');
-            $('.provider-info').removeClass('provider-info-show');
-            CleanInfoPrestador();
-        }
-    }
+                    $('#prestInfoNombre').text(oPrest.Nombre);
+                    $('#prestInfoDomicilio').text(oPrest.Domicilio);
+                    $('#prestInfoLocalidad').text(oPrest.Localidad);
+                    $('#prestInfoCiudad').text(oPrest.Ciudad);
+                    $('#prestInfoProvincia').text(oPrest.Provincia);
+                    $('#prestInfoPais').text(oPrest.Pais);
+                    $('#prestInfoTelefono1').text(oPrest.Telefono);
+                    $('#prestInfoTelefono2').text(oPrest.Telefono2);
+                    $('#prestInfoCelular1').text(oPrest.Celular);
+                    $('#prestInfoCelular2').text(oPrest.Celular2);
+                    $('#prestInfoNextel').text(oPrest.Nextel);
+                    $('#prestEmail').text(oPrest.Email);
+                    $('#prestInfoCuit').text(oPrest.Cuit);
+                    $('#prestInfoIva').text(oPrest.Iva);
+                    $('#prestInfoLivMovida').text(oPrest.LivMovida);
+                    $('#prestInfoLivKm').text(oPrest.LivKm);
+                    $('#prestInfoSp1Movida').text(oPrest.Sp1Movida);
+                    $('#prestInfoSp1Km').text(oPrest.Sp1Km);
+                    $('#prestInfoSp2Movida').text(oPrest.Sp2Movida);
+                    $('#prestInfoSp2Km').text(oPrest.Sp2Km);
+                    $('#prestInfoPs1Movida').text(oPrest.Ps1Movida);
+                    $('#prestInfoPs1Km').text(oPrest.Ps1Km);
+                    $('#prestInfoPs2Movida').text(oPrest.Ps2Movida);
+                    $('#prestInfoPs2Km').text(oPrest.Ps2Km);
+                    $('#prestInfoDescripcion').text(oPrest.Descripcion);
 
-    function CleanInfoPrestador() {
-        $('#prestInfoNombre').text('');
-        $('#prestInfoDomicilio').text('');
-        $('#prestInfoLocalidad').text('');
-        $('#prestInfoCiudad').text('');
-        $('#prestInfoProvincia').text('');
-        $('#prestInfoPais').text('');
-        $('#prestInfoTelefono1').text('');
-        $('#prestInfoTelefono2').text('');
-        $('#prestInfoCelular1').text('');
-        $('#prestInfoCelular2').text('');
-        $('#prestInfoNextel').text('');
-        $('#prestEmail').text('');
-        $('#prestInfoCuit').text('');
-        $('#prestInfoIva').text('');
-        $('#prestInfoLivMovida').text('');
-        $('#prestInfoLivKm').text('');
-        $('#prestInfoSp1Movida').text('');
-        $('#prestInfoSp1Km').text('');
-        $('#prestInfoSp2Movida').text('');
-        $('#prestInfoSp2Km').text('');
-        $('#prestInfoPs1Movida').text('');
-        $('#prestInfoPs1Km').text('');
-        $('#prestInfoPs2Movida').text('');
-        $('#prestInfoPs2Km').text('');
-        $('#prestInfoDescripcion').text('');
-
-    }
-
-    function SeleccionaPrestador(item){
-        $('#prestacionIdPrestador').val(item.value);
-        $('#prestacionNombrePrestadorVal').val(item.selection.data.Nombre);
-    }
-
-    function SeleccionaUbicacionOrigen(item) {
-        if (item != undefined && item != null) {
-            if (item.value != undefined && item.value != null){
-                var o = JSON.parse(item.value);
-                $('#CalleOrigen').val(o.Calle);
-                $('#IdLocalidadOrigen').val(o.IdLocalidad);
-                $('#IdCiudadOrigen').val(o.IdCiudad);
-                $('#IdProvinciaOrigen').val(o.IdProvincia);
-                $('#IdPaisOrigen').val(o.IdPais);
-                $('#UbicacionOrigenVal').val(item.selection.data.CalleUbicacion);
-            }else{
-                $('#CalleOrigen').val('');
-                $('#IdLocalidadOrigen').val('');
-                $('#IdCiudadOrigen').val('');
-                $('#IdProvinciaOrigen').val('');
-                $('#IdPaisOrigen').val('');
-                $('#UbicacionOrigenVal').val('');
-            }
-        }
-    }
-
-    function SeleccionaUbicacionDestino(item) {
-        if (item != undefined && item != null) {
-            if (item.value != undefined && item.value != null){
-                var o = JSON.parse(item.value);
-                $('#CalleDestino').val(o.Calle);
-                $('#IdLocalidadDestino').val(o.IdLocalidad);
-                $('#IdCiudadDestino').val(o.IdCiudad);
-                $('#IdProvinciaDestino').val(o.IdProvincia);
-                $('#IdPaisDestino').val(o.IdPais);
-                $('#UbicacionDestinoVal').val(item.selection.data.CalleUbicacion);
-            }else{
-                $('#CalleDestino').val('');
-                $('#IdLocalidadDestino').val('');
-                $('#IdCiudadDestino').val('');
-                $('#IdProvinciaDestino').val('');
-                $('#IdPaisDestino').val('');
-                $('#UbicacionDestinoVal').val('');
-            }
-        }
-    }
-
-    function SeleccionaPrestacionUbicacionOrigen(item) {
-        if (item != undefined && item != null) {
-            if (item.value != undefined && item.value != null){
-                var o = JSON.parse(item.value);
-                $('#prestacionCalleOrigen').val(o.Calle);
-                $('#prestacionIdLocalidadOrigen').val(o.IdLocalidad);
-                $('#prestacionIdCiudadOrigen').val(o.IdCiudad);
-                $('#prestacionIdProvinciaOrigen').val(o.IdProvincia);
-                $('#prestacionIdPaisOrigen').val(o.IdPais);
-                $('#prestacionUbicacionOrigenVal').val(item.selection.data.CalleUbicacion);
-            }else{
-                $('#prestacionCalleOrigen').val('');
-                $('#prestacionIdLocalidadOrigen').val('');
-                $('#prestacionIdCiudadOrigen').val('');
-                $('#prestacionIdProvinciaOrigen').val('');
-                $('#prestacionIdPaisOrigen').val('');
-                $('#prestacionUbicacionOrigen').val('');
-                $('#prestacionUbicacionOrigenVal').val('');
-            }
-        }
-    }
-
-    function SeleccionaPrestacionUbicacionDestino(item) {
-        if (item != undefined && item != null) {
-            if (item.value != undefined && item.value != null){
-                var o = JSON.parse(item.value);
-                $('#prestacionCalleDestino').val(o.Calle);
-                $('#prestacionIdLocalidadDestino').val(o.IdLocalidad);
-                $('#prestacionIdCiudadDestino').val(o.IdCiudad);
-                $('#prestacionIdProvinciaDestino').val(o.IdProvincia);
-                $('#prestacionIdPaisDestino').val(o.IdPais);
-                $('#prestacionUbicacionDestinoVal').val(item.selection.data.CalleUbicacion);
-            }else{
-                $('#prestacionCalleDestino').val('');
-                $('#prestacionIdLocalidadDestino').val('');
-                $('#prestacionIdCiudadDestino').val('');
-                $('#prestacionIdProvinciaDestino').val('');
-                $('#prestacionIdPaisDestino').val('');
-                $('#prestacionUbicacionDestino').val('');
-                $('#prestacionUbicacionDestinoVal').val('');
-            }
-        }
-    }
-
-    function InforProviderPill(aref) {
-        setTimeout(function () {
-            if ($('a[href="' + $(aref).attr("href") + '"]:hover').length > 0) {
-                $(aref).click();
-            }
-        }, 500);
-    }
-
-    $().ready(function () {
-
-        $('.validation-summary-errors').addClass('field-validation-error');
-
-        jQuery.validator.addMethod("validaAutocompletar", function (value, element){
-            if (value == null || value == ''){
-                return true;
-            }
-            if (value != $('#' + $(element).attr('id') + 'Val').val()) {
-                return false;
-            }
-            if (value.includes("... acote su búsqueda ...")){
-                return false;
-            }
-            return true;
-        },"Elija Valor de la Lista.");
-
-        jQuery.validator.addMethod("validaPatente", function(value,element){
-            if (value == null || value == ''){
-                return true;
-            }
-            if (value.length != 6 && value.length != 7){
-                return false;
-            }
-            var rC = RegExp("^[a-zA-Z]+$");
-            var rN = RegExp("^[0-9]+$");
-            if (value.length == 6){
-                if (!rC.test(value.substring(0,3)))
-                    return false;
-                if (!rN.test(value.substring(3)))
-                    return false;
-            }else{
-                if (!rC.test(value.substring(0,2)))
-                    return false;
-                if (!rN.test(value.substring(2,5)))
-                    return false;
-                if (!rC.test(value.substring(5)))
-                    return false;
-            }
-            return true;
-        },"Patente inválida");
-
-        jQuery.validator.addMethod("validaDemora", function (value, element){
-            if (value == null || value == ''){
-                return true;
-            }
-            if (value.length != 5 && value.length != 4){
-                return false;
-            }
-            var r = RegExp("[0-9][0-9]:[0-5][0-9]");
-            if (!r.test(value)){
-                return false;
-            }
-            return true;
-        },"Demora Inválida. Ingresar HH:MM");
-
-        $('#prestacionForm').validate({
-            ignore: "",
-            rules: {
-                prestacionTipoServicio : {
-                    required : true
-                },
-                prestacionEstado : {
-                    required : true
-                },
-                prestEstados : {
-                    required : true
-                },
-                prestacionKilometros : {
-                    range : [ -1, 9999999 ]
-                },
-                prestacionDetalles : {
-                    maxlength: 1024
-                },
-                prestacionCalleOrigen : {
-                    maxlength: 1024
-                },
-                prestacionCalleDestino : {
-                    maxlength: 1024
-                },
-                prestacionPatente : {
-                    validaPatente : true
-                },
-                prestacionDemora : {
-                    validaDemora: true
-                },
-                prestacionNombreChofer : {
-                    maxlength: 255
+                    $('.provider-info').addClass('provider-info-show');
+                    setTimeout(function () {
+                        $('.provider-info').addClass('provider-info-move');
+                        item.removeClass("glyphicon-menu-left");
+                        item.addClass("glyphicon-triangle-left");
+                    }, 10);
                 }
-            },
-            messages: {
-                prestacionTipoServicio: "Elija un Tipo de Prestación",
-                prestacionEstado : "El Estado no puede estar vacío",
-                prestEstados : "El Estado no puede estar vacío",
-                prestacionKilometros : "Kilómetros fuera de rango",
-                validUbiOrigen: "Ubicacion invalida",
-                prestacionDetalles: "Cantidad máxima de caracteres: 1024",
-                prestacionCalleOrigen : "Cantidad máxima de caracteres: 1024",
-                prestacionCalleDestino : "Cantidad máxima de caracteres: 1024",
-                prestacionPatente : "Patente inválida",
-                prestacionNombreChofer : "Cantidad máxima de caracteres: 255"
-            },
-            errorPlacement: function(error,element){
-                if($(element).attr('name').length > 5 && $(element).attr('name').substring(0,5) == "combo"){
-                    var a = $(element).parentsUntil('div.x-border-box');
-                    var b = $(a[a.length-1]).parent().parent();
-                    error.insertBefore(b);
+            }, 500);
+        }
+
+        function HideProviderInfo() {
+            setTimeout(function () {
+                if ($('#flecha0:hover').length > 0) {
+                    $('.provider-info').removeClass('provider-info-move');
+                    setTimeout(function () {
+                        $('.provider-info').removeClass('provider-info-show');
+                        CleanInfoPrestador();
+                    }, 1000);
+                }
+            }, 500);
+        }
+
+        function CerrarInfoPrestador() {
+            if ($('.provider-info').length > 0) {
+                $('.provider-info').removeClass('provider-info-move');
+                $('.provider-info').removeClass('provider-info-show');
+                CleanInfoPrestador();
+            }
+        }
+
+        function CleanInfoPrestador() {
+            $('#prestInfoNombre').text('');
+            $('#prestInfoDomicilio').text('');
+            $('#prestInfoLocalidad').text('');
+            $('#prestInfoCiudad').text('');
+            $('#prestInfoProvincia').text('');
+            $('#prestInfoPais').text('');
+            $('#prestInfoTelefono1').text('');
+            $('#prestInfoTelefono2').text('');
+            $('#prestInfoCelular1').text('');
+            $('#prestInfoCelular2').text('');
+            $('#prestInfoNextel').text('');
+            $('#prestEmail').text('');
+            $('#prestInfoCuit').text('');
+            $('#prestInfoIva').text('');
+            $('#prestInfoLivMovida').text('');
+            $('#prestInfoLivKm').text('');
+            $('#prestInfoSp1Movida').text('');
+            $('#prestInfoSp1Km').text('');
+            $('#prestInfoSp2Movida').text('');
+            $('#prestInfoSp2Km').text('');
+            $('#prestInfoPs1Movida').text('');
+            $('#prestInfoPs1Km').text('');
+            $('#prestInfoPs2Movida').text('');
+            $('#prestInfoPs2Km').text('');
+            $('#prestInfoDescripcion').text('');
+
+        }
+
+        function SeleccionaPrestador(item){
+            $('#prestacionIdPrestador').val(item.value);
+            $('#prestacionNombrePrestadorVal').val(item.selection.data.Nombre);
+        }
+
+        function SeleccionaUbicacionOrigen(item) {
+            if (item != undefined && item != null) {
+                if (item.value != undefined && item.value != null){
+                    var o = JSON.parse(item.value);
+                    $('#CalleOrigen').val(o.Calle);
+                    $('#IdLocalidadOrigen').val(o.IdLocalidad);
+                    $('#IdCiudadOrigen').val(o.IdCiudad);
+                    $('#IdProvinciaOrigen').val(o.IdProvincia);
+                    $('#IdPaisOrigen').val(o.IdPais);
+                    $('#UbicacionOrigenVal').val(item.selection.data.CalleUbicacion);
                 }else{
-                    error.insertAfter(element);
+                    $('#CalleOrigen').val('');
+                    $('#IdLocalidadOrigen').val('');
+                    $('#IdCiudadOrigen').val('');
+                    $('#IdProvinciaOrigen').val('');
+                    $('#IdPaisOrigen').val('');
+                    $('#UbicacionOrigenVal').val('');
                 }
             }
-        });
+        }
 
-        $('#editCaseMainForm').validate({
-            //ignore: "",
-            errorPlacement: function(error,element){
-                if($(element).attr('name').length > 5 && $(element).attr('name').substring(0,5) == "combo"){
-                    var a = $(element).parentsUntil('div.x-border-box');
-                    var b = $(a[a.length-1]).parent().parent();
-                    error.insertBefore(b);
+        function SeleccionaUbicacionDestino(item) {
+            if (item != undefined && item != null) {
+                if (item.value != undefined && item.value != null){
+                    var o = JSON.parse(item.value);
+                    $('#CalleDestino').val(o.Calle);
+                    $('#IdLocalidadDestino').val(o.IdLocalidad);
+                    $('#IdCiudadDestino').val(o.IdCiudad);
+                    $('#IdProvinciaDestino').val(o.IdProvincia);
+                    $('#IdPaisDestino').val(o.IdPais);
+                    $('#UbicacionDestinoVal').val(item.selection.data.CalleUbicacion);
                 }else{
-                    error.insertAfter(element);
+                    $('#CalleDestino').val('');
+                    $('#IdLocalidadDestino').val('');
+                    $('#IdCiudadDestino').val('');
+                    $('#IdProvinciaDestino').val('');
+                    $('#IdPaisDestino').val('');
+                    $('#UbicacionDestinoVal').val('');
                 }
             }
-        });
+        }
 
-        if ($('#AfiliadoSelect').length = 1){
-            $('#AfiliadoSelect').rules("add",{
+        function SeleccionaPrestacionUbicacionOrigen(item) {
+            if (item != undefined && item != null) {
+                if (item.value != undefined && item.value != null){
+                    var o = JSON.parse(item.value);
+                    $('#prestacionCalleOrigen').val(o.Calle);
+                    $('#prestacionIdLocalidadOrigen').val(o.IdLocalidad);
+                    $('#prestacionIdCiudadOrigen').val(o.IdCiudad);
+                    $('#prestacionIdProvinciaOrigen').val(o.IdProvincia);
+                    $('#prestacionIdPaisOrigen').val(o.IdPais);
+                    $('#prestacionUbicacionOrigenVal').val(item.selection.data.CalleUbicacion);
+                }else{
+                    $('#prestacionCalleOrigen').val('');
+                    $('#prestacionIdLocalidadOrigen').val('');
+                    $('#prestacionIdCiudadOrigen').val('');
+                    $('#prestacionIdProvinciaOrigen').val('');
+                    $('#prestacionIdPaisOrigen').val('');
+                    $('#prestacionUbicacionOrigen').val('');
+                    $('#prestacionUbicacionOrigenVal').val('');
+                }
+            }
+        }
+
+        function SeleccionaPrestacionUbicacionDestino(item) {
+            if (item != undefined && item != null) {
+                if (item.value != undefined && item.value != null){
+                    var o = JSON.parse(item.value);
+                    $('#prestacionCalleDestino').val(o.Calle);
+                    $('#prestacionIdLocalidadDestino').val(o.IdLocalidad);
+                    $('#prestacionIdCiudadDestino').val(o.IdCiudad);
+                    $('#prestacionIdProvinciaDestino').val(o.IdProvincia);
+                    $('#prestacionIdPaisDestino').val(o.IdPais);
+                    $('#prestacionUbicacionDestinoVal').val(item.selection.data.CalleUbicacion);
+                }else{
+                    $('#prestacionCalleDestino').val('');
+                    $('#prestacionIdLocalidadDestino').val('');
+                    $('#prestacionIdCiudadDestino').val('');
+                    $('#prestacionIdProvinciaDestino').val('');
+                    $('#prestacionIdPaisDestino').val('');
+                    $('#prestacionUbicacionDestino').val('');
+                    $('#prestacionUbicacionDestinoVal').val('');
+                }
+            }
+        }
+
+        function InforProviderPill(aref) {
+            setTimeout(function () {
+                if ($('a[href="' + $(aref).attr("href") + '"]:hover').length > 0) {
+                    $(aref).click();
+                }
+            }, 500);
+        }
+
+        function GetActiveMainTab() {
+            for (i = 0; i < $('#mainTabs').children('li').length; i++) {
+                if ($($('#mainTabs').children('li')[i]).hasClass('active')) {
+                    return i;
+                }
+            }
+            return 0;
+        }
+
+        function SetActiveMainTab() {
+            var numTab = 0;
+            if ($('#NumTabActive').val() != undefined && $('#NumTabActive').val() != null && $('#NumTabActive').val() != "") {
+                numTab = parseInt($('#NumTabActive').val(),10);
+            }
+            //$('#mainTabs').children('li').removeClass("active");
+            //$($('#mainTabs').children('li')[numTab]).addClass("active");
+
+            $($('#mainTabs').children('li')[numTab]).children('a').click();
+
+        }
+
+        $().ready(function () {
+
+            $('.validation-summary-errors').addClass('field-validation-error');
+
+            jQuery.validator.addMethod("validaAutocompletar", function (value, element){
+                if (value == null || value == ''){
+                    return true;
+                }
+                if (value != $('#' + $(element).attr('id') + 'Val').val()) {
+                    return false;
+                }
+                if (value.includes("... acote su búsqueda ...")){
+                    return false;
+                }
+                return true;
+            },"Elija Valor de la Lista.");
+
+            jQuery.validator.addMethod("validaPatente", function(value,element){
+                if (value == null || value == ''){
+                    return true;
+                }
+                if (value.length != 6 && value.length != 7){
+                    return false;
+                }
+                var rC = RegExp("^[a-zA-Z]+$");
+                var rN = RegExp("^[0-9]+$");
+                if (value.length == 6){
+                    if (!rC.test(value.substring(0,3)))
+                        return false;
+                    if (!rN.test(value.substring(3)))
+                        return false;
+                }else{
+                    if (!rC.test(value.substring(0,2)))
+                        return false;
+                    if (!rN.test(value.substring(2,5)))
+                        return false;
+                    if (!rC.test(value.substring(5)))
+                        return false;
+                }
+                return true;
+            },"Patente inválida");
+
+            jQuery.validator.addMethod("validaDemora", function (value, element){
+                if (value == null || value == ''){
+                    return true;
+                }
+                if (value.length != 5 && value.length != 4){
+                    return false;
+                }
+                var r = RegExp("[0-9][0-9]:[0-5][0-9]");
+                if (!r.test(value)){
+                    return false;
+                }
+                return true;
+            },"Demora Inválida. Ingresar HH:MM");
+
+            $('#prestacionForm').validate({
+                ignore: "",
+                rules: {
+                    prestacionTipoServicio : {
+                        required : true
+                    },
+                    prestacionEstado : {
+                        required : true
+                    },
+                    prestEstados : {
+                        required : true
+                    },
+                    prestacionKilometros : {
+                        range : [ -1, 9999999 ]
+                    },
+                    prestacionDetalles : {
+                        maxlength: 1024
+                    },
+                    prestacionCalleOrigen : {
+                        maxlength: 1024
+                    },
+                    prestacionCalleDestino : {
+                        maxlength: 1024
+                    },
+                    prestacionPatente : {
+                        validaPatente : true
+                    },
+                    prestacionDemora : {
+                        validaDemora: true
+                    },
+                    prestacionNombreChofer : {
+                        maxlength: 255
+                    }
+                },
+                messages: {
+                    prestacionTipoServicio: "Elija un Tipo de Prestación",
+                    prestacionEstado : "El Estado no puede estar vacío",
+                    prestEstados : "El Estado no puede estar vacío",
+                    prestacionKilometros : "Kilómetros fuera de rango",
+                    validUbiOrigen: "Ubicacion invalida",
+                    prestacionDetalles: "Cantidad máxima de caracteres: 1024",
+                    prestacionCalleOrigen : "Cantidad máxima de caracteres: 1024",
+                    prestacionCalleDestino : "Cantidad máxima de caracteres: 1024",
+                    prestacionPatente : "Patente inválida",
+                    prestacionNombreChofer : "Cantidad máxima de caracteres: 255"
+                },
+                errorPlacement: function(error,element){
+                    if($(element).attr('name').length > 5 && $(element).attr('name').substring(0,5) == "combo"){
+                        var a = $(element).parentsUntil('div.x-border-box');
+                        var b = $(a[a.length-1]).parent().parent();
+                        error.insertBefore(b);
+                    }else{
+                        error.insertAfter(element);
+                    }
+                }
+            });
+
+            $('#editCaseMainForm').validate({
+                //ignore: "",
+                errorPlacement: function(error,element){
+                    if($(element).attr('name').length > 5 && $(element).attr('name').substring(0,5) == "combo"){
+                        var a = $(element).parentsUntil('div.x-border-box');
+                        var b = $(a[a.length-1]).parent().parent();
+                        error.insertBefore(b);
+                    }else{
+                        error.insertAfter(element);
+                    }
+                }
+            });
+
+            if ($('#AfiliadoSelect').length = 1){
+                $('#AfiliadoSelect').rules("add",{
+                    validaAutocompletar: true
+                },"Afiliado inválido");
+            }
+
+            $('#UbicacionOrigen').rules("add",{
                 validaAutocompletar: true
-            },"Afiliado inválido");
-        }
+            },"Ubicación Origen inválida");
 
-        $('#UbicacionOrigen').rules("add",{
-            validaAutocompletar: true
-        },"Ubicación Origen inválida");
+            $('#UbicacionDestino').rules("add",{
+                validaAutocompletar: true
+            },"Ubicación Destino inválida");
 
-        $('#UbicacionDestino').rules("add",{
-            validaAutocompletar: true
-        },"Ubicación Destino inválida");
+            $('#prestacionUbicacionOrigen').rules("add",{
+                validaAutocompletar: true
+            },"Ubicación Origen inválida");
 
-        $('#prestacionUbicacionOrigen').rules("add",{
-            validaAutocompletar: true
-        },"Ubicación Origen inválida");
+            $('#prestacionUbicacionDestino').rules("add",{
+                validaAutocompletar: true
+            }, "Ubicación Destino inválida");
 
-        $('#prestacionUbicacionDestino').rules("add",{
-            validaAutocompletar: true
-        }, "Ubicación Destino inválida");
-
-        $('#prestacionNombrePrestador').rules("add", {
-            validaAutocompletar: true
-        }, "Prestador inválido");
+            $('#prestacionNombrePrestador').rules("add", {
+                validaAutocompletar: true
+            }, "Prestador inválido");
 
 
-        $('#btnPrestacionAceptar').click(function () {
-            if ($('#prestacionForm').valid()) {
-                AceptarPrestacion();
-            }
+            $('#btnPrestacionAceptar').click(function () {
+                if ($('#prestacionForm').valid()) {
+                    AceptarPrestacion();
+                }
+            });
+
+            SetActiveMainTab();
         });
-    });
 
-</script>
+    </script>
 
 
 

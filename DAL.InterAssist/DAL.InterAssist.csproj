@@ -54,6 +54,7 @@
     <Compile Include="AfiliadoDS.cs" />
     <Compile Include="CategoriaDS.cs" />
     <Compile Include="ClienteDS.cs" />
+    <Compile Include="ColoresDS.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="CiudadDS.cs" />
     <Compile Include="DALExceptions.cs" />
@@ -76,6 +77,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Ciudades.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datasets\Colores.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Colores.xsd</DependentUpon>
     </Compile>
     <Compile Include="Datasets\Empresas.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -223,6 +229,17 @@
     </None>
     <None Include="Datasets\Ciudades.xss">
       <DependentUpon>Ciudades.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Colores.xsc">
+      <DependentUpon>Colores.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\Colores.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Colores.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\Colores.xss">
+      <DependentUpon>Colores.xsd</DependentUpon>
     </None>
     <None Include="Datasets\Empresas.xsc">
       <DependentUpon>Empresas.xsd</DependentUpon>

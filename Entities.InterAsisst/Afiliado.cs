@@ -187,8 +187,6 @@ namespace Entities.InterAsisst
             
         }
 
-
-
         #endregion Miembros
 
         #region Miembros

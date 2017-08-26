@@ -83,11 +83,15 @@
                                 )
                                 .ColumnModel(
                                     Html.X().Column().DataIndex(Model, m => m.Id).Text("Id").Width(80),
-                                    Html.X().Column().DataIndex(Model, m => m.NombreAfiliado).Text("Afiliado").Width(200),
-                                    Html.X().Column().DataIndex(Model, m => m.Patente).Text("Patente").Width(100),
+                                    //Html.X().Column().DataIndex(Model, m => m.NombreAfiliado).Text("Afiliado").Width(200),
+                                    Html.X().Column().DataIndex(Model, m => m.Patente).Text("Patente").Width(80),
                                     Html.X().Column().DataIndex(Model, m => m.Poliza).Text("Poliza").Width(120),
+                                    Html.X().Column().DataIndex(Model, m => m.NombreEmpresa).Text("Empresa").Width(120),
+                                    Html.X().Column().DataIndex(Model, m => m.NombreLocalidadOrigen).Text("Origen").Width(150),
+                                    Html.X().Column().DataIndex(Model, m => m.NombreLocalidadDestino).Text("Destino").Width(150),
                                     Html.X().Column().DataIndex(Model, m => m.Estado).Text("Estado").Width(150),
-                                    Html.X().Column().DataIndex(Model, m => m.NombreOperador).Text("Operador").Width(200)
+                                    Html.X().Column().DataIndex(Model, m => m.FechaDisplay).Text("Fecha").Width(120),
+                                    Html.X().Column().DataIndex(Model, m => m.NombreOperador).Text("Operador").Width(120)
                                 )
                                 .Listeners(ls => ls.RowDblClick.Handler = "EditarCaso(record.data.Id)")
                                 .BottomBar(

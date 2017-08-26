@@ -39,6 +39,7 @@ namespace InterAssistMVC.Controllers
             return RedirectToAction("Edit", "Case", new { Id = t.ID });
         }
 
+        /*
         public ActionResult Edit(int Id)
         {
             Ticket e = Ticket.GetById(Id);
@@ -49,10 +50,26 @@ namespace InterAssistMVC.Controllers
 
             return View(m);
         }
+        */
+
+        public ActionResult Edit(int Id, int NumTab = 0)
+        {
+            Ticket e = Ticket.GetById(Id);
+
+            Case m = Case.EntityToModel(e);
+
+            FillCombos(m);
+
+            m.NumTabActive = NumTab;
+
+            return View(m);
+        }
 
         [HttpPost]
         public ActionResult Edit(Case m)
         {
+            int tabActive = m.NumTabActive;
+
             if (!InterAssistMVC.Utils.UISecurityManager.HasAccessTo(InterAssistMVC.Utils.UISecurityManager.CASE_MODIFY_KEY))
             {
                 throw new Exception("No tiene acceso a Modificar Casos");
@@ -74,8 +91,13 @@ namespace InterAssistMVC.Controllers
                 {
                     Ticket e = m.ModelToEntity();
                     e.IdOperadorTrack = Utils.UISecurityManager.GetOperador();
+                    
                     e.Persist();
-                    return RedirectToAction("Edit", "Case", new { Id = e.ID });
+
+                    if (m.ModoGraba == Common.ModoGrabacion.GrabarYSalir)
+                        return RedirectToAction("Index", "Case", null);
+                    
+                    return RedirectToAction("Edit", "Case", new { Id = e.ID , NumTab = tabActive});
                 }
             }
             FillCombos(m);
@@ -197,6 +219,11 @@ namespace InterAssistMVC.Controllers
             m.PrestacionEstados = new SelectList(Estado.List(new FiltroEstado("PRESTACION")), "ID", "Descripcion");
             m.PrestacionesRetrabajo = new SelectList(m.Prestaciones, "Id", "NombrePrestacion");
             m.FinalizacionesPretaciones = new SelectList(Estado.List(new FiltroEstado("FINAL_PREST")), "ID", "Descripcion");
+
+            List<Colores> it = Colores.List(new FiltroColores());
+            it.Add(new Colores());
+            m.Colores = new SelectList(it, "ID", "Nombre");
+
         }
 
         private void Validate(Case m)
@@ -286,7 +313,9 @@ namespace InterAssistMVC.Controllers
                 m.IdTipoServicio != e.IdTipoServicio ||
                 (m.Comentarios ?? "") != (e.Comentarios ?? "") ||
                 m.Kilometros != e.Kilometros ||
-                m.IdProblema != e.IdProblema ||
+                // EGV 26Ago2017 Inicio
+                //m.IdProblema != e.IdProblema ||
+                // EGV 26Ago2017 Fin
                 m.IdPaisOrigen != e.IdPaisOrigen ||
                 m.IdPaisDestino != e.IdPaisDestino ||
                 m.IdProvinciaOrigen != e.IdProvinciaOrigen ||
@@ -320,7 +349,9 @@ namespace InterAssistMVC.Controllers
             pc.IdTipoServicio = p.IdTipoServicio;
             pc.Comentarios = p.Comentarios;
             pc.Kilometros = p.Kilometros;
-            pc.IdProblema = p.IdProblema;
+            // EGV 26Ago2017 Inicio
+            //pc.IdProblema = p.IdProblema;
+            // EGV 26Ago2017 Fin
             pc.IdPaisOrigen = p.IdPaisOrigen;
             pc.IdPaisDestino = p.IdPaisDestino;
             pc.IdProvinciaOrigen = p.IdProvinciaOrigen;
@@ -521,7 +552,9 @@ namespace InterAssistMVC.Controllers
                 (m.CalleDestino ?? "") != (t.CalleDestino ?? "") ||
                 (m.TipoTicket ?? "") != (t.TipoTicket ?? "") ||
                 m.OkAfiliado != t.OkAfiliado ||
-                m.CantTicketsAfil != t.CantTicketsAfil)
+                m.CantTicketsAfil != t.CantTicketsAfil ||
+                m.IdProblema != t.IdProblema ||
+                m.IdColor != t.IdColor)
                 return true;
 
             return false;

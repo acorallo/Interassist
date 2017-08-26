@@ -49,6 +49,7 @@
     <Compile Include="FiltroAfiliado.cs" />
     <Compile Include="FiltroCategorias.cs" />
     <Compile Include="FiltroCiudad.cs" />
+    <Compile Include="FiltroColores.cs" />
     <Compile Include="FiltroEmpresa.cs" />
     <Compile Include="FiltroEstado.cs" />
     <Compile Include="FiltroLocalidad.cs" />

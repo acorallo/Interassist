@@ -16,5 +16,7 @@ namespace Utils.InterAssist
         {
             return (apellido + ", " + nombre).Trim().TrimEnd(',');
         }
+
+        public enum ModoGrabacion { GrabarYEditar, GrabarYSalir}
     }
 }

@@ -58,6 +58,11 @@ namespace InterAssistMVC.Models
         public virtual bool OkAfiliado { get; set; }
         public virtual int CantTicketsAfil { get; set; }
 
+        // EGV 26Ago2017 Inicio
+        public virtual int IdColor { get; set; }
+        public virtual int IdProblema { get; set; }
+        // EGV 26Ago2017 Fin
+
         public virtual AfiliadoModel Afiliado { get; set; }
 
         public virtual List<Prestacion> Prestaciones { get; set; }
@@ -71,6 +76,12 @@ namespace InterAssistMVC.Models
 
         public virtual int IdOperadorTrack { get; set; }
 
+        public virtual string FechaDisplay { get { return this.Fecha.ToString("dd/MM/yyyy"); } }
+
+        public virtual Common.ModoGrabacion ModoGraba { get; set; }
+
+        public virtual int NumTabActive { get; set; }
+
         // Combos
         public SelectList CaseEstados { get; set; }
         public SelectList TiposServicio { get; set; }
@@ -79,11 +90,15 @@ namespace InterAssistMVC.Models
         public SelectList PrestacionesRetrabajo { get; set; }
         public SelectList FinalizacionesPretaciones { get; set; }
 
+        public SelectList Colores { get; set; }
+
         public Case()
         {
             this.Observaciones = new List<Observacion>();
             this.Prestaciones = new List<Prestacion>();
             this.Tracking = new List<TicketTrackModel>();
+            this.ModoGraba = Common.ModoGrabacion.GrabarYEditar;
+            this.NumTabActive = 0;
         }
 
 
@@ -128,6 +143,11 @@ namespace InterAssistMVC.Models
 
             m.OkAfiliado = e.OkAfiliado;
             m.CantTicketsAfil = e.CantTicketsAfil;
+
+            // 26Ago2017 Inicio
+            m.IdProblema = e.IdProblema;
+            m.IdColor = e.IdColor;
+            // 26Ago2017 Fin
 
             if (e.Afiliado != null)
                 m.Afiliado = AfiliadoModel.EntityToModel(e.Afiliado);
@@ -182,6 +202,11 @@ namespace InterAssistMVC.Models
 
             e.OkAfiliado = this.OkAfiliado;
             e.CantTicketsAfil = this.CantTicketsAfil;
+
+            // EGV 26Ago2017 Inicio
+            e.IdColor = this.IdColor;
+            e.IdProblema = this.IdProblema;
+            // EGV 26Ago2017 Fin
 
             if (Observacion != null && Observacion.Trim() != "")
             {

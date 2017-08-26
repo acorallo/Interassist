@@ -134,6 +134,14 @@ namespace Entities.InterAsisst
             return List(f);
         }
 
+        public static List<Categoria> List(string codigo)
+        {
+            FiltroCategorias f = new FiltroCategorias();
+            f.Codigo= codigo;
+
+            return List(f);
+        }
+
     }
         #endregion Metodos
     

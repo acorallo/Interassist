@@ -319,6 +319,10 @@ namespace DAL.InterAssist.Datasets {
             
             private global::System.Data.DataColumn columnCANT_TICKETS_AFIL;
             
+            private global::System.Data.DataColumn columnIDCOLOR;
+            
+            private global::System.Data.DataColumn columnIDPROBLEMA;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TICKETSDataTable() {
@@ -514,6 +518,22 @@ namespace DAL.InterAssist.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDCOLORColumn {
+                get {
+                    return this.columnIDCOLOR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDPROBLEMAColumn {
+                get {
+                    return this.columnIDPROBLEMA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -569,7 +589,9 @@ namespace DAL.InterAssist.Datasets {
                         string CALLE_DESTINO, 
                         string TIPO_TICKET, 
                         string OKAFILIADO, 
-                        int CANT_TICKETS_AFIL) {
+                        int CANT_TICKETS_AFIL, 
+                        int IDCOLOR, 
+                        int IDPROBLEMA) {
                 TICKETSRow rowTICKETSRow = ((TICKETSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IDTICKET,
@@ -591,7 +613,9 @@ namespace DAL.InterAssist.Datasets {
                         CALLE_DESTINO,
                         TIPO_TICKET,
                         OKAFILIADO,
-                        CANT_TICKETS_AFIL};
+                        CANT_TICKETS_AFIL,
+                        IDCOLOR,
+                        IDPROBLEMA};
                 rowTICKETSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTICKETSRow);
                 return rowTICKETSRow;
@@ -641,6 +665,8 @@ namespace DAL.InterAssist.Datasets {
                 this.columnTIPO_TICKET = base.Columns["TIPO_TICKET"];
                 this.columnOKAFILIADO = base.Columns["OKAFILIADO"];
                 this.columnCANT_TICKETS_AFIL = base.Columns["CANT_TICKETS_AFIL"];
+                this.columnIDCOLOR = base.Columns["IDCOLOR"];
+                this.columnIDPROBLEMA = base.Columns["IDPROBLEMA"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -686,6 +712,10 @@ namespace DAL.InterAssist.Datasets {
                 base.Columns.Add(this.columnOKAFILIADO);
                 this.columnCANT_TICKETS_AFIL = new global::System.Data.DataColumn("CANT_TICKETS_AFIL", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCANT_TICKETS_AFIL);
+                this.columnIDCOLOR = new global::System.Data.DataColumn("IDCOLOR", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIDCOLOR);
+                this.columnIDPROBLEMA = new global::System.Data.DataColumn("IDPROBLEMA", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIDPROBLEMA);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIDTICKET}, true));
                 this.columnIDTICKET.AllowDBNull = false;
@@ -1100,6 +1130,38 @@ namespace DAL.InterAssist.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int IDCOLOR {
+                get {
+                    try {
+                        return ((int)(this[this.tableTICKETS.IDCOLORColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IDCOLOR\' in table \'TICKETS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTICKETS.IDCOLORColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int IDPROBLEMA {
+                get {
+                    try {
+                        return ((int)(this[this.tableTICKETS.IDPROBLEMAColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IDPROBLEMA\' in table \'TICKETS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTICKETS.IDPROBLEMAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTELEFONONull() {
                 return this.IsNull(this.tableTICKETS.TELEFONOColumn);
             }
@@ -1168,6 +1230,30 @@ namespace DAL.InterAssist.Datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCANT_TICKETS_AFILNull() {
                 this[this.tableTICKETS.CANT_TICKETS_AFILColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIDCOLORNull() {
+                return this.IsNull(this.tableTICKETS.IDCOLORColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIDCOLORNull() {
+                this[this.tableTICKETS.IDCOLORColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIDPROBLEMANull() {
+                return this.IsNull(this.tableTICKETS.IDPROBLEMAColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIDPROBLEMANull() {
+                this[this.tableTICKETS.IDPROBLEMAColumn] = global::System.Convert.DBNull;
             }
         }
         

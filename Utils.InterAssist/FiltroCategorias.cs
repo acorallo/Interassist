@@ -10,6 +10,8 @@ namespace Utils.InterAssist
     {
         public int ID = Filter.NULL_ID;
 
+        public string Codigo;
+
         protected override void ResetElements()
         {
             this.ID = Filter.NULL_ID;

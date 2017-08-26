@@ -72,7 +72,7 @@ namespace InterAssistMVC.Models
             m.FechaDesdeDisplay = m.FechaDesde.ToString("dd/MM/yyyy");
             m.FechaHastaDisplay = m.FechaHasta.ToString("dd/MM/yyyy");
 
-            m.DatosAfiliado = Newtonsoft.Json.JsonConvert.SerializeObject(new { Id = m.Id, ApyNom = m.ApellidoYNombre, Doc = m.Documento, Dir = m.Direccion, cp = m.CodigoPostal, pol = m.Poliza, cia = m.NombreEmpresa, fd = m.FechaDesdeDisplay, fh = m.FechaHastaDisplay, tp = " ", sp = " ", pat = m.Patente, marca = m.Marca, mod = m.Modelo, col = m.Color, anio = m.Anio });
+            m.DatosAfiliado = Newtonsoft.Json.JsonConvert.SerializeObject(new { Id = m.Id, ApyNom = m.ApellidoYNombre, Doc = m.Documento, Dir = m.Direccion, cp = m.CodigoPostal, pol = m.Poliza, cia = m.NombreEmpresa, fd = m.FechaDesdeDisplay, fh = m.FechaHastaDisplay, tp = " ", sp = " ", pat = m.Patente, marca = m.Marca, mod = m.Modelo, col = m.Color, anio = m.Anio, nomcate = m.NombreCategoria });
 
             return m;
 

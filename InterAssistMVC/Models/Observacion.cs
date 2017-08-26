@@ -13,6 +13,8 @@ namespace InterAssistMVC.Models
         public virtual DateTime Fecha { get; set; }
         public virtual bool Estado { get; set; }
 
+        public virtual string FechaDisplay { get { return this.Fecha.ToString("dd/MM/yyyy H:mm:ss"); } }
+
         [Required]                  // EGV 11Jun2017
         [StringLength(3999)]        // EGV 11Jun2017
         public virtual string Descripcion { get; set; }

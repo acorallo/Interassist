@@ -51,6 +51,10 @@ namespace Entities.InterAsisst
             this.OkAfiliado = false;
             this.IdOperadorTrack = NULL_ID;
             // EGV 25May2017 Fin
+            // EGV 26Ago2017 Inicio
+            this.IdColor = NULL_ID;
+            this.IdProblema = NULL_ID;
+            // EGV 26Ago2017 Fin
         }
 
         #endregion Constructores
@@ -310,6 +314,24 @@ namespace Entities.InterAsisst
             get { return _cantTicketsAfil; }
             set { _cantTicketsAfil = value; }
         }
+
+        // EGV 26Ago2017 Inicio
+        private int _idColor;
+
+        public int IdColor
+        {
+            get { return _idColor; }
+            set { _idColor = value; }
+        }
+
+        private int _idProblema;
+
+        public int IdProblema
+        {
+            get { return _idProblema; }
+            set { _idProblema = value; }
+        }
+        // EGV 26Ago2017 Fin
 
 
         private int _idOperadorTrack;
@@ -571,6 +593,10 @@ namespace Entities.InterAsisst
             resultRow.OKAFILIADO = this.OkAfiliado ? "S" : "N";
             resultRow.CANT_TICKETS_AFIL = this.CantTicketsAfil;
             // EGV 20Jun2017 Fin
+            // EGV 26Ago2017 Inicio
+            resultRow.IDCOLOR = this.IdColor;
+            resultRow.IDPROBLEMA = this.IdProblema;
+            // EGV 26Ago2017 Fin
 
 
             //resultRow.IDTIPOSERVICIO = this.IdTipoServicio;
@@ -607,13 +633,15 @@ namespace Entities.InterAsisst
             prestadorCaso.Kilometros = kilometros;
             prestadorCaso.Costo = costo;
 
-            prestadorCaso.IdProblema = PersistEntity.NuleableInt(dr["IDPROBLEMA"].ToString());
+            // EGV 26Ago2017 Inicio
+            /*prestadorCaso.IdProblema = PersistEntity.NuleableInt(dr["IDPROBLEMA"].ToString());
             if (prestadorCaso.IdProblema > 0)
             {
                 FiltroProblema f = new FiltroProblema();
                 f.ID = prestadorCaso.IdProblema;
                 prestadorCaso.Problema = Problema.List(f).FirstOrDefault().Desripcion;
-            }
+            }*/
+            // EGV 26Ago2017 Fin
 
             prestadorCaso.IdPaisOrigen = PersistEntity.NuleableInt(dr["IDPAIS_ORIGEN"].ToString());
             prestadorCaso.IdPaisDestino = PersistEntity.NuleableInt(dr["IDPAIS_DESTINO"].ToString());
@@ -696,6 +724,10 @@ namespace Entities.InterAsisst
             ticket._nombreLocalidadDestino = dr[TicketDS.COL_LOCALIDAD_DESTINO_NOMBRE].ToString();
             ticket._marca = dr[TicketDS.COL_MARCA].ToString();
             ticket._modelo = dr[TicketDS.COL_MODELO].ToString();
+            // EGV 26Ago2017 Inicio
+            ticket._idColor = PersistEntity.NuleableInt(dr[TicketDS.COL_IDCOLOR].ToString());
+            ticket._idProblema = PersistEntity.NuleableInt(dr[TicketDS.COL_IDPROBLEMA].ToString());
+            // EGV 26Ago2017 Fin
         }
 
         public override bool Persist()

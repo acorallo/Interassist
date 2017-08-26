@@ -37,8 +37,10 @@ namespace InterAssistMVC.Models
         public virtual Decimal Costo { get; set; }
 
         // EGV 25May2017 Inicio
-        public virtual int IdProblema { get; set; }
-        public virtual string Problema { get; set; }
+        // EGV 26Ago2017 Inicio
+        //public virtual int IdProblema { get; set; }
+        //public virtual string Problema { get; set; }
+        // EGV 26Ago2017 Fin
         public virtual int IdPaisOrigen { get; set; }
         public virtual int IdPaisDestino { get; set; }
         public virtual int IdProvinciaOrigen { get; set; }
@@ -90,8 +92,10 @@ namespace InterAssistMVC.Models
             m.Comentarios = e.Comentarios;
             m.Kilometros = e.Kilometros;
             //m.Costo = e.Costo;
-            m.IdProblema = e.IdProblema;
-            m.Problema = e.Problema;
+            // EGV 26Ago2017 Inicio
+            //m.IdProblema = e.IdProblema;
+            //m.Problema = e.Problema;
+            // EGV 26Ago2017 Fin
             m.IdPaisOrigen = e.IdPaisOrigen;
             m.IdPaisDestino = e.IdPaisDestino;
             m.IdProvinciaOrigen = e.IdProvinciaOrigen;
@@ -146,7 +150,9 @@ namespace InterAssistMVC.Models
             e.Comentarios = this.Comentarios;
             e.Kilometros = this.Kilometros;
             e.Costo = this.Costo;
-            e.IdProblema = this.IdProblema;
+            // EGV 26Ago2017 Inicio
+            //e.IdProblema = this.IdProblema;
+            // EGV 26Ago2017 Fin
             e.IdPaisOrigen = this.IdPaisOrigen;
             e.IdPaisDestino = this.IdPaisDestino;
             e.IdProvinciaOrigen = this.IdProvinciaOrigen;

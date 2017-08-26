@@ -23,8 +23,10 @@ namespace Entities.InterAsisst
         // EGV 25May2017 Inicio
         public int IdPrestador { get; set; }
         public int IdTipoServicio { get; set; }
-        public int IdProblema { get; set; }
-        public string Problema { get; set; }
+        // EGV 26Ago2017 Inicio
+        //public int IdProblema { get; set; }
+        //public string Problema { get; set; }
+        // EGV 26Ago2017 Fin
         public int IdPaisOrigen { get; set; }
         public int IdPaisDestino { get; set; }
         public int IdProvinciaOrigen { get; set; }
@@ -70,7 +72,9 @@ namespace Entities.InterAsisst
             this.IdLocalidadOrigen = PersistEntity.NULL_ID;
             this.IdPaisDestino = PersistEntity.NULL_ID;
             this.IdPaisOrigen = PersistEntity.NULL_ID;
-            this.IdProblema = PersistEntity.NULL_ID;
+            // EGV 26Ago2017 Inicio
+            //this.IdProblema = PersistEntity.NULL_ID;
+            // EGV 26Ago2017 Fin
             this.IdProvinciaDestino = PersistEntity.NULL_ID;
             this.IdProvinciaOrigen = PersistEntity.NULL_ID;
             this.IdTicketPrestadorRetrabajo = PersistEntity.NULL_ID;
@@ -94,7 +98,9 @@ namespace Entities.InterAsisst
             resultRow.COSTO = this.Costo;
             resultRow.KILOMETROS = this.Kilometros;
             // EGV 25May2017 Inicio
-            resultRow.IDPROBLEMA = this.IdProblema;
+            // EGV 26Ago2017 Inicio
+            //resultRow.IDPROBLEMA = this.IdProblema;
+            // EGV 26Ago2017 Fin
             resultRow.IDPAIS_ORIGEN = this.IdPaisOrigen;
             resultRow.IDPAIS_DESTINO = this.IdPaisDestino;
             resultRow.IDPROVINCIA_ORIGEN = this.IdProvinciaOrigen;
