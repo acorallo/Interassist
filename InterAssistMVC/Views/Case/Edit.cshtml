@@ -17,8 +17,31 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="form-group">
-                        <div class="col-lg-3"><label>Número de Caso:</label></div>
-                        <div class="col-lg-2"><span class="form-control-static" id="idTicket">@Html.DisplayFor(model => model.Id)</span></div>
+                        <div class="row">
+                            <div class="col-lg-2"><label>Número de Caso:</label></div>
+                            <div class="col-lg-2"><span class="form-control-static" id="idTicket">@Html.DisplayFor(model => model.Id)</span></div>
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-1"><label>Operador:</label></div>
+                            <div class="col-lg-3"><span class="form-control-static">@Html.DisplayFor(model => model.NombreOperador)</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2"><label>Estado:</label></div>
+                            <div class="col-lg-3">
+                                @{
+                                    if (InterAssistMVC.Utils.UISecurityManager.HasAccessTo(InterAssistMVC.Utils.UISecurityManager.CASE_CHANGE_STATUS_KEY))
+                                    {
+                                                        @Html.DropDownListFor(model => model.IdEstado, Model.CaseEstados, new { @class = "form-control" })
+                                    }
+                                    else
+                                    {
+                                                        @Html.DropDownListFor(model => model.IdEstado, Model.CaseEstados, new { @class = "form-control", @disabled = "disabled" })
+                                    }
+                                }
+                            </div>
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-1"><label>Creado:</label></div>
+                            <div class="col-lg-3"><span class="form-control-static">@Html.DisplayFor(model => model.FechaDisplay)</span></div>
+                        </div>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -88,16 +111,7 @@
                         }
                         <div>@Html.HiddenFor(model => model.IdAfiliado)</div>
                         <div class="col-lg-3">
-                            @{
-                                if (InterAssistMVC.Utils.UISecurityManager.HasAccessTo(InterAssistMVC.Utils.UISecurityManager.CASE_CHANGE_STATUS_KEY))
-                                {
-                                    @Html.DropDownListFor(model => model.IdEstado, Model.CaseEstados, new { @class = "form-control" })
-                                }
-                                else
-                                {
-                                    @Html.DropDownListFor(model => model.IdEstado, Model.CaseEstados, new { @class = "form-control", @disabled = "disabled" })
-                                }
-                            }
+                            @*Aca iba el Estado antes*@
                         </div>
 
                         <div class="modal fade" id="modalOkAfiliado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
