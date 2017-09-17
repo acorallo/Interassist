@@ -27,10 +27,9 @@ namespace DAL.InterAssist
 
         private const string CONST_LIST_PROSTADORES_PROCEDURE_NAME = "TICKET_PKG.LIST_PRESTADORES_BY_TICKET";
 
-        // EGV 24Jun2017 Inicio
         private const string CONST_LIST_TICKET_TRACK_PROCEDURE_NAME = "TICKET_PKG.LIST_TICKET_TRACK_BY_TICKET";
         private const string CONST_CREATE_TICKET_TRACK_PROCEDURE_NAME = "TICKET_PKG.CREATE_TICKET_TRACK";
-        // EGV 24Jun2017 Fin
+
 
 
         // Columnas de la tabla.
@@ -50,13 +49,7 @@ namespace DAL.InterAssist
         public const string COL_IDLOCALIDAD_ORIGEN = "IDLOCALIDAD_ORIGEN";
         public const string COL_IDLOCALIDAD_DESTINO = "IDLOCALIDAD_DESTINO";
         public const string COL_CALLE_DESTINO = "CALLE_DESTINO";
-        // EGV 25May2017 Inicio
-        //public const string COL_ALTURA_DESTINO = "ALTURA_DESTINO";
-        // EGV 25May2017 Fin
         public const string COL_CALLE_ORIGEN = "CALLE_ORIGEN";
-        // EGV 25May2017 Inicio
-        //public const string COL_ALTURA_ORIGEN = "ALTURA_ORIGEN";
-        // EGV 25May2017 Fin
         public const string COL_OBJECTHASH = "OBJECTHASH";
         public const string COL_ID_PROBLEMA = "IDPROBLEMA";
         public const string COL_TIPO_TICKET = "TIPO_TICKET";
@@ -68,20 +61,22 @@ namespace DAL.InterAssist
         public const string COL_KILOMETROS = "KILOMETROS";
         public const string COL_COSTO = "COSTO";
 
-        // EGV 25May2017 Inicio
         public const string COL_IDTICKETPRESTADOR = "IDTICKETPRESTADOR";
         public const string COL_IDPROBLEMA = "IDPROBLEMA";
         public const string COL_IDTICKETPRESTADOR_RETRABAJO = "IDTICKETPRESTADOR_RETRABAJO";
-        public const string COL_DEMORA = "DEMORA";
         public const string COL_NOMBRE_CHOFER = "NOMBRE_CHOFER";
         public const string COL_OKAFILIADO = "OKAFILIADO";
         public const string COL_CANT_TICKETS_AFIL = "CANT_TICKETS_AFIL";
         public const string COL_ESTADO = "ESTADO";
-        // EGV 25May2017 Fin
 
-        // EGV 26Ago2017 Inicio
         public const string COL_IDCOLOR = "IDCOLOR";
-        // EGV 26Ago2017 Fin
+        public const string COL_UBICACION_DESCR = "UBICACION_DESCR";
+        public const string COL_DEMORA_EST = "DEMORA_EST";
+
+        public const string COL_DEMORA_REAL = "DEMORA_REAL";
+        public const string COL_IDTIPOPRESTACION = "IDTIPOPRESTACION";
+
+        public const string COL_CODIGO_TIPOPRESTACION = "CODIGO_TIPOPRESTACION";
 
 
         // Otras Columnas
@@ -92,8 +87,6 @@ namespace DAL.InterAssist
         public const string COL_PATENTE = "PATENTE";
         public const string COL_NOMBRE_EMPRESA = "NOMBRE_EMPRESA";
         public const string COL_NOMBRE_AFILIADO = "NOMBRE_AFILIADO";
-
-
 
 
         #endregion Constantes
@@ -132,9 +125,7 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDAFILIADO", DbType.Int32, filtro.IDAfiliado));
                 paramList.Add(repository.DbFactory.getDataParameter("P_CIUDAD_ORIGEN", DbType.Int32, filtro.IDCiudadOrigen));
                 paramList.Add(repository.DbFactory.getDataParameter("P_CIUDAD_DESTINO", DbType.Int32, filtro.IDCiudadDestino));
-                //paramList.Add(repository.DbFactory.getDataParameter("P_IDPRESTADOR", DbType.Int32, filtro.IDPrestador));
                 paramList.Add(repository.DbFactory.getDataParameter("P_SEARCH", DbType.String, filtro.Search));
-
 
                 repository.ExecuteListProcedure(CONST_LIST_PROCEDURE_NAME, paramList, f, resultSet, out RecordCount);
 
@@ -152,10 +143,7 @@ namespace DAL.InterAssist
             throw new NotImplementedException();
         }
 
-        // EGV 24jun2017 Inicio
-        //public int Create(DataRow r, DataRow observacion, Datasets.Ticket_Prestador.TICKET_PRESTADORESDataTable Prestadores)
-        public int Create(DataRow r, DataRow observacion, Datasets.Ticket_Prestador.TICKET_PRESTADORESDataTable Prestadores, int idOperadorTrack)
-        // EGV 24jun2017 Fin
+       public int Create(DataRow r, DataRow observacion, Datasets.Ticket_Prestador.TICKET_PRESTADORESDataTable Prestadores, int idOperadorTrack)
         {
             int result = 0;
 
@@ -178,41 +166,24 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_ID_PAIS_DESTINO", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDPAIS_DESTINOColumn].ToString()))));
                 paramList.Add(repository.DbFactory.getDataParameter("P_ID_PROV_DEST", DbType.Int32, Dataservices.IntNUlleable((Int32.Parse(dr[dtable.IDPROVINCIA_DESTINOColumn].ToString())))));
                 paramList.Add(repository.DbFactory.getDataParameter("P_CIUDAD_DEST", DbType.Int32, Dataservices.IntNUlleable((Int32.Parse(dr[dtable.IDCIUDAD_DESTINOColumn].ToString())))));
-                //paramList.Add(repository.DbFactory.getDataParameter("P_IDPRESTADOR", DbType.Int32, Dataservices.IntNUlleable((Int32.Parse(dr[dtable.IDPRESTADORColumn].ToString())))));
                 paramList.Add(repository.DbFactory.getDataParameter("P_TELEFONO", DbType.String, dr[dtable.TELEFONOColumn].ToString()));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDESTADO", DbType.Int32, Int32.Parse(dr[dtable.IDESTADOColumn].ToString())));
                 paramList.Add(repository.DbFactory.getDataParameter("P_CALLE_ORIGEN", DbType.String, dr[dtable.CALLE_ORIGENColumn].ToString()));
-                // EGV 25May2017 Inicio
-                //paramList.Add(repository.DbFactory.getDataParameter("P_ALTURA_ORIGEN", DbType.String, dr[dtable.ALTURA_ORIGENColumn].ToString()));
-                // EGV 25May2017 Fin
                 paramList.Add(repository.DbFactory.getDataParameter("P_CALLE_DESTINO", DbType.String, dr[dtable.CALLE_DESTINOColumn].ToString()));
-                // EGV 25May2017 Inicio
-                //paramList.Add(repository.DbFactory.getDataParameter("P_ALTURA_DESTINO", DbType.String, dr[dtable.ALTURA_DESTINOColumn].ToString()));
-                // EGV 25May2017 Fin
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDLOCALIDA_ORIGEN", DbType.Int32, Dataservices.IntNUlleable((Int32.Parse(dr[dtable.IDLOCALIDAD_ORIGENColumn].ToString())))));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDLOCALIDA_DESTINO", DbType.Int32, Dataservices.IntNUlleable((Int32.Parse(dr[dtable.IDLOCALIDAD_DESTINOColumn].ToString())))));
-                // EGV 25May2017 Inicio
-                //paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Int32.Parse(dr[dtable.IDPROBLEMAColumn].ToString())));
-                // EGV 25May2017 Fin
-                //paramList.Add(repository.DbFactory.getDataParameter("P_IDTIPOSERVICIO", DbType.Int32, Int32.Parse(dr[dtable.IDTIPOSERVICIOColumn].ToString())));
                 paramList.Add(repository.DbFactory.getDataParameter("P_TIPO_TICKET", DbType.String, dr[dtable.TIPO_TICKETColumn].ToString()));
-
-                // EGV 20Jun2017 Inicio
                 paramList.Add(repository.DbFactory.getDataParameter("P_OKAFILIADO", DbType.String, dr[dtable.OKAFILIADOColumn].ToString()));
                 paramList.Add(repository.DbFactory.getDataParameter("P_CANT_TICKETS_AFIL", DbType.Int32, Dataservices.IntNUlleable((Int32.Parse(dr[dtable.CANT_TICKETS_AFILColumn].ToString())))));
-                // EGV 20Jun2017 Fin
-
-                // EGV 26Ago2017 Inicio
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDCOLOR", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDCOLORColumn].ToString()))));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDPROBLEMAColumn].ToString()))));
-                // EGV 26Ago2017 Fin
+                paramList.Add(repository.DbFactory.getDataParameter("P_UBICACION_DESCR", DbType.String, dr[dtable.UBICACION_DESCRColumn].ToString()));
+                paramList.Add(repository.DbFactory.getDataParameter("P_DEMORA_EST", DbType.String, dr[dtable.DEMORA_ESTColumn].ToString()));
 
                 result = repository.ExecuteCreateProcedure(CONST_CREATE_PROCEDURE_NAME, paramList, dr[dtable.OBJECTHASHColumn].ToString());
                 
-                // EGV 25May2017 Inicio
                 if (observacion != null)
                 {
-                    // EGV 25May2017 Fin
                     DBRepository repositoryObservacion = DBRepository.GetDbRepository(repository);
 
                     ObservacionDS dsObservaciones = new ObservacionDS();
@@ -220,14 +191,12 @@ namespace DAL.InterAssist
                     obs.IDTICKET = result;
 
                     dsObservaciones.Create(obs, repositoryObservacion);
-                }   // EGV 25May2017
+                } 
 
                 // Persiste los prestadores asociados.
                 this.PersistPrestadores(result, Prestadores, repository);
 
-                // EGV 24Jun2017 Inicio
                 this.Insert_Ticket_Track(repository, result, idOperadorTrack, Int32.Parse(dr[dtable.IDESTADOColumn].ToString()));
-                // EGV 24Jun2017 Fin
 
                 repository.CommitTransaction();
 
@@ -247,10 +216,7 @@ namespace DAL.InterAssist
             throw new NotImplementedException();
         }
 
-        // EGV 24jun2017 Inicio
-        //public bool Update(DataRow r, DataRow observacion, Datasets.Ticket_Prestador.TICKET_PRESTADORESDataTable Prestadores)
         public bool Update(DataRow r, DataRow observacion, Datasets.Ticket_Prestador.TICKET_PRESTADORESDataTable Prestadores, int idOperadorTrack)
-        // EGV 24jun2017 Fin
         {
             bool result = false;
 
@@ -260,7 +226,6 @@ namespace DAL.InterAssist
 
             try
             {
-
 
                 List<IDbDataParameter> paramList = new List<IDbDataParameter>();
 
@@ -281,37 +246,21 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_TELEFONO", DbType.String, dr[dtable.TELEFONOColumn].ToString()));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDESTADO", DbType.Int32, Int32.Parse(dr[dtable.IDESTADOColumn].ToString())));
                 paramList.Add(repository.DbFactory.getDataParameter("P_CALLE_ORIGEN", DbType.String, dr[dtable.CALLE_ORIGENColumn].ToString()));
-                // EGV 25May2017 Inicio
-                //paramList.Add(repository.DbFactory.getDataParameter("P_ALTURA_ORIGEN", DbType.String, dr[dtable.ALTURA_ORIGENColumn].ToString()));
-                // EGV 25May2017 Fin
                 paramList.Add(repository.DbFactory.getDataParameter("P_CALLE_DESTINO", DbType.String, dr[dtable.CALLE_DESTINOColumn].ToString()));
-                // EGV 25May2017 Inicio
-                //paramList.Add(repository.DbFactory.getDataParameter("P_ALTURA_DESTINO", DbType.String, dr[dtable.ALTURA_DESTINOColumn].ToString()));
-                // EGV 25May2017 Fin
                 paramList.Add(repository.DbFactory.getDataParameter("P_ID_LOCALIDAD_DESTINO", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDLOCALIDAD_DESTINOColumn].ToString()))));
                 paramList.Add(repository.DbFactory.getDataParameter("P_ID_LOCALIDAD_ORIGEN", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDLOCALIDAD_ORIGENColumn].ToString()))));
-                // EGV 25May2017 Inicio
-                //paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Int32.Parse(dr[dtable.IDPROBLEMAColumn].ToString())));
-                // EGV 25May2017 Fin
                 paramList.Add(repository.DbFactory.getDataParameter("P_TIPO_TICKET", DbType.String, dr[dtable.TIPO_TICKETColumn].ToString()));
-
-                // EGV 20Jun2017 Inicio
                 paramList.Add(repository.DbFactory.getDataParameter("P_OKAFILIADO", DbType.String, dr[dtable.OKAFILIADOColumn].ToString()));
                 paramList.Add(repository.DbFactory.getDataParameter("P_CANT_TICKETS_AFIL", DbType.Int32, Dataservices.IntNUlleable((Int32.Parse(dr[dtable.CANT_TICKETS_AFILColumn].ToString())))));
-                // EGV 20Jun2017 Fin
-
-                // EGV 26Ago2017 Inicio
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDCOLOR", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDCOLORColumn].ToString()))));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDPROBLEMAColumn].ToString()))));
-                // EGV 26Ago2017 Fin
+                paramList.Add(repository.DbFactory.getDataParameter("P_UBICACION_DESCR", DbType.String, dr[dtable.UBICACION_DESCRColumn].ToString()));
+                paramList.Add(repository.DbFactory.getDataParameter("P_DEMORA_EST", DbType.String, dr[dtable.DEMORA_ESTColumn].ToString()));
 
                 result = (repository.ExecuteUpdateProcedure(CONST_UPDATE_PROCEDURE_NAME, paramList, dr[dtable.OBJECTHASHColumn].ToString()) == 1);
 
-
-                // EGV 25May2017 Inicio
                 if (observacion != null)
                 {
-                    // EGV 25May2017 Fin
                     // Guardar Observaciones.
                     DBRepository repositoryObservacion = DBRepository.GetDbRepository(repository);
                     ObservacionDS dataserviceObservacion = new ObservacionDS();
@@ -319,15 +268,12 @@ namespace DAL.InterAssist
                     Datasets.Observaciones.OBSERVACIONESRow obs = (Datasets.Observaciones.OBSERVACIONESRow)observacion;
                     obs.IDTICKET = Int32.Parse(dr[dtable.IDTICKETColumn].ToString());
 
-
                     dataserviceObservacion.Create(obs);
-                }   // EGV 25May2017
+                } 
 
                 this.PersistPrestadores(idTicketToUpdate, Prestadores, repository);
 
-                // EGV 24Jun2017 Inicio
                 this.Insert_Ticket_Track(repository, Int32.Parse(dr[dtable.IDTICKETColumn].ToString()), idOperadorTrack, Int32.Parse(dr[dtable.IDESTADOColumn].ToString()));
-                // EGV 24Jun2017 Fin
 
                 if (result)
                 {
@@ -362,17 +308,11 @@ namespace DAL.InterAssist
                     {
                         if (r.IDTICKETPRESTADOR == NULL_INT)
                         {
-                            // EGV 25May2017 Inicio
-                            //Insert_Proveedor_Ticket(repository, idTicketAsociado, r.IDPRESTADOR, r.IDTIPOSERVICIO, r.COMENTARIOS, r.KILOMETROS, r.COSTO, "ObjectHash");
                             Insert_Proveedor_Ticket(repository, idTicketAsociado, r, "ObjectHash");
-                            // EGV 25May2017 Fin
                         }
                         else
                         {
-                            // EGV 25May2017 Inicio
-                            //Update_Proveedor_Ticket(repository, r.IDTICKETPRESTADOR, idTicketAsociado, r.IDPRESTADOR, r.IDTIPOSERVICIO, r.COMENTARIOS, r.KILOMETROS, r.COSTO, "ObjectHash");
                             Update_Proveedor_Ticket(repository, r, "ObjectHash");
-                            // EGV 25May2017 Fin
                         }
                     }
                     else
@@ -455,48 +395,14 @@ namespace DAL.InterAssist
         }
 
 
-        // EGV 25May2017 Inicio
-        /*
-        public bool Update_Proveedor_Ticket(DBRepository repository,
-                                           Int32 idTicketPrestador,    
-                                           Int32 idTicket,
-                                           Int32 idPrestador,
-                                           Int32 idTipoServicio,
-                                           string comentarios,
-                                           decimal kIlometos,
-                                           decimal Costo,
-                                           string ObjectHash)
-        */
         public bool Update_Proveedor_Ticket(DBRepository repository, Datasets.Ticket_Prestador.TICKET_PRESTADORESRow r, string ObjectHash)
-        // EGV 25May2017 Fin
         {
             bool result = false;
 
             try
             {
-                /*
-                        P_ID IN TICKET_PRESTADORES.IDTICKETPRESTADOR%TYPE,
-                        P_IDTICKET IN NUMBER, 
-                        P_IDPRESTADOR IN NUMBER,
-                        P_IDTIPOSERVICIO IN NUMBER,
-                        P_OBJECTHASH IN PRESTADORES.objecthash%TYPE,
-                        P_COMENTARIOS IN TICKET_PRESTADORES.COMENTARIOS%TYPE,
-                        P_KILOMETROS IN TICKET_PRESTADORES.KILOMETROS%TYPE,
-                        P_COSTO IN TICKET_PRESTADORES.COSTO%TYPE
-                 */
-
                 List<IDbDataParameter> paramList = new List<IDbDataParameter>();
 
-                // EGV 25May2017 Inicio
-                /*
-                paramList.Add(repository.DbFactory.getDataParameter("P_ID", DbType.Int32, idTicketPrestador));
-                paramList.Add(repository.DbFactory.getDataParameter("P_IDTICKET", DbType.Int32, idTicket));
-                paramList.Add(repository.DbFactory.getDataParameter("P_IDPRESTADOR", DbType.Int32, idPrestador));
-                paramList.Add(repository.DbFactory.getDataParameter("P_IDTIPOSERVICIO", DbType.Int32, idTipoServicio));
-                paramList.Add(repository.DbFactory.getDataParameter("P_COMENTARIOS", DbType.String, comentarios));
-                paramList.Add(repository.DbFactory.getDataParameter("P_KILOMETROS", DbType.Decimal, kIlometos));
-                paramList.Add(repository.DbFactory.getDataParameter("P_COSTO", DbType.Decimal, Costo));
-                */
                 paramList.Add(repository.DbFactory.getDataParameter("P_ID", DbType.Int32, Dataservices.IntNUlleable(r.IDTICKETPRESTADOR)));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDTICKET", DbType.Int32, Dataservices.IntNUlleable(r.IDTICKET)));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPRESTADOR", DbType.Int32, Dataservices.IntNUlleable(r.IDPRESTADOR)));
@@ -504,9 +410,6 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_COMENTARIOS", DbType.String, r.COMENTARIOS));
                 paramList.Add(repository.DbFactory.getDataParameter("P_KILOMETROS", DbType.Decimal, r.KILOMETROS));
                 paramList.Add(repository.DbFactory.getDataParameter("P_COSTO", DbType.Decimal, r.COSTO));
-                // EGV 27Ago2017 Inicio
-                //paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Dataservices.IntNUlleable(r.IDPROBLEMA)));
-                // EGV 27Ago2017 Fin
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPAIS_ORIGEN", DbType.Int32, Dataservices.IntNUlleable(r.IDPAIS_ORIGEN)));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPAIS_DESTINO", DbType.Int32, Dataservices.IntNUlleable(r.IDPAIS_DESTINO)));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPROVINCIA_ORIGEN", DbType.Int32, Dataservices.IntNUlleable(r.IDPROVINCIA_ORIGEN)));
@@ -519,19 +422,16 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_CALLE_DESTINO", DbType.String, r.CALLE_DESTINO));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDESTADO", DbType.Int32, Dataservices.IntNUlleable(r.IDESTADO)));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDTICKETPRESTADOR_RETRABAJO", DbType.Int32, Dataservices.IntNUlleable(r.IDTICKETPRESTADOR_RETRABAJO)));
-                paramList.Add(repository.DbFactory.getDataParameter("P_DEMORA", DbType.String, r.DEMORA));
                 paramList.Add(repository.DbFactory.getDataParameter("P_PATENTE", DbType.String, r.PATENTE));
                 paramList.Add(repository.DbFactory.getDataParameter("P_NOMBRE_CHOFER", DbType.String, r.NOMBRE_CHOFER));
-                // EGV 25May2017 Inicio
-                // EGV 20Jun2017 Inicio
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDFINALIZACION", DbType.Int32, Dataservices.IntNUlleable(r.IDFINALIZACION)));
-                // EGV 20Jun2017 Fin
-
+                paramList.Add(repository.DbFactory.getDataParameter("P_DEMORA_EST", DbType.String, r.DEMORA_EST));
+                paramList.Add(repository.DbFactory.getDataParameter("P_DEMORA_REAL", DbType.String, r.DEMORA_REAL));
+                paramList.Add(repository.DbFactory.getDataParameter("P_IDTIPOPRESTACION", DbType.Int32, Dataservices.IntNUlleable(r.IDTIPOPRESTACION)));
 
                 repository.ExecuteUpdateProcedure(CONST_UPDATTE_TICKET_PRESTADOR_PROCEDURE_NAME, paramList, ObjectHash);
 
                 result = true;
-
 
             }
             catch (Exception ex)
@@ -543,17 +443,7 @@ namespace DAL.InterAssist
             return result;
         }
 
-        // EGV 25May2017 Inicio
-        /*public int Insert_Proveedor_Ticket(DBRepository repository, 
-                                           Int32 idTicket, 
-                                           Int32 idPrestador, 
-                                           Int32 idTipoServicio, 
-                                           string comentarios,
-                                           decimal kIlometos,
-                                           decimal Costo,
-                                           string ObjectHash)*/
         public int Insert_Proveedor_Ticket(DBRepository repository, Int32 idTicket, Datasets.Ticket_Prestador.TICKET_PRESTADORESRow r, string ObjectHash)
-        // EGV 25May2017 Fin
         {
             int resultID = -1;
 
@@ -561,24 +451,12 @@ namespace DAL.InterAssist
             {
                 List<IDbDataParameter> paramList = new List<IDbDataParameter>();
 
-                // EGV 25May2017 Inicio
-                /*
-                paramList.Add(repository.DbFactory.getDataParameter("P_IDTICKET", DbType.Int32, idTicket));
-                paramList.Add(repository.DbFactory.getDataParameter("P_IDPRESTADOR", DbType.Int32, idPrestador));
-                paramList.Add(repository.DbFactory.getDataParameter("P_IDTIPOSERVICIO", DbType.Int32, idTipoServicio));
-                paramList.Add(repository.DbFactory.getDataParameter("P_COMENTARIOS", DbType.String, comentarios));
-                paramList.Add(repository.DbFactory.getDataParameter("P_KILOMETROS", DbType.Decimal, kIlometos));
-                paramList.Add(repository.DbFactory.getDataParameter("P_COSTO", DbType.Decimal, Costo));
-                */
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDTICKET", DbType.Int32, r.IDTICKET));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPRESTADOR", DbType.Int32, Dataservices.IntNUlleable(r.IDPRESTADOR)));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDTIPOSERVICIO", DbType.Int32, Dataservices.IntNUlleable(r.IDTIPOSERVICIO)));
                 paramList.Add(repository.DbFactory.getDataParameter("P_COMENTARIOS", DbType.String, r.COMENTARIOS));
                 paramList.Add(repository.DbFactory.getDataParameter("P_KILOMETROS", DbType.Decimal, r.KILOMETROS));
                 paramList.Add(repository.DbFactory.getDataParameter("P_COSTO", DbType.Decimal, r.COSTO));
-                // EGV 27Ago2017 Inicio
-                //paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Dataservices.IntNUlleable(r.IDPROBLEMA)));
-                // EGV 27Ago2017 Fin
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPAIS_ORIGEN", DbType.Int32, Dataservices.IntNUlleable(r.IDPAIS_ORIGEN)));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPAIS_DESTINO", DbType.Int32, Dataservices.IntNUlleable(r.IDPAIS_DESTINO)));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPROVINCIA_ORIGEN", DbType.Int32, Dataservices.IntNUlleable(r.IDPROVINCIA_ORIGEN)));
@@ -591,16 +469,14 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_CALLE_DESTINO", DbType.String, r.CALLE_DESTINO));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDESTADO", DbType.Int32, Dataservices.IntNUlleable(r.IDESTADO)));
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDTICKETPRESTADOR_RETRABAJO", DbType.Int32, Dataservices.IntNUlleable(r.IDTICKETPRESTADOR_RETRABAJO)));
-                paramList.Add(repository.DbFactory.getDataParameter("P_DEMORA", DbType.String, r.DEMORA));
                 paramList.Add(repository.DbFactory.getDataParameter("P_PATENTE", DbType.String, r.PATENTE));
                 paramList.Add(repository.DbFactory.getDataParameter("P_NOMBRE_CHOFER", DbType.String, r.NOMBRE_CHOFER));
-                // EGV 25May2017 Fin
-                // EGV 20Jun2017 Inicio
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDFINALIZACION", DbType.Int32, Dataservices.IntNUlleable(r.IDFINALIZACION)));
-                // EGV 20Jun2017 Fin
+                paramList.Add(repository.DbFactory.getDataParameter("P_DEMORA_EST", DbType.String, r.DEMORA_EST));
+                paramList.Add(repository.DbFactory.getDataParameter("P_DEMORA_REAL", DbType.String, r.DEMORA_REAL));
+                paramList.Add(repository.DbFactory.getDataParameter("P_IDTIPOPRESTACION", DbType.Int32, Dataservices.IntNUlleable(r.IDTIPOPRESTACION)));
 
                 resultID = repository.ExecuteCreateProcedure(CONST_CREATE_TICKET_PRESTADOR_PROCEDURE_NAME, paramList, ObjectHash);
-
             }
             catch (Exception ex)
             {
@@ -611,7 +487,7 @@ namespace DAL.InterAssist
 
         }
 
-        // EGV 24Jun2017 Inicio
+
         public int Insert_Ticket_Track(DBRepository repository, int idTicket, int idOperadorTrack, int idEstado)
         {
             int resultID = -1;
@@ -658,7 +534,7 @@ namespace DAL.InterAssist
 
             return resultSet;
         }
-        // EGV 24Jun2017 Fin
+
 
         public DataTable ObtenercasosMensuales(int anno, int mes, string poliza)
         {
@@ -683,20 +559,16 @@ namespace DAL.InterAssist
 
                 if (ds.Tables.Count > 0)
                     resultSet = ds.Tables[0];
-
-
-
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-
             return resultSet;
         }
 
-        // EGV 20Jun2017 Inicio
+
         public int ObtenercasosMensuales(int idAfiliado, int idTicket)
         {
 
@@ -724,12 +596,8 @@ namespace DAL.InterAssist
                 throw ex;
             }
 
-
             return 0;
         }
-        // EGV 20Jun2017 Fin
-
-
         #endregion Dataservices Metodos
     }
 }

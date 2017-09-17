@@ -35,7 +35,6 @@ namespace Entities.InterAsisst
         {
             this._id = id;
             this._UObjectID = objectHash;
-            // EGV 25May2017 Inicio
             this.IdAfiliado = NULL_ID;
             this.IdCiudadDestino = NULL_ID;
             this.IdCiudadOrigen = NULL_ID;
@@ -50,11 +49,8 @@ namespace Entities.InterAsisst
             this.CantTicketsAfil = NULL_ID;
             this.OkAfiliado = false;
             this.IdOperadorTrack = NULL_ID;
-            // EGV 25May2017 Fin
-            // EGV 26Ago2017 Inicio
             this.IdColor = NULL_ID;
             this.IdProblema = NULL_ID;
-            // EGV 26Ago2017 Fin
         }
 
         #endregion Constructores
@@ -70,14 +66,12 @@ namespace Entities.InterAsisst
 
         }
 
-        // EGV 24jun2017 Inicio
         private bool _isTrackingLoaded = false;
 
         public bool IsTrackingLoaded
         {
             get { return _isTrackingLoaded;  }
         }
-        // EGV 24jun2017 Fin
 
         private int _idOperador;
 
@@ -182,16 +176,6 @@ namespace Entities.InterAsisst
             set { _calle_origen = value; }
         }
 
-        // EGV 25May2017 Inicio
-        /*private string _altura_origen;
-
-        public string AlturaOrigen
-        {
-            get { return _altura_origen; }
-            set { _altura_origen = value; }
-        }*/
-        // EGV 25May2017 Fin
-
         private string _calle_destino;
 
         public string CalleDestino
@@ -200,23 +184,6 @@ namespace Entities.InterAsisst
             set { _calle_destino = value; }
         }
 
-        // EGV 25May2017 Inicio
-        /*private string _altura_destino;
-
-        public string AlturaDestino
-        {
-            get { return _altura_destino; }
-            set { _altura_destino = value; }
-        }
-
-        private int _idProblema;
-
-        public int IdProblema
-        {
-            get { return _idProblema; }
-            set { _idProblema = value; }
-        }*/
-        // EGV 25May2017 Fin
         private Observacion _observacion;
 
         public Observacion Observacion
@@ -257,16 +224,6 @@ namespace Entities.InterAsisst
             set { _nombreOperador = value; }
         }
 
-        // EGV 25May2017 Inicio
-        /*private string _problema;
-
-        public string Problema
-        {
-            get { return _problema; }
-            set { _problema = value; }
-        }*/
-        // EGV 25May2017 Fin
-
         private string _nombreEmpresa;
 
         public string NombreEmpresa
@@ -291,14 +248,6 @@ namespace Entities.InterAsisst
             set { _tipoTicket = value; }
         }
 
-        // EGV 25May2017 Inicio
-        /*private int _idTipoServicio;
-
-        public int IdTipoServicio
-        {
-            get { return _idTipoServicio; }
-            set { _idTipoServicio = value; }
-        }*/
         private bool _okAfiliado;
 
         public bool OkAfiliado
@@ -315,7 +264,6 @@ namespace Entities.InterAsisst
             set { _cantTicketsAfil = value; }
         }
 
-        // EGV 26Ago2017 Inicio
         private int _idColor;
 
         public int IdColor
@@ -331,8 +279,22 @@ namespace Entities.InterAsisst
             get { return _idProblema; }
             set { _idProblema = value; }
         }
-        // EGV 26Ago2017 Fin
 
+        private string _ubicacionDescr;
+
+        public string UbicacionDescr
+        {
+            get { return _ubicacionDescr; }
+            set { this._ubicacionDescr = value; }
+        }
+
+        private string _demoraEst;
+
+        public string DemoraEst
+        {
+            get { return _demoraEst; }
+            set { this._demoraEst = value; }
+        }
 
         private int _idOperadorTrack;
 
@@ -349,7 +311,6 @@ namespace Entities.InterAsisst
             get { return _estado; }
             set { _estado = value; }
         }
-        // EGV 25May2017 Fin
 
         private string _nombreLocalidadOrigen;
 
@@ -407,20 +368,6 @@ namespace Entities.InterAsisst
             set { _prestadorCaso = value; }
         }
 
-        // EGV 25May2017 Inicio
-        /*
-        public string DocumentoAfiliado { get; set; }
-
-        public string DireccionAfiliado { get; set; }
-
-        public string CPAfiliado { get; set; }
-
-        public DateTime FechaDesdeAfiliado { get; set; }
-
-        public DateTime FechaHastaAfiliado { get; set; }
-
-        public string Anio { get; set; }
-         */
         public Afiliado Afiliado { get; set; }
 
         private List<TicketTrack> _ticketTracking = new List<TicketTrack>();
@@ -434,8 +381,6 @@ namespace Entities.InterAsisst
             }
             set { _ticketTracking = value; }
         }
-        // EGV 25May2017 Fin
-
         #endregion Miembros de Entidad
 
         #region Miembros
@@ -518,18 +463,13 @@ namespace Entities.InterAsisst
 
                     ticketResult.ObservacionesHistoricas = Observacion.ListByTicket(ticketResult.ID);
                     ticketResult.LoadPrestadores();
-                    // EGV 15May2017 Inicio
+
                     if (ticketResult.IdAfiliado > 0)
                     {
                         ticketResult.Afiliado = Afiliado.GetById(ticketResult.IdAfiliado);
                     }
                     ticketResult.LoadTracking();
-                    // EGV 15May2017 Fin
-
                 }
-
-
-
             }
             catch (Exception ex)
             {
@@ -558,15 +498,12 @@ namespace Entities.InterAsisst
 
         public override DataRow ObjectToRow()
         {
-
             Tickets.TICKETSRow resultRow = new Tickets.TICKETSDataTable().NewTICKETSRow();
-
 
             resultRow.IDTICKET = this.ID;
             resultRow.IDOPERADOR = this.IDOperador;
             resultRow.IDPAIS_ORIGEN = this.IdPaisOrigen;
             resultRow.IDAFILIADO = this.IdAfiliado;
-            //resultRow.IDPRESTADOR = this.IdPrestador;
             resultRow.TELEFONO = this.Telefono;
             resultRow.IDESTADO = this.IdEstado;
             resultRow.IDPAIS_DESTINO = this.IdPaisDestino;
@@ -577,41 +514,25 @@ namespace Entities.InterAsisst
             resultRow.IDLOCALIDAD_DESTINO = this.IdLocalidadDestino;
             resultRow.IDLOCALIDAD_ORIGEN = this.IdLocalidadOrigen;
             resultRow.CALLE_ORIGEN = this.CalleOrigen;
-            // EGV 25May2017 Inicio
-            //resultRow.ALTURA_ORIGEN = this.AlturaOrigen;
-            // EGV 25May2017 Fin
             resultRow.CALLE_DESTINO = this.CalleDestino;
-            // EGV 25May2017 Inicio
-            //resultRow.ALTURA_DESTINO = this.AlturaDestino;
-            // EGV 25May2017 Fin
             resultRow.OBJECTHASH = this.UObjectID;
-            // EGV 25May2017 Inicio
-            //resultRow.IDPROBLEMA = this.IdProblema;
-            // EGV 25May2017 Fin
             resultRow.TIPO_TICKET = this.TipoTicket;
-            // EGV 20Jun2017 Inicio
             resultRow.OKAFILIADO = this.OkAfiliado ? "S" : "N";
             resultRow.CANT_TICKETS_AFIL = this.CantTicketsAfil;
-            // EGV 20Jun2017 Fin
-            // EGV 26Ago2017 Inicio
             resultRow.IDCOLOR = this.IdColor;
             resultRow.IDPROBLEMA = this.IdProblema;
-            // EGV 26Ago2017 Fin
-
-
-            //resultRow.IDTIPOSERVICIO = this.IdTipoServicio;
+            resultRow.UBICACION_DESCR = this.UbicacionDescr;
+            resultRow.DEMORA_EST = this.DemoraEst;
 
             return resultRow;
         }
 
-        // EGV 25May2017 Inicio
         public static void ORM_PrestadorCaso(PrestadorCaso prestadorCaso, DataRow dr)
         {
             prestadorCaso.ID = Int32.Parse(dr["IDTICKETPRESTADOR"].ToString());
             prestadorCaso.IdPrestador = PersistEntity.NuleableInt(dr["IDPRESTADOR"].ToString());
             if (prestadorCaso.IdPrestador > 0)
                 prestadorCaso.Prestador = Prestador.GetById(Int32.Parse(dr["IDPRESTADOR"].ToString()));
-
 
             decimal costo = 0;
             decimal kilometros = 0;
@@ -633,16 +554,6 @@ namespace Entities.InterAsisst
             prestadorCaso.Kilometros = kilometros;
             prestadorCaso.Costo = costo;
 
-            // EGV 26Ago2017 Inicio
-            /*prestadorCaso.IdProblema = PersistEntity.NuleableInt(dr["IDPROBLEMA"].ToString());
-            if (prestadorCaso.IdProblema > 0)
-            {
-                FiltroProblema f = new FiltroProblema();
-                f.ID = prestadorCaso.IdProblema;
-                prestadorCaso.Problema = Problema.List(f).FirstOrDefault().Desripcion;
-            }*/
-            // EGV 26Ago2017 Fin
-
             prestadorCaso.IdPaisOrigen = PersistEntity.NuleableInt(dr["IDPAIS_ORIGEN"].ToString());
             prestadorCaso.IdPaisDestino = PersistEntity.NuleableInt(dr["IDPAIS_DESTINO"].ToString());
             prestadorCaso.IdProvinciaOrigen = PersistEntity.NuleableInt(dr["IDPROVINCIA_ORIGEN"].ToString());
@@ -661,31 +572,25 @@ namespace Entities.InterAsisst
                 prestadorCaso.Estado = Entities.InterAsisst.Estado.List(f).FirstOrDefault().Descripcion;
             }
             prestadorCaso.IdTicketPrestadorRetrabajo = PersistEntity.NuleableInt(dr["IDTICKETPRESTADOR_RETRABAJO"].ToString());
-            prestadorCaso.Demora = dr["DEMORA"].ToString();
             prestadorCaso.Patente = dr["PATENTE"].ToString();
             prestadorCaso.NombreChofer = dr["NOMBRE_CHOFER"].ToString();
             prestadorCaso.NombreLocalidadOrigen = dr["LOCALIDAD_ORIGEN_NOMBRE"].ToString();
             prestadorCaso.NombreLocalidadDestino = dr["LOCALIDAD_DESTINO_NOMBRE"].ToString();
             prestadorCaso.IdFinalizacion = PersistEntity.NuleableInt(dr["IDFINALIZACION"].ToString());
-
+            prestadorCaso.DemoraEst = dr["DEMORA_EST"].ToString();
+            prestadorCaso.DemoraReal = dr["DEMORA_REAL"].ToString();
+            prestadorCaso.IdTipoPrestacion = PersistEntity.NuleableInt(dr["IDTIPOPRESTACION"].ToString());
+            prestadorCaso.CodigoTipoPrestacion = dr["CODIGO_TIPOPRESTACION"].ToString();
         }
-        // EGV 25May2017 Fin
 
         public static void ORM(Ticket ticket, DataRow dr)
         {
             ticket._id = Int32.Parse(dr[TicketDS.COL_IDTICKET].ToString());
             ticket._idOperador = Int32.Parse(dr[TicketDS.COL_IDOPERADOR].ToString());
             ticket._idPaisOrigen = PersistEntity.NuleableInt(dr[TicketDS.COL_IDPAIS_ORIGEN].ToString());
-            // EGV 25May2017 Inicio
-            //ticket._idAfiliado = Int32.Parse(dr[TicketDS.COL_IDAFILIADO].ToString());
             ticket._idAfiliado = PersistEntity.NuleableInt(dr[TicketDS.COL_IDAFILIADO].ToString());
-            // EGV 25May2017 Fin
-            //ticket._idPrestador = PersistEntity.NuleableInt(dr[TicketDS.COL_IDPRESTADOR].ToString());
             ticket._telefono = dr[TicketDS.COL_TELEFONO].ToString();
-            // EGV 25May2017 Inicio
-            //ticket._idEstado = Int32.Parse(dr[TicketDS.COL_IDESTADO].ToString());
             ticket._idEstado = PersistEntity.NuleableInt(dr[TicketDS.COL_IDESTADO].ToString());
-            // EGV 25May2017 Fin
             ticket._idPaisDestino = PersistEntity.NuleableInt(dr[TicketDS.COL_IDPAIS_DESTINO].ToString());
             ticket._idProvinciaDestino = PersistEntity.NuleableInt(dr[TicketDS.COL_IDPROVINCIA_DESTINO].ToString());
             ticket._idProvinciaOrigen = PersistEntity.NuleableInt(dr[TicketDS.COL_IDPROVINCIA_ORIGEN].ToString());
@@ -694,29 +599,14 @@ namespace Entities.InterAsisst
             ticket._idLocalidadDestino = PersistEntity.NuleableInt(dr[TicketDS.COL_IDLOCALIDAD_DESTINO].ToString());
             ticket._idLocalidadOrigen = PersistEntity.NuleableInt(dr[TicketDS.COL_IDLOCALIDAD_ORIGEN].ToString());
             ticket._calle_origen = dr[TicketDS.COL_CALLE_ORIGEN].ToString();
-            // EGV 25May2017 Inicio
-            //ticket._altura_origen = dr[TicketDS.COL_ALTURA_ORIGEN].ToString();
-            // EGV 25May2017 Fin
             ticket._calle_destino = dr[TicketDS.COL_CALLE_DESTINO].ToString();
-            // EGV 25May2017 Inicio
-            //ticket._altura_destino = dr[TicketDS.COL_ALTURA_DESTINO].ToString();
-            // EGV 25May2017 Fin
             ticket._fecha = (DateTime)dr[TicketDS.COL_FECHA];
-            // EGV 25May2017 Inicio
-            //ticket._idProblema = Int32.Parse(dr[TicketDS.COL_ID_PROBLEMA].ToString());
-            // EGV 25May2017 Fin
-            //ticket._idTipoServicio = Int32.Parse(dr[TicketDS.COL_IDTIPOSERVICIO].ToString());
-            // Columnas para el listado.
             ticket._patente = dr[TicketDS.COL_PATENTE].ToString();
             ticket._poliza = dr[TicketDS.COL_POLIZA].ToString();
-            //ticket._nombrePrestador = dr[TicketDS.COL_NOMBRE_PRESTADOR].ToString();
             ticket._nombreOperador = dr[TicketDS.COL_NOMBRE_OPERADOR].ToString();
-            // EGV 25May2017 Inicio
-            //ticket._problema = dr[TicketDS.COL_PROBLEMA].ToString();
             ticket._okAfiliado = dr[TicketDS.COL_OKAFILIADO].ToString() == "S" ? true : false;
             ticket._cantTicketsAfil = PersistEntity.NuleableInt(dr[TicketDS.COL_CANT_TICKETS_AFIL].ToString());
             ticket._estado = dr[TicketDS.COL_ESTADO].ToString();
-            // EGV 25May2017 Fin
             ticket._nombreEmpresa = dr[TicketDS.COL_NOMBRE_EMPRESA].ToString();
             ticket._nombreAfiliado = dr[TicketDS.COL_NOMBRE_AFILIADO].ToString();
             ticket._tipoTicket = dr[TicketDS.COL_TIPO_TICKET].ToString();
@@ -724,10 +614,10 @@ namespace Entities.InterAsisst
             ticket._nombreLocalidadDestino = dr[TicketDS.COL_LOCALIDAD_DESTINO_NOMBRE].ToString();
             ticket._marca = dr[TicketDS.COL_MARCA].ToString();
             ticket._modelo = dr[TicketDS.COL_MODELO].ToString();
-            // EGV 26Ago2017 Inicio
             ticket._idColor = PersistEntity.NuleableInt(dr[TicketDS.COL_IDCOLOR].ToString());
             ticket._idProblema = PersistEntity.NuleableInt(dr[TicketDS.COL_IDPROBLEMA].ToString());
-            // EGV 26Ago2017 Fin
+            ticket._ubicacionDescr = dr[TicketDS.COL_UBICACION_DESCR].ToString();
+            ticket._demoraEst = dr[TicketDS.COL_DEMORA_EST].ToString();
         }
 
         public override bool Persist()
@@ -739,27 +629,15 @@ namespace Entities.InterAsisst
 
                 TicketDS dataservice = new TicketDS();
 
-                // EGV 25May2017 Inicio
-                //if (this.Observacion == null)
-                //    throw new Exception("El objeto ticket debe tener una observación");
-                // EGV 25May2017 Fin
-
                 if (this.IsNew)
                 {
-                    // EGV 25May2017 Inicio
-                    //this._id = dataservice.Create(this.ObjectToRow(), this.Observacion.ObjectToRow(), this.GetPrestadoresTable());
                     this._id = dataservice.Create(this.ObjectToRow(), (this.Observacion != null ? this.Observacion.ObjectToRow() : null), this.GetPrestadoresTable(), this.IdOperadorTrack);
-                    // EGV 25May2017 Fin
                     result = true;
                 }
                 else
                 {
-                    // EGV 25May2017 Inicio
-                    //result = dataservice.Update(this.ObjectToRow(), this.Observacion.ObjectToRow(), this.GetPrestadoresTable());
                     result = dataservice.Update(this.ObjectToRow(), (this.Observacion != null ? this.Observacion.ObjectToRow() : null), this.GetPrestadoresTable(), this.IdOperadorTrack);
-                    // EGV 25May2017 Fin
                 }
-
             }
             catch (Exception ex)
             {
@@ -800,9 +678,7 @@ namespace Entities.InterAsisst
             {
                 Ticket_Prestador.TICKET_PRESTADORESRow r = resulTable.NewTICKET_PRESTADORESRow();
                 c.ObjectToRow(r);
-                // EGV 25May2017 Inicio
                 r.IDTICKET = this.ID;
-                // EGV 25May2017 Fin
                 resulTable.Rows.Add(r);
             }
 
@@ -810,7 +686,7 @@ namespace Entities.InterAsisst
 
         }
 
-        // EGV 24Jun2017 Inicio
+
         private void LoadTracking()
         {
             if (this.ID != NULL_ID && !this.IsTrackingLoaded)
@@ -838,8 +714,6 @@ namespace Entities.InterAsisst
 
             }
         }
-        // EGV 24Jun2017 Fin
-
 
         #endregion Metodos
 

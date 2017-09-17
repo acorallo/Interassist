@@ -58,6 +58,7 @@
     <Compile Include="FiltroPrestador.cs" />
     <Compile Include="FiltroProblema.cs" />
     <Compile Include="FiltroTicket.cs" />
+    <Compile Include="FiltroTipoPrestacion.cs" />
     <Compile Include="FiltroTipoServicio.cs" />
     <Compile Include="FiltroUpload.cs" />
     <Compile Include="FiltroUploadError.cs" />

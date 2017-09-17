@@ -40,53 +40,7 @@
   strsql varchar2(32000);
   isWhere boolean:= true;
   BEGIN
-    -- EGV 25May2017 Inicio Se quitan campos altura_origen, altura_destingo e idproblema
-    /*
-    strsql:='SELECT A.IDTICKET,
-                   A.IDOPERADOR,
-                   A.FECHA,
-                   A.IDPAIS_ORIGEN,
-                   A.IDAFILIADO,
-                   A.TELEFONO,
-                   A.IDESTADO,
-                    A.IDPAIS_DESTINO,
-                    A.IDPROVINCIA_ORIGEN,
-                    A.IDPROVINCIA_DESTINO,
-                    A.IDCIUDAD_ORIGEN,
-                    A.IDCIUDAD_DESTINO,
-                    A.IDLOCALIDAD_DESTINO,
-                    H.nombre LOCALIDAD_DESTINO_NOMBRE,
-                    A.IDLOCALIDAD_ORIGEN,                    
-                    G.nombre LOCALIDAD_ORIGEN_NOMBRE,                   
-                    A.CALLE_DESTINO,
-                    A.ALTURA_DESTINO,
-                    A.ALTURA_ORIGEN,
-                    A.CALLE_ORIGEN,
-                    A.OBJECTHASH,
-                    A.IDPROBLEMA,
-                    A.TIPO_TICKET,
-                    B.PATENTE,
-                    B.POLIZA,
-                    B.MARCA,
-                    B.MODELO,
-                    (UPPER(B.APELLIDO) || '', ''|| UPPER(B.NOMBRE)) NOMBRE_AFILIADO,
-                    (UPPER(C.APELLIDO) || '', ''|| UPPER(C.NOMBRE)) NOMBRE_OPERADOR,
-                    E.Descripcion PROBLEMA,
-                    F.NOMBRE NOMBRE_EMPRESA
-              FROM TICKETS A,
-                   AFILIADOS B,
-                   OPERADORES C,
-                   PROBLEMAS E,
-                   EMPRESAS F,
-                   LOCALIDADES G,
-                   LOCALIDADES H
-              WHERE a.idafiliado = b.idafiliado and 
-                    a.idoperador = c.idoperador and
-                    a.idproblema = e.idproblema and
-                    b.idempresa = f.idempresa and
-                    a.idlocalidad_origen = g.idlocalidad(+) and
-                    a.idlocalidad_destino = h.idlocalidad(+)';
-        */
+
         strsql:='SELECT A.IDTICKET,
                    A.IDOPERADOR,
                    A.FECHA,
@@ -120,7 +74,9 @@
                     A.OKAFILIADO,
                     A.CANT_TICKETS_AFIL,
                     A.IDCOLOR,
-                    A.IDPROBLEMA
+                    A.IDPROBLEMA,
+                    A.UBICACION_DESCR,
+                    A.DEMORA_EST
               FROM TICKETS A,
                    AFILIADOS B,
                    OPERADORES C,
@@ -134,7 +90,6 @@
                     a.idlocalidad_origen = g.idlocalidad(+) and
                     a.idlocalidad_destino = h.idlocalidad(+) and
                     a.idestado = i.idestado';
-    -- EGV 25May2017 Fin
             
   -- ID
   IF (P_ID <> INT_NULL) THEN
@@ -159,11 +114,7 @@
 
   
   IF (P_SEARCH IS NOT NULL) THEN
-      -- EGV 21May2017 Inicio
-      --strsql:=  strsql || IASSIST_PKG.WHERECLAUSE(isWhere) || '(UPPER(a.IDOPERADOR || A.IDTICKET || B.NOMBRE || B.APELLIDO || B.POLIZA || B.PATENTE || B.IDDOCUMENTO || B.MARCA || A.CALLE_DESTINO || A.CALLE_DESTINO || A.TIPO_TICKET) LIKE UPPER(''%'||P_SEARCH||'%'') or
-      --                                                          C.IDOPERADOR IN (select idoperador from operadores where upper(NOMBRE || APELLIDO) LIKE ''%'||P_SEARCH||'%''))';
       strsql:=  strsql || IASSIST_PKG.WHERECLAUSE(isWhere) || 'UPPER(a.IDOPERADOR || A.IDTICKET || NVL(B.NOMBRE,'''') || NVL(B.APELLIDO,'''') || NVL(B.POLIZA,'''') || NVL(B.PATENTE,'''') || C.APELLIDO || C.NOMBRE || I.DESCRIPCION) LIKE UPPER(''%'||P_SEARCH||'%'')';
-      -- EGV 21May2017 Fin
   END IF;
   
   -- Order by clause
@@ -197,27 +148,16 @@
     P_CIUDAD_DEST IN tickets.idciudad_destino%TYPE,
     P_OBJECTHASH IN PRESTADORES.objecthash%TYPE,
     P_CALLE_ORIGEN IN tickets.calle_origen%TYPE,
-    -- EGV 25May2017 Inicio
-    --P_ALTURA_ORIGEN IN tickets.altura_origen%TYPE,
-    -- EGV 25May2017 Fin
     P_CALLE_DESTINO IN tickets.calle_destino%TYPE,
-    -- EGV 25May2017 Inicio
-    --P_ALTURA_DESTINO IN tickets.altura_destino%TYPE,
-    -- EGV 25May2017 Fin
     P_IDLOCALIDA_ORIGEN IN tickets.idlocalidad_origen%TYPE,
     P_IDLOCALIDA_DESTINO IN tickets.idlocalidad_destino%TYPE,
-    -- EGV 25May2017 Inicio
-    --P_IDPROBLEMA IN tickets.idproblema%TYPE,
-    -- EGV 25May2017 Fin
-    P_TIPO_TICKET IN tickets.tipo_ticket%TYPE
-    -- EGV 20Jun2017 Inicio
-    ,P_OKAFILIADO IN tickets.okafiliado%TYPE
-    ,P_CANT_TICKETS_AFIL in tickets.cant_tickets_afil%TYPE
-    -- EGV 20Jun2017 Fin
-    -- EGV 26Ago2017 Inicio
-    ,P_IDCOLOR in tickets.idcolor%TYPE,
-    P_IDPROBLEMA in tickets.idproblema%TYPE
-    -- EGV 26Ago2017 Fin
+    P_TIPO_TICKET IN tickets.tipo_ticket%TYPE,
+    P_OKAFILIADO IN tickets.okafiliado%TYPE,
+    P_CANT_TICKETS_AFIL in tickets.cant_tickets_afil%TYPE,
+    P_IDCOLOR in tickets.idcolor%TYPE,
+    P_IDPROBLEMA in tickets.idproblema%TYPE,
+    P_UBICACION_DESCR IN tickets.ubicacion_descr%TYPE,
+    P_DEMORA_EST In tickets.demora_est%TYPE
   )
    IS
    ID_INSERT NUMBER;
@@ -241,75 +181,43 @@
       tickets.idciudad_destino,
       tickets.objecthash,
       tickets.calle_origen,
-      -- EGV 25May2017 Inicio
-      --tickets.altura_origen,
-      -- EGV 25May2017 Fin
       tickets.calle_destino,
-      -- EGV 25May2017 Inicio
-      --tickets.altura_destino,
-      -- EGV 25May2017 Fin
       tickets.idlocalidad_origen,
       tickets.idlocalidad_destino,
-      -- EGV 25May2017 Inicio
-      --tickets.idProblema,
-      -- EGV 25May2017 Fin
-      tickets.tipo_ticket
-      -- EGV 20Jun2017 Inicio
-      ,tickets.okafiliado
-      ,tickets.cant_tickets_afil
-      -- EGV 20Jun2017 Fin
-      -- EGV 26Ago2017 Inicio
-      ,tickets.idcolor,
-      tickets.idproblema
-      -- EGV 26Ago2017 Fin
+      tickets.tipo_ticket,
+      tickets.okafiliado,
+      tickets.cant_tickets_afil,
+      tickets.idcolor,
+      tickets.idproblema,
+      tickets.ubicacion_descr,
+      tickets.demora_est
     )
     VALUES 
     (
       ID_INSERT,
       P_IDOPERADOR,
       SYSDATE,
-      -- EGV 25May2017 Inicio
-      --P_ID_PAIS_ORIGEN,
-      --P_IDAFILIADO,
       decode(P_ID_PAIS_ORIGEN,INT_NULL,null,P_ID_PAIS_ORIGEN),
       decode(P_IDAFILIADO,INT_NULL,null,P_IDAFILIADO),
-      -- EGV 25May2017 Fin
       P_TELEFONO,
-      -- EGV 25May2017 Inicio
-      --P_IDESTADO,
-      --P_ID_PAIS_DESTINO,
-      --P_ID_PROV_ORIGEN,
-      --P_ID_PROV_DEST,
       decode(P_IDESTADO,INT_NULL,null,P_IDESTADO),
       decode(P_ID_PAIS_DESTINO,INT_NULL,null,P_ID_PAIS_DESTINO),
       decode(P_ID_PROV_ORIGEN,INT_NULL,null,P_ID_PROV_ORIGEN),
       decode(P_ID_PROV_DEST,INT_NULL,null,P_ID_PROV_DEST),
-      -- EGV 25May2017 Fin
       P_CIUDAD_ORIGEN,
       P_CIUDAD_DEST,
       P_OBJECTHASH,
       P_CALLE_ORIGEN,
-      -- EGV 25May2017 Inicio
-      --P_ALTURA_ORIGEN,
-      -- EGV 25May2017 Fin
       P_CALLE_DESTINO,
-      -- EGV 25May2017 Inicio
-      --P_ALTURA_DESTINO,
-      --P_IDLOCALIDA_ORIGEN,
-      --P_IDLOCALIDA_DESTINO,
-      --P_IDPROBLEMA,
       decode(P_IDLOCALIDA_ORIGEN,INT_NULL,null,P_IDLOCALIDA_ORIGEN),
       decode(P_IDLOCALIDA_DESTINO,INT_NULL,null,P_IDLOCALIDA_DESTINO),
-      -- EGV 25May2017 Fin
-      P_TIPO_TICKET
-      -- EGV 20Jun2017 Inicio
-      ,P_OKAFILIADO
-      ,P_CANT_TICKETS_AFIL
-      -- EGV 20Jun2017 Fin
-      -- EGV 26Ago2017 Inicio
-      ,P_IDCOLOR,
-      P_IDPROBLEMA
-      -- EGV 26Ago2017 Fin
+      P_TIPO_TICKET,
+      P_OKAFILIADO,
+      P_CANT_TICKETS_AFIL,
+      P_IDCOLOR,
+      P_IDPROBLEMA,
+      P_UBICACION_DESCR,
+      P_DEMORA_EST
     );
     
     P_ID:= ID_INSERT;
@@ -330,28 +238,17 @@
     P_TELEFONO IN tickets.telefono%TYPE,
     P_IDESTADO IN tickets.idestado%TYPE,
     P_CALLE_ORIGEN IN tickets.calle_origen%TYPE,
-    -- EGV 25May2017 Inicio
-    --P_ALTURA_ORIGEN IN tickets.altura_origen%TYPE,
-    -- EGV 25May2017 Fin
     P_CALLE_DESTINO IN tickets.calle_destino%TYPE,
-    -- EGV 25May2017 Inicio
-    --P_ALTURA_DESTINO IN tickets.altura_destino%TYPE,
-    -- EGV 25May2017 Fin
     P_ID_LOCALIDAD_DESTINO IN tickets.idprovincia_destino%TYPE,
     P_ID_LOCALIDAD_ORIGEN IN tickets.idlocalidad_origen%TYPE, 
     P_OBJECTHASH IN PRESTADORES.objecthash%TYPE,
-    -- EGV 25May2017 Inicio
-    --P_IDPROBLEMA IN tickets.idproblema%TYPE,
-    -- EGV 25May2017 Fin
     P_TIPO_TICKET IN tickets.tipo_ticket%TYPE,
-    -- EGV 20Jun2017 Inicio
     P_OKAFILIADO IN tickets.okafiliado%TYPE,
     P_CANT_TICKETS_AFIL in tickets.cant_tickets_afil%TYPE,
-    -- EGV 20Jun2017 Fin
-    -- EGV 26Ago2017 Inicio
     P_IDCOLOR in tickets.idcolor%TYPE,
     P_IDPROBLEMA in tickets.idproblema%TYPE,
-    -- EGV 26Ago2017 Fin
+    P_UBICACION_DESCR IN tickets.ubicacion_descr%TYPE,
+    P_DEMORA_EST In tickets.demora_est%TYPE,
     P_AFFECTED_ROWS OUT number
   )
   IS
@@ -359,15 +256,6 @@
   
     UPDATE TICKETS 
       SET 
-      -- EGV 25May2017 Inicio
-      --tickets.idoperador = P_IDOPERADOR,
-      --tickets.idafiliado = P_IDAFILIADO,
-      --tickets.idpais_origen = P_ID_PAIS_ORIGEN,
-      --tickets.idprovincia_origen = P_ID_PROV_ORIGEN,
-      --tickets.idciudad_origen = P_CIUDAD_ORIGEN,
-      --tickets.idpais_destino = P_ID_PAIS_DEST,
-      --tickets.idprovincia_destino = P_ID_PROV_DEST,
-      --tickets.idciudad_destino = P_CIUDAD_DEST,
       tickets.idoperador =  decode(P_IDOPERADOR,INT_NULL,null,P_IDOPERADOR),
       tickets.idafiliado =  decode(P_IDAFILIADO,INT_NULL,null,P_IDAFILIADO),
       tickets.idpais_origen =  decode(P_ID_PAIS_ORIGEN,INT_NULL,null,P_ID_PAIS_ORIGEN),
@@ -376,34 +264,19 @@
       tickets.idpais_destino =  decode(P_ID_PAIS_DEST,INT_NULL,null,P_ID_PAIS_DEST),
       tickets.idprovincia_destino =  decode(P_ID_PROV_DEST,INT_NULL,null,P_ID_PROV_DEST),
       tickets.idciudad_destino =  decode(P_CIUDAD_DEST,INT_NULL,null,P_CIUDAD_DEST),      
-      -- EGV 25May2017 Fin
       tickets.telefono = P_TELEFONO,
-      -- EGV 25May2017 Inicio
-      --tickets.idestado = P_IDESTADO,
       tickets.idestado = decode(P_IDESTADO,INT_NULL,null,P_IDESTADO),
-      -- EGV 25May2017 Fin
       tickets.calle_destino = P_CALLE_DESTINO,
-      -- EGV 25May2017 Inicio
-      --tickets.altura_destino = P_ALTURA_DESTINO,
-      -- EGV 25May2017 Fin
       tickets.calle_origen = P_CALLE_ORIGEN,
-      -- EGV 25May2017 Inicio
-      --tickets.altura_origen = P_ALTURA_ORIGEN,
-      --tickets.idlocalidad_origen = P_ID_LOCALIDAD_ORIGEN,
-      --tickets.idlocalidad_destino = P_ID_LOCALIDAD_DESTINO,
-      --tickets.idproblema = P_IDPROBLEMA,
       tickets.idlocalidad_origen = decode(P_ID_LOCALIDAD_ORIGEN,INT_NULL,null,P_ID_LOCALIDAD_ORIGEN),
       tickets.idlocalidad_destino = decode(P_ID_LOCALIDAD_DESTINO,INT_NULL,null,P_ID_LOCALIDAD_DESTINO),
-      -- EGV 25May2017 Fin
-      tickets.tipo_ticket = P_TIPO_TICKET
-      -- EGV 20Jun2017 Inicio
-      ,tickets.okafiliado = P_OKAFILIADO
-      ,tickets.cant_tickets_afil = P_CANT_TICKETS_AFIL
-      -- EGV 20Jun2017 Fin
-      -- EGV 26Ago2017 Inicio
-      ,tickets.idcolor = P_IDCOLOR
-      ,tickets.idproblema = P_IDPROBLEMA
-      -- EGV 26Ago2017 Fin
+      tickets.tipo_ticket = P_TIPO_TICKET,
+      tickets.okafiliado = P_OKAFILIADO,
+      tickets.cant_tickets_afil = P_CANT_TICKETS_AFIL,
+      tickets.idcolor = P_IDCOLOR,
+      tickets.idproblema = P_IDPROBLEMA,
+      tickets.ubicacion_descr = P_UBICACION_DESCR,
+      tickets.demora_est = P_DEMORA_EST
     WHERE tickets.idticket = P_ID and tickets.objecthash = P_OBJECTHASH;
     
     P_AFFECTED_ROWS:= sql%rowcount;
@@ -434,7 +307,7 @@
 
   
   -- Relacion ticket-prestador.
-    PROCEDURE CREATE_TICKET_PRESTADOR (
+PROCEDURE CREATE_TICKET_PRESTADOR (
     P_ID OUT TICKET_PRESTADORES.IDTICKETPRESTADOR%TYPE,
     P_IDTICKET IN NUMBER, 
     P_IDPRESTADOR IN NUMBER,
@@ -442,13 +315,8 @@
     P_OBJECTHASH IN PRESTADORES.objecthash%TYPE,
     P_COMENTARIOS IN TICKET_PRESTADORES.COMENTARIOS%TYPE,
     P_KILOMETROS IN TICKET_PRESTADORES.KILOMETROS%TYPE,
-    P_COSTO IN TICKET_PRESTADORES.COSTO%TYPE
-    -- EGV 25May2017 Inicio
-    -- EGV 26Ago2017 Inicio
-    --,P_IDPROBLEMA IN TICKET_PRESTADORES.IDPROBLEMA%TYPE,
-    --P_IDPAIS_ORIGEN IN TICKET_PRESTADORES.IDPAIS_ORIGEN%TYPE, 
-    ,P_IDPAIS_ORIGEN IN TICKET_PRESTADORES.IDPAIS_ORIGEN%TYPE, 
-    -- EGV 26Ago2017 Fin
+    P_COSTO IN TICKET_PRESTADORES.COSTO%TYPE,
+    P_IDPAIS_ORIGEN IN TICKET_PRESTADORES.IDPAIS_ORIGEN%TYPE, 
 	P_IDPAIS_DESTINO IN TICKET_PRESTADORES.IDPAIS_DESTINO%TYPE, 
 	P_IDPROVINCIA_ORIGEN IN TICKET_PRESTADORES.IDPROVINCIA_ORIGEN%TYPE, 
 	P_IDPROVINCIA_DESTINO IN TICKET_PRESTADORES.IDPROVINCIA_DESTINO%TYPE, 
@@ -460,13 +328,12 @@
 	P_CALLE_DESTINO IN TICKET_PRESTADORES.CALLE_DESTINO%TYPE,
     P_IDESTADO IN TICKET_PRESTADORES.IDESTADO%TYPE,
     P_IDTICKETPRESTADOR_RETRABAJO IN TICKET_PRESTADORES.IDTICKETPRESTADOR_RETRABAJO%TYPE,
-	P_DEMORA IN TICKET_PRESTADORES.DEMORA%TYPE, 
 	P_PATENTE IN TICKET_PRESTADORES.PATENTE%TYPE, 
-	P_NOMBRE_CHOFER IN TICKET_PRESTADORES.NOMBRE_CHOFER%TYPE
-    -- EGV 25May2017 Fin
-    -- EGV 20Jun2017 Inicio
-    ,P_IDFINALIZACION IN TICKET_PRESTADORES.IDFINALIZACION%TYPE
-    -- EGV 20Jun2017 Fin
+	P_NOMBRE_CHOFER IN TICKET_PRESTADORES.NOMBRE_CHOFER%TYPE,
+    P_IDFINALIZACION IN TICKET_PRESTADORES.IDFINALIZACION%TYPE,
+    P_DEMORA_EST In TICKET_PRESTADORES.DEMORA_EST%TYPE,
+    P_DEMORA_REAL In TICKET_PRESTADORES.DEMORA_REAL%TYPE,
+    P_IDTIPOPRESTACION In TICKET_PRESTADORES.IDTIPOPRESTACION%TYPE
   )
    IS
    ID_INSERT NUMBER;
@@ -484,13 +351,8 @@
         OBJECTHASH,
         COMENTARIOS,
         KILOMETROS,
-        COSTO
-        -- EGV 25May2017 Inicio
-        -- EGV 26Ago2017 Inicio
-        --,IDPROBLEMA,
-        --IDPAIS_ORIGEN, 
-        ,IDPAIS_ORIGEN, 
-        -- EGV 26Ago2017 Fin
+        COSTO,
+        IDPAIS_ORIGEN, 
         IDPAIS_DESTINO, 
         IDPROVINCIA_ORIGEN, 
         IDPROVINCIA_DESTINO, 
@@ -502,13 +364,12 @@
         CALLE_DESTINO,
         IDESTADO,
         IDTICKETPRESTADOR_RETRABAJO,
-        DEMORA,
         PATENTE,
-        NOMBRE_CHOFER
-        -- EGV 25May2017 Fin
-        -- EGV 20Jun2017 Inicio
-        ,IDFINALIZACION
-        -- EGV 20Jun2017 Fin
+        NOMBRE_CHOFER,
+        IDFINALIZACION,
+        DEMORA_EST,
+        DEMORA_REAL,
+        IDTIPOPRESTACION
       )
       VALUES
       (
@@ -519,13 +380,8 @@
         P_OBJECTHASH,
         P_COMENTARIOS,
         P_KILOMETROS,
-        P_COSTO
-        -- EGV 25May2017 Inicio
-        -- EGV 26Ago2017 Inicio
-        --,P_IDPROBLEMA,
-        --P_IDPAIS_ORIGEN, 
-        ,P_IDPAIS_ORIGEN, 
-        -- EGV 26Ago2017 Fin
+        P_COSTO,
+        P_IDPAIS_ORIGEN, 
         P_IDPAIS_DESTINO, 
         P_IDPROVINCIA_ORIGEN, 
         P_IDPROVINCIA_DESTINO, 
@@ -537,13 +393,12 @@
         P_CALLE_DESTINO,
         P_IDESTADO,
         P_IDTICKETPRESTADOR_RETRABAJO,
-        P_DEMORA,
         P_PATENTE,
-        P_NOMBRE_CHOFER
-        -- EGV 25May2017 Fin
-        -- EGV 20Jun2017 Inicio
-        ,P_IDFINALIZACION
-        -- EGV 20Jun2017 Fin
+        P_NOMBRE_CHOFER,
+        P_IDFINALIZACION,
+        P_DEMORA_EST,
+        P_DEMORA_REAL,
+        P_IDTIPOPRESTACION
       );
       
       P_ID:= ID_INSERT;
@@ -559,10 +414,6 @@
     P_COMENTARIOS IN TICKET_PRESTADORES.COMENTARIOS%TYPE,
     P_KILOMETROS IN TICKET_PRESTADORES.KILOMETROS%TYPE,
     P_COSTO IN TICKET_PRESTADORES.COSTO%TYPE,
-    -- EGV 25May2017 Inicio
-    -- EGV 26Ago2017 Inicio
-    --P_IDPROBLEMA IN TICKET_PRESTADORES.IDPROBLEMA%TYPE,
-    -- EGV 26Ago2017 Fin
     P_IDPAIS_ORIGEN IN TICKET_PRESTADORES.IDPAIS_ORIGEN%TYPE, 
 	P_IDPAIS_DESTINO IN TICKET_PRESTADORES.IDPAIS_DESTINO%TYPE, 
 	P_IDPROVINCIA_ORIGEN IN TICKET_PRESTADORES.IDPROVINCIA_ORIGEN%TYPE, 
@@ -575,13 +426,12 @@
 	P_CALLE_DESTINO IN TICKET_PRESTADORES.CALLE_DESTINO%TYPE,
     P_IDESTADO IN TICKET_PRESTADORES.IDESTADO%TYPE,
     P_IDTICKETPRESTADOR_RETRABAJO IN TICKET_PRESTADORES.IDTICKETPRESTADOR_RETRABAJO%TYPE,
-	P_DEMORA IN TICKET_PRESTADORES.DEMORA%TYPE, 
 	P_PATENTE IN TICKET_PRESTADORES.PATENTE%TYPE, 
 	P_NOMBRE_CHOFER IN TICKET_PRESTADORES.NOMBRE_CHOFER%TYPE,
-    -- EGV 25May2017 Fin  
-    -- EGV 20Jun2017 Inicio
     P_IDFINALIZACION IN TICKET_PRESTADORES.IDFINALIZACION%TYPE,
-    -- EGV 20Jun2017 Fin
+    P_DEMORA_EST In TICKET_PRESTADORES.DEMORA_EST%TYPE,
+    P_DEMORA_REAL In TICKET_PRESTADORES.DEMORA_REAL%TYPE,
+    P_IDTIPOPRESTACION In TICKET_PRESTADORES.IDTIPOPRESTACION%TYPE,
     P_AFFECTED_ROWS OUT number
   )
    IS
@@ -592,13 +442,8 @@
         TICKET_PRESTADORES.IDTIPOSERVICIO = P_IDTIPOSERVICIO,
         TICKET_PRESTADORES.COMENTARIOS = P_COMENTARIOS,
         TICKET_PRESTADORES.KILOMETROS = P_KILOMETROS,
-        TICKET_PRESTADORES.COSTO = P_COSTO
-        -- EGV 25May2017 Inicio
-        -- EGV 26Ago2017 Inicio
-        --,TICKET_PRESTADORES.IDPROBLEMA = P_IDPROBLEMA,
-        --TICKET_PRESTADORES.IDPAIS_ORIGEN = P_IDPAIS_ORIGEN, 
-        ,TICKET_PRESTADORES.IDPAIS_ORIGEN = P_IDPAIS_ORIGEN, 
-        -- EGV 26Ago2017 Fin
+        TICKET_PRESTADORES.COSTO = P_COSTO,
+        TICKET_PRESTADORES.IDPAIS_ORIGEN = P_IDPAIS_ORIGEN, 
         TICKET_PRESTADORES.IDPAIS_DESTINO = P_IDPAIS_DESTINO, 
         TICKET_PRESTADORES.IDPROVINCIA_ORIGEN = P_IDPROVINCIA_ORIGEN, 
         TICKET_PRESTADORES.IDPROVINCIA_DESTINO = P_IDPROVINCIA_DESTINO, 
@@ -610,13 +455,12 @@
         TICKET_PRESTADORES.CALLE_DESTINO = P_CALLE_DESTINO,
         TICKET_PRESTADORES.IDESTADO = P_IDESTADO,
         TICKET_PRESTADORES.IDTICKETPRESTADOR_RETRABAJO = P_IDTICKETPRESTADOR_RETRABAJO,
-        TICKET_PRESTADORES.DEMORA = P_DEMORA,
         TICKET_PRESTADORES.PATENTE = P_PATENTE,
-        TICKET_PRESTADORES.NOMBRE_CHOFER = P_NOMBRE_CHOFER
-        -- EGV 25May2017 Fin        
-        -- EGV 20Jun2017 Inicio
-        ,TICKET_PRESTADORES.IDFINALIZACION = P_IDFINALIZACION
-        -- EGV 20Jun2017 Fin
+        TICKET_PRESTADORES.NOMBRE_CHOFER = P_NOMBRE_CHOFER,
+        TICKET_PRESTADORES.IDFINALIZACION = P_IDFINALIZACION,
+        DEMORA_EST = P_DEMORA_EST,
+        DEMORA_REAL = P_DEMORA_REAL,
+        IDTIPOPRESTACION = P_IDTIPOPRESTACION
         WHERE TICKET_PRESTADORES.IDTICKETPRESTADOR = P_ID;
         
    P_AFFECTED_ROWS:= sql%rowcount;     
@@ -629,17 +473,6 @@
   BEGIN
       
       OPEN R_CURSOR FOR
-      -- EGV 25May2017 Inicio
-      --SELECT IDTICKETPRESTADOR,
-      --        IDTICKET,
-      --        IDPRESTADOR,
-      --        IDTIPOSERVICIO,
-      --        OBJECTHASH,
-      --        COMENTARIOS,
-      --        KILOMETROS,
-      --        COSTO
-      --FROM TICKET_PRESTADORES
-      --WHERE IDTICKET = P_IDTICKET;
       SELECT A.IDTICKETPRESTADOR,
               A.IDTICKET,
               A.IDPRESTADOR,
@@ -662,28 +495,29 @@
               A.CALLE_DESTINO,
               A.IDESTADO,
               A.IDTICKETPRESTADOR_RETRABAJO,
-              A.DEMORA,
               A.PATENTE,
               A.NOMBRE_CHOFER,
               E.NOMBRE AS LOCALIDAD_ORIGEN_NOMBRE,
-              F.NOMBRE AS LOCALIDAD_DESTINO_NOMBRE
-              -- EGV 20Jun2017 Inicio
-              ,A.IDFINALIZACION
-              -- EGV 20Jun2017 Fin
-      FROM TICKET_PRESTADORES A, PRESTADORES B, TIPOSERVICIOS D, UBICACIONES_VW E, UBICACIONES_VW F
+              F.NOMBRE AS LOCALIDAD_DESTINO_NOMBRE,
+              A.IDFINALIZACION,
+              A.DEMORA_EST,
+              A.DEMORA_REAL,
+              A.IDTIPOPRESTACION,
+              G.CODIGO AS CODIGO_TIPOPRESTACION
+      FROM TICKET_PRESTADORES A, PRESTADORES B, TIPOSERVICIOS D, UBICACIONES_VW E, UBICACIONES_VW F, TIPOPRESTACIONES G
       WHERE IDTICKET = P_IDTICKET
       AND A.IDPRESTADOR = B.IDPRESTADOR (+)
       AND A.IDTIPOSERVICIO = D.IDTIPOSERVICIO (+)
       AND A.IDLOCALIDAD_ORIGEN = E.IDLOCALIDAD (+)
       AND A.IDLOCALIDAD_DESTINO = F.IDLOCALIDAD (+)
+      AND A.IDTIPOPRESTACION = G.IDTIPOPRESTACION (+)
       ORDER BY A.IDTICKETPRESTADOR DESC;
-      -- EGV 25May2017 Fin
       
   END LIST_PRESTADORES_BY_TICKET;
   
   
-  -- EGV 26Jun2017 Inicio                                        
-  PROCEDURE LIST_TICKET_TRACK_BY_TICKET(P_IDTICKET IN TICKET_TRACK.IDTICKET%TYPE, R_CURSOR OUT tyRefCursor)
+                                   
+PROCEDURE LIST_TICKET_TRACK_BY_TICKET(P_IDTICKET IN TICKET_TRACK.IDTICKET%TYPE, R_CURSOR OUT tyRefCursor)
   IS
   BEGIN
   
@@ -740,7 +574,6 @@
       P_ID:= ID_INSERT;
   
   END CREATE_TICKET_TRACK;
--- EGV 26Jun2017 Fin
   
   
 END TICKET_PKG;

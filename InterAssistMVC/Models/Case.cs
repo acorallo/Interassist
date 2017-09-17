@@ -1,7 +1,4 @@
-﻿/* EGV 25May2017
- Creación de Clase Case
- */
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -58,10 +55,14 @@ namespace InterAssistMVC.Models
         public virtual bool OkAfiliado { get; set; }
         public virtual int CantTicketsAfil { get; set; }
 
-        // EGV 26Ago2017 Inicio
         public virtual int IdColor { get; set; }
         public virtual int IdProblema { get; set; }
-        // EGV 26Ago2017 Fin
+
+        [StringLength(1024)]
+        public virtual string UbicacionDescr { get; set; }
+
+        [StringLength(20)]
+        public virtual string DemoraEst { get; set; }
 
         public virtual AfiliadoModel Afiliado { get; set; }
 
@@ -89,8 +90,8 @@ namespace InterAssistMVC.Models
         public SelectList PrestacionEstados { get; set; }
         public SelectList PrestacionesRetrabajo { get; set; }
         public SelectList FinalizacionesPretaciones { get; set; }
-
         public SelectList Colores { get; set; }
+        public SelectList TipoPrestaciones { get; set; }
 
         public Case()
         {
@@ -136,18 +137,19 @@ namespace InterAssistMVC.Models
 
             m.NombreLocalidadOrigen = e.NombreLocalidadOrigen;
             m.NombreLocalidadDestino = e.NombreLocalidadDestino;
-            m.UbicacionOrigen = Common.Ubicacion(e.CalleOrigen,e.NombreLocalidadOrigen);
-            m.UbicacionDestino = Common.Ubicacion(e.CalleDestino,e.NombreLocalidadDestino);
+            m.UbicacionOrigen = m.NombreLocalidadOrigen;
+            m.UbicacionDestino = m.NombreLocalidadDestino;
             m.Modelo = e.Modelo;
             m.Marca = e.Marca;
 
             m.OkAfiliado = e.OkAfiliado;
             m.CantTicketsAfil = e.CantTicketsAfil;
 
-            // 26Ago2017 Inicio
             m.IdProblema = e.IdProblema;
             m.IdColor = e.IdColor;
-            // 26Ago2017 Fin
+
+            m.UbicacionDescr = e.UbicacionDescr;
+            m.DemoraEst = e.DemoraEst;
 
             if (e.Afiliado != null)
                 m.Afiliado = AfiliadoModel.EntityToModel(e.Afiliado);
@@ -203,10 +205,11 @@ namespace InterAssistMVC.Models
             e.OkAfiliado = this.OkAfiliado;
             e.CantTicketsAfil = this.CantTicketsAfil;
 
-            // EGV 26Ago2017 Inicio
             e.IdColor = this.IdColor;
             e.IdProblema = this.IdProblema;
-            // EGV 26Ago2017 Fin
+
+            e.UbicacionDescr = this.UbicacionDescr;
+            e.DemoraEst = this.DemoraEst;
 
             if (Observacion != null && Observacion.Trim() != "")
             {

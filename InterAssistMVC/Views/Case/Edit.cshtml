@@ -14,18 +14,18 @@
     @Html.ValidationSummary(false)
     <div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-default">
+            <div class="panel panel-default">        
                 <div class="panel-heading">
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-lg-2"><label>Número de Caso:</label></div>
+                            <div class="col-lg-1"><label>Número:</label></div>
                             <div class="col-lg-2"><span class="form-control-static" id="idTicket">@Html.DisplayFor(model => model.Id)</span></div>
-                            <div class="col-lg-4"></div>
+                            <div class="col-lg-5"></div>
                             <div class="col-lg-1"><label>Operador:</label></div>
                             <div class="col-lg-3"><span class="form-control-static">@Html.DisplayFor(model => model.NombreOperador)</span></div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-2"><label>Estado:</label></div>
+                            <div class="col-lg-1"><label>Estado:</label></div>
                             <div class="col-lg-3">
                                 @{
                                     if (InterAssistMVC.Utils.UISecurityManager.HasAccessTo(InterAssistMVC.Utils.UISecurityManager.CASE_CHANGE_STATUS_KEY))
@@ -38,7 +38,7 @@
                                     }
                                 }
                             </div>
-                            <div class="col-lg-3"></div>
+                            <div class="col-lg-4"></div>
                             <div class="col-lg-1"><label>Creado:</label></div>
                             <div class="col-lg-3"><span class="form-control-static">@Html.DisplayFor(model => model.FechaDisplay)</span></div>
                         </div>
@@ -46,72 +46,72 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-lg-2"><p class="form-control-static">@Html.DisplayFor(model => model.TipoTicket)</p></div>
+                        <div class="col-lg-1"><p class="form-control-static">@Html.DisplayFor(model => model.TipoTicket)</p></div>
                         @{
                         if (Model.IdEstado != 4)
                         {
-                            <div class="col-lg-2"><p class="form-control-static">@Html.DisplayFor(model => model.Afiliado.Patente)</p></div>
-                                                <div class="col-lg-5"><p class="form-control-static">@Html.DisplayFor(model => model.NombreAfiliado)</p></div>
+                            <div class="col-lg-1"><p class="form-control-static">@Html.DisplayFor(model => model.Afiliado.Patente)</p></div>
+                                                <div class="col-lg-4"><p class="form-control-static">@Html.DisplayFor(model => model.NombreAfiliado)</p></div>
                         }
                         else
                         {
-                            <div class="col-lg-1"><p class="form-control-static">Afiliado</p></div>
-                                                        <!--div class="col-lg-6"><input type="text" class="form-control" id="busq-afil"/></div-->
-                                                <div class="col-lg-6">
-                                                    @(Html.X().ComboBox()
-                                                                .DisplayField("PatenteApeYNom")
-                                                                .ValueField("DatosAfiliado")
-                                                                .InputID("AfiliadoSelect")
-                                                                .TypeAhead(false)
-                                                                .Value(Model.Afiliado != null ? Model.Afiliado.PatenteApeYNom : null)
-                                                                //.Width(new System.Web.UI.WebControls.Unit(100,System.Web.UI.WebControls.UnitType.Percentage))
-                                                                //.Width(400)
-                                                                .StyleSpec("width:100%")
-                                                                .PageSize(10)
-                                                                .HideTrigger(true)
-                                                                .MinChars(2)
-                                                                .TriggerAction(TriggerAction.Query)
-                                                                .ListConfig(Html.X().BoundList()
-                                                                    .LoadingText("Buscando...")
-                                                                    .ItemTpl(Html.X().XTemplate()
-                                                                        .Html(@<text>
-                                                                        <div class="search-item">
-                                                                            <strong>{PatenteApeYNom}</strong><br />
-                                                                            {Id} {Poliza} {NombreEmpresa} {NombreCategoria} {Documento}
-                                                                        </div>
-                                                                        </text>
-                                                                            )
-                                                                        )
-                                                                    )
-                                                                    .Listeners(ls => ls.Select.Handler = "EligeAfiliado(item);")
-                                                                    .Store(Html.X().Store()
-                                                                        .AutoLoad(false)
-                                                                        .Proxy(Html.X().AjaxProxy()
-                                                                            .Url(Url.Action("TraeAfiliados"))
-                                                                            .ActionMethods(af => af.Read = HttpMethod.POST)
-                                                                            .Reader(Html.X().JsonReader().RootProperty("data"))
-                                                                        )
-                                                                        .Model(Html.X().Model()
-                                                                            .Fields(
-                                                                                Html.X().ModelField().Name("Id"),
-                                                                                Html.X().ModelField().Name("Patente"),
-                                                                                Html.X().ModelField().Name("ApellidoYNombre"),
-                                                                                Html.X().ModelField().Name("NombreEmpresa"),
-                                                                                Html.X().ModelField().Name("NombreCategoria"),
-                                                                                Html.X().ModelField().Name("Poliza"),
-                                                                                Html.X().ModelField().Name("Documento"),
-                                                                                Html.X().ModelField().Name("DatosAfiliado")
-                                                                            )
-                                                                        )
-                                                                    )
-                                                            )
-                                                    <input type="hidden" id="AfiliadoSelectVal" value="@(Model.Afiliado != null ? Model.Afiliado.PatenteApeYNom : null)" />
-                                                </div>
+                            
+                            <div class="col-lg-5">
+                                @(Html.X().ComboBox()
+                                            .DisplayField("PatenteApeYNom")
+                                            .ValueField("DatosAfiliado")
+                                            .InputID("AfiliadoSelect")
+                                            .TypeAhead(false)
+                                            .Value(Model.Afiliado != null ? Model.Afiliado.PatenteApeYNom : null)
+                                            //.Width(new System.Web.UI.WebControls.Unit(100,System.Web.UI.WebControls.UnitType.Percentage))
+                                            //.Width(400)
+                                            .StyleSpec("width:100%")
+                                            .PageSize(10)
+                                            .HideTrigger(true)
+                                            .MinChars(2)
+                                            .TriggerAction(TriggerAction.Query)
+                                            .ListConfig(Html.X().BoundList()
+                                                .LoadingText("Buscando...")
+                                                .ItemTpl(Html.X().XTemplate()
+                                                    .Html(@<text>
+                                                    <div class="search-item">
+                                                        <strong>{PatenteApeYNom}</strong><br />
+                                                        {Id} {Poliza} {NombreEmpresa} {NombreCategoria} {Documento}
+                                                    </div>
+                                                    </text>
+                                                        )
+                                                    )
+                                                )
+                                                .Listeners(ls => ls.Select.Handler = "EligeAfiliado(item);")
+                                                .Store(Html.X().Store()
+                                                    .AutoLoad(false)
+                                                    .Proxy(Html.X().AjaxProxy()
+                                                        .Url(Url.Action("TraeAfiliados"))
+                                                        .ActionMethods(af => af.Read = HttpMethod.POST)
+                                                        .Reader(Html.X().JsonReader().RootProperty("data"))
+                                                    )
+                                                    .Model(Html.X().Model()
+                                                        .Fields(
+                                                            Html.X().ModelField().Name("Id"),
+                                                            Html.X().ModelField().Name("Patente"),
+                                                            Html.X().ModelField().Name("ApellidoYNombre"),
+                                                            Html.X().ModelField().Name("NombreEmpresa"),
+                                                            Html.X().ModelField().Name("NombreCategoria"),
+                                                            Html.X().ModelField().Name("Poliza"),
+                                                            Html.X().ModelField().Name("Documento"),
+                                                            Html.X().ModelField().Name("DatosAfiliado")
+                                                        )
+                                                    )
+                                                )
+                                        )
+                                <input type="hidden" id="AfiliadoSelectVal" value="@(Model.Afiliado != null ? Model.Afiliado.PatenteApeYNom : null)" />
+                            </div>
                         }
                         }
                         <div>@Html.HiddenFor(model => model.IdAfiliado)</div>
-                        <div class="col-lg-3">
-                            @*Aca iba el Estado antes*@
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-4">
+                            @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control remark", @placeholder = "Telefono contacto", @id = "TelefonoContacto" } })
                         </div>
 
                         <div class="modal fade" id="modalOkAfiliado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -166,10 +166,48 @@
                         <button id="btnOkAfiliado" type="button" class="btn btn-success" onclick="" data-toggle="modal" data-target="#modalOkAfiliado" data-placement="top" title="Ok Afiliado" style="display:none" data-backdrop="static" data-keyboard="false">Ok Afiliado</button>
 
                     </div>
+
                     <div class="row">
-                        <div class="col-lg-2">Problema:</div>
+                        <div class="col-lg-8">@Html.HiddenFor(model => model.NombreAfiliado, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Ingrese Nombre y Apellido", @readonly = true, @id = "ApyNom" } })@Html.HiddenFor(model => model.Afiliado.Nombre)@Html.HiddenFor(model => model.Afiliado.Apellido)</div>
+                        <div class="col-lg-4">@Html.HiddenFor(model => model.Afiliado.Documento, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Documento", @readonly = true, @id = "Doc" } })</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">@Html.EditorFor(model => model.Afiliado.Direccion, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Ingrese Dirección: calle número, localidad, provincia", @readonly = true, @id = "Dir" } })</div>
+                        <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.CodigoPostal, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Ingrese CP", @readonly = true, @id = "cp" } })</div>
+                    </div>
+                    @*<div class="row">
+                        <div class="col-lg-12"><label>Póliza:</label></div>
+                    </div>*@
+                    <div class="row">
+                        <div class="col-lg-1"><label>Póliza:</label></div>
+                        <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Poliza, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Número", @readonly = true, @id = "pol" } })</div>
+                        <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.NombreEmpresa, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Compañía", @readonly = true, @id = "cia" } })</div>
+                        <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.NombreCategoria, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Categoría", @readonly = true, @id = "nomcate" } })</div>
+                        <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.FechaDesdeDisplay, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "dd/mm/yyyy", @readonly = true, @id = "fd" } })</div>
+                        <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.FechaHastaDisplay, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "dd/mm/yyyy", @readonly = true, @id = "fh" } })</div>
+                    </div>
+                    @*<div class="row">
+                        <div class="col-lg-12"><label>Vehículo:</label></div>
+                    </div>*@
+                    <div class="row">
+                        <div class="col-lg-1"><label>Vehículo:</label></div>
+                        <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Patente, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Patente", @readonly = true, @id = "pat" } })</div>
+                        <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Marca, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Marca", @readonly = true, @id = "marca" } })</div>
+                        <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.Modelo, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Modelo", @readonly = true, @id = "mod" } })</div>
+                        <div class="col-lg-2">
+                            @Html.DropDownListFor(model => model.IdColor, Model.Colores, new { @class = "form-control" })
+                            @Html.HiddenFor(model => model.Afiliado.Color, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Color", @readonly = true, @id = "col" } })
+                        </div>
+                        <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Anio, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Año", @readonly = true, @id = "anio" } })</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-1"><label>Problema:</label></div>
                         <div class="col-lg-4">@Html.DropDownListFor(model => model.IdProblema, Model.Problemas, new { @class = "form-control" })</div>
-                        <div class="col-lg-6">@Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control remark", @placeholder = "Telefono contacto", @id = "TelefonoContacto" } })</div>
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-2"><label>Demora Estimada:</label></div>
+                        <div class="col-lg-2">@Html.EditorFor(model => model.DemoraEst, new { htmlAttributes = new { @class = "form-control", @placeholder = "HH:MM"} })</div>
+                        <div class="col-lg-2"></div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
@@ -177,10 +215,10 @@
                                 <!-- Nav tabs -->
                                 @Html.HiddenFor(model => Model.NumTabActive, new { id = "NumTabActive" })
                                 <ul class="nav nav-tabs" style="margin-bottom:10px;" id="mainTabs">
-                                    <li class="active">
+                                    @*<li class="active">
                                         <a href="#afiliado" data-toggle="tab" aria-expanded="false">Afiliado</a>
-                                    </li>
-                                    <li class="">
+                                    </li>*@
+                                    <li class="active">
                                         <a href="#ubicacion" data-toggle="tab" aria-expanded="false">Ubicación</a>
                                     </li>
                                     <li class="">
@@ -196,52 +234,24 @@
 
                                 <!-- Tab panes -->
                                 <div class="tab-content" id="mainTabsContent">
-                                    <div class="tab-pane active fade in" id="afiliado">
+                                    @*<div class="tab-pane active fade in" id="afiliado">
+
+                                    </div>*@
+                                    <div class="tab-pane active fade in" id="ubicacion">
                                         <div class="row">
-                                            <div class="col-lg-8">@Html.EditorFor(model => model.NombreAfiliado, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Ingrese Nombre y Apellido", @readonly = true, @id = "ApyNom" } })@Html.HiddenFor(model => model.Afiliado.Nombre)@Html.HiddenFor(model => model.Afiliado.Apellido)</div>
-                                            <div class="col-lg-4">@Html.HiddenFor(model => model.Afiliado.Documento, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Documento", @readonly = true, @id = "Doc" } })</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-8">@Html.EditorFor(model => model.Afiliado.Direccion, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Ingrese Dirección: calle número, localidad, provincia", @readonly = true, @id = "Dir" } })</div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.CodigoPostal, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Ingrese CP", @readonly = true, @id = "cp" } })</div>
-                                        </div>
-                                        <div class="row">
-                                            <h4 class="col-lg-12">Póliza</h4>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Poliza, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Número", @readonly = true, @id = "pol" } })</div>
-                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.NombreEmpresa, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Compañía", @readonly = true, @id = "cia" } })</div>
-                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.NombreCategoria, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Categoría", @readonly = true, @id = "nomcate" } })</div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.FechaDesdeDisplay, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "dd/mm/yyyy", @readonly = true, @id = "fd" } })</div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.FechaHastaDisplay, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "dd/mm/yyyy", @readonly = true, @id = "fh" } })</div>
-                                            @*<div class="col-lg-3"><div class="checkbox"><label><input type="checkbox" disabled />Vigente</label></div></div>*@
-                                        </div>
-                                        @*<div class="row">
-                    <div class="col-lg-4"><input type="text" class="form-control" value="" placeholder="Tipo Poliza" disabled /></div>
-                    <div class="col-lg-4"><input type="text" class="form-control" value="" placeholder="Sub Tipo de Póliza" disabled /></div>
-                </div>*@
-                                        <div class="row">
-                                            <h4 class="col-lg-12">Vehículo</h4>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Patente, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Patente", @readonly = true, @id = "pat" } })</div>
-                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.Marca, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Marca", @readonly = true, @id = "marca" } })</div>
-                                            <div class="col-lg-3">@Html.EditorFor(model => model.Afiliado.Modelo, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Modelo", @readonly = true, @id = "mod" } })</div>
-                                            <div class="col-lg-2">
-                                                @Html.DropDownListFor(model => model.IdColor, Model.Colores, new { @class = "form-control" })
-                                                @Html.HiddenFor(model => model.Afiliado.Color, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Color", @readonly = true, @id = "col" } })
-                                            </div>
-                                            <div class="col-lg-2">@Html.EditorFor(model => model.Afiliado.Anio, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Año", @readonly = true, @id = "anio" } })</div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="ubicacion">
-                                        <div class="row"></div>
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <label>Origen:</label>
-                                                <div>
-                                                    @(Html.X().ComboBox()
-                                                            .DisplayField("CalleUbicacion")
+                                            <div class="col-lg-6">
+                                                <div class="panel panel-green">
+                                                    <div class="panel-heading">
+                                                        Origen
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">@Html.EditorFor(model => model.CalleOrigen, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Ingrese Calle", @id = "CalleOrigen" } })</div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                @(Html.X().ComboBox()
+                                                            .DisplayField("Nombre")
                                                             .ValueField("DatosUbicacion")
                                                             .Text(Model.UbicacionOrigen)
                                                             .InputID("UbicacionOrigen")
@@ -256,41 +266,51 @@
                                                                 .ItemTpl(Html.X().XTemplate()
                                                                     .Html(@<text>
                                                                     <div class="search-item search-item-small">
-                                                                        {CalleUbicacion}
+                                                                        {Nombre}
                                                                     </div>
                                                                     </text>
-                    )
-                )
-            )
-            .Listeners(ls => ls.Select.Handler = "SeleccionaUbicacionOrigen(item);")
-                .Store(Html.X().Store()
-                    .AutoLoad(false)
-                    .Proxy(Html.X().AjaxProxy()
-                        .Url(Url.Action("TraeUbicaciones"))
-                        .ActionMethods(af => af.Read = HttpMethod.POST)
-                        .Reader(Html.X().JsonReader().RootProperty("data"))
-                    )
-                    .Model(Html.X().Model()
-                        .Fields(
-                            Html.X().ModelField().Name("CalleUbicacion"),
-                            Html.X().ModelField().Name("DatosUbicacion")
-                        )
-                    )
-                )
-                                                    )
+                                                                )
+                                                                )
+                                                                )
+                                                                .Listeners(ls => ls.Select.Handler = "SeleccionaUbicacionOrigen(item);")
+                                                                .Store(Html.X().Store()
+                                                                .AutoLoad(false)
+                                                                .Proxy(Html.X().AjaxProxy()
+                                                                .Url(Url.Action("TraeUbicaciones"))
+                                                                .ActionMethods(af => af.Read = HttpMethod.POST)
+                                                                .Reader(Html.X().JsonReader().RootProperty("data"))
+                                                                )
+                                                                .Model(Html.X().Model()
+                                                                .Fields(
+                                                                Html.X().ModelField().Name("Nombre"),
+                                                                Html.X().ModelField().Name("DatosUbicacion")
+                                                                )
+                                                                )
+                                                                )
+                                                                )
 
-                                                    @Html.HiddenFor(model => model.CalleOrigen)@Html.HiddenFor(model => model.IdLocalidadOrigen)@Html.HiddenFor(model => model.IdCiudadOrigen)@Html.HiddenFor(model => model.IdProvinciaOrigen)@Html.HiddenFor(model => model.IdPaisOrigen)
-                                                    @Html.HiddenFor(model => Model.UbicacionOrigen, new { id = "UbicacionOrigenVal" })
+                                                                @*@Html.HiddenFor(model => model.CalleOrigen)*@
+                                                                @Html.HiddenFor(model => model.IdLocalidadOrigen)@Html.HiddenFor(model => model.IdCiudadOrigen)@Html.HiddenFor(model => model.IdProvinciaOrigen)@Html.HiddenFor(model => model.IdPaisOrigen)
+                                                                @Html.HiddenFor(model => Model.UbicacionOrigen, new { id = "UbicacionOrigenVal" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <label>Destino:</label>
-                                                <div>
-                                                    @(Html.X().ComboBox()
-                                                            .DisplayField("CalleUbicacion")
+                                            <div class="col-lg-6">
+                                                <div class="panel panel-green">
+                                                    <div class="panel-heading">
+                                                        Destino
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">@Html.EditorFor(model => model.CalleDestino, new { htmlAttributes = new { @class = "form-control avoid-val", @placeholder = "Ingrese Calle", @id = "CalleDestino" } })</div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                @(Html.X().ComboBox()
+                                                            .DisplayField("Nombre")
                                                             .Text(Model.UbicacionDestino)
                                                             .ValueField("DatosUbicacion")
                                                             .InputID("UbicacionDestino")
@@ -305,35 +325,45 @@
                                                                 .ItemTpl(Html.X().XTemplate()
                                                                     .Html(@<text>
                                                                     <div class="search-item search-item-small">
-                                                                        {CalleUbicacion}
+                                                                        {Nombre}
                                                                     </div>
                                                                     </text>
-                )
-            )
-        )
-        .Listeners(ls => ls.Select.Handler = "SeleccionaUbicacionDestino(item);")
-            .Store(Html.X().Store()
-                .AutoLoad(false)
-                .Proxy(Html.X().AjaxProxy()
-                    .Url(Url.Action("TraeUbicaciones"))
-                    .ActionMethods(af => af.Read = HttpMethod.POST)
-                    .Reader(Html.X().JsonReader().RootProperty("data"))
-                )
-                .Model(Html.X().Model()
-                    .Fields(
-                        Html.X().ModelField().Name("CalleUbicacion"),
-                        Html.X().ModelField().Name("DatosUbicacion")
-                    )
-                )
-            )
-                                                    )
+    )
+    )
+    )
+    .Listeners(ls => ls.Select.Handler = "SeleccionaUbicacionDestino(item);")
+    .Store(Html.X().Store()
+    .AutoLoad(false)
+    .Proxy(Html.X().AjaxProxy()
+    .Url(Url.Action("TraeUbicaciones"))
+    .ActionMethods(af => af.Read = HttpMethod.POST)
+    .Reader(Html.X().JsonReader().RootProperty("data"))
+    )
+    .Model(Html.X().Model()
+    .Fields(
+    Html.X().ModelField().Name("Nombre"),
+    Html.X().ModelField().Name("DatosUbicacion")
+    )
+    )
+    )
+                                                                )
 
-                                                    @Html.HiddenFor(model => model.CalleDestino)@Html.HiddenFor(model => model.IdLocalidadDestino)@Html.HiddenFor(model => model.IdCiudadDestino)@Html.HiddenFor(model => model.IdProvinciaDestino)@Html.HiddenFor(model => model.IdPaisDestino)
-                                                    @Html.HiddenFor(model => Model.UbicacionDestino, new { id = "UbicacionDestinoVal" })
+                                                                @*@Html.HiddenFor(model => model.CalleDestino)*@
+                                                                @Html.HiddenFor(model => model.IdLocalidadDestino)@Html.HiddenFor(model => model.IdCiudadDestino)@Html.HiddenFor(model => model.IdProvinciaDestino)@Html.HiddenFor(model => model.IdPaisDestino)
+                                                                @Html.HiddenFor(model => Model.UbicacionDestino, new { id = "UbicacionDestinoVal" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
+
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">@Html.EditorFor(model => model.UbicacionDescr, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese una Descripción Adicional" } })</div>
+                                        </div>
+
                                     </div>
+
                                     <div class="tab-pane fade" id="prestaciones">
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -341,8 +371,6 @@
                                                     <button id="btnPrestacionAgregar" type="button" class="btn btn-success" onclick="AgregarPrestacion()" data-toggle="modal" data-target="#modalPrestacion" data-placement="top" title="Agregar Prestación" data-backdrop="static" data-keyboard="false">Nueva Prestación</button>
                                                     <button id="btnPrestacionModificar" type="button" class="btn btn-success" onclick="" data-toggle="modal" data-target="#modalPrestacion" data-placement="top" title="Agregar Prestación" style="display:none" data-backdrop="static" data-keyboard="false">Modificar Prestación</button>
                                                 </p>
-
-
                                             </div>
                                         </div>
                                         <div class="row">
@@ -472,8 +500,8 @@
                     <div class="modal-body">
                         <div class="row">
                             <input type="hidden" id="prestacionNombrePrestacion"/>
-                            <div class="col-lg-6"><label>Tipo de Servicio:</label>@Html.DropDownList("prestacionTipoServicio", Model.TiposServicio, new { @class = "form-control", @id = "prestacionTipoServicio", @name = "prestacionTipoServicio" })</div>
-                            <div class="col-lg-6"><label>Estado:</label>
+                            <div class="col-lg-3"><label>Tipo de Servicio:</label>@Html.DropDownList("prestacionTipoServicio", Model.TiposServicio, new { @class = "form-control", @id = "prestacionTipoServicio", @name = "prestacionTipoServicio" })</div>
+                            <div class="col-lg-3"><label>Estado:</label>
                             @{
                                 if (InterAssistMVC.Utils.UISecurityManager.HasAccessTo(InterAssistMVC.Utils.UISecurityManager.CASE_CHANGE_STATUS_KEY))
                                 {
@@ -485,19 +513,14 @@
                                 }
                             }
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6"><label>Detalles:</label><textarea class="form-control" id="prestacionDetalles" name="prestacionDetalles" rows="5" style="margin: 0px -3.83333px 0px 0px; "></textarea></div>
                             <div class="col-lg-6">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <label>Prestador:</label><input type="hidden" id="prestacionIdPrestador" /><input type="hidden" id="prestacionNombrePrestadorVal"/>
-                                        @(Html.X().ComboBox()
+                                <label>Prestador:</label><span class="fa fa-info-circle mas-info" onclick="MasInfoPrestadorBoton();"></span><input type="hidden" id="prestacionIdPrestador" /><input type="hidden" id="prestacionNombrePrestadorVal" />
+                                @(Html.X().ComboBox()
                                                                                         .DisplayField("Nombre")
                                                                                         .ValueField("Id")
                                                                                         .InputID("prestacionNombrePrestador")
                                                                                         .TypeAhead(false)
-                                                //.Width(400)
+                                        //.Width(400)
                                                                                         .StyleSpec("width:100%")
                                                                                         .PageSize(0)
                                                                                         .HideTrigger(true)
@@ -544,65 +567,73 @@
                                                 )
                                                 )
                                                 )
-                                        )
+                                )
 
-                                        <div class="alert provider-info panel panel-info provider-info-hide provider-info-hide2">
-                                            <div class="row">
-                                                <div class="col-lg-2 provider-info-arrow">
-                                                    <a href="#" class="close glyphicon glyphicon-triangle-right" aria-label="close" id="flecha0" onmouseover="HideProviderInfo();"></a>
-                                                </div>
-                                                <div class="col-lg-10">
-                                                    <p id="prestInfoNombre"></p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="panel-body">
-                                                        <ul class="nav nav-pills">
-                                                            <li class="active"><a href="#direccion-pills" data-toggle="tab" aria-expanded="true" onmouseover="InforProviderPill(this);">Direccion</a></li>
-                                                            <li class=""><a href="#telefono-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Teléfonos</a></li>
-                                                            <li class=""><a href="#fiscales-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Fiscales</a></li>
-                                                            <li class=""><a href="#costos-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Costos</a></li>
-                                                            <li class=""><a href="#comentarios-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Comentarios</a></li>
-                                                        </ul>
-                                                        <div class="tab-content tab-provider-info">
-                                                            <div class="tab-pane fade active in" id="direccion-pills">
-                                                                <p id="prestInfoDomicilio"></p>
-                                                                <p><span id="prestInfoLocalidad"></span><span class="provider-info-separator">/</span><span id="prestInfoCiudad"></span></p>
-                                                                <p><span id="prestInfoProvincia"></span><span class="provider-info-separator">/</span><span id="prestInfoPais"></span></p>
-                                                            </div>
-                                                            <div class="tab-pane fade" id="telefono-pills">
-                                                                <p><span id="prestInfoTelefono1"></span><span class="provider-info-separator">/</span><span id="prestInfoTelefono2"></span></p>
-                                                                <p><span id="prestInfoCelular1"></span><span class="provider-info-separator">/</span><span id="prestInfoCelular2"></span></p>
-                                                                <p><span id="prestInfoNextel"></span><span class="provider-info-separator">/</span><span id="prestEmail"></span></p>
-                                                            </div>
-                                                            <div class="tab-pane fade" id="fiscales-pills">
-                                                                <p id="prestInfoCuit"></p>
-                                                                <p id="prestInfoIva"></p>
-                                                            </div>
-                                                            <div class="tab-pane fade" id="costos-pills">
-                                                                <p><span>Liv:</span><span class="provider-info-separator"></span><span id="prestInfoLivMovida"></span><span class="provider-info-separator">/</span><span id="prestInfoLivKm"></span></p>
-                                                                <p><span>SP1:</span><span class="provider-info-separator"></span><span id="prestInfoSp1Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoSp1Km"></span></p>
-                                                                <p><span>SP2:</span><span class="provider-info-separator"></span><span id="prestInfoSp2Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoSp2Km"></span></p>
-                                                                <p><span>PS1:</span><span class="provider-info-separator"></span><span id="prestInfoPs1Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoPs1Km"></span></p>
-                                                                <p><span>PS2:</span><span class="provider-info-separator"></span><span id="prestInfoPs2Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoPs2Km"></span></p>
-                                                            </div>
-                                                            <div class="tab-pane fade" id="comentarios-pills">
-                                                                <p id="prestInfoDescripcion"></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
+                                <div class="alert provider-info panel panel-info provider-info-hide provider-info-hide2">
+                                    <div class="row">
+                                        <div class="col-lg-2 provider-info-arrow">
+                                            <a href="#" class="close glyphicon glyphicon-triangle-right" aria-label="close" id="flecha0" onmouseover="HideProviderInfo();"></a>
                                         </div>
+                                        <div class="col-lg-10">
+                                            <p id="prestInfoNombre"></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="panel-body">
+                                                <ul class="nav nav-pills">
+                                                    <li class="active"><a href="#direccion-pills" data-toggle="tab" aria-expanded="true" onmouseover="InforProviderPill(this);">Direccion</a></li>
+                                                    <li class=""><a href="#telefono-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Teléfonos</a></li>
+                                                    <li class=""><a href="#fiscales-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Fiscales</a></li>
+                                                    <li class=""><a href="#costos-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Costos</a></li>
+                                                    <li class=""><a href="#comentarios-pills" data-toggle="tab" aria-expanded="false" onmouseover="InforProviderPill(this);">Comentarios</a></li>
+                                                </ul>
+                                                <div class="tab-content tab-provider-info">
+                                                    <div class="tab-pane fade active in" id="direccion-pills">
+                                                        <p id="prestInfoDomicilio"></p>
+                                                        <p><span id="prestInfoLocalidad"></span><span class="provider-info-separator">/</span><span id="prestInfoCiudad"></span></p>
+                                                        <p><span id="prestInfoProvincia"></span><span class="provider-info-separator">/</span><span id="prestInfoPais"></span></p>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="telefono-pills">
+                                                        <p><span id="prestInfoTelefono1"></span><span class="provider-info-separator">/</span><span id="prestInfoTelefono2"></span></p>
+                                                        <p><span id="prestInfoCelular1"></span><span class="provider-info-separator">/</span><span id="prestInfoCelular2"></span></p>
+                                                        <p><span id="prestInfoNextel"></span><span class="provider-info-separator">/</span><span id="prestEmail"></span></p>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="fiscales-pills">
+                                                        <p id="prestInfoCuit"></p>
+                                                        <p id="prestInfoIva"></p>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="costos-pills">
+                                                        <p><span>Liv:</span><span class="provider-info-separator"></span><span id="prestInfoLivMovida"></span><span class="provider-info-separator">/</span><span id="prestInfoLivKm"></span></p>
+                                                        <p><span>SP1:</span><span class="provider-info-separator"></span><span id="prestInfoSp1Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoSp1Km"></span></p>
+                                                        <p><span>SP2:</span><span class="provider-info-separator"></span><span id="prestInfoSp2Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoSp2Km"></span></p>
+                                                        <p><span>PS1:</span><span class="provider-info-separator"></span><span id="prestInfoPs1Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoPs1Km"></span></p>
+                                                        <p><span>PS2:</span><span class="provider-info-separator"></span><span id="prestInfoPs2Movida"></span><span class="provider-info-separator">/</span><span id="prestInfoPs2Km"></span></p>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="comentarios-pills">
+                                                        <p id="prestInfoDescripcion"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
 
+                                        </div>
                                     </div>
                                 </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6"><label>Detalles:</label><textarea class="form-control" id="prestacionDetalles" name="prestacionDetalles" rows="5" style="margin: 0px -3.83333px 0px 0px; "></textarea></div>
+                            <div class="col-lg-6">
                                 <div class="row">
-                                    <div class="col-lg-3"><label>Demora:</label><input type="text" id="prestacionDemora" name="prestacionDemora" class="form-control" placeholder="HH:MM"></div>
-                                    <div class="col-lg-3"><label></label><input type="hidden" id="prestacionPatente" name="prestacionPatente" class="form-control uppercase"></div>
-                                    <div class="col-lg-3"><label>Km:</label><input type="text" id="prestacionKilometros" name="prestacionKilometros" class="form-control"></div>
+                                    <div class="col-lg-3"><label>Demora Est:</label><input type="text" id="prestacionDemoraEst" name="prestacionDemoraEst" class="form-control" placeholder="HH:MM"></div>
+                                    <div class="col-lg-3"><label>Demora Real:</label><input type="text" id="prestacionDemoraReal" name="prestacionDemoraReal" class="form-control" placeholder="HH:MM"><input type="hidden" id="prestacionPatente" name="prestacionPatente" class="form-control uppercase"></div>
+                                    <div class="col-lg-6"><label>Nombre conductor de Grúa:</label><input type="text" id="prestacionNombreChofer" name="prestacionNombreChofer" class="form-control"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6"><label>Tipo Prestación:</label>@Html.DropDownList("prestacionTipoPrestacion", Model.TipoPrestaciones, new { @class = "form-control", @id = "prestacionTipoPrestacion", @name = "prestacionTipoPrestacion", @onchange = "CalculaCostoPrestacion();" })</div>
+                                    <div class="col-lg-3"><label>Km:</label><input type="text" id="prestacionKilometros" name="prestacionKilometros" class="form-control" onchange="CalculaCostoPrestacion();"></div>
                                     <div class="col-lg-3"><label>Costo:</label><input type="text" id="prestacionCosto" class="form-control" disabled></div>
                                 </div>
                             </div>
@@ -611,55 +642,64 @@
                             <div class="col-lg-6">
                                 <label>Origen:</label>
                                 <div>
-                                    @(Html.X().ComboBox()
-                                                                                    .DisplayField("CalleUbicacion")
-                                                                                    .ValueField("DatosUbicacion")
-                                                                                    .InputID("prestacionUbicacionOrigen")
-                                                                                    .TypeAhead(false)
-                                                                                    .StyleSpec("width:100%")
-                                                                                    .HideTrigger(true)
-                                                                                    .PageSize(0)
-                                                                                    .MinChars(2)
-                                                                                    .TriggerAction(TriggerAction.Query)
-                                                                                    .ListConfig(Html.X().BoundList()
-                                                                                    .LoadingText("Buscando...")
-                                                                                    .ItemTpl(Html.X().XTemplate()
-                                                                                    .Html(@<text>
-                                                                                        <div class="search-item search-item-small">
-                                                                                            {CalleUbicacion}
-                                                                                        </div>
-                                                                                    </text>
+                                    <div class="row">
+                                        <div class="col-lg-12"><input type="text" class="form-control" id="prestacionCalleOrigen" name="prestacionCalleOrigen" /></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            @(Html.X().ComboBox()
+                                            .DisplayField("Nombre")
+                                            .ValueField("DatosUbicacion")
+                                            .InputID("prestacionUbicacionOrigen")
+                                            .TypeAhead(false)
+                                            .StyleSpec("width:100%")
+                                            .HideTrigger(true)
+                                            .PageSize(0)
+                                            .MinChars(2)
+                                            .TriggerAction(TriggerAction.Query)
+                                            .ListConfig(Html.X().BoundList()
+                                            .LoadingText("Buscando...")
+                                            .ItemTpl(Html.X().XTemplate()
+                                            .Html(@<text>
+                                                <div class="search-item search-item-small">
+                                                    {Nombre}
+                                                </div>
+                                            </text>
+                                                                                    )
+                                                                                    )
+                                                                                    )
+                                                                                    .Listeners(ls => ls.Select.Handler = "SeleccionaPrestacionUbicacionOrigen(item);")
+                                                                                    .Store(Html.X().Store()
+                                                                                    .AutoLoad(false)
+                                                                                    .Proxy(Html.X().AjaxProxy()
+                                                                                    .Url(Url.Action("TraeUbicaciones"))
+                                                                                    .ActionMethods(af => af.Read = HttpMethod.POST)
+                                                                                    .Reader(Html.X().JsonReader().RootProperty("data"))
+                                                                                    )
+                                                                                    .Model(Html.X().Model()
+                                                                                    .Fields(
+                                                                                    Html.X().ModelField().Name("Nombre"),
+                                                                                    Html.X().ModelField().Name("DatosUbicacion")
+                                                                                    )
+                                                                                    )
+                                                                                    )
                                             )
-                                            )
-                                            )
-                                            .Listeners(ls => ls.Select.Handler = "SeleccionaPrestacionUbicacionOrigen(item);")
-                                            .Store(Html.X().Store()
-                                            .AutoLoad(false)
-                                            .Proxy(Html.X().AjaxProxy()
-                                            .Url(Url.Action("TraeUbicaciones"))
-                                            .ActionMethods(af => af.Read = HttpMethod.POST)
-                                            .Reader(Html.X().JsonReader().RootProperty("data"))
-                                            )
-                                            .Model(Html.X().Model()
-                                            .Fields(
-                                            Html.X().ModelField().Name("CalleUbicacion"),
-                                            Html.X().ModelField().Name("DatosUbicacion")
-                                            )
-                                            )
-                                            )
-                                    )
-                                    <input type="hidden" id="prestacionCalleOrigen" name="prestacionCalleOrigen" /><input type="hidden" id="prestacionIdLocalidadOrigen" /><input type="hidden" id="prestacionIdCiudadOrigen" /><input type="hidden" id="prestacionIdProvinciaOrigen" /><input type="hidden" id="prestacionIdPaisOrigen" />
-                                    <input type="hidden" id="prestacionUbicacionOrigenVal" />
-                                </div>
+                                        </div>
+                                        </div>
+                                        <input type="hidden" id="prestacionIdLocalidadOrigen" /><input type="hidden" id="prestacionIdCiudadOrigen" /><input type="hidden" id="prestacionIdProvinciaOrigen" /><input type="hidden" id="prestacionIdPaisOrigen" />
+                                        <input type="hidden" id="prestacionUbicacionOrigenVal" />
+                                    </div>
                             </div>
-                            <div class="col-lg-6"><label>Nombre conductor de Grúa:</label><input type="text" id="prestacionNombreChofer" name="prestacionNombreChofer" class="form-control"></div>
-                        </div>
-                        <div class="row">
                             <div class="col-lg-6">
                                 <label>Destino:</label>
                                 <div>
-                                    @(Html.X().ComboBox()
-                                            .DisplayField("CalleUbicacion")
+                                    <div class="row">
+                                        <div class="col-lg-12"><input type="text" id="prestacionCalleDestino" class="form-control" name="prestacionCalleDestino" /></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            @(Html.X().ComboBox()
+                                            .DisplayField("Nombre")
                                             .ValueField("DatosUbicacion")
                                             .InputID("prestacionUbicacionDestino")
                                             .TypeAhead(false)
@@ -673,32 +713,37 @@
                                             .ItemTpl(Html.X().XTemplate()
                                             .Html(@<text>
                                                 <div class="search-item search-item-small">
-                                                    {CalleUbicacion}
+                                                    {Nombre}
                                                 </div>
                                             </text>
+                                                                                    )
+                                                                                    )
+                                                                                    )
+                                                                                    .Listeners(ls => ls.Select.Handler = "SeleccionaPrestacionUbicacionDestino(item);")
+                                                                                    .Store(Html.X().Store()
+                                                                                    .AutoLoad(false)
+                                                                                    .Proxy(Html.X().AjaxProxy()
+                                                                                    .Url(Url.Action("TraeUbicaciones"))
+                                                                                    .ActionMethods(af => af.Read = HttpMethod.POST)
+                                                                                    .Reader(Html.X().JsonReader().RootProperty("data"))
+                                                                                    )
+                                                                                    .Model(Html.X().Model()
+                                                                                    .Fields(
+                                                                                            Html.X().ModelField().Name("Nombre"),
+                                                                                    Html.X().ModelField().Name("DatosUbicacion")
+                                                                                    )
+                                                                                    )
+                                                                                    )
                                             )
-                                            )
-                                            )
-                                            .Listeners(ls => ls.Select.Handler = "SeleccionaPrestacionUbicacionDestino(item);")
-                                            .Store(Html.X().Store()
-                                            .AutoLoad(false)
-                                            .Proxy(Html.X().AjaxProxy()
-                                            .Url(Url.Action("TraeUbicaciones"))
-                                            .ActionMethods(af => af.Read = HttpMethod.POST)
-                                            .Reader(Html.X().JsonReader().RootProperty("data"))
-                                            )
-                                            .Model(Html.X().Model()
-                                            .Fields(
-                                            Html.X().ModelField().Name("CalleUbicacion"),
-                                            Html.X().ModelField().Name("DatosUbicacion")
-                                            )
-                                            )
-                                            )
-                                    )
-                                    <input type="hidden" id="prestacionCalleDestino" name="prestacionCalleDestino"/><input type="hidden" id="prestacionIdLocalidadDestino" /><input type="hidden" id="prestacionIdCiudadDestino" /><input type="hidden" id="prestacionIdProvinciaDestino" /><input type="hidden" id="prestacionIdPaisDestino" />
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="prestacionIdLocalidadDestino" /><input type="hidden" id="prestacionIdCiudadDestino" /><input type="hidden" id="prestacionIdProvinciaDestino" /><input type="hidden" id="prestacionIdPaisDestino" />
                                     <input type="hidden" id="prestacionUbicacionDestinoVal" />
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6"></div>
                             <div class="col-lg-6"><label>Finalización Prestación</label>@Html.DropDownList("prestacionFinalizacion", Model.FinalizacionesPretaciones, " ", new { @class = "form-control", @id = "prestacionFinalizacion", @name = "prestacionFinalizacion" })</div>
                         </div>
                     </div>
@@ -817,7 +862,7 @@
             prestacionAceptar = false;
             accionPrestacion = "A";
             LimpiarPrestacionPopUp();
-            $('#prestacionDemora').val('02:00');
+            //$('#prestacionDemoraEst').val('02:00');
             $('#prestacionEstado').val(8);
 
             $('#prestacionIdPaisOrigen').val($('#IdPaisOrigen').val());
@@ -873,7 +918,8 @@
             $('#prestacionCalleDestino').val(p.CalleDestino);
             $('#prestacionEstado').val(p.IdEstado);
             $('#prestacionRetrabajo').val(p.IdTicketPrestadorRetrabajo);
-            $('#prestacionDemora').val(p.Demora);
+            $('#prestacionDemoraEst').val(p.DemoraEst);
+            $('#prestacionDemoraReal').val(p.DemoraReal);
             $('#prestacionPatente').val(p.Patente);
             $('#prestacionNombreChofer').val(p.NombreChofer);
 
@@ -884,8 +930,10 @@
             $('#prestacionUbicacionDestinoVal').val(p.UbicacionDestino);
 
             $('#prestacionFinalizacion').val(p.IdFinalizacion);
+            $('#prestacionTipoPrestacion').val(p.IdTipoPrestacion);
 
             $('#prestacionNombrePrestacion').val(p.NombrePrestacion);
+
 
             $('button#btnPrestacionModificar').click();
         }
@@ -910,7 +958,8 @@
             $('#prestacionCalleDestino').val('');
             $('#prestacionEstado').val('');
             $('#prestacionRetrabajo').val('');
-            $('#prestacionDemora').val('');
+            $('#prestacionDemoraEst').val('');
+            $('#prestacionDemoraReal').val('');
             $('#prestacionPatente').val('');
             $('#prestacionNombreChofer').val('');
             $('#prestacionUbicacionOrigen').val('');
@@ -918,6 +967,7 @@
             $('#prestacionUbicacionOrigenVal').val('');
             $('#prestacionUbicacionDestinoVal').val('');
             $('#prestacionFinalizacion').val('');
+            $('#prestacionTipoPrestacion').val('');
             $('#prestacionNombrePrestacion').val('');
         }
 
@@ -927,7 +977,7 @@
             var prestacion = Object();
             if (accionPrestacion == "A") {
                 var a = $('#gridPrestaciones tbody');
-                a.prepend('<tr ondblclick="ModificarPrestacion(this);"><td></td><td></td><td>-1</td><td style="display:none"></td><td style="display:none">{"Id":-1,"IdPrestador":-1,"NombrePrestador":"","IdTipoServicio":-1,"DescripcionServicio":"","Comentarios":"","Kilometros":null,"Costo":null,"IdPaisOrigen":-1,"IdPaisDestino":-1,"IdProvinciaOrigen":-1,"IdProvinciaDestino":-1,"IdCiudadOrigen":-1,"IdCiudadDestino":-1,"CalleOrigen":"","IdLocalidadOrigen":-1,"IdLocalidadDestino":-1,"CalleDestino":"","IdEstado":-1,"IdTicketPrestadorRetrabajo":-1,"Demora":"","Patente":"","NombreChofer":"","Estado":null,"IdFinalizacion":-1,"NombrePrestacion":null}</td></tr>')
+                a.prepend('<tr ondblclick="ModificarPrestacion(this);"><td></td><td></td><td>-1</td><td style="display:none"></td><td style="display:none">{"Id":-1,"IdPrestador":-1,"NombrePrestador":"","IdTipoServicio":-1,"DescripcionServicio":"","Comentarios":"","Kilometros":null,"Costo":null,"IdPaisOrigen":-1,"IdPaisDestino":-1,"IdProvinciaOrigen":-1,"IdProvinciaDestino":-1,"IdCiudadOrigen":-1,"IdCiudadDestino":-1,"CalleOrigen":"","IdLocalidadOrigen":-1,"IdLocalidadDestino":-1,"CalleDestino":"","IdEstado":-1,"IdTicketPrestadorRetrabajo":-1,"Patente":"","NombreChofer":"","Estado":null,"IdFinalizacion":-1,"NombrePrestacion":null,"DemoraEst":"","DemoraReal":"","IdTipoPrestacion":-1,"CodigoTipoPrestacion":""}</td></tr>')
                 gridPrestacionRow = $(a.children()[0]);
             }
             prestacion = JSON.parse(gridPrestacionRow.children()[4].innerText);
@@ -951,7 +1001,8 @@
             prestacion.IdEstado = $('#prestacionEstado').val();
             prestacion.Estado = $('#prestacionEstado option:selected').text();
             prestacion.IdTicketPrestadorRetrabajo = $('#prestacionRetrabajo').val();
-            prestacion.Demora = $('#prestacionDemora').val();
+            prestacion.DemoraEst = $('#prestacionDemoraEst').val();
+            prestacion.DemoraReal = $('#prestacionDemoraReal').val();
             prestacion.Patente = $('#prestacionPatente').val();
             prestacion.NombreChofer = $('#prestacionNombreChofer').val();
 
@@ -959,6 +1010,8 @@
             prestacion.UbicacionDestino = $('#prestacionUbicacionDestino').val();
 
             prestacion.IdFinalizacion = $('#prestacionFinalizacion').val();
+            prestacion.IdTipoPrestacion = $('#prestacionTipoPrestacion').val();
+            prestacion.CodigoTipoPrestacion = $('#prestacionTipoPrestacion option:selected').text();
 
             /*if ($('#prestacionNombrePrestacion').val() == ""){
                 prestacion.NombrePrestacion = prestacion.DescripcionServicio;
@@ -977,9 +1030,7 @@
         }
 
         function AntesDeSubmit() {
-            /*if (!$('#editCaseMainForm').valid()){
-                return false;
-            }*/
+
             var a = Array();
 
             for (i = 0; i < $('#gridPrestaciones tbody').children().length ; i++) {
@@ -1032,6 +1083,10 @@
                 if (p.IdFinalizacion == null || p.IdFinalizacion == ""){
                     p.IdFinalizacion = -1;
                 }
+                if (p.IdTipoPrestacion == null || p.IdTipoPrestacion == ""){
+                    p.IdTipoPrestacion = -1;
+                    p.CodigoTipoPrestacion = "";
+                }
                 a.push(p);
             }
             $('#DatosPrestaciones').val(JSON.stringify(a));
@@ -1056,42 +1111,75 @@
 
                     var oPrest = JSON.parse(item.children().text());
 
-                    CleanInfoPrestador();
+                    ShowProviderInfo(oPrest)
 
-                    $('#prestInfoNombre').text(oPrest.Nombre);
-                    $('#prestInfoDomicilio').text(oPrest.Domicilio);
-                    $('#prestInfoLocalidad').text(oPrest.Localidad);
-                    $('#prestInfoCiudad').text(oPrest.Ciudad);
-                    $('#prestInfoProvincia').text(oPrest.Provincia);
-                    $('#prestInfoPais').text(oPrest.Pais);
-                    $('#prestInfoTelefono1').text(oPrest.Telefono);
-                    $('#prestInfoTelefono2').text(oPrest.Telefono2);
-                    $('#prestInfoCelular1').text(oPrest.Celular);
-                    $('#prestInfoCelular2').text(oPrest.Celular2);
-                    $('#prestInfoNextel').text(oPrest.Nextel);
-                    $('#prestEmail').text(oPrest.Email);
-                    $('#prestInfoCuit').text(oPrest.Cuit);
-                    $('#prestInfoIva').text(oPrest.Iva);
-                    $('#prestInfoLivMovida').text(oPrest.LivMovida);
-                    $('#prestInfoLivKm').text(oPrest.LivKm);
-                    $('#prestInfoSp1Movida').text(oPrest.Sp1Movida);
-                    $('#prestInfoSp1Km').text(oPrest.Sp1Km);
-                    $('#prestInfoSp2Movida').text(oPrest.Sp2Movida);
-                    $('#prestInfoSp2Km').text(oPrest.Sp2Km);
-                    $('#prestInfoPs1Movida').text(oPrest.Ps1Movida);
-                    $('#prestInfoPs1Km').text(oPrest.Ps1Km);
-                    $('#prestInfoPs2Movida').text(oPrest.Ps2Movida);
-                    $('#prestInfoPs2Km').text(oPrest.Ps2Km);
-                    $('#prestInfoDescripcion').text(oPrest.Descripcion);
-
-                    $('.provider-info').addClass('provider-info-show');
                     setTimeout(function () {
-                        $('.provider-info').addClass('provider-info-move');
+                        //$('.provider-info').addClass('provider-info-move');
                         item.removeClass("glyphicon-menu-left");
                         item.addClass("glyphicon-triangle-left");
                     }, 10);
+
                 }
             }, 500);
+        }
+
+        function MasInfoPrestadorBoton() {
+            if ($('#prestacionIdPrestador').val() != '' && $('#prestacionIdPrestador').val() != '-1'){
+
+                $.ajax({
+                    url: '/Case/TraeDatosPrestador',
+                    success : function(result){
+                        var oPrest = JSON.parse(result);
+
+                        ShowProviderInfo(oPrest);
+
+                    },
+                    error:function(jqXHR, textStatus, errorThrown){
+                        CleanInfoPrestador();
+                        MensajeError('Ocurrió un error al buscar los datos del Prestador: ' + errorThrown);
+                    },
+                    data: { id : $('#prestacionIdPrestador').val() }
+                });
+
+            }
+        }
+
+        function ShowProviderInfo(oPrest){
+
+            CleanInfoPrestador();
+
+            $('#prestInfoNombre').text(oPrest.Nombre);
+            $('#prestInfoDomicilio').text(oPrest.Domicilio);
+            $('#prestInfoLocalidad').text(oPrest.Localidad);
+            $('#prestInfoCiudad').text(oPrest.Ciudad);
+            $('#prestInfoProvincia').text(oPrest.Provincia);
+            $('#prestInfoPais').text(oPrest.Pais);
+            $('#prestInfoTelefono1').text(oPrest.Telefono);
+            $('#prestInfoTelefono2').text(oPrest.Telefono2);
+            $('#prestInfoCelular1').text(oPrest.Celular);
+            $('#prestInfoCelular2').text(oPrest.Celular2);
+            $('#prestInfoNextel').text(oPrest.Nextel);
+            $('#prestEmail').text(oPrest.Email);
+            $('#prestInfoCuit').text(oPrest.Cuit);
+            $('#prestInfoIva').text(oPrest.Iva);
+            $('#prestInfoLivMovida').text(oPrest.LivMovida);
+            $('#prestInfoLivKm').text(oPrest.LivKm);
+            $('#prestInfoSp1Movida').text(oPrest.Sp1Movida);
+            $('#prestInfoSp1Km').text(oPrest.Sp1Km);
+            $('#prestInfoSp2Movida').text(oPrest.Sp2Movida);
+            $('#prestInfoSp2Km').text(oPrest.Sp2Km);
+            $('#prestInfoPs1Movida').text(oPrest.Ps1Movida);
+            $('#prestInfoPs1Km').text(oPrest.Ps1Km);
+            $('#prestInfoPs2Movida').text(oPrest.Ps2Movida);
+            $('#prestInfoPs2Km').text(oPrest.Ps2Km);
+            $('#prestInfoDescripcion').text(oPrest.Descripcion);
+
+            $('.provider-info').addClass('provider-info-show');
+
+            setTimeout(function () {
+                $('.provider-info').addClass('provider-info-move');
+            }, 10);
+
         }
 
         function HideProviderInfo() {
@@ -1146,20 +1234,20 @@
         function SeleccionaPrestador(item){
             $('#prestacionIdPrestador').val(item.value);
             $('#prestacionNombrePrestadorVal').val(item.selection.data.Nombre);
+
+            CalculaCostoPrestacion();
         }
 
         function SeleccionaUbicacionOrigen(item) {
             if (item != undefined && item != null) {
                 if (item.value != undefined && item.value != null){
                     var o = JSON.parse(item.value);
-                    $('#CalleOrigen').val(o.Calle);
                     $('#IdLocalidadOrigen').val(o.IdLocalidad);
                     $('#IdCiudadOrigen').val(o.IdCiudad);
                     $('#IdProvinciaOrigen').val(o.IdProvincia);
                     $('#IdPaisOrigen').val(o.IdPais);
-                    $('#UbicacionOrigenVal').val(item.selection.data.CalleUbicacion);
+                    $('#UbicacionOrigenVal').val(item.selection.data.Nombre);
                 }else{
-                    $('#CalleOrigen').val('');
                     $('#IdLocalidadOrigen').val('');
                     $('#IdCiudadOrigen').val('');
                     $('#IdProvinciaOrigen').val('');
@@ -1173,14 +1261,12 @@
             if (item != undefined && item != null) {
                 if (item.value != undefined && item.value != null){
                     var o = JSON.parse(item.value);
-                    $('#CalleDestino').val(o.Calle);
                     $('#IdLocalidadDestino').val(o.IdLocalidad);
                     $('#IdCiudadDestino').val(o.IdCiudad);
                     $('#IdProvinciaDestino').val(o.IdProvincia);
                     $('#IdPaisDestino').val(o.IdPais);
-                    $('#UbicacionDestinoVal').val(item.selection.data.CalleUbicacion);
+                    $('#UbicacionDestinoVal').val(item.selection.data.Nombre);
                 }else{
-                    $('#CalleDestino').val('');
                     $('#IdLocalidadDestino').val('');
                     $('#IdCiudadDestino').val('');
                     $('#IdProvinciaDestino').val('');
@@ -1194,14 +1280,12 @@
             if (item != undefined && item != null) {
                 if (item.value != undefined && item.value != null){
                     var o = JSON.parse(item.value);
-                    $('#prestacionCalleOrigen').val(o.Calle);
                     $('#prestacionIdLocalidadOrigen').val(o.IdLocalidad);
                     $('#prestacionIdCiudadOrigen').val(o.IdCiudad);
                     $('#prestacionIdProvinciaOrigen').val(o.IdProvincia);
                     $('#prestacionIdPaisOrigen').val(o.IdPais);
-                    $('#prestacionUbicacionOrigenVal').val(item.selection.data.CalleUbicacion);
+                    $('#prestacionUbicacionOrigenVal').val(item.selection.data.Nombre);
                 }else{
-                    $('#prestacionCalleOrigen').val('');
                     $('#prestacionIdLocalidadOrigen').val('');
                     $('#prestacionIdCiudadOrigen').val('');
                     $('#prestacionIdProvinciaOrigen').val('');
@@ -1216,14 +1300,14 @@
             if (item != undefined && item != null) {
                 if (item.value != undefined && item.value != null){
                     var o = JSON.parse(item.value);
-                    $('#prestacionCalleDestino').val(o.Calle);
+                    //$('#prestacionCalleDestino').val(o.Calle);
                     $('#prestacionIdLocalidadDestino').val(o.IdLocalidad);
                     $('#prestacionIdCiudadDestino').val(o.IdCiudad);
                     $('#prestacionIdProvinciaDestino').val(o.IdProvincia);
                     $('#prestacionIdPaisDestino').val(o.IdPais);
-                    $('#prestacionUbicacionDestinoVal').val(item.selection.data.CalleUbicacion);
+                    $('#prestacionUbicacionDestinoVal').val(item.selection.data.Nombre);
                 }else{
-                    $('#prestacionCalleDestino').val('');
+                    //$('#prestacionCalleDestino').val('');
                     $('#prestacionIdLocalidadDestino').val('');
                     $('#prestacionIdCiudadDestino').val('');
                     $('#prestacionIdProvinciaDestino').val('');
@@ -1263,7 +1347,35 @@
 
         }
 
+        function CalculaCostoPrestacion(){
+
+            if ($('#prestacionTipoPrestacion option:selected').text() != '' && $('#prestacionKilometros').val() != '' && $('#prestacionIdPrestador').val()) {
+                $.ajax({
+                    url: '/Case/TraeCosto',
+                    success: function (result) {
+                        if (result == '0') {
+                            $('#prestacionCosto').val('');
+                        } else {
+                            $('#prestacionCosto').val(result);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        CleanInfoPrestador();
+                        MensajeError('Ocurrió un error al buscar los datos del Prestador: ' + errorThrown);
+                    },
+                    data: { id: $('#prestacionIdPrestador').val(), codigo: $('#prestacionTipoPrestacion option:selected').text(), km: $('#prestacionKilometros').val() }
+                });
+            }
+
+        }
+
+
         $().ready(function () {
+
+            $('#AfiliadoSelect').attr('placeholder', 'Busque Afiliado');
+
+            $('#UbicacionOrigen').attr('placeholder', 'Busque Ubicación Origen');
+            $('#UbicacionOrigen').attr('placeholder', 'Busque Ubicación Destino');
 
             $('.validation-summary-errors').addClass('field-validation-error');
 
@@ -1346,8 +1458,11 @@
                     prestacionPatente : {
                         validaPatente : true
                     },
-                    prestacionDemora : {
-                        validaDemora: true
+                    prestacionDemoraEst : {
+                        validaDemora : true
+                    },
+                    prestacionDemoraReal : {
+                        validaDemora : true
                     },
                     prestacionNombreChofer : {
                         maxlength: 255

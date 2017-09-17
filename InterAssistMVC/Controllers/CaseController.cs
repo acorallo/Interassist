@@ -10,8 +10,6 @@ using Ext.Net;
 using InterAssistMVC.Models;
 using System.Text.RegularExpressions;
 
-/*** EGV 25May2017 Archivo creado ***/
-
 namespace InterAssistMVC.Controllers
 {
     public class CaseController : IAController
@@ -34,23 +32,11 @@ namespace InterAssistMVC.Controllers
             t.Fecha = System.DateTime.Today;
             t.IdEstado = 4;
             t.TipoTicket = "Vehículo";
+            t.DemoraEst = "02:00";
             t.Persist();
 
             return RedirectToAction("Edit", "Case", new { Id = t.ID });
         }
-
-        /*
-        public ActionResult Edit(int Id)
-        {
-            Ticket e = Ticket.GetById(Id);
-
-            Case m = Case.EntityToModel(e);
-
-            FillCombos(m);
-
-            return View(m);
-        }
-        */
 
         public ActionResult Edit(int Id, int NumTab = 0)
         {
@@ -168,12 +154,76 @@ namespace InterAssistMVC.Controllers
             return this.Store(paging.Data, paging.TotalRecords);
         }
 
+        [HttpGet]
+        [Route("Case/TraeDatosPrestador")]
+        public string TraeDatosPrestador(int id)
+        {
+            FiltroPrestador f = new FiltroPrestador();
+            int totalRegistros;
+
+            f.ID = id;
+
+            f.IsPaged = false;
+
+            List<Provider> list = Provider.EntityToModel(Prestador.List(f, out totalRegistros));
+
+            if (list.Count > 0)
+            {
+                Provider p = list[0];
+                return p.DatosPrestador;
+            }
+            return "";
+        }
+
+        [HttpGet]
+        [Route("Case/TraeCosto")]
+        public decimal TraeCosto(int id, string codigo, decimal km)
+        {
+            if (id <= 0)
+                return 0;
+
+            if (codigo == null || codigo == "")
+                return 0;
+
+            FiltroPrestador f = new FiltroPrestador();
+            int totalRegistros;
+
+            f.ID = id;
+
+            f.IsPaged = false;
+
+            List<Provider> list = Provider.EntityToModel(Prestador.List(f, out totalRegistros));
+
+            if (list.Count > 0)
+            {
+                Provider p = list[0];
+                float kmf = (float)km;
+                switch (codigo)
+                {
+                    case "LIV":
+                        return Convert.ToDecimal((p.LivMovida ?? 0) + ((p.LivKm ?? 0) * kmf));
+                    case "SP1":
+                        return Convert.ToDecimal((p.Sp1Movida ?? 0) + ((p.Sp1Km ?? 0) * kmf));
+                    case "SP2":
+                        return Convert.ToDecimal((p.Sp2Movida ?? 0) + ((p.Sp2Km ?? 0) * kmf));
+                    case "PS1":
+                        return Convert.ToDecimal((p.Ps1Movida ?? 0) + ((p.Ps1Km ?? 0) * kmf));
+                    case "PS2":
+                        return Convert.ToDecimal((p.Ps2Movida ?? 0) + ((p.Ps2Km ?? 0) * kmf));
+                    default:
+                        return 0;
+                }
+            }
+            return 0;
+        }
+
         public ActionResult TraeUbicaciones(string query)
         {
-             FiltroUbicacion f = new FiltroUbicacion();
-            int totalRegistros, indexOfComma;
-
-            indexOfComma = query.IndexOf(',');
+            FiltroUbicacion f = new FiltroUbicacion();
+            //int totalRegistros, indexOfComma;
+            int totalRegistros;
+            
+            /*indexOfComma = query.IndexOf(',');
 
             if (indexOfComma < 0)
             {
@@ -182,8 +232,9 @@ namespace InterAssistMVC.Controllers
 
             string calle = query.Substring(0,indexOfComma);
             string q = query.Substring(indexOfComma + 1, query.Length - (indexOfComma + 1)).Trim();
-
-            f.Search = q;
+            */
+            //f.Search = q;
+            f.Search = query;
 
             f.IsPaged = false;
             f.OrderBY = " ORDER BY ORDEN, NOMBRE";
@@ -197,7 +248,8 @@ namespace InterAssistMVC.Controllers
                 list.Add(u);
             }
 
-            list.ForEach(l => { l.CalleUbicacion = Common.Ubicacion(calle, l.Nombre); l.Calle = calle; l.DatosUbicacion = l.DatosUbicacion = Newtonsoft.Json.JsonConvert.SerializeObject(new { IdLocalidad = l.IdLocalidad, IdCiudad = l.IdCiudad, IdProvincia = l.IdProvincia, IdPais = l.IdPais, Calle = l.Calle, CalleUbicacion = calle + ", " + l.Nombre }); });
+            //list.ForEach(l => { l.CalleUbicacion = Common.Ubicacion(calle, l.Nombre); l.Calle = calle; l.DatosUbicacion = l.DatosUbicacion = Newtonsoft.Json.JsonConvert.SerializeObject(new { IdLocalidad = l.IdLocalidad, IdCiudad = l.IdCiudad, IdProvincia = l.IdProvincia, IdPais = l.IdPais, Calle = l.Calle, CalleUbicacion = calle + ", " + l.Nombre }); });
+            list.ForEach(l => { l.DatosUbicacion = Newtonsoft.Json.JsonConvert.SerializeObject(new { IdLocalidad = l.IdLocalidad, IdCiudad = l.IdCiudad, IdProvincia = l.IdProvincia, IdPais = l.IdPais, Nombre = l.Nombre }); });
 
             Paging<UbicacionModel> paging = new Paging<UbicacionModel>(list, totalRegistros);
 
@@ -221,13 +273,19 @@ namespace InterAssistMVC.Controllers
             m.FinalizacionesPretaciones = new SelectList(Estado.List(new FiltroEstado("FINAL_PREST")), "ID", "Descripcion");
 
             List<Colores> it = Colores.List(new FiltroColores());
-            it.Add(new Colores());
+            Colores col = new Colores();
+            col.Nombre = "-- Color --";
+            it.Add(col);
             m.Colores = new SelectList(it, "ID", "Nombre");
 
+            m.TipoPrestaciones = new SelectList(TipoPrestaciones.List(new FiltroTipoPrestacion()), "ID", "Codigo");
         }
 
         private void Validate(Case m)
         {
+
+            if (!ValidaDemora(m.DemoraEst))
+                ModelState.AddModelError("demoraEst" + m.Id.ToString(), "Demora Estimada inválida. Ingrese HH:MM.");
 
             foreach (Prestacion p in m.Prestaciones)
             {
@@ -251,17 +309,15 @@ namespace InterAssistMVC.Controllers
                     }
                 }
 
-                // Validacion Demora
-                if (p.Demora != null && p.Demora != "")
-                {
-                    if (p.Demora.Length != 5)
-                        ModelState.AddModelError("prestDemora" + p.Id.ToString(), "Demora inválida. Ingrese HH:MM.");
-                    else 
-                    { 
-                        if (!Regex.IsMatch(p.Demora,@"[0-9][0-9]:[0-5][0-9]"))
-                            ModelState.AddModelError("prestDemora" + p.Id.ToString(), "Demora inválida. Ingrese HH:MM.");
-                    }
-                }
+                if (!ValidaDemora(p.DemoraEst))
+                    ModelState.AddModelError("prestDemoraEst" + p.Id.ToString(), "Demora Estimada inválida. Ingrese HH:MM.");
+
+                if (!ValidaDemora(p.DemoraReal))
+                    ModelState.AddModelError("prestDemoraReal" + p.Id.ToString(), "Demora Real inválida. Ingrese HH:MM.");
+
+                Provider pr = new Provider();
+                
+                p.Costo = TraeCosto(p.IdPrestador, p.CodigoTipoPrestacion, p.Kilometros);
             }
 
             if (!ModelState.IsValid)
@@ -307,15 +363,27 @@ namespace InterAssistMVC.Controllers
 
         }
 
+        private bool ValidaDemora(string demora)
+        {
+            if (demora != null && demora != "")
+            {
+                if (demora.Length != 5)
+                    return false;
+                else
+                {
+                    if (!Regex.IsMatch(demora, @"[0-9][0-9]:[0-5][0-9]"))
+                        return false;
+                }
+            }
+            return true;
+        }
+
         private bool CambioEnPrestacion(Prestacion m,PrestadorCaso e)
         {
             if (m.IdPrestador != e.IdPrestador ||
                 m.IdTipoServicio != e.IdTipoServicio ||
                 (m.Comentarios ?? "") != (e.Comentarios ?? "") ||
                 m.Kilometros != e.Kilometros ||
-                // EGV 26Ago2017 Inicio
-                //m.IdProblema != e.IdProblema ||
-                // EGV 26Ago2017 Fin
                 m.IdPaisOrigen != e.IdPaisOrigen ||
                 m.IdPaisDestino != e.IdPaisDestino ||
                 m.IdProvinciaOrigen != e.IdProvinciaOrigen ||
@@ -327,10 +395,12 @@ namespace InterAssistMVC.Controllers
                 m.IdLocalidadDestino != e.IdLocalidadDestino ||
                 (m.CalleDestino ?? "") != (e.CalleDestino ?? "") ||
                 m.IdTicketPrestadorRetrabajo != e.IdTicketPrestadorRetrabajo ||
-                (m.Demora ?? "") != (e.Demora ?? "") ||
                 (m.Patente ?? "") != (e.Patente ?? "") ||
                 (m.NombreChofer ?? "") != (e.NombreChofer ?? "") ||
-                m.IdFinalizacion != e.IdFinalizacion)
+                m.IdFinalizacion != e.IdFinalizacion ||
+                (m.DemoraEst ?? "") != (e.DemoraEst ?? "") ||
+                (m.DemoraReal ?? "") != (e.DemoraReal ?? "") ||
+                m.IdTipoPrestacion != e.IdTipoPrestacion)
 
                 return true;
 
@@ -349,9 +419,6 @@ namespace InterAssistMVC.Controllers
             pc.IdTipoServicio = p.IdTipoServicio;
             pc.Comentarios = p.Comentarios;
             pc.Kilometros = p.Kilometros;
-            // EGV 26Ago2017 Inicio
-            //pc.IdProblema = p.IdProblema;
-            // EGV 26Ago2017 Fin
             pc.IdPaisOrigen = p.IdPaisOrigen;
             pc.IdPaisDestino = p.IdPaisDestino;
             pc.IdProvinciaOrigen = p.IdProvinciaOrigen;
@@ -363,10 +430,12 @@ namespace InterAssistMVC.Controllers
             pc.IdLocalidadDestino = p.IdLocalidadDestino;
             pc.CalleDestino = p.CalleDestino;
             pc.IdTicketPrestadorRetrabajo = p.IdTicketPrestadorRetrabajo;
-            pc.Demora = "02:00";
             pc.IdEstado = (int) Estado.Prestacion.PendientePrestador;
             pc.Patente = "";
             pc.NombreChofer = "";
+            pc.DemoraEst = p.DemoraEst;
+            pc.DemoraReal = p.DemoraReal;
+            pc.IdTipoPrestacion = p.IdTipoPrestacion;
 
             return pc;
         }
@@ -554,7 +623,9 @@ namespace InterAssistMVC.Controllers
                 m.OkAfiliado != t.OkAfiliado ||
                 m.CantTicketsAfil != t.CantTicketsAfil ||
                 m.IdProblema != t.IdProblema ||
-                m.IdColor != t.IdColor)
+                m.IdColor != t.IdColor ||
+                (m.UbicacionDescr ?? "") != (t.UbicacionDescr ?? "") ||
+                (m.DemoraEst ?? "") != (t.DemoraEst ?? ""))
                 return true;
 
             return false;

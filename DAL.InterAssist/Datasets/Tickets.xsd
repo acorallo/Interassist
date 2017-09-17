@@ -14,7 +14,7 @@
   <xs:element name="Tickets" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Tickets" msprop:Generator_UserDSName="Tickets">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="TICKETS" msprop:Generator_TableClassName="TICKETSDataTable" msprop:Generator_TableVarName="tableTICKETS" msprop:Generator_TablePropName="TICKETS" msprop:Generator_RowDeletingName="TICKETSRowDeleting" msprop:Generator_RowChangingName="TICKETSRowChanging" msprop:Generator_RowEvHandlerName="TICKETSRowChangeEventHandler" msprop:Generator_RowDeletedName="TICKETSRowDeleted" msprop:Generator_UserTableName="TICKETS" msprop:Generator_RowChangedName="TICKETSRowChanged" msprop:Generator_RowEvArgName="TICKETSRowChangeEvent" msprop:Generator_RowClassName="TICKETSRow">
+        <xs:element name="TICKETS" msprop:Generator_TableClassName="TICKETSDataTable" msprop:Generator_TableVarName="tableTICKETS" msprop:Generator_RowChangedName="TICKETSRowChanged" msprop:Generator_TablePropName="TICKETS" msprop:Generator_RowDeletingName="TICKETSRowDeleting" msprop:Generator_RowChangingName="TICKETSRowChanging" msprop:Generator_RowEvHandlerName="TICKETSRowChangeEventHandler" msprop:Generator_RowDeletedName="TICKETSRowDeleted" msprop:Generator_RowClassName="TICKETSRow" msprop:Generator_UserTableName="TICKETS" msprop:Generator_RowEvArgName="TICKETSRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IDTICKET" msprop:Generator_ColumnVarNameInTable="columnIDTICKET" msprop:Generator_ColumnPropNameInRow="IDTICKET" msprop:Generator_ColumnPropNameInTable="IDTICKETColumn" msprop:Generator_UserColumnName="IDTICKET" type="xs:double" />
@@ -69,6 +69,20 @@
               <xs:element name="CANT_TICKETS_AFIL" msprop:Generator_ColumnVarNameInTable="columnCANT_TICKETS_AFIL" msprop:Generator_ColumnPropNameInRow="CANT_TICKETS_AFIL" msprop:Generator_ColumnPropNameInTable="CANT_TICKETS_AFILColumn" msprop:Generator_UserColumnName="CANT_TICKETS_AFIL" type="xs:int" minOccurs="0" />
               <xs:element name="IDCOLOR" msprop:Generator_ColumnVarNameInTable="columnIDCOLOR" msprop:Generator_ColumnPropNameInRow="IDCOLOR" msprop:Generator_ColumnPropNameInTable="IDCOLORColumn" msprop:Generator_UserColumnName="IDCOLOR" type="xs:int" minOccurs="0" />
               <xs:element name="IDPROBLEMA" msprop:Generator_ColumnVarNameInTable="columnIDPROBLEMA" msprop:Generator_ColumnPropNameInRow="IDPROBLEMA" msprop:Generator_ColumnPropNameInTable="IDPROBLEMAColumn" msprop:Generator_UserColumnName="IDPROBLEMA" type="xs:int" minOccurs="0" />
+              <xs:element name="UBICACION_DESCR" msprop:Generator_ColumnVarNameInTable="columnUBICACION_DESCR" msprop:Generator_ColumnPropNameInRow="UBICACION_DESCR" msprop:Generator_ColumnPropNameInTable="UBICACION_DESCRColumn" msprop:Generator_UserColumnName="UBICACION_DESCR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1024" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DEMORA_EST" msprop:Generator_ColumnVarNameInTable="columnDEMORA_EST" msprop:Generator_ColumnPropNameInRow="DEMORA_EST" msprop:Generator_ColumnPropNameInTable="DEMORA_ESTColumn" msprop:Generator_UserColumnName="DEMORA_EST" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

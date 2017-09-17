@@ -1,7 +1,4 @@
-﻿/* EGV 25May2017
- Creación de Clase Prestacion
- */
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,8 +11,6 @@ namespace InterAssistMVC.Models
     public class Prestacion
     {
         public virtual int Id { get; set; }
-        //public virtual Prestador Prestador { get; set; }
-        //public virtual TipoServicio TipoServicio { get; set; }
         public virtual int IdPrestador { get; set; }
         public virtual string NombrePrestador { get; set; }
         
@@ -36,11 +31,6 @@ namespace InterAssistMVC.Models
         [Range(-1, 9999999)]
         public virtual Decimal Costo { get; set; }
 
-        // EGV 25May2017 Inicio
-        // EGV 26Ago2017 Inicio
-        //public virtual int IdProblema { get; set; }
-        //public virtual string Problema { get; set; }
-        // EGV 26Ago2017 Fin
         public virtual int IdPaisOrigen { get; set; }
         public virtual int IdPaisDestino { get; set; }
         public virtual int IdProvinciaOrigen { get; set; }
@@ -59,9 +49,6 @@ namespace InterAssistMVC.Models
         public virtual int IdTicketPrestadorRetrabajo { get; set; }
 
         [StringLength(20)]
-        public virtual string Demora { get; set; }
-
-        [StringLength(20)]
         public virtual string Patente { get; set; }
 
         [StringLength(255)]
@@ -74,6 +61,17 @@ namespace InterAssistMVC.Models
         public virtual string UbicacionOrigen { get; set; }
         public virtual string UbicacionDestino { get; set; }
         public virtual int IdFinalizacion { get; set; }
+
+        [StringLength(20)]
+        public virtual string DemoraEst { get; set; }
+
+        [StringLength(20)]
+        public virtual string DemoraReal { get; set; }
+        
+        public virtual int IdTipoPrestacion { get; set; }
+
+        [StringLength(5)]
+        public virtual string CodigoTipoPrestacion { get; set; }
 
         public static Prestacion EntityToModel(PrestadorCaso e, int numPrest)
         {
@@ -91,11 +89,7 @@ namespace InterAssistMVC.Models
             m.NombrePrestacion = (m.Numero.ToString() + " " + m.DescripcionServicio).Trim();
             m.Comentarios = e.Comentarios;
             m.Kilometros = e.Kilometros;
-            //m.Costo = e.Costo;
-            // EGV 26Ago2017 Inicio
-            //m.IdProblema = e.IdProblema;
-            //m.Problema = e.Problema;
-            // EGV 26Ago2017 Fin
+            m.Costo = e.Costo;
             m.IdPaisOrigen = e.IdPaisOrigen;
             m.IdPaisDestino = e.IdPaisDestino;
             m.IdProvinciaOrigen = e.IdProvinciaOrigen;
@@ -109,13 +103,16 @@ namespace InterAssistMVC.Models
             m.IdEstado = e.IdEstado;
             m.Estado = e.Estado;
             m.IdTicketPrestadorRetrabajo = e.IdTicketPrestadorRetrabajo;
-            m.Demora = e.Demora;
             m.Patente = e.Patente;
             m.NombreChofer = e.NombreChofer;
             m.IdFinalizacion = e.IdFinalizacion;
+            m.DemoraEst = e.DemoraEst;
+            m.DemoraReal = e.DemoraReal;
+            m.IdTipoPrestacion = e.IdTipoPrestacion;
+            m.CodigoTipoPrestacion = e.CodigoTipoPrestacion;
 
-            m.UbicacionOrigen = Common.Ubicacion(e.CalleOrigen, e.NombreLocalidadOrigen);
-            m.UbicacionDestino = Common.Ubicacion(e.CalleDestino, e.NombreLocalidadDestino);
+            m.UbicacionOrigen = e.NombreLocalidadOrigen;
+            m.UbicacionDestino = e.NombreLocalidadDestino;
 
             return m;
 
@@ -124,16 +121,6 @@ namespace InterAssistMVC.Models
         public PrestadorCaso ModelToEntity()
         {
             PrestadorCaso e = new PrestadorCaso();
-
-            /*
-            if (this.Id > 0)
-            {
-                e = PrestadorCaso.GetById(this.Id);
-            }
-            else
-            {
-                e = new PrestadorCaso();
-            }*/
 
             e.ID = this.Id;
             e.IdPrestador = this.IdPrestador;
@@ -150,9 +137,6 @@ namespace InterAssistMVC.Models
             e.Comentarios = this.Comentarios;
             e.Kilometros = this.Kilometros;
             e.Costo = this.Costo;
-            // EGV 26Ago2017 Inicio
-            //e.IdProblema = this.IdProblema;
-            // EGV 26Ago2017 Fin
             e.IdPaisOrigen = this.IdPaisOrigen;
             e.IdPaisDestino = this.IdPaisDestino;
             e.IdProvinciaOrigen = this.IdProvinciaOrigen;
@@ -165,10 +149,12 @@ namespace InterAssistMVC.Models
             e.CalleDestino = this.CalleDestino;
             e.IdEstado = this.IdEstado;
             e.IdTicketPrestadorRetrabajo = this.IdTicketPrestadorRetrabajo;
-            e.Demora = this.Demora;
             e.Patente = this.Patente;
             e.NombreChofer = this.NombreChofer;
             e.IdFinalizacion = this.IdFinalizacion;
+            e.DemoraEst = this.DemoraEst;
+            e.DemoraReal = this.DemoraReal;
+            e.IdTipoPrestacion = this.IdTipoPrestacion;
             
             return e;
 

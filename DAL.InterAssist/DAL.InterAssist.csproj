@@ -145,6 +145,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Ticket_Track.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Datasets\TipoPrestaciones.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TipoPrestaciones.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EmpresaDS.cs" />
     <Compile Include="EstadoDS.cs" />
     <Compile Include="LocalidadDS.cs" />
@@ -160,6 +165,7 @@
     </Compile>
     <Compile Include="ReportesDS.cs" />
     <Compile Include="TicketDS.cs" />
+    <Compile Include="TipoPrestacionesDS.cs" />
     <Compile Include="TipoServicioDS.cs" />
     <Compile Include="UbicacionDS.cs" />
     <Compile Include="UploadErrorDS.cs" />
@@ -350,6 +356,17 @@
     </None>
     <None Include="Datasets\Ticket_Track.xss">
       <DependentUpon>Ticket_Track.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\TipoPrestaciones.xsc">
+      <DependentUpon>TipoPrestaciones.xsd</DependentUpon>
+    </None>
+    <None Include="Datasets\TipoPrestaciones.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TipoPrestaciones.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Datasets\TipoPrestaciones.xss">
+      <DependentUpon>TipoPrestaciones.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

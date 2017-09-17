@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TipoPrestaciones" targetNamespace="http://tempuri.org/TipoPrestaciones.xsd" xmlns:mstns="http://tempuri.org/TipoPrestaciones.xsd" xmlns="http://tempuri.org/TipoPrestaciones.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="TipoPrestaciones" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="TipoPrestaciones" msprop:Generator_UserDSName="TipoPrestaciones">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TIPOPRESTACIONES" msprop:Generator_TableClassName="TIPOPRESTACIONESDataTable" msprop:Generator_TableVarName="tableTIPOPRESTACIONES" msprop:Generator_TablePropName="TIPOPRESTACIONES" msprop:Generator_RowDeletingName="TIPOPRESTACIONESRowDeleting" msprop:Generator_RowChangingName="TIPOPRESTACIONESRowChanging" msprop:Generator_RowEvHandlerName="TIPOPRESTACIONESRowChangeEventHandler" msprop:Generator_RowDeletedName="TIPOPRESTACIONESRowDeleted" msprop:Generator_UserTableName="TIPOPRESTACIONES" msprop:Generator_RowChangedName="TIPOPRESTACIONESRowChanged" msprop:Generator_RowEvArgName="TIPOPRESTACIONESRowChangeEvent" msprop:Generator_RowClassName="TIPOPRESTACIONESRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDTIPOPRESTACION" msprop:Generator_ColumnVarNameInTable="columnIDTIPOPRESTACION" msprop:Generator_ColumnPropNameInRow="IDTIPOPRESTACION" msprop:Generator_ColumnPropNameInTable="IDTIPOPRESTACIONColumn" msprop:Generator_UserColumnName="IDTIPOPRESTACION" type="xs:int" minOccurs="0" />
+              <xs:element name="CODIGO" msprop:Generator_ColumnVarNameInTable="columnCODIGO" msprop:Generator_ColumnPropNameInRow="CODIGO" msprop:Generator_ColumnPropNameInTable="CODIGOColumn" msprop:Generator_UserColumnName="CODIGO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DESCRIPCION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPCION" msprop:Generator_ColumnPropNameInRow="DESCRIPCION" msprop:Generator_ColumnPropNameInTable="DESCRIPCIONColumn" msprop:Generator_UserColumnName="DESCRIPCION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1">
+      <xs:selector xpath=".//mstns:TIPOPRESTACIONES" />
+      <xs:field xpath="mstns:IDTIPOPRESTACION" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

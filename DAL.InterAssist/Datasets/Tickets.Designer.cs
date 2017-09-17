@@ -323,6 +323,10 @@ namespace DAL.InterAssist.Datasets {
             
             private global::System.Data.DataColumn columnIDPROBLEMA;
             
+            private global::System.Data.DataColumn columnUBICACION_DESCR;
+            
+            private global::System.Data.DataColumn columnDEMORA_EST;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TICKETSDataTable() {
@@ -534,6 +538,22 @@ namespace DAL.InterAssist.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UBICACION_DESCRColumn {
+                get {
+                    return this.columnUBICACION_DESCR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DEMORA_ESTColumn {
+                get {
+                    return this.columnDEMORA_EST;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -591,7 +611,9 @@ namespace DAL.InterAssist.Datasets {
                         string OKAFILIADO, 
                         int CANT_TICKETS_AFIL, 
                         int IDCOLOR, 
-                        int IDPROBLEMA) {
+                        int IDPROBLEMA, 
+                        string UBICACION_DESCR, 
+                        string DEMORA_EST) {
                 TICKETSRow rowTICKETSRow = ((TICKETSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IDTICKET,
@@ -615,7 +637,9 @@ namespace DAL.InterAssist.Datasets {
                         OKAFILIADO,
                         CANT_TICKETS_AFIL,
                         IDCOLOR,
-                        IDPROBLEMA};
+                        IDPROBLEMA,
+                        UBICACION_DESCR,
+                        DEMORA_EST};
                 rowTICKETSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTICKETSRow);
                 return rowTICKETSRow;
@@ -667,6 +691,8 @@ namespace DAL.InterAssist.Datasets {
                 this.columnCANT_TICKETS_AFIL = base.Columns["CANT_TICKETS_AFIL"];
                 this.columnIDCOLOR = base.Columns["IDCOLOR"];
                 this.columnIDPROBLEMA = base.Columns["IDPROBLEMA"];
+                this.columnUBICACION_DESCR = base.Columns["UBICACION_DESCR"];
+                this.columnDEMORA_EST = base.Columns["DEMORA_EST"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -716,6 +742,10 @@ namespace DAL.InterAssist.Datasets {
                 base.Columns.Add(this.columnIDCOLOR);
                 this.columnIDPROBLEMA = new global::System.Data.DataColumn("IDPROBLEMA", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIDPROBLEMA);
+                this.columnUBICACION_DESCR = new global::System.Data.DataColumn("UBICACION_DESCR", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUBICACION_DESCR);
+                this.columnDEMORA_EST = new global::System.Data.DataColumn("DEMORA_EST", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDEMORA_EST);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIDTICKET}, true));
                 this.columnIDTICKET.AllowDBNull = false;
@@ -738,6 +768,8 @@ namespace DAL.InterAssist.Datasets {
                 this.columnIDLOCALIDAD_DESTINO.AllowDBNull = false;
                 this.columnCALLE_DESTINO.MaxLength = 1024;
                 this.columnOKAFILIADO.MaxLength = 1;
+                this.columnUBICACION_DESCR.MaxLength = 1024;
+                this.columnDEMORA_EST.MaxLength = 20;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1162,6 +1194,38 @@ namespace DAL.InterAssist.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string UBICACION_DESCR {
+                get {
+                    try {
+                        return ((string)(this[this.tableTICKETS.UBICACION_DESCRColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'UBICACION_DESCR\' in table \'TICKETS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTICKETS.UBICACION_DESCRColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DEMORA_EST {
+                get {
+                    try {
+                        return ((string)(this[this.tableTICKETS.DEMORA_ESTColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DEMORA_EST\' in table \'TICKETS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTICKETS.DEMORA_ESTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTELEFONONull() {
                 return this.IsNull(this.tableTICKETS.TELEFONOColumn);
             }
@@ -1254,6 +1318,30 @@ namespace DAL.InterAssist.Datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetIDPROBLEMANull() {
                 this[this.tableTICKETS.IDPROBLEMAColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUBICACION_DESCRNull() {
+                return this.IsNull(this.tableTICKETS.UBICACION_DESCRColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUBICACION_DESCRNull() {
+                this[this.tableTICKETS.UBICACION_DESCRColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDEMORA_ESTNull() {
+                return this.IsNull(this.tableTICKETS.DEMORA_ESTColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDEMORA_ESTNull() {
+                this[this.tableTICKETS.DEMORA_ESTColumn] = global::System.Convert.DBNull;
             }
         }
         

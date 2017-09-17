@@ -323,13 +323,17 @@ namespace DAL.InterAssist.Datasets {
             
             private global::System.Data.DataColumn columnIDTICKETPRESTADOR_RETRABAJO;
             
-            private global::System.Data.DataColumn columnDEMORA;
-            
             private global::System.Data.DataColumn columnPATENTE;
             
             private global::System.Data.DataColumn columnNOMBRE_CHOFER;
             
             private global::System.Data.DataColumn columnIDFINALIZACION;
+            
+            private global::System.Data.DataColumn columnDEMORA_EST;
+            
+            private global::System.Data.DataColumn columnDEMORA_REAL;
+            
+            private global::System.Data.DataColumn columnIDTIPOPRESTACION;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -542,14 +546,6 @@ namespace DAL.InterAssist.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DEMORAColumn {
-                get {
-                    return this.columnDEMORA;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn PATENTEColumn {
                 get {
                     return this.columnPATENTE;
@@ -569,6 +565,30 @@ namespace DAL.InterAssist.Datasets {
             public global::System.Data.DataColumn IDFINALIZACIONColumn {
                 get {
                     return this.columnIDFINALIZACION;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DEMORA_ESTColumn {
+                get {
+                    return this.columnDEMORA_EST;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DEMORA_REALColumn {
+                get {
+                    return this.columnDEMORA_REAL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDTIPOPRESTACIONColumn {
+                get {
+                    return this.columnIDTIPOPRESTACION;
                 }
             }
             
@@ -632,10 +652,12 @@ namespace DAL.InterAssist.Datasets {
                         string CALLE_DESTINO, 
                         int IDESTADO, 
                         int IDTICKETPRESTADOR_RETRABAJO, 
-                        string DEMORA, 
                         string PATENTE, 
                         string NOMBRE_CHOFER, 
-                        int IDFINALIZACION) {
+                        int IDFINALIZACION, 
+                        string DEMORA_EST, 
+                        string DEMORA_REAL, 
+                        int IDTIPOPRESTACION) {
                 TICKET_PRESTADORESRow rowTICKET_PRESTADORESRow = ((TICKET_PRESTADORESRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IDTICKETPRESTADOR,
@@ -660,10 +682,12 @@ namespace DAL.InterAssist.Datasets {
                         CALLE_DESTINO,
                         IDESTADO,
                         IDTICKETPRESTADOR_RETRABAJO,
-                        DEMORA,
                         PATENTE,
                         NOMBRE_CHOFER,
-                        IDFINALIZACION};
+                        IDFINALIZACION,
+                        DEMORA_EST,
+                        DEMORA_REAL,
+                        IDTIPOPRESTACION};
                 rowTICKET_PRESTADORESRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTICKET_PRESTADORESRow);
                 return rowTICKET_PRESTADORESRow;
@@ -708,10 +732,12 @@ namespace DAL.InterAssist.Datasets {
                 this.columnCALLE_DESTINO = base.Columns["CALLE_DESTINO"];
                 this.columnIDESTADO = base.Columns["IDESTADO"];
                 this.columnIDTICKETPRESTADOR_RETRABAJO = base.Columns["IDTICKETPRESTADOR_RETRABAJO"];
-                this.columnDEMORA = base.Columns["DEMORA"];
                 this.columnPATENTE = base.Columns["PATENTE"];
                 this.columnNOMBRE_CHOFER = base.Columns["NOMBRE_CHOFER"];
                 this.columnIDFINALIZACION = base.Columns["IDFINALIZACION"];
+                this.columnDEMORA_EST = base.Columns["DEMORA_EST"];
+                this.columnDEMORA_REAL = base.Columns["DEMORA_REAL"];
+                this.columnIDTIPOPRESTACION = base.Columns["IDTIPOPRESTACION"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -761,21 +787,26 @@ namespace DAL.InterAssist.Datasets {
                 base.Columns.Add(this.columnIDESTADO);
                 this.columnIDTICKETPRESTADOR_RETRABAJO = new global::System.Data.DataColumn("IDTICKETPRESTADOR_RETRABAJO", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIDTICKETPRESTADOR_RETRABAJO);
-                this.columnDEMORA = new global::System.Data.DataColumn("DEMORA", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDEMORA);
                 this.columnPATENTE = new global::System.Data.DataColumn("PATENTE", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPATENTE);
                 this.columnNOMBRE_CHOFER = new global::System.Data.DataColumn("NOMBRE_CHOFER", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNOMBRE_CHOFER);
                 this.columnIDFINALIZACION = new global::System.Data.DataColumn("IDFINALIZACION", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIDFINALIZACION);
+                this.columnDEMORA_EST = new global::System.Data.DataColumn("DEMORA_EST", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDEMORA_EST);
+                this.columnDEMORA_REAL = new global::System.Data.DataColumn("DEMORA_REAL", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDEMORA_REAL);
+                this.columnIDTIPOPRESTACION = new global::System.Data.DataColumn("IDTIPOPRESTACION", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIDTIPOPRESTACION);
                 this.columnOBJECTHASH.MaxLength = 50;
                 this.columnCOMENTARIOS.MaxLength = 1024;
                 this.columnCALLE_ORIGEN.MaxLength = 1024;
                 this.columnCALLE_DESTINO.MaxLength = 1024;
-                this.columnDEMORA.MaxLength = 20;
                 this.columnPATENTE.MaxLength = 20;
                 this.columnNOMBRE_CHOFER.MaxLength = 255;
+                this.columnDEMORA_EST.MaxLength = 20;
+                this.columnDEMORA_REAL.MaxLength = 20;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1276,22 +1307,6 @@ namespace DAL.InterAssist.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DEMORA {
-                get {
-                    try {
-                        return ((string)(this[this.tableTICKET_PRESTADORES.DEMORAColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DEMORA\' in table \'TICKET_PRESTADORES\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTICKET_PRESTADORES.DEMORAColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string PATENTE {
                 get {
                     try {
@@ -1335,6 +1350,54 @@ namespace DAL.InterAssist.Datasets {
                 }
                 set {
                     this[this.tableTICKET_PRESTADORES.IDFINALIZACIONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DEMORA_EST {
+                get {
+                    try {
+                        return ((string)(this[this.tableTICKET_PRESTADORES.DEMORA_ESTColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DEMORA_EST\' in table \'TICKET_PRESTADORES\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTICKET_PRESTADORES.DEMORA_ESTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DEMORA_REAL {
+                get {
+                    try {
+                        return ((string)(this[this.tableTICKET_PRESTADORES.DEMORA_REALColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DEMORA_REAL\' in table \'TICKET_PRESTADORES\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTICKET_PRESTADORES.DEMORA_REALColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int IDTIPOPRESTACION {
+                get {
+                    try {
+                        return ((int)(this[this.tableTICKET_PRESTADORES.IDTIPOPRESTACIONColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IDTIPOPRESTACION\' in table \'TICKET_PRESTADORES\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTICKET_PRESTADORES.IDTIPOPRESTACIONColumn] = value;
                 }
             }
             
@@ -1604,18 +1667,6 @@ namespace DAL.InterAssist.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDEMORANull() {
-                return this.IsNull(this.tableTICKET_PRESTADORES.DEMORAColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDEMORANull() {
-                this[this.tableTICKET_PRESTADORES.DEMORAColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsPATENTENull() {
                 return this.IsNull(this.tableTICKET_PRESTADORES.PATENTEColumn);
             }
@@ -1648,6 +1699,42 @@ namespace DAL.InterAssist.Datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetIDFINALIZACIONNull() {
                 this[this.tableTICKET_PRESTADORES.IDFINALIZACIONColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDEMORA_ESTNull() {
+                return this.IsNull(this.tableTICKET_PRESTADORES.DEMORA_ESTColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDEMORA_ESTNull() {
+                this[this.tableTICKET_PRESTADORES.DEMORA_ESTColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDEMORA_REALNull() {
+                return this.IsNull(this.tableTICKET_PRESTADORES.DEMORA_REALColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDEMORA_REALNull() {
+                this[this.tableTICKET_PRESTADORES.DEMORA_REALColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIDTIPOPRESTACIONNull() {
+                return this.IsNull(this.tableTICKET_PRESTADORES.IDTIPOPRESTACIONColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIDTIPOPRESTACIONNull() {
+                this[this.tableTICKET_PRESTADORES.IDTIPOPRESTACIONColumn] = global::System.Convert.DBNull;
             }
         }
         
