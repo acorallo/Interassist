@@ -76,20 +76,26 @@
                     A.IDCOLOR,
                     A.IDPROBLEMA,
                     A.UBICACION_DESCR,
-                    A.DEMORA_EST
+                    A.DEMORA_EST,
+                    B.CATEGORIA,
+                    J.NOMBRE AS CATEGORIA_NOMBRE,
+                    A.URL_ORIGEN,
+                    A.URL_DESTINO
               FROM TICKETS A,
                    AFILIADOS B,
                    OPERADORES C,
                    EMPRESAS F,
                    UBICACIONES_VW G,
                    UBICACIONES_VW H,
-                   ESTADOS I
+                   ESTADOS I,
+                   CATAGORIAS J
               WHERE a.idafiliado = b.idafiliado (+) and 
                     a.idoperador = c.idoperador and
                     b.idempresa = f.idempresa (+) and
                     a.idlocalidad_origen = g.idlocalidad(+) and
                     a.idlocalidad_destino = h.idlocalidad(+) and
-                    a.idestado = i.idestado';
+                    a.idestado = i.idestado and
+                    b.categoria = j.codigo (+)';
             
   -- ID
   IF (P_ID <> INT_NULL) THEN
@@ -114,7 +120,7 @@
 
   
   IF (P_SEARCH IS NOT NULL) THEN
-      strsql:=  strsql || IASSIST_PKG.WHERECLAUSE(isWhere) || 'UPPER(a.IDOPERADOR || A.IDTICKET || NVL(B.NOMBRE,'''') || NVL(B.APELLIDO,'''') || NVL(B.POLIZA,'''') || NVL(B.PATENTE,'''') || C.APELLIDO || C.NOMBRE || I.DESCRIPCION) LIKE UPPER(''%'||P_SEARCH||'%'')';
+      strsql:=  strsql || IASSIST_PKG.WHERECLAUSE(isWhere) || 'UPPER(a.IDOPERADOR || A.IDTICKET || NVL(B.NOMBRE,'''') || NVL(B.APELLIDO,'''') || NVL(B.POLIZA,'''') || NVL(B.PATENTE,'''') || C.APELLIDO || C.NOMBRE || I.DESCRIPCION || J.NOMBRE) LIKE UPPER(''%'||P_SEARCH||'%'')';
   END IF;
   
   -- Order by clause
@@ -157,7 +163,9 @@
     P_IDCOLOR in tickets.idcolor%TYPE,
     P_IDPROBLEMA in tickets.idproblema%TYPE,
     P_UBICACION_DESCR IN tickets.ubicacion_descr%TYPE,
-    P_DEMORA_EST In tickets.demora_est%TYPE
+    P_DEMORA_EST In tickets.demora_est%TYPE,
+    P_URL_ORIGEN In tickets.url_origen%TYPE,
+    P_URL_DESTINO In tickets.url_destino%TYPE
   )
    IS
    ID_INSERT NUMBER;
@@ -190,7 +198,9 @@
       tickets.idcolor,
       tickets.idproblema,
       tickets.ubicacion_descr,
-      tickets.demora_est
+      tickets.demora_est,
+      tickets.url_origen,
+      tickets.url_destino
     )
     VALUES 
     (
@@ -217,7 +227,9 @@
       P_IDCOLOR,
       P_IDPROBLEMA,
       P_UBICACION_DESCR,
-      P_DEMORA_EST
+      P_DEMORA_EST,
+      P_URL_ORIGEN,
+      P_URL_DESTINO
     );
     
     P_ID:= ID_INSERT;
@@ -249,6 +261,8 @@
     P_IDPROBLEMA in tickets.idproblema%TYPE,
     P_UBICACION_DESCR IN tickets.ubicacion_descr%TYPE,
     P_DEMORA_EST In tickets.demora_est%TYPE,
+    P_URL_ORIGEN In tickets.url_origen%TYPE,
+    P_URL_DESTINO In tickets.url_destino%TYPE,
     P_AFFECTED_ROWS OUT number
   )
   IS
@@ -276,7 +290,9 @@
       tickets.idcolor = P_IDCOLOR,
       tickets.idproblema = P_IDPROBLEMA,
       tickets.ubicacion_descr = P_UBICACION_DESCR,
-      tickets.demora_est = P_DEMORA_EST
+      tickets.demora_est = P_DEMORA_EST,
+      tickets.url_origen = P_URL_ORIGEN,
+      tickets.url_destino = P_URL_DESTINO
     WHERE tickets.idticket = P_ID and tickets.objecthash = P_OBJECTHASH;
     
     P_AFFECTED_ROWS:= sql%rowcount;

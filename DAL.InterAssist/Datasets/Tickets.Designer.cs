@@ -327,6 +327,10 @@ namespace DAL.InterAssist.Datasets {
             
             private global::System.Data.DataColumn columnDEMORA_EST;
             
+            private global::System.Data.DataColumn columnURL_ORIGEN;
+            
+            private global::System.Data.DataColumn columnURL_DESTINO;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TICKETSDataTable() {
@@ -554,6 +558,22 @@ namespace DAL.InterAssist.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn URL_ORIGENColumn {
+                get {
+                    return this.columnURL_ORIGEN;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn URL_DESTINOColumn {
+                get {
+                    return this.columnURL_DESTINO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -613,7 +633,9 @@ namespace DAL.InterAssist.Datasets {
                         int IDCOLOR, 
                         int IDPROBLEMA, 
                         string UBICACION_DESCR, 
-                        string DEMORA_EST) {
+                        string DEMORA_EST, 
+                        string URL_ORIGEN, 
+                        string URL_DESTINO) {
                 TICKETSRow rowTICKETSRow = ((TICKETSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IDTICKET,
@@ -639,7 +661,9 @@ namespace DAL.InterAssist.Datasets {
                         IDCOLOR,
                         IDPROBLEMA,
                         UBICACION_DESCR,
-                        DEMORA_EST};
+                        DEMORA_EST,
+                        URL_ORIGEN,
+                        URL_DESTINO};
                 rowTICKETSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTICKETSRow);
                 return rowTICKETSRow;
@@ -693,6 +717,8 @@ namespace DAL.InterAssist.Datasets {
                 this.columnIDPROBLEMA = base.Columns["IDPROBLEMA"];
                 this.columnUBICACION_DESCR = base.Columns["UBICACION_DESCR"];
                 this.columnDEMORA_EST = base.Columns["DEMORA_EST"];
+                this.columnURL_ORIGEN = base.Columns["URL_ORIGEN"];
+                this.columnURL_DESTINO = base.Columns["URL_DESTINO"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -746,6 +772,10 @@ namespace DAL.InterAssist.Datasets {
                 base.Columns.Add(this.columnUBICACION_DESCR);
                 this.columnDEMORA_EST = new global::System.Data.DataColumn("DEMORA_EST", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDEMORA_EST);
+                this.columnURL_ORIGEN = new global::System.Data.DataColumn("URL_ORIGEN", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnURL_ORIGEN);
+                this.columnURL_DESTINO = new global::System.Data.DataColumn("URL_DESTINO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnURL_DESTINO);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIDTICKET}, true));
                 this.columnIDTICKET.AllowDBNull = false;
@@ -770,6 +800,8 @@ namespace DAL.InterAssist.Datasets {
                 this.columnOKAFILIADO.MaxLength = 1;
                 this.columnUBICACION_DESCR.MaxLength = 1024;
                 this.columnDEMORA_EST.MaxLength = 20;
+                this.columnURL_ORIGEN.MaxLength = 1024;
+                this.columnURL_DESTINO.MaxLength = 1024;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1226,6 +1258,38 @@ namespace DAL.InterAssist.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string URL_ORIGEN {
+                get {
+                    try {
+                        return ((string)(this[this.tableTICKETS.URL_ORIGENColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'URL_ORIGEN\' in table \'TICKETS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTICKETS.URL_ORIGENColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string URL_DESTINO {
+                get {
+                    try {
+                        return ((string)(this[this.tableTICKETS.URL_DESTINOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'URL_DESTINO\' in table \'TICKETS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTICKETS.URL_DESTINOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTELEFONONull() {
                 return this.IsNull(this.tableTICKETS.TELEFONOColumn);
             }
@@ -1342,6 +1406,30 @@ namespace DAL.InterAssist.Datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDEMORA_ESTNull() {
                 this[this.tableTICKETS.DEMORA_ESTColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsURL_ORIGENNull() {
+                return this.IsNull(this.tableTICKETS.URL_ORIGENColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetURL_ORIGENNull() {
+                this[this.tableTICKETS.URL_ORIGENColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsURL_DESTINONull() {
+                return this.IsNull(this.tableTICKETS.URL_DESTINOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetURL_DESTINONull() {
+                this[this.tableTICKETS.URL_DESTINOColumn] = global::System.Convert.DBNull;
             }
         }
         

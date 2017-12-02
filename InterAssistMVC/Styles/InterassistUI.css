@@ -5,8 +5,6 @@
    background-color: blue;
 }
 
-
-/* EGV 15May2017 Inicio */
 .row {
     margin-top:0.5em;
     margin-bottom:0.5em;
@@ -43,17 +41,22 @@
 .provider-info{
     background-color: cornsilk;
     border-width:medium;
-    position:absolute;
-    z-index:1;
+    //position:absolute;
+    position:fixed;
+    //z-index:100;
+    z-index:1050;
     width:540px;
-    right:-57px;
+    //right:-57px;
+    right:200px;
+    top: 175px;
     display:none;
-    -webkit-transition: right 1s; 
-    transition: right 1s; 
+    -webkit-transition: right 0.25s, left 0.25s, top 0.25s; 
+    transition: right 0.25s, left 0.25s, top 0.25s; 
 }
 
 .provider-info-move{
-    right:600px;
+    //right:600px;
+    right:800px;
 }
 
 .provider-info-show{
@@ -141,7 +144,10 @@ label.error{
 .wait:hover{
     cursor:wait;
 }
-/* EGV 15May2017 Fin */
+
+.link:hover{
+    cursor:pointer;
+}
 
 .remark{
     font-size:1.5em;

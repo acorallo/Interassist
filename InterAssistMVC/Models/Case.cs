@@ -45,6 +45,9 @@ namespace InterAssistMVC.Models
         public virtual string NombreAfiliado { get; set; }
         public virtual string TipoTicket { get; set; }
 
+        public virtual string Categoria { get; set; }
+        public virtual string CategoriaNombre { get; set; }
+
         public virtual string NombreLocalidadOrigen { get; set; }
         public virtual string NombreLocalidadDestino { get; set; }
         public virtual string UbicacionOrigen { get; set; }
@@ -64,6 +67,12 @@ namespace InterAssistMVC.Models
         [StringLength(20)]
         public virtual string DemoraEst { get; set; }
 
+        [StringLength(1024)]
+        public virtual string UrlOrigen { get; set; }
+
+        [StringLength(1024)]
+        public virtual string UrlDestino { get; set; }
+
         public virtual AfiliadoModel Afiliado { get; set; }
 
         public virtual List<Prestacion> Prestaciones { get; set; }
@@ -77,7 +86,7 @@ namespace InterAssistMVC.Models
 
         public virtual int IdOperadorTrack { get; set; }
 
-        public virtual string FechaDisplay { get { return this.Fecha.ToString("dd/MM/yyyy"); } }
+        public virtual string FechaDisplay { get { return this.Fecha.ToString("dd/MM/yyyy H:mm:ss"); } }
 
         public virtual Common.ModoGrabacion ModoGraba { get; set; }
 
@@ -135,6 +144,9 @@ namespace InterAssistMVC.Models
             m.NombreAfiliado = e.NombreAfiliado;
             m.TipoTicket = e.TipoTicket;
 
+            m.Categoria = e.Categoria;
+            m.CategoriaNombre = e.CategoriaNombre;
+
             m.NombreLocalidadOrigen = e.NombreLocalidadOrigen;
             m.NombreLocalidadDestino = e.NombreLocalidadDestino;
             m.UbicacionOrigen = m.NombreLocalidadOrigen;
@@ -150,6 +162,9 @@ namespace InterAssistMVC.Models
 
             m.UbicacionDescr = e.UbicacionDescr;
             m.DemoraEst = e.DemoraEst;
+
+            m.UrlOrigen = e.UrlOrigen;
+            m.UrlDestino = e.UrlDestino;
 
             if (e.Afiliado != null)
                 m.Afiliado = AfiliadoModel.EntityToModel(e.Afiliado);
@@ -210,6 +225,9 @@ namespace InterAssistMVC.Models
 
             e.UbicacionDescr = this.UbicacionDescr;
             e.DemoraEst = this.DemoraEst;
+
+            e.UrlOrigen = this.UrlOrigen;
+            e.UrlDestino = this.UrlDestino;
 
             if (Observacion != null && Observacion.Trim() != "")
             {

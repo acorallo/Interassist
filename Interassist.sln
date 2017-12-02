@@ -43,6 +43,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DBScripts", "DBScripts", "{
 		Modificaciones Tablas 3.sql = Modificaciones Tablas 3.sql
 		Modificaciones tablas 4.sql = Modificaciones tablas 4.sql
 		Modificaciones Tablas 5.sql = Modificaciones Tablas 5.sql
+		Modificaciones Tablas 6.sql = Modificaciones Tablas 6.sql
 		DBScripts\Modificaciones Tablas.sql = DBScripts\Modificaciones Tablas.sql
 		DBScripts\TICKET_PKG Body.sql = DBScripts\TICKET_PKG Body.sql
 		DBScripts\TICKET_PKG.sql = DBScripts\TICKET_PKG.sql

@@ -78,6 +78,9 @@ namespace DAL.InterAssist
 
         public const string COL_CODIGO_TIPOPRESTACION = "CODIGO_TIPOPRESTACION";
 
+        public const string COL_URL_ORIGEN = "URL_ORIGEN";
+        public const string COL_URL_DESTINO = "URL_DESTINO";
+
 
         // Otras Columnas
         public const string COL_POLIZA = "POLIZA";
@@ -87,6 +90,9 @@ namespace DAL.InterAssist
         public const string COL_PATENTE = "PATENTE";
         public const string COL_NOMBRE_EMPRESA = "NOMBRE_EMPRESA";
         public const string COL_NOMBRE_AFILIADO = "NOMBRE_AFILIADO";
+
+        public const string COL_CATEGORIA = "CATEGORIA";
+        public const string COL_CATEGORIA_NOMBRE = "CATEGORIA_NOMBRE";
 
 
         #endregion Constantes
@@ -179,6 +185,8 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDPROBLEMAColumn].ToString()))));
                 paramList.Add(repository.DbFactory.getDataParameter("P_UBICACION_DESCR", DbType.String, dr[dtable.UBICACION_DESCRColumn].ToString()));
                 paramList.Add(repository.DbFactory.getDataParameter("P_DEMORA_EST", DbType.String, dr[dtable.DEMORA_ESTColumn].ToString()));
+                paramList.Add(repository.DbFactory.getDataParameter("P_URL_ORIGEN", DbType.String, dr[dtable.URL_ORIGENColumn].ToString()));
+                paramList.Add(repository.DbFactory.getDataParameter("P_URL_DESTINO", DbType.String, dr[dtable.URL_DESTINOColumn].ToString()));
 
                 result = repository.ExecuteCreateProcedure(CONST_CREATE_PROCEDURE_NAME, paramList, dr[dtable.OBJECTHASHColumn].ToString());
                 
@@ -256,6 +264,8 @@ namespace DAL.InterAssist
                 paramList.Add(repository.DbFactory.getDataParameter("P_IDPROBLEMA", DbType.Int32, Dataservices.IntNUlleable(Int32.Parse(dr[dtable.IDPROBLEMAColumn].ToString()))));
                 paramList.Add(repository.DbFactory.getDataParameter("P_UBICACION_DESCR", DbType.String, dr[dtable.UBICACION_DESCRColumn].ToString()));
                 paramList.Add(repository.DbFactory.getDataParameter("P_DEMORA_EST", DbType.String, dr[dtable.DEMORA_ESTColumn].ToString()));
+                paramList.Add(repository.DbFactory.getDataParameter("P_URL_ORIGEN", DbType.String, dr[dtable.URL_ORIGENColumn].ToString()));
+                paramList.Add(repository.DbFactory.getDataParameter("P_URL_DESTINO", DbType.String, dr[dtable.URL_DESTINOColumn].ToString()));
 
                 result = (repository.ExecuteUpdateProcedure(CONST_UPDATE_PROCEDURE_NAME, paramList, dr[dtable.OBJECTHASHColumn].ToString()) == 1);
 

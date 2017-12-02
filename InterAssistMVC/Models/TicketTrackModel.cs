@@ -21,6 +21,8 @@ namespace InterAssistMVC.Models
         public virtual string NombreOperador { get; set; }
         public virtual string Estado { get; set; }
 
+        public virtual string FechaDisplay { get { return this.FechaHora.ToString("dd/MM/yyyy H:mm:ss"); } }
+
         public static TicketTrackModel EntityToModel(TicketTrack e)
         {
             TicketTrackModel m = new TicketTrackModel();

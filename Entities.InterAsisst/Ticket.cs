@@ -248,6 +248,22 @@ namespace Entities.InterAsisst
             set { _tipoTicket = value; }
         }
 
+        private string _categoria;
+
+        public string Categoria
+        {
+            get { return _categoria; }
+            set { _categoria = value; }
+        }
+
+        private string _categoriaNombre;
+
+        public string CategoriaNombre
+        {
+            get { return _categoriaNombre; }
+            set { _categoriaNombre = value; }
+        }
+
         private bool _okAfiliado;
 
         public bool OkAfiliado
@@ -295,6 +311,24 @@ namespace Entities.InterAsisst
             get { return _demoraEst; }
             set { this._demoraEst = value; }
         }
+
+
+        private string _urlOrigen;
+
+        public string UrlOrigen
+        {
+            get { return _urlOrigen; }
+            set { this._urlOrigen= value; }
+        }
+
+        private string _urlDestino;
+
+        public string UrlDestino
+        {
+            get { return _urlDestino; }
+            set { this._urlDestino = value; }
+        }
+
 
         private int _idOperadorTrack;
 
@@ -523,6 +557,8 @@ namespace Entities.InterAsisst
             resultRow.IDPROBLEMA = this.IdProblema;
             resultRow.UBICACION_DESCR = this.UbicacionDescr;
             resultRow.DEMORA_EST = this.DemoraEst;
+            resultRow.URL_ORIGEN = this.UrlOrigen;
+            resultRow.URL_DESTINO = this.UrlDestino;
 
             return resultRow;
         }
@@ -610,6 +646,8 @@ namespace Entities.InterAsisst
             ticket._nombreEmpresa = dr[TicketDS.COL_NOMBRE_EMPRESA].ToString();
             ticket._nombreAfiliado = dr[TicketDS.COL_NOMBRE_AFILIADO].ToString();
             ticket._tipoTicket = dr[TicketDS.COL_TIPO_TICKET].ToString();
+            ticket._categoria = dr[TicketDS.COL_CATEGORIA].ToString();
+            ticket._categoriaNombre = dr[TicketDS.COL_CATEGORIA_NOMBRE].ToString();
             ticket._nombreLocalidadOrigen = dr[TicketDS.COL_LOCALIDAD_ORIGEN_NOMBRE].ToString();
             ticket._nombreLocalidadDestino = dr[TicketDS.COL_LOCALIDAD_DESTINO_NOMBRE].ToString();
             ticket._marca = dr[TicketDS.COL_MARCA].ToString();
@@ -618,6 +656,8 @@ namespace Entities.InterAsisst
             ticket._idProblema = PersistEntity.NuleableInt(dr[TicketDS.COL_IDPROBLEMA].ToString());
             ticket._ubicacionDescr = dr[TicketDS.COL_UBICACION_DESCR].ToString();
             ticket._demoraEst = dr[TicketDS.COL_DEMORA_EST].ToString();
+            ticket._urlOrigen = dr[TicketDS.COL_URL_ORIGEN].ToString();
+            ticket._urlDestino = dr[TicketDS.COL_URL_DESTINO].ToString();
         }
 
         public override bool Persist()

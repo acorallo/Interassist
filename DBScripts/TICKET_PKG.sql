@@ -52,7 +52,9 @@
     P_IDCOLOR in tickets.idcolor%TYPE,
     P_IDPROBLEMA in tickets.idproblema%TYPE,
     P_UBICACION_DESCR IN tickets.ubicacion_descr%TYPE,
-    P_DEMORA_EST In tickets.demora_est%TYPE
+    P_DEMORA_EST In tickets.demora_est%TYPE,
+    P_URL_ORIGEN In tickets.url_origen%TYPE,
+    P_URL_DESTINO In tickets.url_destino%TYPE
   );
   
   PROCEDURE MODIFY_TICKET 
@@ -80,6 +82,8 @@
     P_IDPROBLEMA in tickets.idproblema%TYPE,
     P_UBICACION_DESCR IN tickets.ubicacion_descr%TYPE,
     P_DEMORA_EST In tickets.demora_est%TYPE,
+    P_URL_ORIGEN In tickets.url_origen%TYPE,
+    P_URL_DESTINO In tickets.url_destino%TYPE,
     P_AFFECTED_ROWS OUT number
   );
   

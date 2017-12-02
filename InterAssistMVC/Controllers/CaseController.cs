@@ -267,7 +267,14 @@ namespace InterAssistMVC.Controllers
         {
             m.CaseEstados = new SelectList(Estado.List(new FiltroEstado("CASO")), "ID", "Descripcion", m.IdEstado);
             m.TiposServicio = new SelectList(TipoServicio.List(new FiltroTipoServicio()), "ID", "Descripcion");
-            m.Problemas = new SelectList(Problema.List(new FiltroProblema()), "ID", "Desripcion");
+            //m.Problemas = new SelectList(Problema.List(new FiltroProblema()), "ID", "Desripcion");
+
+            List<Problema> ip = Problema.List(new FiltroProblema());
+            Problema prob = new Problema();
+            prob.Desripcion = "-- Problema --";
+            ip.Add(prob);
+            m.Problemas = new SelectList(ip, "ID", "Desripcion");
+
             m.PrestacionEstados = new SelectList(Estado.List(new FiltroEstado("PRESTACION")), "ID", "Descripcion");
             m.PrestacionesRetrabajo = new SelectList(m.Prestaciones, "Id", "NombrePrestacion");
             m.FinalizacionesPretaciones = new SelectList(Estado.List(new FiltroEstado("FINAL_PREST")), "ID", "Descripcion");
@@ -590,7 +597,7 @@ namespace InterAssistMVC.Controllers
                             m.IdEstado = (int)Estado.Caso.PendienteCierre;
                         else
                         {
-                            if (CasoTieneUbicaciones(m))
+                            if (CasoTieneUbicaciones(m) && m.IdProblema > 0)
                                 m.IdEstado = (int)Estado.Caso.Abierto;
                             else
                                 m.IdEstado = (int)Estado.Caso.Borrador;
@@ -625,7 +632,9 @@ namespace InterAssistMVC.Controllers
                 m.IdProblema != t.IdProblema ||
                 m.IdColor != t.IdColor ||
                 (m.UbicacionDescr ?? "") != (t.UbicacionDescr ?? "") ||
-                (m.DemoraEst ?? "") != (t.DemoraEst ?? ""))
+                (m.DemoraEst ?? "") != (t.DemoraEst ?? "") ||
+                (m.UrlOrigen ?? "") != (t.UrlOrigen ?? "") ||
+                (m.UrlDestino ?? "") != (t.UrlDestino ?? ""))
                 return true;
 
             return false;
